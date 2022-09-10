@@ -1,0 +1,56 @@
+<div id="bagContainer" class="card sortable border-secondary mb-3" data-bind="visible: player.starter() != GameConstants.Starter.None">
+    <div class="card-header p-0" data-toggle="collapse" href="#bagContainerBody">
+        <span>Bag</span>
+    </div>
+    <button type="button" class="btn btn-info"
+            style="position: absolute; right: 0px; top: 0px; width: auto; height: 41px; padding: 4px;"
+            data-bind="tooltip: { title: 'Select which Poké Ball to use on Pokémon depending on their status', trigger: 'hover', placement:'left' }">
+        ?
+    </button>
+    <div id="bagContainerBody" class="card-body p-0 show table-responsive">
+        <div class="row w-100 m-0">
+            <!-- Pokémon List -->
+            <div class="p-2" data-bind="css: { 'col-2': Settings.getSetting('gameDisplayStyle').observableValue() === 'fullWidth3', 'col-4': Settings.getSetting('gameDisplayStyle').observableValue() !== 'fullWidth3' }">
+                <div class="bag-icon" data-bind="tooltip: { title: 'Pokémon List', trigger: 'hover', placement: 'right', html: true },
+                click: function() {  }">
+                    <img src="" data-bind="attr: { src: `/assets/images/bagIcons/party.png` }">
+                </div>
+            </div>
+            <!-- Poké Balls -->
+            <div class="p-2" data-bind="css: { 'col-2': Settings.getSetting('gameDisplayStyle').observableValue() === 'fullWidth3', 'col-4': Settings.getSetting('gameDisplayStyle').observableValue() !== 'fullWidth3' }">
+                <div class="bag-icon" data-bind="tooltip: { title: 'Poké Balls', trigger: 'hover', placement: 'right', html: true },
+                click: function() { $('#pokeballSelectorModal').modal('show') }">
+                    <img src="" data-bind="attr: { src: `/assets/images/bagIcons/pokeballs.png` }">
+                </div>
+            </div>
+            <!-- Items -->
+            <div class="p-2" data-bind="css: { 'col-2': Settings.getSetting('gameDisplayStyle').observableValue() === 'fullWidth3', 'col-4': Settings.getSetting('gameDisplayStyle').observableValue() !== 'fullWidth3' }">
+                <div class="bag-icon" data-bind="tooltip: { title: 'Items', trigger: 'hover', placement: 'right', html: true },
+                click: function() { $('#showItemsModal').modal('show') }">
+                    <img src="" data-bind="attr: { src: `/assets/images/bagIcons/items.png` }">
+                </div>
+            </div>
+            <!-- Gems -->
+            <div class="p-2" data-bind="css: { 'col-2': Settings.getSetting('gameDisplayStyle').observableValue() === 'fullWidth3', 'col-4': Settings.getSetting('gameDisplayStyle').observableValue() !== 'fullWidth3' }">
+                <div class="bag-icon" data-bind="tooltip: { title: 'Gems', trigger: 'hover', placement: 'right', html: true },
+                click: function() { App.game.gems.openGemModal() }">
+                    <img src="" data-bind="attr: { src: `/assets/images/bagIcons/gems.png` }, css: { 'disabled-icon': !App.game.gems.canAccess()}">
+                </div>
+            </div>
+            <!-- Log Book -->
+            <div class="p-2" data-bind="css: { 'col-2': Settings.getSetting('gameDisplayStyle').observableValue() === 'fullWidth3', 'col-4': Settings.getSetting('gameDisplayStyle').observableValue() !== 'fullWidth3' }">
+                <div class="bag-icon" data-bind="tooltip: { title: 'Log Book', trigger: 'hover', placement: 'right', html: true },
+                click: function() { $('#logBookModal').modal('show') }">
+                    <img src="" data-bind="attr: { src: `/assets/images/bagIcons/logbook.png` }">
+                </div>
+            </div>
+            <!-- Achievements -->
+            <div class="p-2" data-bind="css: { 'col-2': Settings.getSetting('gameDisplayStyle').observableValue() === 'fullWidth3', 'col-4': Settings.getSetting('gameDisplayStyle').observableValue() !== 'fullWidth3' }">
+                <div class="bag-icon" data-bind="tooltip: { title: 'Achievements', trigger: 'hover', placement: 'right', html: true },
+                click: function() { $('#achievementsModal').modal('show') }">
+                    <img src="" data-bind="attr: { src: `/assets/images/bagIcons/achievements.png` }">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
