@@ -101,6 +101,7 @@ import ProteinObtainRequirement from './requirements/ProteinObtainRequirement';
 import QuestRequirement from './requirements/QuestRequirement';
 import RouteKillRequirement from './requirements/RouteKillRequirement';
 import SeededDateRequirement from './requirements/SeededDateRequirement';
+import SettingRequirement from './requirements/SettingRequirement'; // Crobat Fork
 import ShinyPokemonRequirement from './requirements/ShinyPokemonRequirement';
 import SubregionRequirement from './requirements/SubregionRequirement';
 import TokenRequirement from './requirements/TokenRequirement';
@@ -229,6 +230,7 @@ Object.assign(<any>window, {
     QuestRequirement,
     RouteKillRequirement,
     SeededDateRequirement,
+    SettingRequirement, // Crobat Fork
     ShinyPokemonRequirement,
     SubregionRequirement,
     TokenRequirement,

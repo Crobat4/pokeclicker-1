@@ -203,13 +203,21 @@ class DungeonRunner {
         });
     }
 
-    public static startBossFight() {
+    public static async startBossFight(shouldConfirm = Settings.getSetting('confirmFightBoss').observableValue()) {
         if (DungeonRunner.map.currentTile().type() !== GameConstants.DungeonTile.boss || DungeonRunner.fightingBoss()) {
             return;
         }
 
-        DungeonRunner.fightingBoss(true);
-        DungeonBattle.generateNewBoss();
+        if (!shouldConfirm || await Notifier.confirm({
+            title: 'Dungeon',
+            message: 'Fight the boss?\n\nIf you start the fight against the boss, you won\'t be able to fight the remaining Pokémon or open the remaining chests.',
+            type: NotificationConstants.NotificationOption.warning,
+            confirm: 'Fight',
+            timeout: 1 * GameConstants.MINUTE,
+        })) {
+            DungeonRunner.fightingBoss(true);
+            DungeonBattle.generateNewBoss();
+        }
     }
 
     public static async dungeonLeave(shouldConfirm = Settings.getSetting('confirmLeaveDungeon').observableValue()): Promise<void> {

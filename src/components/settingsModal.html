@@ -266,6 +266,13 @@
                                         ">
                                     </td>
                                 </tr>
+
+                                <!-- Crobat Fork -->
+                                <tr><td colspan="2"><h5 class="my-0">Crobat Fork</h5></td></tr>
+                                <!-- ko if: App.game.gameState != GameConstants.GameState.dungeon -->
+                                <tr data-bind="template: { name: 'BooleanSettingTemplate', data: Settings.getSetting('enableRemovedBerries')}"></tr>
+                                <!-- /ko -->
+                                <tr data-bind="template: { name: 'BooleanSettingTemplate', data: Settings.getSetting('confirmFightBoss')}"></tr>
                             </tbody>
                         </table>
                         <div class="btn-group btn-block">
