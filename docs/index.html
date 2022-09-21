@@ -34993,7 +34993,7 @@
         <div class="shortcut-icon" data-bind="tooltip: { title: 'Underground', trigger: 'hover', placement: 'right', html: true },
             css: {'disabled-icon': !App.game.underground.canAccess()}"
             onclick="App.game.underground.openUndergroundModal()">
-            <img src="" data-bind="attr: { src: `/assets/images/shortcut-icons/underground.png` }">
+            <img src="" data-bind="attr: { src: `assets/images/shortcut-icons/underground.png` }">
         </div>
       </div>
       <!-- /ko -->
@@ -35004,7 +35004,7 @@
         <div class="shortcut-icon" data-bind="tooltip: { title: 'Farm', trigger: 'hover', placement: 'right', html: true },
             css: {'disabled-icon': !App.game.farming.canAccess()}"
             onclick="FarmController.openFarmModal()">
-            <img src="" data-bind="attr: { src: `/assets/images/shortcut-icons/farm.png` }">
+            <img src="" data-bind="attr: { src: `assets/images/shortcut-icons/farm.png` }">
         </div>
       </div>
       <!-- /ko -->
@@ -35015,7 +35015,7 @@
         <div class="shortcut-icon" data-bind="tooltip: { title: 'Poké Mart', trigger: 'hover', placement: 'right', html: true },
             css: {'disabled-icon': !App.game.statistics.gymsDefeated[GameConstants.getGymIndex('Champion Lance')]}"
             onclick="ShopHandler.showShop(pokeMartShop);" href="#shopModal" data-toggle="modal">
-            <img src="" data-bind="attr: { src: `/assets/images/shortcut-icons/poke-mart.png` }">
+            <img src="" data-bind="attr: { src: `assets/images/shortcut-icons/poke-mart.png` }">
         </div>
       </div>
       <!-- /ko -->
@@ -35026,7 +35026,7 @@
         <div class="shortcut-icon" data-bind="tooltip: { title: 'Dock', trigger: 'hover', placement: 'right', html: true },
             css: {'disabled-icon': !(TownList[GameConstants.DockTowns[player.region]].isUnlocked()) || App.game.gameState == GameConstants.GameState.battleFrontier || App.game.gameState === GameConstants.GameState.dungeon}"
             onclick="MapHelper.openShipModal()">
-            <img src="" data-bind="attr: { src: `/assets/images/shortcut-icons/dock.png` }">
+            <img src="" data-bind="attr: { src: `assets/images/shortcut-icons/dock.png` }">
         </div>
       </div>
       <!-- /ko -->
@@ -35035,7 +35035,7 @@
       <div class="p-2" data-bind="css: { 'col-2': Settings.getSetting('gameDisplayStyle').observableValue() === 'fullWidth3', 'col-4': Settings.getSetting('gameDisplayStyle').observableValue() !== 'fullWidth3' }">
         <div class="shortcut-icon" data-bind="tooltip: { title: 'Log Book', trigger: 'hover', placement: 'right', html: true }"
             onclick="$('#logBookModal').modal('show');">
-            <img src="" data-bind="attr: { src: `/assets/images/shortcut-icons/log-book.png` }">
+            <img src="" data-bind="attr: { src: `assets/images/shortcut-icons/log-book.png` }">
         </div>
       </div>
 
@@ -35043,7 +35043,7 @@
       <div class="p-2" data-bind="css: { 'col-2': Settings.getSetting('gameDisplayStyle').observableValue() === 'fullWidth3', 'col-4': Settings.getSetting('gameDisplayStyle').observableValue() !== 'fullWidth3' }">
         <div class="shortcut-icon" data-bind="tooltip: { title: 'Damage Calculator', trigger: 'hover', placement: 'right', html: true }"
             onclick="$('#damageCalculatorModal').modal('show');">
-            <img src="" data-bind="attr: { src: `/assets/images/shortcut-icons/damage-calculator.png` }">
+            <img src="" data-bind="attr: { src: `assets/images/shortcut-icons/damage-calculator.png` }">
         </div>
       </div>
 
