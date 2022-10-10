@@ -80,6 +80,7 @@ const srcs = {
         'node_modules/intro.js/introjs.css',
         'node_modules/intro.js/themes/introjs-modern.css',
         'node_modules/jquery/dist/jquery.min.js',
+        'node_modules/jquery-ui/dist/jquery-ui.min.js', // Crobat Fork
         'node_modules/popper.js/dist/umd/popper.min.js',
         'node_modules/knockout/build/output/knockout-latest.js',
         'node_modules/bootstrap-notify/bootstrap-notify.min.js',

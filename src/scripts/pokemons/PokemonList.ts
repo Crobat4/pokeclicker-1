@@ -1,5 +1,6 @@
 /// <reference path="../party/evolutions/EvolutionMethods.ts" />
 /// <reference path="../party/evolutions/WeatherRestrictedLevelEvolution.ts" />
+/// <reference path="../party/evolutions/HeldItemLevelEvolution.ts" />
 /// <reference path="../GameConstants.d.ts" />
 /// <reference path="../../declarations/weather/WeatherType.d.ts" />
 /// <reference path="../../declarations/enums/PokemonType.d.ts" />
@@ -88,7 +89,6 @@ const pokemonList = createPokemonArray(
     {
         'id': 1.1,
         'name': 'Bulbasaur (Clone)',
-        'nativeRegion': GameConstants.Region.kanto,
         'catchRate': 45,
         'type': [PokemonType.Grass, PokemonType.Poison],
         'levelType': LevelType.mediumslow,
@@ -110,7 +110,6 @@ const pokemonList = createPokemonArray(
     {
         'id': 1.2,
         'name': 'Spooky Bulbasaur',
-        'nativeRegion': GameConstants.Region.kanto,
         'catchRate': 25,
         'type': [PokemonType.Grass],
         'levelType': LevelType.mediumslow,
@@ -132,7 +131,6 @@ const pokemonList = createPokemonArray(
     {
         'id': 1.3,
         'name': 'Bulbasaur (Rose)',
-        'nativeRegion': GameConstants.Region.kanto,
         'catchRate': 25,
         'type': [PokemonType.Grass, PokemonType.Fairy],
         'levelType': LevelType.mediumslow,
@@ -175,7 +173,6 @@ const pokemonList = createPokemonArray(
     {
         'id': 2.1,
         'name': 'Ivysaur (Clone)',
-        'nativeRegion': GameConstants.Region.kanto,
         'catchRate': 45,
         'type': [PokemonType.Grass, PokemonType.Poison],
         'levelType': LevelType.mediumslow,
@@ -197,7 +194,6 @@ const pokemonList = createPokemonArray(
     {
         'id': 2.2,
         'name': 'Spooky Ivysaur',
-        'nativeRegion': GameConstants.Region.kanto,
         'catchRate': 45,
         'type': [PokemonType.Grass],
         'levelType': LevelType.mediumslow,
@@ -261,7 +257,6 @@ const pokemonList = createPokemonArray(
     {
         'id': 3.1,
         'name': 'Venusaur (Clone)',
-        'nativeRegion': GameConstants.Region.kanto,
         'catchRate': 45,
         'type': [PokemonType.Grass, PokemonType.Poison],
         'levelType': LevelType.mediumslow,
@@ -282,7 +277,6 @@ const pokemonList = createPokemonArray(
     {
         'id': 3.2,
         'name': 'Spooky Venusaur',
-        'nativeRegion': GameConstants.Region.kanto,
         'catchRate': 45,
         'type': [PokemonType.Grass, PokemonType.Dark],
         'levelType': LevelType.mediumslow,
@@ -365,7 +359,6 @@ const pokemonList = createPokemonArray(
     {
         'id': 4.1,
         'name': 'Charmander (Clone)',
-        'nativeRegion': GameConstants.Region.kanto,
         'catchRate': 45,
         'type': [PokemonType.Fire],
         'levelType': LevelType.mediumslow,
@@ -408,7 +401,6 @@ const pokemonList = createPokemonArray(
     {
         'id': 5.1,
         'name': 'Charmeleon (Clone)',
-        'nativeRegion': GameConstants.Region.kanto,
         'catchRate': 45,
         'type': [PokemonType.Fire],
         'levelType': LevelType.mediumslow,
@@ -450,7 +442,6 @@ const pokemonList = createPokemonArray(
     {
         'id': 6.1,
         'name': 'Charizard (Clone)',
-        'nativeRegion': GameConstants.Region.kanto,
         'catchRate': 45,
         'type': [PokemonType.Fire, PokemonType.Flying],
         'levelType': LevelType.mediumslow,
@@ -513,7 +504,6 @@ const pokemonList = createPokemonArray(
     {
         'id': 7.1,
         'name': 'Squirtle (Clone)',
-        'nativeRegion': GameConstants.Region.kanto,
         'catchRate': 45,
         'type': [PokemonType.Water],
         'levelType': LevelType.mediumslow,
@@ -556,7 +546,6 @@ const pokemonList = createPokemonArray(
     {
         'id': 8.1,
         'name': 'Wartortle (Clone)',
-        'nativeRegion': GameConstants.Region.kanto,
         'catchRate': 45,
         'type': [PokemonType.Water],
         'levelType': LevelType.mediumslow,
@@ -598,7 +587,6 @@ const pokemonList = createPokemonArray(
     {
         'id': 9.1,
         'name': 'Blastoise (Clone)',
-        'nativeRegion': GameConstants.Region.kanto,
         'catchRate': 45,
         'type': [PokemonType.Water],
         'levelType': LevelType.mediumslow,
@@ -748,6 +736,9 @@ const pokemonList = createPokemonArray(
             'specialDefense': 80,
             'speed': 70,
         },
+        'gender': {
+            'type': GameConstants.FEMALE_ONLY,
+        },
     },
     {
         'id': 12.03,
@@ -764,6 +755,9 @@ const pokemonList = createPokemonArray(
             'defense': 50,
             'specialDefense': 80,
             'speed': 70,
+        },
+        'gender': {
+            'type': GameConstants.MALE_ONLY,
         },
     },
     {
@@ -1349,7 +1343,6 @@ const pokemonList = createPokemonArray(
     {
         'id': 25.08,
         'name': 'Flying Pikachu',
-        'nativeRegion': GameConstants.Region.kanto,
         'catchRate': 50,
         'type': [PokemonType.Electric, PokemonType.Flying],
         'levelType': LevelType.mediumfast,
@@ -1367,7 +1360,6 @@ const pokemonList = createPokemonArray(
     {
         'id': 25.09,
         'name': 'Surfing Pikachu',
-        'nativeRegion': GameConstants.Region.kanto,
         'catchRate': 50,
         'type': [PokemonType.Electric, PokemonType.Water],
         'levelType': LevelType.mediumfast,
@@ -1385,7 +1377,6 @@ const pokemonList = createPokemonArray(
     {
         'id': 25.10,
         'name': 'Pikachu (Gengar)',
-        'nativeRegion': GameConstants.Region.kanto,
         'catchRate': 50,
         'type': [PokemonType.Electric],
         'levelType': LevelType.mediumfast,
@@ -1403,7 +1394,6 @@ const pokemonList = createPokemonArray(
     {
         'id': 25.11,
         'name': 'Let\'s Go Pikachu',
-        'nativeRegion': GameConstants.Region.kanto,
         'catchRate': 50,
         'type': [PokemonType.Electric],
         'levelType': LevelType.mediumfast,
@@ -3301,7 +3291,7 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumfast,
         'exp': 132,
         'eggCycles': 20,
-        'evolutions': [new LevelEvolution('Galarian Farfetch\'d', 'Sirfetch\'d', 20)],
+        'evolutions': [new HeldItemLevelEvolution('Galarian Farfetch\'d', 'Sirfetch\'d', 20, 'Leek')],
         'base': {
             'hitpoints': 52,
             'attack': 95,
@@ -3310,6 +3300,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 62,
             'speed': 55,
         },
+        'heldItem': {type: ItemType.item, id: 'Leek'},
     },
     {
         'id': 84,
@@ -4626,7 +4617,6 @@ const pokemonList = createPokemonArray(
     {
         'id': 133.1,
         'name': 'Let\'s Go Eevee',
-        'nativeRegion': GameConstants.Region.kanto,
         'catchRate': 50,
         'type': [PokemonType.Normal],
         'levelType': LevelType.mediumfast,
@@ -4871,7 +4861,6 @@ const pokemonList = createPokemonArray(
     {
         'id': 143.1,
         'name': 'Santa Snorlax',
-        'nativeRegion': GameConstants.Region.kanto,
         'catchRate': 25,
         'type': [PokemonType.Normal],
         'levelType': LevelType.slow,
@@ -5112,7 +5101,6 @@ const pokemonList = createPokemonArray(
     {
         'id': 150.1,
         'name': 'Armored Mewtwo',
-        'nativeRegion': GameConstants.Region.kanto,
         'catchRate': 2,
         'type': [PokemonType.Psychic],
         'levelType': LevelType.slow,
@@ -5647,7 +5635,6 @@ const pokemonList = createPokemonArray(
     {
         'id': 175.1,
         'name': 'Spooky Togepi',
-        'nativeRegion': GameConstants.Region.johto,
         'catchRate': 30,
         'type': [PokemonType.Fairy],
         'levelType': LevelType.fast,
@@ -5668,7 +5655,6 @@ const pokemonList = createPokemonArray(
     {
         'id': 175.2,
         'name': 'Surprise Togepi',
-        'nativeRegion': GameConstants.Region.johto,
         'catchRate': 30,
         'type': [PokemonType.Fairy],
         'levelType': LevelType.fast,
@@ -20607,6 +20593,7 @@ const pokemonList = createPokemonArray(
         'gender': {
             'type': GameConstants.GENDERLESS,
         },
+        'heldItem': {type: ItemType.item, id: 'Solar_light'},
     },
     {
         'id': 792,
@@ -20627,6 +20614,7 @@ const pokemonList = createPokemonArray(
         'gender': {
             'type': GameConstants.GENDERLESS,
         },
+        'heldItem': {type: ItemType.item, id: 'Lunar_light'},
     },
     {
         'id': 793,
@@ -20776,6 +20764,10 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.slow,
         'exp': 270,
         'catchRate': 255,
+        'evolutions': [
+            new StoneEvolution('Necrozma', 'Necrozma (Dusk Mane)', GameConstants.StoneType.Solar_light),
+            new StoneEvolution('Necrozma', 'Necrozma (Dawn Wings)', GameConstants.StoneType.Lunar_light),
+        ],
         'base': {
             'hitpoints': 97,
             'attack': 107,
@@ -22460,6 +22452,7 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumfast,
         'exp': 177,
         'catchRate': 45,
+        'heldItem': {type: ItemType.item, id: 'Leek'},
     },
     {
         'id': 866,
@@ -24062,9 +24055,11 @@ const pokemonList = createPokemonArray(
             'speed': 138,
         },
         'eggCycles': 120,
+        'evolutions': [new HeldItemLevelEvolution('Zacian (Battle Hero)', 'Zacian (Crowned Sword)', 100, 'Rusted_Sword')],
         'levelType': LevelType.slow,
         'exp': 335,
         'catchRate': 10,
+        'heldItem': {type: ItemType.item, id: 'Rusted_Sword'},
     },
     {
         'id': 888.1,
@@ -24082,6 +24077,7 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.slow,
         'exp': 335,
         'catchRate': 10,
+        'heldItem': {type: ItemType.item, id: 'Rusted_Sword'},
     },
     {
         'id': 889,
@@ -24096,9 +24092,11 @@ const pokemonList = createPokemonArray(
             'speed': 138,
         },
         'eggCycles': 120,
+        'evolutions': [new HeldItemLevelEvolution('Zamazenta (Battle Hero)', 'Zamazenta (Crowned Shield)', 100, 'Rusted_Shield')],
         'levelType': LevelType.slow,
         'exp': 335,
         'catchRate': 10,
+        'heldItem': {type: ItemType.item, id: 'Rusted_Shield'},
     },
     {
         'id': 889.1,
@@ -24116,6 +24114,7 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.slow,
         'exp': 335,
         'catchRate': 10,
+        'heldItem': {type: ItemType.item, id: 'Rusted_Shield'},
     },
     {
         'id': 890,
@@ -24347,6 +24346,7 @@ const pokemonList = createPokemonArray(
         'eggCycles': 120,
         'levelType': LevelType.slow,
         'exp': 335,
+        'heldItem': {type: ItemType.item, id: 'White_mane_hair'},
     },
     {
         'id': 897,
@@ -24364,6 +24364,7 @@ const pokemonList = createPokemonArray(
         'eggCycles': 120,
         'levelType': LevelType.slow,
         'exp': 335,
+        'heldItem': {type: ItemType.item, id: 'Black_mane_hair'},
     },
     {
         'id': 898,
@@ -24378,6 +24379,10 @@ const pokemonList = createPokemonArray(
             'speed': 80,
         },
         'catchRate': 3,
+        'evolutions': [
+            new StoneEvolution('Calyrex', 'Shadow Rider Calyrex', GameConstants.StoneType.Black_mane_hair),
+            new StoneEvolution('Calyrex', 'Ice Rider Calyrex', GameConstants.StoneType.White_mane_hair),
+        ],
         'eggCycles': 120,
         'levelType': LevelType.slow,
         'exp': 335,

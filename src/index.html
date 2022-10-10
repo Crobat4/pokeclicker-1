@@ -9,6 +9,7 @@
 
     <!--jQuery-->
     <script src="libs/jquery.min.js"></script>
+    <script src="libs/jquery-ui.min.js"></script>
 
     <!--Knockout-->
     <script src="libs/knockout-latest.js"></script>
@@ -110,6 +111,9 @@
 <!-- Show keyitems modal-->
 @import "itemModal.html"
 
+<!-- Show Gem list draggable modal -->
+@import "draggables/gemsModalSmall.html"
+
 <!--Templates -->
 @import "templates/currencyTemplate.html"
 @import "templates/caughtStatusTemplate.html"
@@ -118,6 +122,7 @@
 @import "templates/caughtStatusAreaTemplate.html"
 @import "templates/pokemonNameTemplate.html"
 
+<div id="window-container" style="width: 100%; height: 100%; position: fixed; top: 0; left: 0;"></div>
 <div id="game" class="container loading" data-bind="css: {'container': Settings.getSetting('gameDisplayStyle').observableValue() === 'standard3', 'container-fluid': Settings.getSetting('gameDisplayStyle').observableValue() !== 'standard3'}">
     <div class="row justify-content-center">
         <!--The id title is needed for a default marker for money animation to display when not in a wild battle where the playerMoney span is not visible-->
@@ -234,9 +239,12 @@
                                     <knockout data-bind="visible: $data < GameConstants.ROUTE_KILLS_NEEDED">/10</knockout>
                                     &nbsp;defeated
                                 </knockout>
-
+                                <!-- Pokemon List -->
                                 <knockout class="left">
-                                    <div class="d-inline position-relative">
+                                    <div class="d-inline position-relative" data-bind="tooltip: { 
+                                        title: 'Click here to see the available Pokémon on this route',
+                                        trigger: 'hover' 
+                                    }">
                                         <a href="#" class="route-link-overlay" data-bind="tooltip: {
                                             title: RouteHelper.getAvailablePokemonListForTooltip(player.route(), player.region),
                                             html: true,
@@ -379,7 +387,7 @@
                 </div>
                 <div class="card-body p-0 text-center">
                     <table class="dungeon-board">
-                      <tbody data-bind="foreach: DungeonRunner.map.board()">
+                      <tbody data-bind="foreach: DungeonRunner.map.board()[DungeonRunner.map.playerPosition().floor]">
                         <tr data-bind="foreach: $data">
                             <td data-bind=" click: function(){DungeonRunner.map.moveToCoordinates($context.$index(), $parentContext.$index()) }, attr: { class: $data.cssClass}"></td>
                         </tr>
@@ -667,6 +675,11 @@
 
 <!-- Bulletin board Modal -->
 @import "bulletinBoardModal.html"
+
+@import "heldItemModal.html"
+
+<!-- Battle Cafe Modal -->
+@import "battleCafeModal.html"
 
 </body>
 </html>

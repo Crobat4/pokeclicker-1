@@ -117,13 +117,13 @@ class Pokeballs implements Feature {
             }, 1000, 'Can only be used on Ultra Beasts', new TemporaryBattleRequirement('Anabel')),
         ];
         this.pokeballSelectors = [
-            new PokeballSelector(GameConstants.PokeballSelector.alreadyCaught, 'Already Caught Pokémon', 'Previously captured Pokémon will use this ball selection', this.defaults.alreadyCaughtSelection),
-            new PokeballSelector(GameConstants.PokeballSelector.alreadyCaughtShiny, 'Already Caught Shiny Pokémon', 'Previously captured Shiny Pokémon will use this ball selection', this.defaults.alreadyCaughtShinySelection),
-            new PokeballSelector(GameConstants.PokeballSelector.notCaught, 'New Pokémon', 'Uncaptured Pokémon will use this ball selection', this.defaults.notCaughtSelection),
-            new PokeballSelector(GameConstants.PokeballSelector.notCaughtShiny, 'New Shiny Pokémon', 'Uncaptured Shiny Pokémon will use this ball selection', this.defaults.notCaughtShinySelection),
-            new PokeballSelector(GameConstants.PokeballSelector.type, 'By Type', 'Any Pokémon will use this ball selection if their types match with the selected types<br/>Select the types in the Settings', this.defaults.typeSelection),
-            new PokeballSelector(GameConstants.PokeballSelector.roaming, 'Roaming Pokémon', 'Roaming Pokémon will use this ball selection, regardless if it\'s already caught or not', this.defaults.roamingSelection),
-            new PokeballSelector(GameConstants.PokeballSelector.dungeonBoss, 'Dungeon Boss Pokémon', 'Dungeon Boss Pokémon will use this ball selection, regardless if it\'s already caught or not', this.defaults.dungeonBossSelection),
+            new PokeballSelector(GameConstants.PokeballSelector.alreadyCaught, 'Already Caught Pokémon', 'Caught', 'Previously captured Pokémon will use this ball selection', this.defaults.alreadyCaughtSelection),
+            new PokeballSelector(GameConstants.PokeballSelector.alreadyCaughtShiny, 'Already Caught Shiny Pokémon', 'Caught✨', 'Previously captured Shiny Pokémon will use this ball selection', this.defaults.alreadyCaughtShinySelection),
+            new PokeballSelector(GameConstants.PokeballSelector.notCaught, 'New Pokémon', 'New', 'Uncaptured Pokémon will use this ball selection', this.defaults.notCaughtSelection),
+            new PokeballSelector(GameConstants.PokeballSelector.notCaughtShiny, 'New Shiny Pokémon', 'New✨', 'Uncaptured Shiny Pokémon will use this ball selection', this.defaults.notCaughtShinySelection),
+            new PokeballSelector(GameConstants.PokeballSelector.type, 'By Type', 'Type', 'Any Pokémon will use this ball selection if their types match with the selected types<br/>Select the types in the Settings', this.defaults.typeSelection),
+            new PokeballSelector(GameConstants.PokeballSelector.roaming, 'Roaming Pokémon', 'Roaming', 'Roaming Pokémon will use this ball selection, regardless if it\'s already caught or not', this.defaults.roamingSelection),
+            new PokeballSelector(GameConstants.PokeballSelector.dungeonBoss, 'Dungeon Boss Pokémon', 'Dungeon Boss', 'Dungeon Boss Pokémon will use this ball selection, regardless if it\'s already caught or not', this.defaults.dungeonBossSelection),
         ];
 
         // Beast Ball Toggles

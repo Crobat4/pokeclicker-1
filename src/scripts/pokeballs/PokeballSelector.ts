@@ -4,6 +4,7 @@ class PokeballSelector {
     constructor(
         public type: GameConstants.PokeballSelector,
         public name: string,
+        public shortName: string,
         public description: string,
         //public unlockRequirement: Requirement | MultiRequirement = new MultiRequirement(),
         pokeball = GameConstants.Pokeball.None

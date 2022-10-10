@@ -13,6 +13,16 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.DEFAULT, '<div class="w-100 d-flex justify-content-around"><a href="https://github.com/Crobat4/pokeclicker" target="_blank">Repository</a><a href="https://github.com/Crobat4/Pokeclicker-desktop" target="_blank">Desktop build</a><a href="https://github.com/Crobat4/pokeclicker/wiki" target="_blank">Github Wiki</a></div>'),
     new Changelog(changelogType.DEFAULT, 'This will keep being updated as long as the thread is alive...'),
     // ⥂⥄
+    // v0.3.4
+    new ChangelogUpdate('v0.3.4', new Date(2022, 10 - 1, 10)),
+    new Changelog(changelogType.NEW, 'Added Official updates (v0.9.17 and v0.9.18)'),
+    new Changelog(changelogType.NEW, 'Added draggable container that shows the gem list with their amount'),
+    new Changelog(changelogType.CHANGE, 'Misc tooltips and settings text changes'),
+    new Changelog(changelogType.CHANGE, 'Poké Balls: Container layout changed'),
+    new Changelog(changelogType.CHANGE, 'Underground: Bomb now only works on uncleared tiles'),
+    new Changelog(changelogType.CHANGE, 'Underground: Bomb energy cost increased'),
+    new Changelog(changelogType.CHANGE, 'Jynx\'s sprites colors changed to match Gen 1/2 colors'),
+    new Changelog(changelogType.FIXED, 'Pinkan Butterfree and Ash\'s Butterfree gender types'),
     // v0.3.3
     new ChangelogUpdate('v0.3.3', new Date(2022, 9 - 1, 21)),
     new Changelog(changelogType.NEW, 'Added setting to enable removed berries in dungeons'),
@@ -20,14 +30,14 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.FIXED, 'Shortcuts icons not working on the Desktop Build'),
     // v0.3.2
     new ChangelogUpdate('v0.3.2', new Date(2022, 9 - 1, 21)),
-    new Changelog(changelogType.NEW, 'Added Official fork updates (v0.9.16)'),
+    new Changelog(changelogType.NEW, 'Added Official updates (v0.9.16)'),
     new Changelog(changelogType.CHANGE, 'Shortcuts: Layout changed'),
     new Changelog(changelogType.CHANGE, 'Log Book moved to Shortcuts'),
     new Changelog(changelogType.CHANGE, 'Damage Calculator moved to Shortcuts'),
     new Changelog(changelogType.FIXED, 'Pinkan Electabuzz gender ratio'),
     // v0.3.1
     new ChangelogUpdate('v0.3.1', new Date(2022, 9 - 1, 20)),
-    new Changelog(changelogType.NEW, 'Added Official fork updates (v0.9.15)'),
+    new Changelog(changelogType.NEW, 'Added Official updates (v0.9.15)'),
     new Changelog(changelogType.NEW, 'Added list of available Pokémon on routes'),
     new Changelog(changelogType.NEW, 'Added Poké Ball selection for Roaming Pokémon'),
     new Changelog(changelogType.NEW, 'Added Poké Ball selection for Dungeon Boss Pokémon'),
@@ -37,7 +47,7 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.FIXED, 'Pinkan Nidoran, Pinkan Nidoking and Spiky-eared Pichu showing wrong gender'),
     // v0.3.0
     new ChangelogUpdate('v0.3.0', new Date(2022, 9 - 1, 4)),
-    new Changelog(changelogType.NEW, 'Added Official fork updates (v0.9.10 - v0.9.14)'),
+    new Changelog(changelogType.NEW, 'Added Official updates (v0.9.10 - v0.9.14)'),
     new Changelog(changelogType.CHANGE, 'Notification text improved'),
     new Changelog(changelogType.REMOVED, 'Some updates temporarily removed (check changelog in Github wiki)'),
     // v0.2.11
@@ -72,7 +82,7 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.FIXED, 'Nidoran turning into MissingNo. if you have them in the hatchery prior the update'),
     // v0.2.7
     new ChangelogUpdate('v0.2.7', new Date(2022, 7 - 1, 22)),
-    new Changelog(changelogType.NEW, 'Added Official fork updates (v0.9.8 and v0.9.9)'),
+    new Changelog(changelogType.NEW, 'Added Official updates (v0.9.8 and v0.9.9)'),
     new Changelog(changelogType.NEW, 'Added Gender feature'),
     new Changelog(changelogType.NEW, 'Gender properties of Gen 1 - Gen 7 Pokémon, Meltan and Melmetal defined'),
     new Changelog(changelogType.NEW, 'Added sprites with gender differences in Pokédex and Pokémon battles'),
