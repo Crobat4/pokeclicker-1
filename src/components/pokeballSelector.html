@@ -15,52 +15,17 @@
     </button>
     -->
     <div id="pokeballSelectorBody" class="card-body p-0 show table-responsive" style="max-height: 130px;">
-        <!--
-        <div class="row w-100 m-0" data-bind="foreach: App.game.pokeballs.pokeballSelectors">
-            <div class="col-6 text-left" style="font-size: 14px;">
-                <strong><span class="text-left p-1" data-bind="html: $data.shortName + ':'"></span></strong>
-            </div>
-            <div class="col-2 m-auto">
-                <img class="pokeball-smallest" src="" data-bind="attr:{src: 'assets/images/pokeball/' + GameConstants.Pokeball[$data.pokeball()] + '.svg' }, tooltip: {title: $data.pokeball() === -1 ? 'None' : ItemList[GameConstants.Pokeball[$data.pokeball()]].displayName, trigger: 'hover', animation: false, placement: 'bottom'}">
-            </div>
-            <div class="col-4">
-                <span class="text-left" data-bind="text: App.game.pokeballs.getBallQuantity($data.pokeball()) && App.game.pokeballs.getBallQuantity($data.pokeball()) ? GameConstants.formatNumber(App.game.pokeballs.getBallQuantity($data.pokeball())) : '-', tooltip: App.game.pokeballs.getBallQuantity($data.pokeball()) && { title: App.game.pokeballs.getBallQuantity($data.pokeball()).toLocaleString('en-US'), trigger: 'hover', animation: false, placement: 'left' }"></span>
-            </div>
-        </div>
-        -->
-        <table class="table m-0" id="test" data-bind="foreach: App.game.pokeballs.pokeballSelectors">
-            <tr class="clickable" data-bind="click: function() { App.game.pokeballs.selectedSelection($data.pokeball); App.game.pokeballs.selectedTitle($data.name); $('#pokeballSelectorModal').modal('show') }">
-                <td class="text-left py-1" style="border-right: 1px solid #444;" data-bind="html: $data.shortName + ':', tooltip: { title: $data.description, trigger: 'hover', placement: 'right', html: true, boundary: 'window' }"></td>
-                <td class="py-1" style="border-right: 1px solid #444;"
-                    data-bind="template: { name: 'selectedPokeballDisplayTemplate', data: { 'value': $data.pokeball(), 'title': $data.name } }">
-                </td>
-                <td class="py-1" data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity($data.pokeball())}"></td>
-            </tr>
+        <table class="table m-0">
+            <tbody data-bind="foreach: App.game.pokeballs.pokeballSelectors">
+                <tr class="clickable" data-bind="click: function() { App.game.pokeballs.selectedSelection($data.pokeball); App.game.pokeballs.selectedTitle($data.name); $('#pokeballSelectorModal').modal('show') }">
+                    <td class="text-left py-1" style="border-right: 1px solid #444;" data-bind="html: $data.shortName + ':', tooltip: { title: $data.description, trigger: 'hover', placement: 'right', html: true, boundary: 'window' }"></td>
+                    <td class="py-1" style="border-right: 1px solid #444;"
+                        data-bind="template: { name: 'selectedPokeballDisplayTemplate', data: { 'value': $data.pokeball(), 'title': $data.name } }">
+                    </td>
+                    <td class="py-1" data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity($data.pokeball())}"></td>
+                </tr>
+            </tbody>
         </table>
-        <!--
-        <table class="table table-sm m-0">
-            <thead>
-                <tr>
-                    <th width="20%" data-toggle="tooltip" title="Previously captured Pokémon will use this ball selection">Caught</th>
-                    <th width="20%" data-toggle="tooltip" title="Previously captured Shiny Pokémon will use this ball selection" style="filter: grayscale(80%);">✨</th>
-                    <th width="20%" data-toggle="tooltip" title="Uncaptured Pokémon will use this ball selection">New</th>
-                    <th width="20%" data-toggle="tooltip" title="Uncaptured Shiny Pokémon will use this ball selection">✨</th>
-                </tr>
-                <tr>
-                    <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.pokeballSelectors[GameConstants.PokeballSelector.alreadyCaught].pokeball(), 'field': App.game.pokeballs.pokeballSelectors[GameConstants.PokeballSelector.alreadyCaught].pokeball, 'title': 'Already Caught Pokémon' }}"></td>
-                    <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.pokeballSelectors[GameConstants.PokeballSelector.alreadyCaughtShiny].pokeball(), 'field': App.game.pokeballs.pokeballSelectors[GameConstants.PokeballSelector.alreadyCaughtShiny].pokeball, 'title': 'Already Caught Shiny Pokémon' }}"></td>
-                    <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.pokeballSelectors[GameConstants.PokeballSelector.notCaught].pokeball(), 'field': App.game.pokeballs.pokeballSelectors[GameConstants.PokeballSelector.notCaught].pokeball, 'title': 'New Pokémon' }}"></td>
-                    <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.pokeballSelectors[GameConstants.PokeballSelector.notCaughtShiny].pokeball(), 'field': App.game.pokeballs.pokeballSelectors[GameConstants.PokeballSelector.notCaughtShiny].pokeball, 'title': 'New Shiny Pokémon' }}"></td>
-                </tr>
-                <tr>
-                    <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.pokeballSelectors[GameConstants.PokeballSelector.alreadyCaught].pokeball())}"></td>
-                    <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.pokeballSelectors[GameConstants.PokeballSelector.alreadyCaughtShiny].pokeball())}"></td>
-                    <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.pokeballSelectors[GameConstants.PokeballSelector.notCaught].pokeball())}"></td>
-                    <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.pokeballSelectors[GameConstants.PokeballSelector.notCaughtShiny].pokeball())}"></td>
-                </tr>
-            </thead>
-        </table>
-        -->
     </div>
     
 

@@ -13,6 +13,15 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.DEFAULT, '<div class="w-100 d-flex justify-content-around"><a href="https://github.com/Crobat4/pokeclicker" target="_blank">Repository</a><a href="https://github.com/Crobat4/Pokeclicker-desktop" target="_blank">Desktop build</a><a href="https://github.com/Crobat4/pokeclicker/wiki" target="_blank">Github Wiki</a></div>'),
     new Changelog(changelogType.DEFAULT, 'This will keep being updated as long as the thread is alive...'),
     // ⥂⥄
+    // v0.3.5
+    new ChangelogUpdate('v0.3.5', new Date(2022, 10 - 1, 22)),
+    new Changelog(changelogType.NEW, 'Added Official updates (v0.10.0 - Galar)'),
+    new Changelog(changelogType.CHANGE, 'Route Pokémon list: Button moved to the right'),
+    new Changelog(changelogType.CHANGE, 'Route Pokémon list: Added Pokérus status'),
+    new Changelog(changelogType.CHANGE, 'Underground: Bomb cost reduced'),
+    new Changelog(changelogType.FIXED, 'Background not being clickable when draggable gem modal is open'),
+    new Changelog(changelogType.FIXED, 'Route Pokémon list: Poké Ball not showing correctly in light themes for uncaught Pokémon'),
+    new Changelog(changelogType.FIXED, 'Missing berries previously removed in older Official updates'),
     // v0.3.4
     new ChangelogUpdate('v0.3.4', new Date(2022, 10 - 1, 10)),
     new Changelog(changelogType.NEW, 'Added Official updates (v0.9.17 and v0.9.18)'),

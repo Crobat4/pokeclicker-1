@@ -11,7 +11,7 @@ class PokemonFactory {
      */
     public static generateWildPokemon(route: number, region: GameConstants.Region, subRegion: SubRegion): BattlePokemon {
         if (!MapHelper.validRoute(route, region)) {
-            return new BattlePokemon('MissingNo.', 0, PokemonType.None, PokemonType.None, 0, 0, 0, 0, new Amount(0, GameConstants.Currency.money), false, 0, 0);
+            return new BattlePokemon('MissingNo.', 0, PokemonType.None, PokemonType.None, 0, 0, 0, 0, new Amount(0, GameConstants.Currency.money), false, 0, GameConstants.BattlePokemonGender.NoGender);
         }
         let name: PokemonNameType;
 
@@ -62,7 +62,7 @@ class PokemonFactory {
             App.game.logbook.newLog(LogBookTypes.ROAMER, `[${Routes.getRoute(player.region, player.route()).routeName}] You encountered a ${shiny ? 'shiny' : ''} roaming ${name}!`);
         }
         const ep = GameConstants.BASE_EP_YIELD * (roaming ? GameConstants.ROAMER_EP_MODIFIER : 1);
-        const gender = this.generateGender(basePokemon.gender.ratio, basePokemon.gender.type);
+        const gender = this.generateGender(basePokemon.gender.femaleRatio, basePokemon.gender.type);
         return new BattlePokemon(name, id, basePokemon.type1, basePokemon.type2, maxHealth, level, catchRate, exp, new Amount(money, GameConstants.Currency.money), shiny, 1, gender, heldItem, ep);
     }
 
@@ -112,9 +112,9 @@ class PokemonFactory {
         return false;
     }
 
-    public static generatePartyPokemon(id: number, shiny = false): PartyPokemon {
+    public static generatePartyPokemon(id: number, shiny = false, gender = GameConstants.BattlePokemonGender.NoGender): PartyPokemon {
         const dataPokemon = PokemonHelper.getPokemonById(id);
-        return new PartyPokemon(dataPokemon.id, dataPokemon.name, dataPokemon.evolutions, dataPokemon.attack, shiny);
+        return new PartyPokemon(dataPokemon.id, dataPokemon.name, dataPokemon.evolutions, dataPokemon.attack, shiny, gender);
     }
 
     /**
@@ -129,7 +129,7 @@ class PokemonFactory {
 
         const exp: number = basePokemon.exp;
         const shiny = this.generateShiny(GameConstants.SHINY_CHANCE_BATTLE);
-        const gender = this.generateGender(basePokemon.gender.ratio, basePokemon.gender.type);
+        const gender = this.generateGender(basePokemon.gender.femaleRatio, basePokemon.gender.type);
         return new BattlePokemon(pokemon.name, basePokemon.id, basePokemon.type1, basePokemon.type2, pokemon.maxHealth, pokemon.level, 0, exp, new Amount(0, GameConstants.Currency.money), shiny, GameConstants.GYM_GEMS, gender);
     }
 
@@ -156,7 +156,7 @@ class PokemonFactory {
         }
 
         const ep = GameConstants.BASE_EP_YIELD * GameConstants.DUNGEON_EP_MODIFIER;
-        const gender = this.generateGender(basePokemon.gender.ratio, basePokemon.gender.type);
+        const gender = this.generateGender(basePokemon.gender.femaleRatio, basePokemon.gender.type);
         return new BattlePokemon(name, id, basePokemon.type1, basePokemon.type2, maxHealth, level, catchRate, exp, new Amount(money, GameConstants.Currency.money), shiny, GameConstants.DUNGEON_GEMS, gender, heldItem, ep);
     }
 
@@ -169,7 +169,7 @@ class PokemonFactory {
         const shiny: boolean = this.generateShiny(GameConstants.SHINY_CHANCE_DUNGEON);
         // Reward 2% or 5% (boss) of dungeon DT cost when the trainer mons are defeated
         const money = 0;
-        const gender = this.generateGender(basePokemon.gender.ratio, basePokemon.gender.type);
+        const gender = this.generateGender(basePokemon.gender.femaleRatio, basePokemon.gender.type);
         return new BattlePokemon(name, basePokemon.id, basePokemon.type1, basePokemon.type2, maxHealth, level, 0, exp, new Amount(money, GameConstants.Currency.money), shiny, GameConstants.DUNGEON_GEMS, gender);
     }
 
@@ -196,7 +196,7 @@ class PokemonFactory {
                 Math.floor(App.game.statistics.totalPokemonEncountered() / App.game.statistics.totalShinyPokemonEncountered()));
         }
         const ep = GameConstants.BASE_EP_YIELD * GameConstants.DUNGEON_BOSS_EP_MODIFIER;
-        const gender = this.generateGender(basePokemon.gender.ratio, basePokemon.gender.type);
+        const gender = this.generateGender(basePokemon.gender.femaleRatio, basePokemon.gender.type);
         return new BattlePokemon(name, id, basePokemon.type1, basePokemon.type2, maxHealth, bossPokemon.level, catchRate, exp, new Amount(money, GameConstants.Currency.money), shiny, GameConstants.DUNGEON_BOSS_GEMS, gender, heldItem, ep);
     }
 
@@ -207,7 +207,7 @@ class PokemonFactory {
 
         const exp: number = basePokemon.exp;
         const shiny = this.generateShiny(GameConstants.SHINY_CHANCE_BATTLE);
-        const gender = this.generateGender(basePokemon.gender.ratio, basePokemon.gender.type);
+        const gender = this.generateGender(basePokemon.gender.femaleRatio, basePokemon.gender.type);
         return new BattlePokemon(pokemon.name, basePokemon.id, basePokemon.type1, basePokemon.type2, pokemon.maxHealth, pokemon.level, catchRate, exp, new Amount(0, GameConstants.Currency.money), shiny, GameConstants.GYM_GEMS, gender);
     }
 
@@ -303,51 +303,35 @@ class PokemonFactory {
 
     // Gender functions
     /**
+     * generateGender but using Pokemon ID
+     */
+    public static generateGenderById(id) {
+        const pokemon = PokemonHelper.getPokemonById(id);
+        return this.generateGender(pokemon.gender.femaleRatio, pokemon.gender.type);
+    }
+
+    /**
      * Calculate which gender has the pokemon.
      * @param chance Base chance, should be from GameConstants under Gender Ratio comment
      * @param genderType Gender type (Genderless, male only, etc.), should be from GameConstants under Gender Types comment
-     * @returns {number} 0 = Genderless, 1 = male, 2 = female
+     * @returns GameConstants.BattlePokemonGender
      */
     public static generateGender(chance: number, genderType: number): number {
         let gender;
         switch (genderType) {
-            case GameConstants.GENDERLESS:
-                gender = GameConstants.NO_GENDER;
+            case GameConstants.Genders.Genderless:
+                gender = GameConstants.BattlePokemonGender.NoGender;
                 break;
-            case GameConstants.MALE_ONLY:
-                gender = GameConstants.GENDER_MALE;
-                break;
-            case GameConstants.FEMALE_ONLY:
-                gender = GameConstants.GENDER_FEMALE;
-                break;
-            case GameConstants.MALE_FEMALE:
+            case GameConstants.Genders.MaleFemale:
                 if (Rand.chance(chance)) { // Female
-                    gender = GameConstants.GENDER_FEMALE;
+                    gender = GameConstants.BattlePokemonGender.Female;
                 } else { // Male
-                    gender = GameConstants.GENDER_MALE;
+                    gender = GameConstants.BattlePokemonGender.Male;
                 }
                 break;
             default:
                 console.warn('Invalid gender');
         }
         return gender;
-    }
-
-    public static genderText(gender: number) {
-        let genderText;
-        switch (gender) {
-            case GameConstants.NO_GENDER:
-                genderText = GameConstants.TEXT_GENDERLESS;
-                break;
-            case GameConstants.GENDER_MALE:
-                genderText = GameConstants.TEXT_MALE;
-                break;
-            case GameConstants.GENDER_FEMALE:
-                genderText = GameConstants.TEXT_FEMALE;
-                break;
-            default:
-                console.warn('Invalid gender');
-        }
-        return genderText;
     }
 }

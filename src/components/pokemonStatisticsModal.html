@@ -18,21 +18,21 @@
               <div style="display: inline-block;">
                 <div>
                   <!-- General sprite -->
-                  <img data-bind="attr:{ src: PokedexHelper.getImageStatistics(pokemonMap[$data].id) }" src=""/>
+                  <img data-bind="attr:{ src: PokemonHelper.getImage(pokemonMap[$data].id, App.game.party.alreadyCaughtPokemon(pokemonMap[$data].id, true) && PokedexHelper.toggleStatisticShiny(), false) }" src=""/>
                   <!-- Female sprite -->
-                  <!-- ko if: pokemonMap[$data].gender.difference -->
-                  <img data-bind="attr:{ src: PokedexHelper.getImageStatistics(pokemonMap[$data].id, true) }" src=""/>
+                  <!-- ko if: pokemonMap[$data].gender.visualDifference -->
+                  <img data-bind="attr:{ src: PokemonHelper.getImage(pokemonMap[$data].id, App.game.party.alreadyCaughtPokemon(pokemonMap[$data].id, true) && PokedexHelper.toggleStatisticShiny(), true) }" src=""/>
                   <!-- /ko -->
                 </div>
                 <div class="row m-0">
-                  <!-- ko if: pokemonMap[$data].gender.type == GameConstants.MALE_ONLY || pokemonMap[$data].gender.type == GameConstants.MALE_FEMALE  -->
-                  <div class="col-6 m-auto p-0" data-bind="css: { 'text-right': !pokemonMap[$data].gender.difference && pokemonMap[$data].gender.type == GameConstants.MALE_FEMALE }">
-                    <span data-bind="html: GameConstants.TEXT_MALE"></span>
+                  <!-- ko if: pokemonMap[$data].gender.femaleRatio != 1 && pokemonMap[$data].gender.type == GameConstants.Genders.MaleFemale -->
+                  <div class="col-6 m-auto p-0" data-bind="css: { 'text-right': !pokemonMap[$data].gender.visualDifference && pokemonMap[$data].gender.type == GameConstants.Genders.MaleFemale && pokemonMap[$data].gender.femaleRatio != 0 }">
+                    <span data-bind="html: `<i class='bi bi-gender-male gender-icon-male'></i>`"></span>
                   </div>
                   <!-- /ko -->
-                  <!-- ko if: pokemonMap[$data].gender.type == GameConstants.FEMALE_ONLY || pokemonMap[$data].gender.type == GameConstants.MALE_FEMALE  -->
-                  <div class="col-6 m-auto p-0" data-bind="css: { 'text-left': !pokemonMap[$data].gender.difference && pokemonMap[$data].gender.type == GameConstants.MALE_FEMALE }">
-                    <span data-bind="html: GameConstants.TEXT_FEMALE"></span>
+                  <!-- ko if: pokemonMap[$data].gender.femaleRatio != 0 && pokemonMap[$data].gender.type == GameConstants.Genders.MaleFemale -->
+                  <div class="col-6 m-auto p-0" data-bind="css: { 'text-left': !pokemonMap[$data].gender.visualDifference && pokemonMap[$data].gender.type == GameConstants.Genders.MaleFemale && pokemonMap[$data].gender.femaleRatio != 1 }">
+                    <span data-bind="html: `<i class='bi bi-gender-female gender-icon-female'></i>`"></span>
                   </div>
                   <!-- /ko -->
                 </div>
@@ -97,10 +97,10 @@
                     <tr>
                       <td class="text-left align-middle">Gender Ratio</td>
                       <td class="text-justify tight">
-                        <!-- ko if: pokemonMap[$data].gender.type === GameConstants.GENDERLESS -->
+                        <!-- ko if: pokemonMap[$data].gender.type === GameConstants.Genders.Genderless -->
                           <code data-bind="html: 'Genderless'"></code>
                         <!-- /ko -->
-                        <!-- ko if: pokemonMap[$data].gender.type != GameConstants.GENDERLESS -->
+                        <!-- ko if: pokemonMap[$data].gender.type != GameConstants.Genders.Genderless -->
                           <code data-bind="html: '♂: '"></code>
                           <code data-bind="html: PokedexHelper.getGenderRatioData(pokemonMap[$data]).male + '%'"></code>
                           <br />
@@ -109,6 +109,21 @@
                         <!-- /ko -->
                       </td>
                     </tr>
+                    <!-- ko if: App.game.party.alreadyCaughtPokemon($data) && pokemonMap[$data].gender.visualDifference -->
+                    <tr>
+                      <td class="text-left align-middle">Party Pokémon gender</td>
+                      <td class="text-left tight">
+                          <label class="form-check-label toggler-wrapper style-1 gender-toggle float-left">
+                              <input class="form-check-input" type="checkbox" id=""
+                                  value="false" 
+                                  data-bind="checked: App.game.party.getPokemon($data).defaultFemaleSprite">
+                              <div class="toggler-slider">
+                                  <div class="toggler-knob"></div>
+                              </div>
+                          </label>
+                      </td>
+                    </tr>
+                    <!-- /ko -->
                   </tbody>
                   <thead>
                     <tr class="text-light">
@@ -118,36 +133,117 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td class="text-left">Encountered</td>
-                      <td class="text-left tight"><code data-bind="text: App.game.statistics.pokemonEncountered[$data]().toLocaleString('en-US')">-</code></td>
+                      <td class="text-left align-middle">Encountered</td>
+                      <td class="text-left align-middle tight">
+                        <code data-bind="text: 'Total: ' + App.game.statistics.pokemonEncountered[$data]().toLocaleString('en-US')">-</code>
+                        <!-- Gender Statistics -->
+                        <!-- ko if: pokemonMap[$data].gender.type == GameConstants.Genders.MaleFemale && pokemonMap[$data].gender.femaleRatio != 0 && pokemonMap[$data].gender.femaleRatio != 1 -->
+                        <br />
+                        <code data-bind="html: '♂: '"></code>
+                        <code data-bind="html: App.game.statistics.malePokemonEncountered[$data]().toLocaleString('en-US')"></code>
+                        <br />
+                        <code data-bind="html: '♀: '"></code>
+                        <code data-bind="html: App.game.statistics.femalePokemonEncountered[$data]().toLocaleString('en-US')"></code>
+                        <!-- /ko -->
+                      </td>
                     </tr>
                     <tr>
-                      <td class="text-left">Defeated</td>
-                      <td class="text-left tight"><code data-bind="text: App.game.statistics.pokemonDefeated[$data]().toLocaleString('en-US')">-</code></td>
+                      <td class="text-left align-middle">Defeated</td>
+                      <td class="text-left align-middle tight"><code data-bind="text: 'Total: ' + App.game.statistics.pokemonDefeated[$data]().toLocaleString('en-US')">-</code>
+                        <!-- Gender Statistics -->
+                        <!-- ko if: pokemonMap[$data].gender.type == GameConstants.Genders.MaleFemale && pokemonMap[$data].gender.femaleRatio != 0 && pokemonMap[$data].gender.femaleRatio != 1 -->
+                        <br />
+                        <code data-bind="html: '♂: '"></code>
+                        <code data-bind="html: App.game.statistics.malePokemonDefeated[$data]().toLocaleString('en-US')"></code>
+                        <br />
+                        <code data-bind="html: '♀: '"></code>
+                        <code data-bind="html: App.game.statistics.femalePokemonDefeated[$data]().toLocaleString('en-US')"></code>
+                        <!-- /ko -->
+                      </td>
                     </tr>
                     <tr>
-                      <td class="text-left">Captured</td>
-                      <td class="text-left tight"><code data-bind="text: App.game.statistics.pokemonCaptured[$data]().toLocaleString('en-US')">-</code></td>
+                      <td class="text-left align-middle">Captured</td>
+                      <td class="text-left align-middle tight"><code data-bind="text: 'Total: ' + App.game.statistics.pokemonCaptured[$data]().toLocaleString('en-US')">-</code>
+                        <!-- Gender Statistics -->
+                        <!-- ko if: pokemonMap[$data].gender.type == GameConstants.Genders.MaleFemale && pokemonMap[$data].gender.femaleRatio != 0 && pokemonMap[$data].gender.femaleRatio != 1 -->
+                        <br />
+                        <code data-bind="html: '♂: '"></code>
+                        <code data-bind="html: App.game.statistics.malePokemonCaptured[$data]().toLocaleString('en-US')"></code>
+                        <br />
+                        <code data-bind="html: '♀: '"></code>
+                        <code data-bind="html: App.game.statistics.femalePokemonCaptured[$data]().toLocaleString('en-US')"></code>
+                        <!-- /ko -->
+                      </td>
                     </tr>
                     <tr>
-                      <td class="text-left">Hatched</td>
-                      <td class="text-left tight"><code data-bind="text: App.game.statistics.pokemonHatched[$data]().toLocaleString('en-US')">-</code></td>
+                      <td class="text-left align-middle">Hatched</td>
+                      <td class="text-left align-middle tight"><code data-bind="text: 'Total: ' + App.game.statistics.pokemonHatched[$data]().toLocaleString('en-US')">-</code>
+                        <!-- Gender Statistics -->
+                        <!-- ko if: pokemonMap[$data].gender.type == GameConstants.Genders.MaleFemale && pokemonMap[$data].gender.femaleRatio != 0 && pokemonMap[$data].gender.femaleRatio != 1 -->
+                        <br />
+                        <code data-bind="html: '♂: '"></code>
+                        <code data-bind="html: App.game.statistics.malePokemonHatched[$data]().toLocaleString('en-US')"></code>
+                        <br />
+                        <code data-bind="html: '♀: '"></code>
+                        <code data-bind="html: App.game.statistics.femalePokemonHatched[$data]().toLocaleString('en-US')"></code>
+                        <!-- /ko -->
+                      </td>
                     </tr>
                     <tr>
-                      <td class="text-left">Shinies Encountered</td>
-                      <td class="text-left tight"><code data-bind="text: App.game.statistics.shinyPokemonEncountered[$data]().toLocaleString('en-US')">-</code></td>
+                      <td class="text-left align-middle">Shinies Encountered</td>
+                      <td class="text-left align-middle tight"><code data-bind="text: 'Total: ' + App.game.statistics.shinyPokemonEncountered[$data]().toLocaleString('en-US')">-</code>
+                        <!-- Gender Statistics -->
+                        <!-- ko if: pokemonMap[$data].gender.type == GameConstants.Genders.MaleFemale && pokemonMap[$data].gender.femaleRatio != 0 && pokemonMap[$data].gender.femaleRatio != 1 -->
+                        <br />
+                        <code data-bind="html: '♂: '"></code>
+                        <code data-bind="html: App.game.statistics.shinyMalePokemonEncountered[$data]().toLocaleString('en-US')"></code>
+                        <br />
+                        <code data-bind="html: '♀: '"></code>
+                        <code data-bind="html: App.game.statistics.shinyFemalePokemonEncountered[$data]().toLocaleString('en-US')"></code>
+                        <!-- /ko -->
+                      </td>
                     </tr>
                     <tr>
-                      <td class="text-left">Shinies Defeated</td>
-                      <td class="text-left tight"><code data-bind="text: App.game.statistics.shinyPokemonDefeated[$data]().toLocaleString('en-US')">-</code></td>
+                      <td class="text-left align-middle">Shinies Defeated</td>
+                      <td class="text-left align-middle tight"><code data-bind="text: 'Total: ' + App.game.statistics.shinyPokemonDefeated[$data]().toLocaleString('en-US')">-</code>
+                        <!-- Gender Statistics -->
+                        <!-- ko if: pokemonMap[$data].gender.type == GameConstants.Genders.MaleFemale && pokemonMap[$data].gender.femaleRatio != 0 && pokemonMap[$data].gender.femaleRatio != 1 -->
+                        <br />
+                        <code data-bind="html: '♂: '"></code>
+                        <code data-bind="html: App.game.statistics.shinyMalePokemonDefeated[$data]().toLocaleString('en-US')"></code>
+                        <br />
+                        <code data-bind="html: '♀: '"></code>
+                        <code data-bind="html: App.game.statistics.shinyFemalePokemonDefeated[$data]().toLocaleString('en-US')"></code>
+                        <!-- /ko -->
+                      </td>
                     </tr>
                     <tr>
-                      <td class="text-left">Shinies Captured</td>
-                      <td class="text-left tight"><code data-bind="text: App.game.statistics.shinyPokemonCaptured[$data]().toLocaleString('en-US')">-</code></td>
+                      <td class="text-left align-middle">Shinies Captured</td>
+                      <td class="text-left align-middle tight"><code data-bind="text: 'Total: ' + App.game.statistics.shinyPokemonCaptured[$data]().toLocaleString('en-US')">-</code>
+                        <!-- Gender Statistics -->
+                        <!-- ko if: pokemonMap[$data].gender.type == GameConstants.Genders.MaleFemale && pokemonMap[$data].gender.femaleRatio != 0 && pokemonMap[$data].gender.femaleRatio != 1 -->
+                        <br />
+                        <code data-bind="html: '♂: '"></code>
+                        <code data-bind="html: App.game.statistics.shinyMalePokemonCaptured[$data]().toLocaleString('en-US')"></code>
+                        <br />
+                        <code data-bind="html: '♀: '"></code>
+                        <code data-bind="html: App.game.statistics.shinyFemalePokemonCaptured[$data]().toLocaleString('en-US')"></code>
+                        <!-- /ko -->
+                      </td>
                     </tr>
                     <tr>
-                      <td class="text-left">Shinies Hatched</td>
-                      <td class="text-left tight"><code data-bind="text: App.game.statistics.shinyPokemonHatched[$data]().toLocaleString('en-US')">-</code></td>
+                      <td class="text-left align-middle">Shinies Hatched</td>
+                      <td class="text-left align-middle tight"><code data-bind="text: 'Total: ' + App.game.statistics.shinyPokemonHatched[$data]().toLocaleString('en-US')">-</code>
+                        <!-- Gender Statistics -->
+                        <!-- ko if: pokemonMap[$data].gender.type == GameConstants.Genders.MaleFemale && pokemonMap[$data].gender.femaleRatio != 0 && pokemonMap[$data].gender.femaleRatio != 1 -->
+                        <br />
+                        <code data-bind="html: '♂: '"></code>
+                        <code data-bind="html: App.game.statistics.shinyMalePokemonHatched[$data]().toLocaleString('en-US')"></code>
+                        <br />
+                        <code data-bind="html: '♀: '"></code>
+                        <code data-bind="html: App.game.statistics.shinyFemalePokemonHatched[$data]().toLocaleString('en-US')"></code>
+                        <!-- /ko -->
+                      </td>
                     </tr>
                   </tbody>
                 </table>

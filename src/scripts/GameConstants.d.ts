@@ -46,6 +46,7 @@ namespace GameConstants {
     declare const SHINY_CHANCE_BATTLE: number;
     declare const SHINY_CHANCE_DUNGEON: number;
     declare const SHINY_CHANCE_SHOP: number;
+    declare const SHINY_CHANCE_BATTLEFRONTIER: number;
     declare const SHINY_CHANCE_STONE: number;
     declare const SHINY_CHANCE_SAFARI: number;
     declare const SHINY_CHANCE_BREEDING: number;
@@ -80,28 +81,25 @@ namespace GameConstants {
 
     declare enum AchievementType {
         'None',
-        'Money',
-        'Token',
-        'Attack',
-        'Diamond',
-        'Underground Items Found',
-        'Underground Layers Mined',
-        'Max Level Oak Item',
-        'Captured',
-        'Defeated',
+        'Pokedollars',
+        'Dungeon Token',
         'Caught Pokemon',
         'Shiny Pokemon',
-        'Hatch',
-        'Pokeball',
-        'Click',
-        'Route Defeat',
+        'Total Captured',
+        'Total Defeated',
+        'Attack',
+        'Poke Balls',
+        'Route Defeats',
         'Clear Gym',
         'Clear Dungeon',
-        'Farming',
         'Quest',
+        'Max Level Oak Item',
+        'Hatchery',
+        'Farming',
+        'Underground',
         'Battle Frontier',
         'Protein',
-        'Pokérus',
+        'Pokerus',
     }
     declare enum DungeonTile {
         empty,
@@ -608,6 +606,25 @@ namespace GameConstants {
         CrownTundra,
     }
 
+    // Gender Types
+    declare enum Genders {
+        Genderless,
+        MaleFemale,
+    }
+
+    // Current Pokémon Gender
+    declare enum BattlePokemonGender {
+        NoGender,
+        Male,
+        Female,
+    }
+
+    // Pokemon Statistics
+    declare const STATISTIC_CAPTURED;
+    declare const STATISTIC_DEFEATED;
+    declare const STATISTIC_ENCOUNTERED;
+    declare const STATISTIC_HATCHED;
+
     declare enum AlcremieSweet {
         'Strawberry Sweet',
         'Love Sweet',
@@ -637,29 +654,6 @@ namespace GameConstants {
     // Sort Icons
     declare const ICON_SORT_UP: string;
     declare const ICON_SORT_DOWN: string;
-
-    // Gender Types
-    declare const GENDERLESS;
-    declare const MALE_ONLY;
-    declare const FEMALE_ONLY;
-    declare const MALE_FEMALE;
-
-    // Gender Ratio
-    declare const MALE_12_5;
-    declare const MALE_25;
-    declare const MALE_50;
-    declare const MALE_75;
-    declare const MALE_87_5;
-
-    // Gender Text
-    declare const TEXT_GENDERLESS;
-    declare const TEXT_MALE;
-    declare const TEXT_FEMALE;
-
-    // Current Pokémon Gender
-    declare const NO_GENDER;
-    declare const GENDER_MALE;
-    declare const GENDER_FEMALE;
 
     // Poké Ball Selectors
     declare enum PokeballSelector {

@@ -72,7 +72,10 @@
                             <!-- Amount buttons -->
                             <div class="col-12 scrolling-div ">
                                 <div class="pt-3">
-                                    <i>Stops using evolution items once a shiny is encountered</i>
+                                    <i>Stops using evolution items once a shiny is encountered.</i>
+                                    <p data-bind="visible: PartyController.hasMultipleStoneEvolutionsAvailable(ItemHandler.pokemonSelected(), GameConstants.StoneType[ItemHandler.stoneSelected()])">
+                                        <i>If the requirements for more than one evolution is fulfilled, a random evolution will be selected.</i>
+                                    </p>
                                 </div>
                                 <!--
                                 // Since Pikachu and Exeggcute fix, random evolution is not possible anymore

@@ -121,6 +121,13 @@
 @import "templates/multiOptionTemplate.html"
 @import "templates/caughtStatusAreaTemplate.html"
 @import "templates/pokemonNameTemplate.html"
+@import "templates/pokemonSpriteTemplate.html"
+@import "templates/pokemonGenderTemplate.html"
+@import "templates/pokemonAttackTemplate.html"
+@import "templates/areaNameTemplate.html"
+@import "templates/pokerusStatusAreaTemplate.html"
+@import "templates/areaStatisticTemplate.html"
+@import "templates/clickAttackTemplate.html"
 
 <div id="window-container" style="width: 100%; height: 100%; position: fixed; top: 0; left: 0;"></div>
 <div id="game" class="container loading" data-bind="css: {'container': Settings.getSetting('gameDisplayStyle').observableValue() === 'standard3', 'container-fluid': Settings.getSetting('gameDisplayStyle').observableValue() !== 'standard3'}">
@@ -232,16 +239,11 @@
 
                     <!-- Route Battles -->
                     <div class="row justify-content-center no-gutters" data-bind="if: App.game.gameState === GameConstants.GameState.fighting">
-                        <div class="col no-gutters clickable" data-bind="click: function() {Battle.clickAttack()}" style="height: 220px; display: block;">
+                        <div class="col no-gutters clickable" data-bind="click: function() {Battle.clickAttack()}" style="height: 280px; display: block;">
                             <h2 class="pageItemTitle" style="display: block;">
-                                <knockout class="right" data-bind="using: App.game.statistics.routeKills[player.region][player.route()]()">
-                                    <knockout data-bind="text: $data.toLocaleString('en-US')">0</knockout>
-                                    <knockout data-bind="visible: $data < GameConstants.ROUTE_KILLS_NEEDED">/10</knockout>
-                                    &nbsp;defeated
-                                </knockout>
                                 <!-- Pokemon List -->
-                                <knockout class="left">
-                                    <div class="d-inline position-relative" data-bind="tooltip: { 
+                                <knockout class="right">
+                                    <div class="route-pokemon-list-icon px-1" data-bind="tooltip: { 
                                         title: 'Click here to see the available Pokémon on this route',
                                         trigger: 'hover' 
                                     }">
@@ -253,31 +255,23 @@
                                             sanitize: false,
                                             fallbackPlacement: ['bottom','bottom','bottom','bottom']
                                         }"></a>
-                                        <knockout data-bind="text: Routes.getName(player.route(), player.region)"></knockout>
+                                        <img src="assets/images/shortcut-icons/poke-list.png">
+                                        
                                     </div>
-
-                                    <knockout data-bind="template: { 
-                                        name: 'caughtStatusAreaTemplate', 
-                                        data: { 
-                                            'areaTypeText': 'on this route',
-                                            'areaCompleted': RouteHelper.routeCompleted(player.route(), player.region, false),
-                                            'areaCompletedShiny': RouteHelper.routeCompleted(player.route(), player.region, true)
-                                        }
-                                    }"></knockout>
                                 </knockout>
 
                                 <knockout>
                                     <knockout data-bind="template: { name: 'pokemonNameTemplate', data: { 'pokemon': Battle.enemyPokemon() } }">Pokémon name</knockout>
                                     <knockout data-bind="template: { name: 'caughtStatusTemplate', data: {'status': PartyController.getCaughtStatus(Battle.enemyPokemon().id)}}"></knockout>
+                                    <knockout data-bind="if: App.game.party.getPokemonByName(Battle.enemyPokemon().name)?.pokerus > GameConstants.Pokerus.Uninfected">
+                                        <img data-bind="attr:{ src: 'assets/images/breeding/pokerus/' + GameConstants.Pokerus[App.game.party.getPokemonByName(Battle.enemyPokemon().name)?.pokerus] + '.png'}"
+                                      src=""/>
+                                    </knockout>
                                 </knockout>
-
                             </h2>
-
                             <div>
                                 <div data-bind="visible: !Battle.catching()">
-                                    <img class="enemy"
-                                         data-bind="attr:{ src: PokemonHelper.getImage(Battle.enemyPokemon(), Battle.enemyPokemon().shiny, Battle.enemyPokemon().gender) }"
-                                         src=""/>
+                                    <knockout data-bind="template: { name: 'pokemonSpriteTemplate', data: { 'pokemon': Battle.enemyPokemon() } }">Pokémon sprite</knockout>
                                 </div>
                                 <div data-bind="visible: Battle.catching()" class="catchChance">
                                     <img class="pokeball-animated"
@@ -295,6 +289,53 @@
                                      <span data-bind="text: Battle.enemyPokemon().health().toLocaleString('en-US') + ' / ' + Battle.enemyPokemon().maxHealth().toLocaleString('en-US')" style="font-size: 12px;"></span>
                                 </div>
                             </div>
+
+                            <h2 class="pageItemFooter" style="display: block; font-size: 1rem;">
+                              <table width="100%">
+                                  <tr>
+                                    <!-- Routes --->
+                                    <!-- ko if: App.game.gameState === GameConstants.GameState.fighting -->
+                                    <td width="50%">
+                                      <span style="display: inline;">
+                                        <knockout data-bind="template: { name: 'areaNameTemplate', data: { 'areaName': Routes.getName(player.route(), player.region) } }">Route name</knockout>
+                                        <!-- Poké Ball image -->
+                                        <knockout data-bind="template: { 
+                                            name: 'caughtStatusAreaTemplate', 
+                                            data: { 
+                                                'areaTypeText': 'on this route',
+                                                'areaCompleted': RouteHelper.routeCompleted(player.route(), player.region, false),
+                                                'areaCompletedShiny': RouteHelper.routeCompleted(player.route(), player.region, true)
+                                            }
+                                        }"></knockout>
+                                        <!-- Pokérus image -->
+                                        <knockout data-bind="template: { name: 'pokerusStatusAreaTemplate', data: { 'pokemonList': RouteHelper.getAvailablePokemonList(player.route(), player.region, true) } }">Pokerus icon</knockout>
+                                      </span>
+                                    </td>
+                                    <td width="50%">
+                                    <!--
+                                        <knockout data-bind="using: App.game.statistics.routeKills[player.region][player.route()]()">
+                                            <knockout data-bind="text: $data.toLocaleString('en-US')">0</knockout>
+                                            <knockout data-bind="visible: $data < GameConstants.ROUTE_KILLS_NEEDED">/10</knockout>
+                                            &nbsp;Pokémon defeated
+                                        </knockout>
+                                    -->
+                                        <knockout data-bind="template: { name: 'areaStatisticTemplate', data: { 
+                                            'statistic': App.game.statistics.routeKills[player.region][player.route()](), 
+                                            'statisticText': (App.game.statistics.routeKills[player.region][player.route()]() < GameConstants.ROUTE_KILLS_NEEDED ? '/10' : '') + ' Pokémon defeated' } 
+                                        }">Statistic name</knockout> 
+                                    </td>
+                                    <!-- /ko -->
+                                  </tr>
+                                  <tr>
+                                    <td width="50%">
+                                        <knockout data-bind="template: { name: 'pokemonAttackTemplate', data: { 'pokemon': Battle.enemyPokemon() } }"></knockout>
+                                    </td>
+                                    <td width="50%" data-bind="css: { 'text-muted': App.game.challenges.list.disableClickAttack.active() }">
+                                        <knockout data-bind="template: { name: 'clickAttackTemplate' }">Click attack</knockout>
+                                    </td>
+                                  </tr>
+                                </table>
+                            </h2>
                         </div>
                     </div>
 
@@ -312,63 +353,6 @@
 
                     <!--TownView-->
                     @import "townView.html"
-                </div>
-
-
-                <!-- Display Pokémon Attack, Click Attack damge values-->
-                <div class="card-footer p-0" data-bind="hidden: App.game.gameState === GameConstants.GameState.town">
-                    <table width="100%">
-                        <tr>
-                            <!-- ko ifnot: App.game.gameState === GameConstants.GameState.battleFrontier -->
-                            <td width="50%">
-                                <span style="display: inline;">
-                                    Pokémon Attack:
-                                    <span data-bind="
-                                        text: App.game.party.pokemonAttackObservable().toLocaleString('en-US'),
-                                        tooltip: {
-                                            title: Battle.enemyPokemon()
-                                                ? `${App.game.party.calculatePokemonAttack(
-                                                    Battle.enemyPokemon().type1,
-                                                    Battle.enemyPokemon().type2
-                                                ).toLocaleString('en-US')} against ${Battle.enemyPokemon().name}`
-                                                : '',
-                                            trigger: 'hover',
-                                        }
-                                    "></span>
-                                </span>
-                            </td>
-                            <td width="50%" data-bind="css: { 'text-muted': App.game.challenges.list.disableClickAttack.active() }">
-                                <span style="display: inline;">Click Attack:
-                                    <span data-bind="text: App.game.party.calculateClickAttack().toLocaleString('en-US')"></span>
-                                </span>
-                            </td>
-                            <!-- /ko -->
-                            <!-- ko if: App.game.gameState === GameConstants.GameState.battleFrontier -->
-                            <td width="100%">
-                                <span style="display: inline;">
-                                    Pokémon Attack:
-                                    <span data-bind="
-                                        text: App.game.party.calculatePokemonAttack(
-                                            PokemonType.None,
-                                            PokemonType.None,
-                                            true,
-                                        ).toLocaleString('en-US'),
-                                        tooltip: {
-                                            title: Battle.enemyPokemon()
-                                                ? `${App.game.party.calculatePokemonAttack(
-                                                    Battle.enemyPokemon().type1,
-                                                    Battle.enemyPokemon().type2,
-                                                    true,
-                                                ).toLocaleString('en-US')} against ${Battle.enemyPokemon().name}`
-                                                : '',
-                                            trigger: 'hover',
-                                        }
-                                    "></span>
-                                </span>
-                            </td>
-                            <!-- /ko -->
-                        </tr>
-                    </table>
                 </div>
             </div>
 

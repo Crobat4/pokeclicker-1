@@ -1,0 +1,10 @@
+<script type="text/html" id="pokerusStatusAreaTemplate">
+    <knockout data-bind="if: RouteHelper.minPokerusCheck($data.pokemonList)">
+        <img data-bind="attr:{ src: 'assets/images/breeding/pokerus/' + GameConstants.Pokerus[RouteHelper.minPokerus($data.pokemonList)] + '.png'}"
+      src=""/>
+    </knockout>
+</script>
+
+<!-- Example usage -->
+<!-- <knockout data-bind="template: { name: 'pokerusStatusAreaTemplate', data: { 'pokemonList': RouteHelper.getAvailablePokemonList(player.route(), player.region, true) } }">Pokerus icon</knockout> -->
+

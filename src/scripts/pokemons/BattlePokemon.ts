@@ -57,12 +57,7 @@ class BattlePokemon implements EnemyPokemonInterface {
     }
 
     public defeat(trainer = false): void {
-        GameHelper.incrementObservable(App.game.statistics.pokemonDefeated[this.id]);
-        GameHelper.incrementObservable(App.game.statistics.totalPokemonDefeated);
-        if (this.shiny) {
-            GameHelper.incrementObservable(App.game.statistics.shinyPokemonDefeated[this.id]);
-            GameHelper.incrementObservable(App.game.statistics.totalShinyPokemonDefeated);
-        }
+        PokemonHelper.incrementPokemonStatistics(this.id, GameConstants.STATISTIC_DEFEATED, this.shiny, this.gender);
 
         if (this.reward.amount > 0) {
             App.game.wallet.addAmount(this.reward);
@@ -73,7 +68,7 @@ class BattlePokemon implements EnemyPokemonInterface {
             BagHandler.gainItem(this.heldItem);
             const msg = `${this.name} dropped ${GameHelper.anOrA(name)} ${name}!`;
             Notifier.notify({
-                message: `The enemy ${msg}`,
+                message: `The enemy ${msg} <img src="${BagHandler.image(this.heldItem)}" height="24px"/>`,
                 type: NotificationConstants.NotificationOption.success,
                 setting: NotificationConstants.NotificationSetting.Items.dropped_item,
             });

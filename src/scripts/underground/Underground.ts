@@ -519,6 +519,6 @@ namespace Underground {
 
     export const CHISEL_ENERGY = 1;
     export const HAMMER_ENERGY = 3;
-    export const BOMB_ENERGY = 20;
+    export const BOMB_ENERGY = 15;
     export const SURVEY_ENERGY = 15;
 }

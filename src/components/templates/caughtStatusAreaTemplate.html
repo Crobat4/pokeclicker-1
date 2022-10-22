@@ -2,7 +2,7 @@
     <!--If there is still a missing Pokémon on the route-->
     <knockout data-bind="if: (!$data.areaCompletedShiny && !$data.areaCompleted),
         tooltip: { title: `You have not captured all Pokémon ${$data.areaTypeText} yet!`, trigger: 'hover' }">
-        <img title="" class="pokeball-smallest"
+        <img title="" class="pokeball-smallest filter-invert"
             src="assets/images/pokeball/None.svg"/>
     </knockout>
 
