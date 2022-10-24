@@ -1665,6 +1665,7 @@ export enum PokeballSelector {
     notCaught,
     notCaughtShiny,
     type,
+    contagious,
     roaming,
     dungeonBoss,
 }

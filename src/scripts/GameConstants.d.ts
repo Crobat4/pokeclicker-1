@@ -662,6 +662,7 @@ namespace GameConstants {
         notCaught,
         notCaughtShiny,
         type,
+        contagious,
         roaming,
         dungeonBoss,
     }

@@ -11,6 +11,7 @@ class Pokeballs implements Feature {
         notCaughtSelection: GameConstants.Pokeball.Pokeball,
         notCaughtShinySelection: GameConstants.Pokeball.Pokeball,
         typeSelection: GameConstants.Pokeball.None,
+        contagiousSelection: GameConstants.Pokeball.None,
         roamingSelection: GameConstants.Pokeball.None,
         dungeonBossSelection: GameConstants.Pokeball.None,
     };
@@ -122,6 +123,7 @@ class Pokeballs implements Feature {
             new PokeballSelector(GameConstants.PokeballSelector.notCaught, 'New Pokémon', 'New', 'Uncaptured Pokémon will use this ball selection', this.defaults.notCaughtSelection),
             new PokeballSelector(GameConstants.PokeballSelector.notCaughtShiny, 'New Shiny Pokémon', 'New✨', 'Uncaptured Shiny Pokémon will use this ball selection', this.defaults.notCaughtShinySelection),
             new PokeballSelector(GameConstants.PokeballSelector.type, 'By Type', 'Type', 'Any Pokémon will use this ball selection if their types match with the selected types<br/>Select the types in the Settings', this.defaults.typeSelection),
+            new PokeballSelector(GameConstants.PokeballSelector.contagious, 'Contagious Pokémon', 'EV < 50', 'Contagious Pokémon (less than 50 EVs) will use this ball selection, regardless if it\'s already caught or not', this.defaults.contagiousSelection),
             new PokeballSelector(GameConstants.PokeballSelector.roaming, 'Roaming Pokémon', 'Roaming', 'Roaming Pokémon will use this ball selection, regardless if it\'s already caught or not', this.defaults.roamingSelection),
             new PokeballSelector(GameConstants.PokeballSelector.dungeonBoss, 'Dungeon Boss Pokémon', 'Dungeon Boss', 'Dungeon Boss Pokémon will use this ball selection, regardless if it\'s already caught or not', this.defaults.dungeonBossSelection),
         ];
@@ -153,6 +155,7 @@ class Pokeballs implements Feature {
             this.pokeballSelectors[GameConstants.PokeballSelector.notCaught].pokeball,
             this.pokeballSelectors[GameConstants.PokeballSelector.notCaughtShiny].pokeball,
             this.pokeballSelectors[GameConstants.PokeballSelector.type].pokeball,
+            this.pokeballSelectors[GameConstants.PokeballSelector.contagious].pokeball,
             this.pokeballSelectors[GameConstants.PokeballSelector.roaming].pokeball,
             this.pokeballSelectors[GameConstants.PokeballSelector.dungeonBoss].pokeball,
         ]).forEach(selection => {
@@ -184,7 +187,6 @@ class Pokeballs implements Feature {
         const alreadyCaughtShiny = App.game.party.alreadyCaughtPokemon(id, true);
         const pokemon = PokemonHelper.getPokemonById(id);
         let pref: GameConstants.Pokeball;
-
         // just check against alreadyCaughtShiny as this returns false when you don't have the pokemon yet.
 
         if (isShiny) {
@@ -209,6 +211,11 @@ class Pokeballs implements Feature {
             if (pokemon.type1 == typeIndex || pokemon.type2 == typeIndex) {
                 pref = Math.max(pref, this.pokeballSelectors[GameConstants.PokeballSelector.type].pokeball());
             }
+        }
+
+        // Contagious Pokerus
+        if (App.game.party.getPokemon(id)?.pokerus === GameConstants.Pokerus.Contagious) {
+            pref = Math.max(pref, this.pokeballSelectors[GameConstants.PokeballSelector.contagious].pokeball());
         }
 
         // Roamings
