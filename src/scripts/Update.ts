@@ -1399,7 +1399,7 @@ class Update implements Saveable {
             // Add Legendary/Mythical selection and set the ball to none (probably not needed since it's the last index)
             saveData.pokeballs.pokeballSelectors = Update.moveIndex(saveData.pokeballs.pokeballSelectors, GameConstants.PokeballSelector.legendaryMythical);
             saveData.pokeballs.pokeballSelectors[GameConstants.PokeballSelector.legendaryMythical] = GameConstants.Pokeball.None;
-        }
+        },
     };
 
     constructor() {

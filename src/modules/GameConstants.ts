@@ -1732,7 +1732,7 @@ export const LegendaryType = [
     896, // Glastrier
     897, // Spectrier
     898, // Calyrex
-]
+];
 
 export const MythicalType = [
     151, // Mew
@@ -1757,4 +1757,4 @@ export const MythicalType = [
     808, // Meltan
     809, // Melmetal
     893, // Zarude
-]
+];
