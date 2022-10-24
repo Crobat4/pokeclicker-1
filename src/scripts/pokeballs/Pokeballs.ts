@@ -14,6 +14,7 @@ class Pokeballs implements Feature {
         contagiousSelection: GameConstants.Pokeball.None,
         roamingSelection: GameConstants.Pokeball.None,
         dungeonBossSelection: GameConstants.Pokeball.None,
+        legendaryMythicalSelection: GameConstants.Pokeball.None,
     };
 
     public pokeballs: Pokeball[];
@@ -126,6 +127,7 @@ class Pokeballs implements Feature {
             new PokeballSelector(GameConstants.PokeballSelector.contagious, 'Contagious Pokémon', 'EV < 50', 'Contagious Pokémon (less than 50 EVs) will use this ball selection, regardless if it\'s already caught or not', this.defaults.contagiousSelection),
             new PokeballSelector(GameConstants.PokeballSelector.roaming, 'Roaming Pokémon', 'Roaming', 'Roaming Pokémon will use this ball selection, regardless if it\'s already caught or not', this.defaults.roamingSelection),
             new PokeballSelector(GameConstants.PokeballSelector.dungeonBoss, 'Dungeon Boss Pokémon', 'Dungeon Boss', 'Dungeon Boss Pokémon will use this ball selection, regardless if it\'s already caught or not', this.defaults.dungeonBossSelection),
+            new PokeballSelector(GameConstants.PokeballSelector.dungeonBoss, 'Legendary/Mythical Pokémon', 'Legendary/Mythical', 'Legendary and Mythical Pokémon will use this ball selection, regardless if it\'s already caught or not', this.defaults.legendaryMythicalSelection),
         ];
 
         // Beast Ball Toggles
@@ -226,6 +228,12 @@ class Pokeballs implements Feature {
         // Dungeon Boss
         if (this.isDungeonBoss()) {
             pref = Math.max(pref, this.pokeballSelectors[GameConstants.PokeballSelector.dungeonBoss].pokeball());
+        }
+
+        // Legendary and Mythical
+        const legendaryId = Math.floor(id); // Remove decimals
+        if (GameConstants.LegendaryType.includes(legendaryId) || GameConstants.MythicalType.includes(legendaryId)) {
+            pref = Math.max(pref, this.pokeballSelectors[GameConstants.PokeballSelector.legendaryMythical].pokeball());
         }
 
         let use: GameConstants.Pokeball = GameConstants.Pokeball.None;
