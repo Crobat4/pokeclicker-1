@@ -13,6 +13,13 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.DEFAULT, '<div class="w-100 d-flex justify-content-around"><a href="https://github.com/Crobat4/pokeclicker" target="_blank">Repository</a><a href="https://github.com/Crobat4/Pokeclicker-desktop" target="_blank">Desktop build</a><a href="https://github.com/Crobat4/pokeclicker/wiki" target="_blank">Github Wiki</a></div>'),
     new Changelog(changelogType.DEFAULT, 'This will keep being updated as long as the thread is alive...'),
     // ⥂⥄
+    // v0.3.6
+    new ChangelogUpdate('v0.3.6', new Date(2022, 10 - 1, 24)),
+    new Changelog(changelogType.CHANGE, 'Galar egg exclusive Pokémon added to the wild following the main games location'),
+    new Changelog(changelogType.CHANGE, 'Battle Café: Spins recharges every two hours (up to 3 spins)'),
+    new Changelog(changelogType.CHANGE, 'Galar Energy Plant: Macro Cosmos Rose encounter rate reduced'),
+    new Changelog(changelogType.CHANGE, 'Underground: Bomb changes reverted'),
+    new Changelog(changelogType.CHANGE, 'Evolution Items: Misc layout changes'),
     // v0.3.5
     new ChangelogUpdate('v0.3.5', new Date(2022, 10 - 1, 22)),
     new Changelog(changelogType.NEW, 'Added Official updates (v0.10.0 - Galar)'),

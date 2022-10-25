@@ -178,16 +178,11 @@ class Mine {
             return;
         }
 
-        let tiles = App.game.underground.getSurvey_Efficiency();
-        while (tiles > 0) {
+        const tiles = App.game.underground.getSurvey_Efficiency();
+        for (let i = 0; i < tiles; i++) {
             const x = Rand.intBetween(0, this.getHeight() - 1);
             const y = Rand.intBetween(0, Underground.sizeX - 1);
-            // Always break N (survey efficiency) tiles or check if all items were already found to avoid endless loop
-            // TODO: Make an array with uncleared tiles and grab the random tiles from there
-            if (Mine.grid[x][y]() > 0 || Mine.itemsFound() >= Mine.itemsBuried()) {
-                this.breakTile(x, y, 5);
-                tiles--;
-            }
+            this.breakTile(x, y, 5);
         }
 
         App.game.underground.energy -= surveyCost;
@@ -294,15 +289,10 @@ class Mine {
 
         let tiles = App.game.underground.getBombEfficiency();
         if (App.game.underground.energy >= Underground.BOMB_ENERGY) {
-            while (tiles > 0) {
+            while (tiles-- > 0) {
                 const x = Rand.intBetween(0, this.getHeight() - 1);
                 const y = Rand.intBetween(0, Underground.sizeX - 1);
-                // Always break N (bomb efficiency) tiles or check if all items were already found to avoid endless loop
-                // TODO: Make an array with uncleared tiles and grab the random tiles from there
-                if (Mine.grid[x][y]() > 0 || Mine.itemsFound() >= Mine.itemsBuried()) {
-                    this.breakTile(x, y, 2);
-                    tiles--;
-                }
+                this.breakTile(x, y, 2);
             }
             App.game.underground.energy -= Underground.BOMB_ENERGY;
         }

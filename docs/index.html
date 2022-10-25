@@ -478,36 +478,25 @@
                             </div>
                             
                             <!-- Amount buttons -->
-                            <div class="col-12 scrolling-div ">
-                                <div class="pt-3">
-                                    <i>Stops using evolution items once a shiny is encountered.</i>
+                            <div class="col-12">
+                                <div class="py-3">
+                                    <i>If a shiny is found, the game will stop using evolution items.</i>
                                     <p data-bind="visible: PartyController.hasMultipleStoneEvolutionsAvailable(ItemHandler.pokemonSelected(), GameConstants.StoneType[ItemHandler.stoneSelected()])">
                                         <i>If the requirements for more than one evolution is fulfilled, a random evolution will be selected.</i>
                                     </p>
                                 </div>
-                                <!--
-                                // Since Pikachu and Exeggcute fix, random evolution is not possible anymore
-                                <div class="pt-3" data-bind="visible: PartyController.hasMultipleStoneEvolutionsAvailable(ItemHandler.pokemonSelected(), GameConstants.StoneType[ItemHandler.stoneSelected()])">
-                                    <i>If the requirements for more than one evolution is fulfilled, a random evolution will be selected</i>
-                                </div>
-                                -->
-                                <div class="row">
+                                
+                                <div class="row justify-content-center">
                                     <div class="col-md-6 col-12">
-                                        <div class="row no-gutters justify-content-center">
-                                            <div class="row justify-content-center" style="padding:15px;"
-                                            data-bind="template: { 
-                                                name:'multiOptionTemplate', 
-                                                data: { observable: ItemHandler.amountSelected, 
-                                                    optionValues: [1,10,100,1000,Infinity] 
-                                                } 
-                                            }">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="row no-gutters justify-content-center">
-                                            <div class="row justify-content-center" style="padding:15px;">
-                                                <button data-bind="click: function(){ItemHandler.useStones()}" class="btn btn-lg btn-success">Use evolution items!</button>
+                                        <!-- TODO: Maybe move this to the template? -->
+                                        <div class="btn-group btn-block">
+                                            <button class="btn btn-success btn-block" data-bind="click: function(){ItemHandler.useStones()}">
+                                                Use evolution items!
+                                            </button>
+                                            <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split active" data-bind="text: ItemHandler.amountSelected() + '&nbsp;'" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            </button>
+                                            <div class="dropdown-menu" data-bind="foreach: [1, 10, 100, 1000, Infinity]">
+                                                <button class="dropdown-item" type="button" data-bind="click: function(){ItemHandler.amountSelected($data)}, text: $data"></button>
                                             </div>
                                         </div>
                                     </div>
@@ -746,6 +735,18 @@
     </div>
 </script>
 
+<!-- Example usage -->
+<!--
+    <div class="row justify-content-center" style="padding:15px;"
+        data-bind="template: { 
+            name:'multiOptionTemplate', 
+            data: { 
+                observable: ItemHandler.amountSelected, 
+                optionValues: [1,10,100,1000,Infinity] 
+            } 
+        }">
+    </div>
+-->
 <script type="text/html" id="caughtStatusAreaTemplate">
     <!--If there is still a missing Pokémon on the route-->
     <knockout data-bind="if: (!$data.areaCompletedShiny && !$data.areaCompleted),
@@ -37872,12 +37873,12 @@ aria-labelledby="breedingModalLabel" aria-hidden="true">
                         </button>
                         <button class='col-12 col-md-4 btn btn-success'
                                 onClick='Mine.survey(); $(this).tooltip("hide")'
-                                data-bind="disable: Mine.surveyResult() ? true : false, tooltip: {title: `Survey gives you information about the items to be found on this layer. It also fully damages ${App.game.underground.getSurvey_Efficiency()} uncleared random tile${App.game.underground.getSurvey_Efficiency() > 1 ? 's' : ''}.`, trigger: 'hover', placement: 'bottom', boundary: 'window'}">
+                                data-bind="disable: Mine.surveyResult() ? true : false, tooltip: {title: `Survey gives you information about the items to be found on this layer. It also fully damages ${App.game.underground.getSurvey_Efficiency()} (cleared or uncleared) random tile${App.game.underground.getSurvey_Efficiency() > 1 ? 's' : ''}.`, trigger: 'hover', placement: 'bottom', boundary: 'window'}">
                             Survey (<knockout data-bind="text: App.game.underground.getSurvey_Cost()"></knockout> energy)
                         </button>
                         <!-- FIX NUMBER-->
                         <button class='col-12 col-md-4 btn btn-warning' onClick='Mine.bomb()'
-                        data-bind="tooltip: {title: `Bomb will mine 2 layers of ${App.game.underground.getBombEfficiency()} uncleared random tiles.`, trigger: 'hover', placement: 'bottom', boundary: 'window'}">Bomb (<knockout data-bind="text: Underground.BOMB_ENERGY"></knockout> energy)</button>
+                        data-bind="tooltip: {title: `Bomb will mine 2 layers of ${App.game.underground.getBombEfficiency()} (cleared or uncleared) random tiles.`, trigger: 'hover', placement: 'bottom', boundary: 'window'}">Bomb (<knockout data-bind="text: Underground.BOMB_ENERGY"></knockout> energy)</button>
                         <button class='col-12 col-md-4 btn btn-danger' onClick='Mine.skipLayer(true)'
                         data-bind="tooltip: {title: `Skips the current layer. Fully mine a layer to recover one Skip.`, trigger: 'hover', placement: 'bottom', boundary: 'window'}">Skip (<knockout data-bind="text: `${Mine.skipsRemaining()} / ${Mine.maxSkips}`"></knockout>)</button>
                     </div>

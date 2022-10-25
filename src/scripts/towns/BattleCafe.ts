@@ -38,6 +38,7 @@ class BattleCafeSaveObject implements Saveable {
 
 class BattleCafeController {
     static defaultSpins = 3;
+    static defaultRecharge = 1;
     static selectedSweet = ko.observable<GameConstants.AlcremieSweet>(undefined);
     static spinsLeft = ko.observable<number>(BattleCafeController.defaultSpins);
     static isSpinning = ko.observable<boolean>(false);
@@ -94,6 +95,21 @@ class BattleCafeController {
             }
         }
         BattleCafeController.evolutions[sweet][spin].gain(1);
+    }
+
+    /* *
+     * The period for spin recharges (in hours)
+     */
+    public static period = 2;
+
+    /**
+     * Recharges spin
+     */
+    public static rechargeSpin(hour: number): void {
+        if ((hour % BattleCafeController.period) == 0) {
+            const recharge = BattleCafeController.spinsLeft() + BattleCafeController.defaultRecharge;
+            BattleCafeController.spinsLeft(Math.min(BattleCafeController.defaultSpins, recharge));
+        }
     }
 
     private static canSpin() {

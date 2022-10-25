@@ -390,16 +390,15 @@ class Game {
                         timeout: 3e4,
                     });
                 }
-                // Give the players more Battle Cafe spins
-                BattleCafeController.spinsLeft(BattleCafeController.defaultSpins);
 
                 DayOfWeekRequirement.date(now.getDay());
             }
-
             // Check if it's a new hour
             if (old.getHours() !== now.getHours()) {
                 Weather.generateWeather(now);
                 RoamingPokemonList.generateIncreasedChanceRoutes(now);
+                // Give the players more Battle Cafe spins
+                BattleCafeController.rechargeSpin(now.getHours());
             }
 
             this.save();

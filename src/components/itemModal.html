@@ -70,36 +70,25 @@
                             </div>
                             
                             <!-- Amount buttons -->
-                            <div class="col-12 scrolling-div ">
-                                <div class="pt-3">
-                                    <i>Stops using evolution items once a shiny is encountered.</i>
+                            <div class="col-12">
+                                <div class="py-3">
+                                    <i>If a shiny is found, the game will stop using evolution items.</i>
                                     <p data-bind="visible: PartyController.hasMultipleStoneEvolutionsAvailable(ItemHandler.pokemonSelected(), GameConstants.StoneType[ItemHandler.stoneSelected()])">
                                         <i>If the requirements for more than one evolution is fulfilled, a random evolution will be selected.</i>
                                     </p>
                                 </div>
-                                <!--
-                                // Since Pikachu and Exeggcute fix, random evolution is not possible anymore
-                                <div class="pt-3" data-bind="visible: PartyController.hasMultipleStoneEvolutionsAvailable(ItemHandler.pokemonSelected(), GameConstants.StoneType[ItemHandler.stoneSelected()])">
-                                    <i>If the requirements for more than one evolution is fulfilled, a random evolution will be selected</i>
-                                </div>
-                                -->
-                                <div class="row">
+                                
+                                <div class="row justify-content-center">
                                     <div class="col-md-6 col-12">
-                                        <div class="row no-gutters justify-content-center">
-                                            <div class="row justify-content-center" style="padding:15px;"
-                                            data-bind="template: { 
-                                                name:'multiOptionTemplate', 
-                                                data: { observable: ItemHandler.amountSelected, 
-                                                    optionValues: [1,10,100,1000,Infinity] 
-                                                } 
-                                            }">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="row no-gutters justify-content-center">
-                                            <div class="row justify-content-center" style="padding:15px;">
-                                                <button data-bind="click: function(){ItemHandler.useStones()}" class="btn btn-lg btn-success">Use evolution items!</button>
+                                        <!-- TODO: Maybe move this to the template? -->
+                                        <div class="btn-group btn-block">
+                                            <button class="btn btn-success btn-block" data-bind="click: function(){ItemHandler.useStones()}">
+                                                Use evolution items!
+                                            </button>
+                                            <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split active" data-bind="text: ItemHandler.amountSelected() + '&nbsp;'" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            </button>
+                                            <div class="dropdown-menu" data-bind="foreach: [1, 10, 100, 1000, Infinity]">
+                                                <button class="dropdown-item" type="button" data-bind="click: function(){ItemHandler.amountSelected($data)}, text: $data"></button>
                                             </div>
                                         </div>
                                     </div>
