@@ -22063,8 +22063,8 @@ const pokemonList = createPokemonArray(
         'exp': 166,
         'catchRate': 45,
         'evolutions': [
-            EnvironmentRestrictedLevelEvolution('Water', 'Cramorant', 'Cramorant (Gulping)', 50),
-            WeatherRestrictedLevelEvolution('Cramorant', 'Cramorant (Gorging)', 50, [WeatherType.Thunderstorm]),
+            new EnvironmentRestrictedLevelEvolution('Water', 'Cramorant', 'Cramorant (Gulping)', 50),
+            new WeatherRestrictedLevelEvolution('Cramorant', 'Cramorant (Gorging)', 50, [WeatherType.Thunderstorm]),
         ],
     },
     {
@@ -22087,8 +22087,8 @@ const pokemonList = createPokemonArray(
         'exp': 166,
         'catchRate': 45,
         'evolutions': [
-            LevelEvolution('Cramorant (Gulping)', 'Cramorant', 50),
-            WeatherRestrictedLevelEvolution('Cramorant (Gulping)', 'Cramorant (Gorging)', 50, [WeatherType.Thunderstorm]),
+            new LevelEvolution('Cramorant (Gulping)', 'Cramorant', 50),
+            new WeatherRestrictedLevelEvolution('Cramorant (Gulping)', 'Cramorant (Gorging)', 50, [WeatherType.Thunderstorm]),
         ],
     },
     {
@@ -22111,8 +22111,8 @@ const pokemonList = createPokemonArray(
         'exp': 166,
         'catchRate': 45,
         'evolutions': [
-            LevelEvolution('Cramorant (Gorging)', 'Cramorant', 50),
-            EnvironmentRestrictedLevelEvolution('Water', 'Cramorant (Gorging)', 'Cramorant (Gulping)', 50),
+            new LevelEvolution('Cramorant (Gorging)', 'Cramorant', 50),
+            new EnvironmentRestrictedLevelEvolution('Water', 'Cramorant (Gorging)', 'Cramorant (Gulping)', 50),
         ],
     },
     {
@@ -24107,8 +24107,8 @@ const pokemonList = createPokemonArray(
         'exp': 165,
         'catchRate': 60,
         'evolutions': [
-            EnvironmentRestrictedLevelEvolution('Fire', 'Eiscue (Ice Face)', 'Eiscue (No Ice Face)', 1),
-            WeatherRestrictedLevelEvolution('Eiscue (Ice Face)', 'Eiscue (No Ice Face)', 1, [WeatherType.Sunny]),
+            new EnvironmentRestrictedLevelEvolution('Fire', 'Eiscue (Ice Face)', 'Eiscue (No Ice Face)', 1),
+            new WeatherRestrictedLevelEvolution('Eiscue (Ice Face)', 'Eiscue (No Ice Face)', 1, [WeatherType.Sunny]),
         ],
     },
     {
@@ -24128,8 +24128,8 @@ const pokemonList = createPokemonArray(
         'exp': 165,
         'catchRate': 60,
         'evolutions': [
-            EnvironmentRestrictedLevelEvolution('Ice', 'Eiscue (No Ice Face)', 'Eiscue (Ice Face)', 1),
-            WeatherRestrictedLevelEvolution('Eiscue (No Ice Face)', 'Eiscue (Ice Face)', 1, [WeatherType.Snow, WeatherType.Blizzard, WeatherType.Hail]),
+            new EnvironmentRestrictedLevelEvolution('Ice', 'Eiscue (No Ice Face)', 'Eiscue (Ice Face)', 1),
+            new WeatherRestrictedLevelEvolution('Eiscue (No Ice Face)', 'Eiscue (Ice Face)', 1, [WeatherType.Snow, WeatherType.Blizzard, WeatherType.Hail]),
         ],
     },
     {
