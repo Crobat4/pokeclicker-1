@@ -9752,6 +9752,11 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumfast,
         'exp': 147,
         'catchRate': 45,
+        'evolutions': [
+            new WeatherRestrictedLevelEvolution('Castform (Sunny)', 'Castform', 1, [WeatherType.Clear, WeatherType.Overcast, WeatherType.Sandstorm, WeatherType.Windy]),
+            new WeatherRestrictedLevelEvolution('Castform (Sunny)', 'Castform (Rainy)', 1, [WeatherType.Rain, WeatherType.Thunderstorm]),
+            new WeatherRestrictedLevelEvolution('Castform (Sunny)', 'Castform (Snowy)', 1, [WeatherType.Snow, WeatherType.Blizzard, WeatherType.Hail, WeatherType.Fog]),
+        ],
         'base': {
             'hitpoints': 70,
             'attack': 70,
@@ -9769,6 +9774,11 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumfast,
         'exp': 147,
         'catchRate': 45,
+        'evolutions': [
+            new WeatherRestrictedLevelEvolution('Castform (Rainy)', 'Castform', 1, [WeatherType.Clear, WeatherType.Overcast, WeatherType.Sandstorm, WeatherType.Windy]),
+            new WeatherRestrictedLevelEvolution('Castform (Rainy)', 'Castform (Sunny)', 1, [WeatherType.Sunny]),
+            new WeatherRestrictedLevelEvolution('Castform (Rainy)', 'Castform (Snowy)', 1, [WeatherType.Snow, WeatherType.Blizzard, WeatherType.Hail, WeatherType.Fog]),
+        ],
         'base': {
             'hitpoints': 70,
             'attack': 70,
@@ -9786,6 +9796,11 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumfast,
         'exp': 147,
         'catchRate': 45,
+        'evolutions': [
+            new WeatherRestrictedLevelEvolution('Castform (Snowy)', 'Castform', 1, [WeatherType.Clear, WeatherType.Overcast, WeatherType.Sandstorm, WeatherType.Windy]),
+            new WeatherRestrictedLevelEvolution('Castform (Snowy)', 'Castform (Sunny)', 1, [WeatherType.Sunny]),
+            new WeatherRestrictedLevelEvolution('Castform (Snowy)', 'Castform (Rainy)', 1, [WeatherType.Rain, WeatherType.Thunderstorm]),
+        ],
         'base': {
             'hitpoints': 70,
             'attack': 70,
@@ -11078,6 +11093,10 @@ const pokemonList = createPokemonArray(
         'evolutions': [
             new LevelEvolution('Burmy (Sand)', 'Wormadam (Sand)', 20),
             new LevelEvolution('Burmy (Sand)', 'Mothim', 20),
+            new EnvironmentRestrictedLevelEvolution('Forest', 'Burmy (Sand)', 'Burmy (Plant)', 1),
+            new EnvironmentRestrictedLevelEvolution('PowerPlant', 'Burmy (Sand)', 'Burmy (Trash)', 1),
+            new EnvironmentRestrictedLevelEvolution('Mansion', 'Burmy (Sand)', 'Burmy (Trash)', 1),
+            new EnvironmentRestrictedLevelEvolution('Graveyard', 'Burmy (Sand)', 'Burmy (Trash)', 1),
         ],
         'base': {
             'hitpoints': 40,
@@ -11099,6 +11118,9 @@ const pokemonList = createPokemonArray(
         'evolutions': [
             new LevelEvolution('Burmy (Trash)', 'Wormadam (Trash)', 20),
             new LevelEvolution('Burmy (Trash)', 'Mothim', 20),
+            new EnvironmentRestrictedLevelEvolution('Forest', 'Burmy (Trash)', 'Burmy (Plant)', 1),
+            new EnvironmentRestrictedLevelEvolution('Cave', 'Burmy (Trash)', 'Burmy (Sand)', 1),
+            new EnvironmentRestrictedLevelEvolution('GemCave', 'Burmy (Trash)', 'Burmy (Sand)', 1),
         ],
         'base': {
             'hitpoints': 40,
@@ -11330,6 +11352,7 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumfast,
         'exp': 158,
         'catchRate': 75,
+        'evolutions': [new WeatherRestrictedLevelEvolution('Cherrim (Sunshine)', 'Cherrim (Overcast)', 1, [WeatherType.Overcast, WeatherType.Rain, WeatherType.Thunderstorm, WeatherType.Snow, WeatherType.Hail, WeatherType.Blizzard, WeatherType.Sandstorm, WeatherType.Fog])],
         'base': {
             'hitpoints': 70,
             'attack': 60,
@@ -22039,6 +22062,10 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumfast,
         'exp': 166,
         'catchRate': 45,
+        'evolutions': [
+            EnvironmentRestrictedLevelEvolution('Water', 'Cramorant', 'Cramorant (Gulping)', 50),
+            WeatherRestrictedLevelEvolution('Cramorant', 'Cramorant (Gorging)', 50, [WeatherType.Thunderstorm]),
+        ],
     },
     {
         'id': 845.1,
@@ -22059,6 +22086,10 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumfast,
         'exp': 166,
         'catchRate': 45,
+        'evolutions': [
+            LevelEvolution('Cramorant (Gulping)', 'Cramorant', 50),
+            WeatherRestrictedLevelEvolution('Cramorant (Gulping)', 'Cramorant (Gorging)', 50, [WeatherType.Thunderstorm]),
+        ],
     },
     {
         'id': 845.2,
@@ -22079,6 +22110,10 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumfast,
         'exp': 166,
         'catchRate': 45,
+        'evolutions': [
+            LevelEvolution('Cramorant (Gorging)', 'Cramorant', 50),
+            EnvironmentRestrictedLevelEvolution('Water', 'Cramorant (Gorging)', 'Cramorant (Gulping)', 50),
+        ],
     },
     {
         'id': 846,
@@ -24071,6 +24106,10 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.slow,
         'exp': 165,
         'catchRate': 60,
+        'evolutions': [
+            EnvironmentRestrictedLevelEvolution('Fire', 'Eiscue (Ice Face)', 'Eiscue (No Ice Face)', 1),
+            WeatherRestrictedLevelEvolution('Eiscue (Ice Face)', 'Eiscue (No Ice Face)', 1, [WeatherType.Sunny]),
+        ],
     },
     {
         'id': 875.1,
@@ -24088,6 +24127,10 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.slow,
         'exp': 165,
         'catchRate': 60,
+        'evolutions': [
+            EnvironmentRestrictedLevelEvolution('Ice', 'Eiscue (No Ice Face)', 'Eiscue (Ice Face)', 1),
+            WeatherRestrictedLevelEvolution('Eiscue (No Ice Face)', 'Eiscue (Ice Face)', 1, [WeatherType.Snow, WeatherType.Blizzard, WeatherType.Hail]),
+        ],
     },
     {
         'id': 876,
