@@ -185,6 +185,7 @@ export const SpriteCredits: Credit[] = [
             'Galarian Moltres overworld image',
             'Galarian Zapdos overworld image',
             'Galarica cuff and wreath icons',
+            'Honey',
             'Linking cord cartoon style',
             'Luana',
             'Merilyn',
@@ -302,6 +303,7 @@ export const SpriteCredits: Credit[] = [
         name: 'Farboo171',
         link: 'https://github.com/Farboo171',
         resources: [
+            'Flowering Celebi',
             'Freeze Mulch',
             'Underground Fossilized Dino',
             'Underground Fossilized Drake',
@@ -421,6 +423,7 @@ export const SpriteCredits: Credit[] = [
             'Sightseer (male)',
             'Sky Trainer (female)',
             'Sky Trainer (male)',
+            'Triathlete',
             'Tourist (female)',
             'Tourist (male)',
             'Worker (female)',
