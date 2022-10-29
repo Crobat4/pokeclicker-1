@@ -662,7 +662,13 @@ namespace GameConstants {
         notCaught,
         notCaughtShiny,
         type,
+        contagious,
         roaming,
         dungeonBoss,
+        legendaryMythical,
     }
+
+    // Legendary and Mythical IDs
+    declare const LegendaryType: number[];
+    declare const MythicalType: number[];
 }
