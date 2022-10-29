@@ -1379,7 +1379,6 @@ class Update implements Saveable {
                 settingsData.breedingRegionFilter = 2 ** settingsData.breedingRegionFilter;
             }
         },
-
         '0.10.1': ({ playerData, saveData }) => {
             // Brawlers Cave renamed
             if (playerData._townName == 'Brawlers Cave') {
@@ -1406,6 +1405,13 @@ class Update implements Saveable {
                         saveData.battleFrontier.milestones = saveData.battleFrontier.milestones.filter(milestone => milestone[1] !== name);
                     });
             }
+            /* Crobat Fork */
+            // Add Contagious selection before Roaming and set the ball to none
+            saveData.pokeballs.pokeballSelectors = Update.moveIndex(saveData.pokeballs.pokeballSelectors, GameConstants.PokeballSelector.contagious);
+            saveData.pokeballs.pokeballSelectors[GameConstants.PokeballSelector.contagious] = GameConstants.Pokeball.None;
+            // Add Legendary/Mythical selection and set the ball to none (probably not needed since it's the last index)
+            saveData.pokeballs.pokeballSelectors = Update.moveIndex(saveData.pokeballs.pokeballSelectors, GameConstants.PokeballSelector.legendaryMythical);
+            saveData.pokeballs.pokeballSelectors[GameConstants.PokeballSelector.legendaryMythical] = GameConstants.Pokeball.None;
         },
     };
 
