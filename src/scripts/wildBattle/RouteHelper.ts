@@ -104,7 +104,7 @@ class RouteHelper {
     }
 
     // Remove duplicates AKA Wingull
-    public static sanitizedPokemonList(route: number, region: GameConstants.Region){
+    public static sanitizedPokemonList(route: number, region: GameConstants.Region) {
         return [...new Set(this.getAvailablePokemonList(route, region))];
     }
 
