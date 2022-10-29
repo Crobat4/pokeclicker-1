@@ -126,12 +126,12 @@
                     <!-- /ko -->
                     <!-- ko if: App.game.party.alreadyCaughtPokemon($data) && App.game.party.getPokemon($data)?.shiny -->
                     <tr>
-                      <td class="text-left align-middle">Hide Party Pokémon shiny</td>
+                      <td class="text-left align-middle">Show Party Pokémon shiny</td>
                       <td class="text-left tight">
                           <label class="form-check-label toggler-wrapper style-1 float-left">
                               <input class="form-check-input" type="checkbox" id=""
                                   value="false"
-                                  data-bind="checked: App.game.party.getPokemon($data).hideShinyImage">
+                                  data-bind="checked: App.game.party.getPokemon($data).showShinyImage">
                               <div class="toggler-slider">
                                   <div class="toggler-knob"></div>
                               </div>

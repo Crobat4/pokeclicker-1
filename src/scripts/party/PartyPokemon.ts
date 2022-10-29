@@ -11,7 +11,7 @@ enum PartyPokemonSaveKeys {
     effortPoints,
     heldItem,
     defaultFemaleSprite,
-    hideShinyImage
+    showShinyImage
 }
 
 class PartyPokemon implements Saveable {
@@ -32,7 +32,7 @@ class PartyPokemon implements Saveable {
         pokerus: GameConstants.Pokerus.Uninfected,
         effortPoints: 0,
         defaultFemaleSprite: false,
-        hideShinyImage: false,
+        showShinyImage: false,
     };
 
     // Saveable observables
@@ -47,7 +47,7 @@ class PartyPokemon implements Saveable {
     _effortPoints: KnockoutObservable<number>;
     heldItem: KnockoutObservable<HeldItem>;
     defaultFemaleSprite: KnockoutObservable<boolean>;
-    hideShinyImage: KnockoutObservable<boolean>;
+    showShinyImage: KnockoutObservable<boolean>;
 
     constructor(
         public id: number,
@@ -87,7 +87,7 @@ class PartyPokemon implements Saveable {
         this._attack = ko.pureComputed(() => this.calculateAttack());
         this.heldItem = ko.observable(undefined);
         this.defaultFemaleSprite = ko.observable(false);
-        this.hideShinyImage = ko.observable(false);
+        this.showShinyImage = ko.observable(false);
     }
 
     public calculateAttack(ignoreLevel = false): number {
@@ -335,7 +335,7 @@ class PartyPokemon implements Saveable {
         this.effortPoints = json[PartyPokemonSaveKeys.effortPoints] ?? this.defaults.effortPoints;
         this.heldItem(json[PartyPokemonSaveKeys.heldItem] && ItemList[json[PartyPokemonSaveKeys.heldItem]] instanceof HeldItem ? ItemList[json[PartyPokemonSaveKeys.heldItem]] as HeldItem : undefined);
         this.defaultFemaleSprite(json[PartyPokemonSaveKeys.defaultFemaleSprite] ?? this.defaults.defaultFemaleSprite);
-        this.hideShinyImage(json[PartyPokemonSaveKeys.hideShinyImage] ?? this.defaults.hideShinyImage);
+        this.showShinyImage(json[PartyPokemonSaveKeys.showShinyImage] ?? this.defaults.showShinyImage);
 
         if (this.evolutions != null) {
             for (const evolution of this.evolutions) {
@@ -369,7 +369,7 @@ class PartyPokemon implements Saveable {
             [PartyPokemonSaveKeys.effortPoints]: this.effortPoints,
             [PartyPokemonSaveKeys.heldItem]: this.heldItem()?.name,
             [PartyPokemonSaveKeys.defaultFemaleSprite]: this.defaultFemaleSprite(),
-            [PartyPokemonSaveKeys.hideShinyImage]: this.hideShinyImage(),
+            [PartyPokemonSaveKeys.showShinyImage]: this.showShinyImage(),
         };
 
         // Don't save anything that is the default option

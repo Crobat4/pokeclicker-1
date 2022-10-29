@@ -76,7 +76,7 @@ class PokemonHelper {
         let src = 'assets/images/';
         if (shiny === undefined) {
             shiny = App.game.party.alreadyCaughtPokemon(pokemonId, true) &&
-                !App.game.party.getPokemon(pokemonId)?.hideShinyImage();
+                App.game.party.getPokemon(pokemonId)?.showShinyImage();
         }
         if (gender === undefined) {
             gender = App.game.party.getPokemon(pokemonId)?.defaultFemaleSprite() ?? false;
