@@ -1,0 +1,28 @@
+<!-- Show Items modal-->
+<div class="modal fade" id="routePokemonListModal" tabindex="-1" role="dialog"
+     aria-labelledby="routePokemonListLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- TODO: Add shiny and pokerus statuses if habitat list is made -->
+                <h4 class="modal-title" data-bind="text: Routes.getName(RouteHelper.route(), RouteHelper.region()) + ` (${GameConstants.camelCaseToString(GameConstants.Region[RouteHelper.region()])})`">
+                    Route
+                </h4>
+            </div>
+
+            <div class="modal-body p-0">
+                <div class="row justify-content-center p-0" id="pokemon-elements" data-bind="foreach: { data: RouteHelper.sanitizedPokemonList(RouteHelper.route(), RouteHelper.region()), as: 'pokemonName'}"
+                    style="max-width: 100%; padding:0; margin:0;">
+                    <div class="col-sm-4 col-md-3 col-lg-2 pokedexEntry"
+                        data-bind="style:{background: PokedexHelper.getBackgroundColors(pokemonName)}, using: PokemonHelper.getPokemonByName(pokemonName).id, as: 'pokemonId'">
+                        <knockout data-bind="template: { name: 'routePokemonListTemplate', data: { 'pokemonName': pokemonName, 'pokemonId': pokemonId } }">Pokémon Dex Container</knockout>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

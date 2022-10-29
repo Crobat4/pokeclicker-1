@@ -1,0 +1,24 @@
+<script type="text/html" id="routePokemonListTemplate">
+    <span class="id" style="top: 0; border-top-left-radius: 6px; border-top-right-radius: 6px;" data-bind="text: (pokemonId > 0 ? Math.floor(pokemonId) + '' : '???').padStart(3, 0)">number</span>
+    <div data-bind="visible: App.game.party.alreadyCaughtPokemonByName(pokemonName)" style="position: absolute; right: 2px; top: -15px;">
+        <img width="18px" src="" data-bind="attr: { src: `assets/images/pokeball/Pokeball${App.game.party.alreadyCaughtPokemon(pokemonId, true) ? '-shiny' : ''}.svg`}"/>
+    </div>
+    <!-- ko ifnot: App.game.party.getPokemon(pokemonId) == undefined -->
+    <div data-bind="if: App.game.party.alreadyCaughtPokemonByName(pokemonName) && App.game.party.getPokemon(pokemonId)?.pokerus" style="position: absolute;left: 2px;top: -11px;">
+        <img width="32px" src="" data-bind="attr: { src: `assets/images/breeding/pokerus/${GameConstants.Pokerus[App.game.party.getPokemon(pokemonId)?.pokerus]}.png`}"/>
+    </div>
+    <!-- /ko -->
+    <img src="" width="96px" data-bind="css: { 
+        'pokemon-not-seen': !PokedexHelper.pokemonSeen(pokemonId)(), 
+        'pokemon-seen-but-not-caught': !App.game.party.alreadyCaughtPokemonByName(pokemonName) && PokedexHelper.pokemonSeen(pokemonId)() 
+    }, 
+    attr:{ 
+        src: PokemonHelper.getImage(pokemonId)
+    }">
+    <!-- ko if: PokedexHelper.pokemonSeen(pokemonId) -->
+    <span style="bottom: 0; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px" data-bind="text: pokemonName">name</span>
+    <!-- /ko -->
+</script>
+
+<!-- Example usage -->
+<!-- <knockout data-bind="template: { name: 'routePokemonListTemplate', data: { 'pokemonName': pokemonName, 'pokemonId': pokemonId } }">Pokémon Dex Container</knockout> -->
