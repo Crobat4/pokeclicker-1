@@ -4,13 +4,13 @@ aria-labelledby="pokedexModalLabel">
    <div class="modal-content">
        <div class="modal-header">
            <h4 style="margin-bottom: 0">Pokédex</h4>
-           <button style="float:right;" class="btn btn-secondary d-block d-md-none" type="button" data-toggle="collapse"
+           <button style="float:right;" class="btn btn-secondary d-block d-lg-none" type="button" data-toggle="collapse"
                    data-target="#pokedex-filter-collapse" aria-expanded="false" aria-controls="pokedex-filter-collapse">
                Filters
            </button>
        </div>
        <div class="modal-body row mx-0">
-            <div class="col-md-3 collapse dont-collapse-sm" id="pokedex-filter-collapse">
+            <div class="col-lg-3 collapse dont-collapse-sm" id="pokedex-filter-collapse">
                 <div class="w-100 mb-2" style="border-bottom: 1px solid #eceeef">
                     <h4>Filters and Settings</h4>
                 </div>
@@ -160,7 +160,7 @@ aria-labelledby="pokedexModalLabel">
                </div>
 
             </div>
-            <div class="col-md-9">
+            <div class="col-lg-9">
                 <!-- ko if: PokedexHelper.filteredList().length == 0 -->
                 <div class="row justify-content-center w-100 mb-2" style="border-bottom: 1px solid #eceeef">
                     <h4 data-bind="text: 'No Pokémon found'"></h4>
