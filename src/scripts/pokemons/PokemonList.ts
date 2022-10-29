@@ -11352,7 +11352,7 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumfast,
         'exp': 158,
         'catchRate': 75,
-        'evolutions': [new WeatherRestrictedLevelEvolution('Cherrim (Sunshine)', 'Cherrim (Overcast)', 1, [WeatherType.Overcast, WeatherType.Rain, WeatherType.Thunderstorm, WeatherType.Snow, WeatherType.Hail, WeatherType.Blizzard, WeatherType.Sandstorm, WeatherType.Fog])],
+        'evolutions': [new WeatherRestrictedLevelEvolution('Cherrim (Sunshine)', 'Cherrim (Overcast)', 1, [WeatherType.Clear, WeatherType.Overcast, WeatherType.Rain, WeatherType.Thunderstorm, WeatherType.Snow, WeatherType.Hail, WeatherType.Blizzard, WeatherType.Sandstorm, WeatherType.Fog, WeatherType.Windy])],
         'base': {
             'hitpoints': 70,
             'attack': 60,
@@ -22063,7 +22063,7 @@ const pokemonList = createPokemonArray(
         'exp': 166,
         'catchRate': 45,
         'evolutions': [
-            new EnvironmentRestrictedLevelEvolution('Water', 'Cramorant', 'Cramorant (Gulping)', 50),
+            new WeatherRestrictedLevelEvolution('Cramorant', 'Cramorant (Gulping)', 50, [WeatherType.Rain]),
             new WeatherRestrictedLevelEvolution('Cramorant', 'Cramorant (Gorging)', 50, [WeatherType.Thunderstorm]),
         ],
     },
@@ -22087,7 +22087,7 @@ const pokemonList = createPokemonArray(
         'exp': 166,
         'catchRate': 45,
         'evolutions': [
-            new LevelEvolution('Cramorant (Gulping)', 'Cramorant', 50),
+            new WeatherRestrictedLevelEvolution('Cramorant (Gulping)', 'Cramorant', 50, [WeatherType.Clear, WeatherType.Overcast, WeatherType.Sunny, WeatherType.Snow, WeatherType.Hail, WeatherType.Blizzard, WeatherType.Sandstorm, WeatherType.Fog, WeatherType.Windy]),
             new WeatherRestrictedLevelEvolution('Cramorant (Gulping)', 'Cramorant (Gorging)', 50, [WeatherType.Thunderstorm]),
         ],
     },
@@ -22111,8 +22111,8 @@ const pokemonList = createPokemonArray(
         'exp': 166,
         'catchRate': 45,
         'evolutions': [
-            new LevelEvolution('Cramorant (Gorging)', 'Cramorant', 50),
-            new EnvironmentRestrictedLevelEvolution('Water', 'Cramorant (Gorging)', 'Cramorant (Gulping)', 50),
+            new WeatherRestrictedLevelEvolution('Cramorant (Gorging)', 'Cramorant', 50, [WeatherType.Clear, WeatherType.Overcast, WeatherType.Sunny, WeatherType.Snow, WeatherType.Hail, WeatherType.Blizzard, WeatherType.Sandstorm, WeatherType.Fog, WeatherType.Windy]),
+            new WeatherRestrictedLevelEvolution('Cramorant (Gorging)', 'Cramorant (Gulping)', 50, [WeatherType.Rain]),
         ],
     },
     {
