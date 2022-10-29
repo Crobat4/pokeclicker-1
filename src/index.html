@@ -243,10 +243,9 @@
                             <h2 class="pageItemTitle" style="display: block;">
                                 <!-- Pokemon List -->
                                 <knockout class="right">
-                                    <div class="route-pokemon-list-icon px-1" data-bind="tooltip: { 
-                                        title: 'Click here to see the available Pokémon on this route',
-                                        trigger: 'hover' 
-                                    }">
+                                    <div class="route-pokemon-list-icon px-1 clickable" data-bind="tooltip: { title: 'Click here to see the available Pokémon on this route', trigger: 'hover' },
+                                        click: function() { RouteHelper.route(player.route()); RouteHelper.region(player.region); $('#routePokemonListModal').modal('show') }">
+                                    <!--
                                         <a href="#" class="route-link-overlay" data-bind="tooltip: {
                                             title: RouteHelper.getAvailablePokemonListForTooltip(player.route(), player.region),
                                             html: true,
@@ -255,6 +254,7 @@
                                             sanitize: false,
                                             fallbackPlacement: ['bottom','bottom','bottom','bottom']
                                         }"></a>
+                                        -->
                                         <img src="assets/images/shortcut-icons/poke-list.png">
                                         
                                     </div>
@@ -664,6 +664,9 @@
 
 <!-- Battle Cafe Modal -->
 @import "battleCafeModal.html"
+
+<!-- Route Pokemon List Modal -->
+@import "routePokemonListModal.html"
 
 </body>
 </html>

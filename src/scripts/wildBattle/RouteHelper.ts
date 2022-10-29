@@ -5,6 +5,8 @@
  * Helper class to retrieve information from RoutePokemon
  */
 class RouteHelper {
+    public static route = ko.observable(1);
+    public static region = ko.observable(1);
     /**
      * Retrieves a list of all Pokémon that can be caught on that route.
      * @param route
@@ -99,6 +101,11 @@ class RouteHelper {
         return App.game.quests.currentQuests().some(q => {
             return q instanceof DefeatPokemonsQuest && q.route == route && q.region == region;
         });
+    }
+
+    // Remove duplicates AKA Wingull
+    public static sanitizedPokemonList(route: number, region: GameConstants.Region){
+        return [...new Set(this.getAvailablePokemonList(route, region))];
     }
 
     // TODO: Move all this to a proper template

@@ -1,0 +1,46 @@
+<!-- Show Items modal-->
+<div class="modal fade" id="routePokemonListModal" tabindex="-1" role="dialog"
+     aria-labelledby="routePokemonListLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- TODO: Add shiny and pokerus statuses if habitat list is made -->
+                <h4 class="modal-title" data-bind="text: Routes.getName(RouteHelper.route(), RouteHelper.region()) + ` (${GameConstants.camelCaseToString(GameConstants.Region[RouteHelper.region()])})`">
+                    Route
+                </h4>
+            </div>
+
+            <div class="modal-body p-0">
+                <div class="row justify-content-center p-0" id="pokemon-elements" data-bind="foreach: { data: RouteHelper.sanitizedPokemonList(RouteHelper.route(), RouteHelper.region()), as: 'pokemonName'}"
+                        style="max-width: 100%; padding:0; margin:0;">
+                        <div class="col-sm-4 col-md-3 col-lg-2 pokedexEntry"
+                            data-bind="style:{background: PokedexHelper.getBackgroundColors(pokemonName)}, using: PokemonHelper.getPokemonByName(pokemonName).id, as: 'pokemonId'">
+                            <span class="id" style="top: 0; border-top-left-radius: 6px; border-top-right-radius: 6px;" data-bind="text: (pokemonId > 0 ? Math.floor(pokemonId) + '' : '???').padStart(3, 0)">number</span>
+                                <div data-bind="visible: App.game.party.alreadyCaughtPokemonByName(pokemonName)" style="position: absolute; right: 2px; top: -15px;">
+                                    <img width="18px" src="" data-bind="attr: { src: `assets/images/pokeball/Pokeball${App.game.party.alreadyCaughtPokemon(pokemonId, true) ? '-shiny' : ''}.svg`}"/>
+                                </div>
+                                <!-- ko ifnot: App.game.party.getPokemon(pokemonId) == undefined -->
+                                <div data-bind="if: App.game.party.alreadyCaughtPokemonByName(pokemonName) && App.game.party.getPokemon(pokemonId)?.pokerus" style="position: absolute;left: 2px;top: -11px;">
+                                    <img width="32px" src="" data-bind="attr: { src: `assets/images/breeding/pokerus/${GameConstants.Pokerus[App.game.party.getPokemon(pokemonId)?.pokerus]}.png`}"/>
+                                </div>
+                                <!-- /ko -->
+                                <img src="" width="96px" data-bind="css: { 
+                                    'pokemon-not-seen': !PokedexHelper.pokemonSeen(pokemonId)(), 
+                                    'pokemon-seen-but-not-caught': !App.game.party.alreadyCaughtPokemonByName(pokemonName) && PokedexHelper.pokemonSeen(pokemonId)() 
+                                }, 
+                                attr:{ 
+                                    src: PokemonHelper.getImage(pokemonId, false, false)
+                                }">
+                                <!-- ko if: PokedexHelper.pokemonSeen(pokemonId) -->
+                                <span style="bottom: 0; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px" data-bind="text: pokemonName">name</span>
+                                <!-- /ko -->
+                        </div>
+                    </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
