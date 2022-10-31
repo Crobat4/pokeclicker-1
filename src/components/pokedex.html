@@ -178,7 +178,12 @@ aria-labelledby="pokedexModalLabel">
                         style="max-width: 100%; padding:0; margin:0;">
                         <div class="col-sm-4 col-md-3 col-lg-2 pokedexEntry"
                             data-bind="style:{background: PokedexHelper.getBackgroundColors($data.name)}">
-                            <knockout data-bind="template: { name: 'pokedexPokemonListTemplate', data: { 'pokemonName': $data.name, 'pokemonId': $data.id } }">Pokémon Dex Container</knockout>
+                            <knockout data-bind="template: { name: 'pokedexPokemonListTemplate', 
+                            data: { 
+                                'pokemonName': $data.name, 
+                                'pokemonId': $data.id, 
+                                'pokemonSprite': PokemonHelper.getImage($data.id, App.game.party.alreadyCaughtPokemon($data.id, true) && PokedexHelper.toggleAllShiny(), PokedexHelper.toggleFemale()) 
+                            } }">Pokémon Dex Container</knockout>
                             <!-- ko if: PokedexHelper.pokemonSeen($data.id) -->
                             <a class="overlay" href="#pokemonStatisticsModal" data-toggle="modal" data-bind="click: () => {App.game.statistics.selectedPokemonID($data.id)},
                                 tooltip: {
