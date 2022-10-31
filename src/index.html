@@ -128,6 +128,7 @@
 @import "templates/pokerusStatusAreaTemplate.html"
 @import "templates/areaStatisticTemplate.html"
 @import "templates/clickAttackTemplate.html"
+@import "templates/pokedexPokemonListTemplate.html"
 
 <div id="window-container" style="width: 100%; height: 100%; position: fixed; top: 0; left: 0;"></div>
 <div id="game" class="container loading" data-bind="css: {'container': Settings.getSetting('gameDisplayStyle').observableValue() === 'standard3', 'container-fluid': Settings.getSetting('gameDisplayStyle').observableValue() !== 'standard3'}">
@@ -243,10 +244,9 @@
                             <h2 class="pageItemTitle" style="display: block;">
                                 <!-- Pokemon List -->
                                 <knockout class="right">
-                                    <div class="route-pokemon-list-icon px-1" data-bind="tooltip: { 
-                                        title: 'Click here to see the available Pokémon on this route',
-                                        trigger: 'hover' 
-                                    }">
+                                    <div class="route-pokemon-list-icon px-1 clickable" data-bind="tooltip: { title: 'Check the Pokémon available here', trigger: 'hover' },
+                                        click: function() { RouteHelper.route(player.route()); RouteHelper.region(player.region); $('#routePokemonListModal').modal('show') }">
+                                    <!--
                                         <a href="#" class="route-link-overlay" data-bind="tooltip: {
                                             title: RouteHelper.getAvailablePokemonListForTooltip(player.route(), player.region),
                                             html: true,
@@ -255,6 +255,7 @@
                                             sanitize: false,
                                             fallbackPlacement: ['bottom','bottom','bottom','bottom']
                                         }"></a>
+                                        -->
                                         <img src="assets/images/shortcut-icons/poke-list.png">
                                         
                                     </div>
@@ -664,6 +665,9 @@
 
 <!-- Battle Cafe Modal -->
 @import "battleCafeModal.html"
+
+<!-- Route Pokemon List Modal -->
+@import "routePokemonListModal.html"
 
 </body>
 </html>

@@ -36,7 +36,7 @@ class DungeonBattle extends Battle {
         DungeonRunner.fighting(false);
         if (DungeonRunner.fightingLootEnemy) {
             DungeonRunner.fightingLootEnemy = false;
-        } else {
+        } else if (!DungeonRunner.fightingBoss()) {
             GameHelper.incrementObservable(DungeonRunner.encountersWon);
         }
 
@@ -137,7 +137,7 @@ class DungeonBattle extends Battle {
             PokemonHelper.incrementPokemonStatistics(enemyPokemon.id, GameConstants.STATISTIC_ENCOUNTERED, enemyPokemon.shiny, enemyPokemon.gender);
             // Shiny
             if (enemyPokemon.shiny) {
-                App.game.logbook.newLog(LogBookTypes.SHINY, `[${player.town().dungeon.name}] You encountered a wild shiny ${this.enemyPokemon().name}.`);
+                App.game.logbook.newLog(LogBookTypes.SHINY, `[${player.town().dungeon.name}] You encountered a wild shiny ${this.enemyPokemon().name}. ${App.game.party.alreadyCaughtPokemon(this.enemyPokemon().id, true) ? '(duplicate)' : ''}`);
             } else if (!App.game.party.alreadyCaughtPokemon(this.enemyPokemon().id)) {
                 App.game.logbook.newLog(LogBookTypes.NEW, `[${player.town().dungeon.name}] You encountered a wild ${this.enemyPokemon().name}.`);
             }
@@ -162,7 +162,7 @@ class DungeonBattle extends Battle {
         PokemonHelper.incrementPokemonStatistics(enemyPokemon.id, GameConstants.STATISTIC_ENCOUNTERED, enemyPokemon.shiny, enemyPokemon.gender);
         // Shiny
         if (enemyPokemon.shiny) {
-            App.game.logbook.newLog(LogBookTypes.SHINY, `[${player.town().dungeon.name}] You encountered a wild shiny ${this.enemyPokemon().name}.`);
+            App.game.logbook.newLog(LogBookTypes.SHINY, `[${player.town().dungeon.name}] You encountered a wild shiny ${this.enemyPokemon().name}. ${App.game.party.alreadyCaughtPokemon(this.enemyPokemon().id, true) ? '(duplicate)' : ''}`);
         } else if (!App.game.party.alreadyCaughtPokemon(this.enemyPokemon().id)) {
             App.game.logbook.newLog(LogBookTypes.NEW, `[${player.town().dungeon.name}] You encountered a wild ${this.enemyPokemon().name}.`);
         }
@@ -196,7 +196,7 @@ class DungeonBattle extends Battle {
             PokemonHelper.incrementPokemonStatistics(this.enemyPokemon().id, GameConstants.STATISTIC_ENCOUNTERED, this.enemyPokemon().shiny, this.enemyPokemon().gender);
             // Shiny
             if (this.enemyPokemon().shiny) {
-                App.game.logbook.newLog(LogBookTypes.SHINY, `[${player.town().dungeon.name}] You encountered a wild shiny ${this.enemyPokemon().name}.`);
+                App.game.logbook.newLog(LogBookTypes.SHINY, `[${player.town().dungeon.name}] You encountered a wild shiny ${this.enemyPokemon().name}. ${App.game.party.alreadyCaughtPokemon(this.enemyPokemon().id, true) ? '(duplicate)' : ''}`);
             } else if (!App.game.party.alreadyCaughtPokemon(this.enemyPokemon().id)) {
                 App.game.logbook.newLog(LogBookTypes.NEW, `[${player.town().dungeon.name}] You encountered a wild ${this.enemyPokemon().name}.`);
             }

@@ -31,18 +31,25 @@ class BattleCafeSaveObject implements Saveable {
         if (!json) {
             return;
         }
-        BattleCafeController.spinsLeft(json.spinsLeft ?? BattleCafeController.defaultSpins);
+        BattleCafeController.spinsLeft(json.spinsLeft ?? BattleCafeController.baseMaxSpins);
     }
 
 }
 
 class BattleCafeController {
-    static defaultSpins = 3;
     static defaultRecharge = 1;
     static selectedSweet = ko.observable<GameConstants.AlcremieSweet>(undefined);
-    static spinsLeft = ko.observable<number>(BattleCafeController.defaultSpins);
+    static baseMaxSpins = 3;
+    static spinsLeft = ko.observable<number>(BattleCafeController.baseMaxSpins);
     static isSpinning = ko.observable<boolean>(false);
     static clockwise = ko.observable<boolean>(false);
+
+    static spinsPerDay() : number {
+        // Give additional spins for each sweet type completed
+        return this.baseMaxSpins + GameHelper.enumStrings(GameConstants.AlcremieSweet)
+            .filter((s) => BattleCafeController.getCaughtStatus(GameConstants.AlcremieSweet[s])() >= CaughtStatus.Caught)
+            .length;
+    }
 
     public static spin(clockwise: boolean) {
         if (!BattleCafeController.canSpin()) {
@@ -108,7 +115,7 @@ class BattleCafeController {
     public static rechargeSpin(hour: number): void {
         if ((hour % BattleCafeController.period) == 0) {
             const recharge = BattleCafeController.spinsLeft() + BattleCafeController.defaultRecharge;
-            BattleCafeController.spinsLeft(Math.min(BattleCafeController.defaultSpins, recharge));
+            BattleCafeController.spinsLeft(Math.min(BattleCafeController.baseMaxSpins, recharge));
         }
     }
 
