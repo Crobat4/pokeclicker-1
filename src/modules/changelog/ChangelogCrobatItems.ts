@@ -17,7 +17,7 @@ const ChangelogCrobatItems = [
     new ChangelogUpdate('v0.3.7', new Date(2022, 10 - 1, 30)),
     new Changelog(changelogType.NEW, 'Added Official updates (v0.10.1)'),
     new Changelog(changelogType.NEW, 'Added new ball selections (Contagious and Legendary/Mythical)'),
-    new Changelog(changelogType.CHANGE, 'Battle Café: Max spins now increase for each completed sweet'),
+    // new Changelog(changelogType.CHANGE, 'Battle Café: Max spins now increase for each completed sweet'),
     new Changelog(changelogType.CHANGE, 'Eiscue and its form now change according to the weather and environment'),
     new Changelog(changelogType.CHANGE, 'Cramorant and its forms now change according to the weather'),
     new Changelog(changelogType.CHANGE, 'Castform\'s forms now change according to the weather'),
