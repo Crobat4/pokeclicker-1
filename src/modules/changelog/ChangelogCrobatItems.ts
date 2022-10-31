@@ -14,8 +14,10 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.DEFAULT, 'This will keep being updated as long as the thread is alive...'),
     // ⥂⥄
     // v0.3.7
-    new ChangelogUpdate('v0.3.7', new Date(2022, 10 - 1, 24)),
+    new ChangelogUpdate('v0.3.7', new Date(2022, 10 - 1, 30)),
+    new Changelog(changelogType.NEW, 'Added Official updates (v0.10.1)'),
     new Changelog(changelogType.NEW, 'Added new ball selections (Contagious and Legendary/Mythical)'),
+    new Changelog(changelogType.CHANGE, 'Battle Café: Max spins now increase for each completed sweet'),
     new Changelog(changelogType.CHANGE, 'Eiscue and its form now change according to the weather and environment'),
     new Changelog(changelogType.CHANGE, 'Cramorant and its forms now change according to the weather'),
     new Changelog(changelogType.CHANGE, 'Castform\'s forms now change according to the weather'),
@@ -23,6 +25,7 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.CHANGE, 'Burmy\'s forms now change according to the environment'),
     new Changelog(changelogType.CHANGE, 'Route Pokémon list: Layout changed'),
     new Changelog(changelogType.CHANGE, 'Hatchery: Queue now indicates Pokémon\'s shiny status'),
+    new Changelog(changelogType.CHANGE, 'Misc changes in Pokémon lists'),
     new Changelog(changelogType.FIXED, 'Pokédex width breakpoints'),
     // v0.3.6
     new ChangelogUpdate('v0.3.6', new Date(2022, 10 - 1, 24)),
