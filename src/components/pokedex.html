@@ -174,42 +174,29 @@ aria-labelledby="pokedexModalLabel">
                 <!-- /ko -->
                 <div id="pokemon-list">
                     <!-- ko if: PokedexHelper.isModalOpen() -->
-                    <ul class="row justify-content-center p-0" id="pokemon-elements" data-bind="foreach: lazyLoad($element, PokedexHelper.filteredList)"
+                    <div class="row justify-content-center p-0" id="pokemon-elements" data-bind="foreach: lazyLoad($element, PokedexHelper.filteredList)"
                         style="max-width: 100%; padding:0; margin:0;">
-                        <li class="col-sm-4 col-md-3 col-lg-2 pokedexEntry"
-                                data-bind="style:{background: PokedexHelper.getBackgroundColors($data.name)}">
-                                <span class="id" style="top: 0; border-top-left-radius: 6px; border-top-right-radius: 6px;" data-bind="text: ($data.id > 0 ? Math.floor($data.id) + '' : '???').padStart(3, 0)">number</span>
-                                    <div data-bind="visible: App.game.party.alreadyCaughtPokemonByName(name)" style="position: absolute; right: 2px; top: -15px;">
-                                        <img width="18px" src="" data-bind="attr: { src: `assets/images/pokeball/Pokeball${App.game.party.alreadyCaughtPokemon($data.id, true) ? '-shiny' : ''}.svg`}"/>
-                                    </div>
-                                    <div style="position: absolute; right: 2px; top: 65px;">
-                                        <img class="item-icon rounded-circle" src="" width="24px" data-bind="visible: BagHandler.displayName($data.heldItem) && App.game.party.alreadyCaughtPokemonByName(name), attr: {src: BagHandler.image($data.heldItem)}">
-                                    </div>
-                                    <!-- ko ifnot: App.game.party.getPokemon($data.id) == undefined -->
-                                    <div data-bind="if: App.game.party.alreadyCaughtPokemonByName(name) && App.game.party.getPokemon($data.id)?.pokerus" style="position: absolute;left: 2px;top: -11px;">
-                                        <img width="32px" src="" data-bind="attr: { src: `assets/images/breeding/pokerus/${GameConstants.Pokerus[App.game.party.getPokemon($data.id)?.pokerus]}.png`}"/>
-                                    </div>
-                                    <!-- /ko -->
-                                    <img src="" width="96px" data-bind="css: { 'pokemon-not-seen': !PokedexHelper.pokemonSeen($data.id)(), 'pokemon-seen-but-not-caught': !App.game.party.alreadyCaughtPokemonByName(name) && PokedexHelper.pokemonSeen($data.id)() }, attr:{ src: PokemonHelper.getImage($data.id, App.game.party.alreadyCaughtPokemon($data.id, true) && PokedexHelper.toggleAllShiny(), PokedexHelper.toggleFemale())}">
-                                    <!-- ko if: PokedexHelper.pokemonSeen($data.id) -->
-                                    <span style="bottom: 0; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px" data-bind="text: $data.name">name</span>
-                                    <a class="overlay" href="#pokemonStatisticsModal" data-toggle="modal" data-bind="click: () => {App.game.statistics.selectedPokemonID($data.id)},
-                                        tooltip: {
-                                            html: true,
-                                            title: `<u>Information:</u>
-                                                <br/>Base Attack: <strong>${$data.attack}</strong>
-                                                <br/>Catch Rate: <strong>${PokemonFactory.catchRateHelper($data.catchRate, true)}%</strong>
-                                                <br/>Hatch Steps: <strong>${App.game.breeding.getSteps($data.eggCycles).toLocaleString('en-US')}</strong>` +
-                                                (App.game.party.getPokemon($data.id)?.pokerus >= GameConstants.Pokerus.Contagious ?
-                                                    `<br/>EVs: <strong>${App.game.party.getPokemon($data.id).evs().toLocaleString('en-US')}</strong>
-                                                    <br/>EV bonus: <strong>×${App.game.party.getPokemon($data.id).calculateEVAttackBonus().toLocaleString('en-US')}</strong>`
-                                                    : ''),
-                                            trigger: 'hover',
-                                            placement:'bottom'
-                                        }"></a>
-                                    <!-- /ko -->
-                        </li>
-                    </ul>
+                        <div class="col-sm-4 col-md-3 col-lg-2 pokedexEntry"
+                            data-bind="style:{background: PokedexHelper.getBackgroundColors($data.name)}">
+                            <knockout data-bind="template: { name: 'pokedexPokemonListTemplate', data: { 'pokemonName': $data.name, 'pokemonId': $data.id } }">Pokémon Dex Container</knockout>
+                            <!-- ko if: PokedexHelper.pokemonSeen($data.id) -->
+                            <a class="overlay" href="#pokemonStatisticsModal" data-toggle="modal" data-bind="click: () => {App.game.statistics.selectedPokemonID($data.id)},
+                                tooltip: {
+                                    html: true,
+                                    title: `<u>Information:</u>
+                                        <br/>Base Attack: <strong>${$data.attack}</strong>
+                                        <br/>Catch Rate: <strong>${PokemonFactory.catchRateHelper($data.catchRate, true)}%</strong>
+                                        <br/>Hatch Steps: <strong>${App.game.breeding.getSteps($data.eggCycles).toLocaleString('en-US')}</strong>` +
+                                        (App.game.party.getPokemon($data.id)?.pokerus >= GameConstants.Pokerus.Contagious ?
+                                            `<br/>EVs: <strong>${App.game.party.getPokemon($data.id).evs().toLocaleString('en-US')}</strong>
+                                            <br/>EV bonus: <strong>×${App.game.party.getPokemon($data.id).calculateEVAttackBonus().toLocaleString('en-US')}</strong>`
+                                            : ''),
+                                    trigger: 'hover',
+                                    placement:'bottom'
+                                }"></a>
+                            <!-- /ko -->
+                        </div>
+                    </div>
                     <!-- /ko -->
                 </div>
             </div>
