@@ -15,7 +15,7 @@
                     style="max-width: 100%; padding:0; margin:0;">
                     <div class="col-sm-4 col-md-3 col-lg-2 pokedexEntry"
                         data-bind="style:{background: PokedexHelper.getBackgroundColors(pokemonName)}, using: PokemonHelper.getPokemonByName(pokemonName).id, as: 'pokemonId'">
-                        <knockout data-bind="template: { name: 'pokedexPokemonListTemplate', data: { 'pokemonName': pokemonName, 'pokemonId': pokemonId } }">Pokémon Dex Container</knockout>
+                        <knockout data-bind="template: { name: 'pokedexPokemonListTemplate', data: { 'pokemonName': pokemonName, 'pokemonId': pokemonId, 'pokemonSprite': PokemonHelper.getImage(pokemonId) } }">Pokémon Dex Container</knockout>
                     </div>
                 </div>
             </div>
