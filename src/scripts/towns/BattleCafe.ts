@@ -44,11 +44,22 @@ class BattleCafeController {
     static isSpinning = ko.observable<boolean>(false);
     static clockwise = ko.observable<boolean>(false);
 
-    static spinsPerDay() : number {
-        // Give additional spins for each sweet type completed
+    static calcMaxSpins() : number {
+        // Give additional max spins for each sweet type completed
         return this.baseMaxSpins + GameHelper.enumStrings(GameConstants.AlcremieSweet)
             .filter((s) => BattleCafeController.getCaughtStatus(GameConstants.AlcremieSweet[s])() >= CaughtStatus.Caught)
             .length;
+    }
+
+    static checkAllSweetsCompleted() {
+        const totalSweets = GameHelper.enumStrings(GameConstants.AlcremieSweet).length;
+        const currentCompletedSweets = GameHelper.enumStrings(GameConstants.AlcremieSweet)
+        .filter((s) => BattleCafeController.getCaughtStatus(GameConstants.AlcremieSweet[s])() >= CaughtStatus.Caught)
+        .length;
+        if (currentCompletedSweets == totalSweets) {
+            return true;
+        }
+        return false;
     }
 
     public static spin(clockwise: boolean) {
@@ -107,15 +118,17 @@ class BattleCafeController {
     /* *
      * The period for spin recharges (in hours)
      */
-    public static period = 2;
+    // public static period = 2;
 
     /**
      * Recharges spin
      */
     public static rechargeSpin(hour: number): void {
-        if ((hour % BattleCafeController.period) == 0) {
+        // Recharge a spin every 2 hours (1 if all sweets are completed)
+        const period = BattleCafeController.checkAllSweetsCompleted() ? 1 : 2;
+        if ((hour % period) == 0) {
             const recharge = BattleCafeController.spinsLeft() + BattleCafeController.defaultRecharge;
-            BattleCafeController.spinsLeft(Math.min(BattleCafeController.baseMaxSpins, recharge));
+            BattleCafeController.spinsLeft(Math.min(BattleCafeController.calcMaxSpins(), recharge));
         }
     }
 
