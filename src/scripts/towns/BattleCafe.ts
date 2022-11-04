@@ -115,7 +115,7 @@ class BattleCafeController {
     public static rechargeSpin(hour: number): void {
         if ((hour % BattleCafeController.period) == 0) {
             const recharge = BattleCafeController.spinsLeft() + BattleCafeController.defaultRecharge;
-            BattleCafeController.spinsLeft(Math.min(BattleCafeController.baseMaxSpins, recharge));
+            BattleCafeController.spinsLeft(Math.min(BattleCafeController.spinsPerDay(), recharge));
         }
     }
 
