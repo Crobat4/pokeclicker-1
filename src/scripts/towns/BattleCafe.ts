@@ -38,7 +38,7 @@ class BattleCafeSaveObject implements Saveable {
 
 class BattleCafeController {
     static defaultRecharge = 1;
-    static selectedSweet = ko.observable<GameConstants.AlcremieSweet>(GameConstants.AlcremieSweet["Strawberry Sweet"]);
+    static selectedSweet = ko.observable<GameConstants.AlcremieSweet>(GameConstants.AlcremieSweet['Strawberry Sweet']);
     static baseMaxSpins = 3;
     static spinsLeft = ko.observable<number>(BattleCafeController.baseMaxSpins);
     static isSpinning = ko.observable<boolean>(false);
@@ -54,8 +54,8 @@ class BattleCafeController {
     static checkAllSweetsCompleted() {
         const totalSweets = GameHelper.enumStrings(GameConstants.AlcremieSweet).length;
         const currentCompletedSweets = GameHelper.enumStrings(GameConstants.AlcremieSweet)
-        .filter((s) => BattleCafeController.getCaughtStatus(GameConstants.AlcremieSweet[s])() >= CaughtStatus.Caught)
-        .length;
+            .filter((s) => BattleCafeController.getCaughtStatus(GameConstants.AlcremieSweet[s])() >= CaughtStatus.Caught)
+            .length;
         if (currentCompletedSweets == totalSweets) {
             return true;
         }
@@ -130,8 +130,7 @@ class BattleCafeController {
                 recharge = BattleCafeController.calcMaxSpins();
             }
             BattleCafeController.spinsLeft(recharge);
-        }
-        else { // Recharge a spin every 2 hours (1 if all sweets are completed)
+        } else { // Recharge a spin every 2 hours (1 if all sweets are completed)
             const period = BattleCafeController.checkAllSweetsCompleted() ? 1 : 2;
             if ((hour % period) == 0) {
                 const recharge = BattleCafeController.spinsLeft() + BattleCafeController.defaultRecharge;
