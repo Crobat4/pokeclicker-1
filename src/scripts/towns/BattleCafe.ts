@@ -123,12 +123,20 @@ class BattleCafeController {
     /**
      * Recharges spin
      */
-    public static rechargeSpin(hour: number): void {
-        // Recharge a spin every 2 hours (1 if all sweets are completed)
-        const period = BattleCafeController.checkAllSweetsCompleted() ? 1 : 2;
-        if ((hour % period) == 0) {
-            const recharge = BattleCafeController.spinsLeft() + BattleCafeController.defaultRecharge;
-            BattleCafeController.spinsLeft(Math.min(BattleCafeController.calcMaxSpins(), recharge));
+    public static rechargeSpin(hour: number, newDay = false): void {
+        if (newDay) { // Recharge 3 spins daily
+            let recharge = BattleCafeController.spinsLeft() + 3;
+            if (recharge > BattleCafeController.calcMaxSpins()) {
+                recharge = BattleCafeController.calcMaxSpins();
+            }
+            BattleCafeController.spinsLeft(recharge);
+        }
+        else { // Recharge a spin every 2 hours (1 if all sweets are completed)
+            const period = BattleCafeController.checkAllSweetsCompleted() ? 1 : 2;
+            if ((hour % period) == 0) {
+                const recharge = BattleCafeController.spinsLeft() + BattleCafeController.defaultRecharge;
+                BattleCafeController.spinsLeft(Math.min(BattleCafeController.calcMaxSpins(), recharge));
+            }
         }
     }
 

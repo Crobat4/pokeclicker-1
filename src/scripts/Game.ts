@@ -390,7 +390,8 @@ class Game {
                         timeout: 3e4,
                     });
                 }
-
+                // Give the players 3 spins daily
+                BattleCafeController.rechargeSpin(now.getHours(), true);
                 DayOfWeekRequirement.date(now.getDay());
             }
             // Check if it's a new hour
