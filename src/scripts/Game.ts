@@ -390,6 +390,7 @@ class Game {
                         timeout: 3e4,
                     });
                 }
+                BattleCafeController.spinsLeft(BattleCafeController.spinsPerDay());
 
                 DayOfWeekRequirement.date(now.getDay());
             }
