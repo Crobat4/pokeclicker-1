@@ -38,7 +38,7 @@ class BattleCafeSaveObject implements Saveable {
 
 class BattleCafeController {
     static defaultRecharge = 1;
-    static selectedSweet = ko.observable<GameConstants.AlcremieSweet>(undefined);
+    static selectedSweet = ko.observable<GameConstants.AlcremieSweet>(GameConstants.AlcremieSweet["Strawberry Sweet"]);
     static baseMaxSpins = 3;
     static spinsLeft = ko.observable<number>(BattleCafeController.baseMaxSpins);
     static isSpinning = ko.observable<boolean>(false);
@@ -149,7 +149,7 @@ class BattleCafeController {
         }
         if (BattleCafeController.spinsLeft() < 1) {
             Notifier.notify({
-                message: 'No spins left today.',
+                message: 'No spins left.',
                 type: NotificationConstants.NotificationOption.danger,
             });
             return false;
