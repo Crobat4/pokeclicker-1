@@ -102,18 +102,18 @@ class PokemonHelper {
      * Spots info taken from:
      * https://gatorshark.webs.com/SpindaDocumentation.htm
      * https://github.com/magical/spinda/blob/master/spinda.py
-     * @param spindaSpot 
+     * @param spindaSpot
      * @returns object
      */
-    public static generateSpindaSpots(spindaSpot){
+    public static generateSpindaSpots(spindaSpot) {
         const originTop = 23;
         const originLeft = 15;
-        const spotMaxX = spindaSpot.x + 16
-        const spotMaxY = spindaSpot.y + 16
+        const spotMaxX = spindaSpot.x + 16;
+        const spotMaxY = spindaSpot.y + 16;
         const spotsPosition = {
             'spotX': originTop + Math.floor(Math.random() * (spotMaxX - spindaSpot.x) + spindaSpot.x),
             'spotY': originLeft + Math.floor(Math.random() * (spotMaxY - spindaSpot.y) + spindaSpot.y),
-        }
+        };
         return spotsPosition;
     }
 
@@ -122,7 +122,7 @@ class PokemonHelper {
         if (shiny) {
             src += 'shiny';
         }
-        src += `pokemon/327-mask.png`;
+        src += 'pokemon/327-mask.png';
         return src;
     }
 

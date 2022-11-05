@@ -1738,8 +1738,8 @@ export const MythicalType = [
 
 // Spinda Spots min positions
 export const SpindaSpotsMinPosition = {
-    spotTopLeft: {'x': 0, 'y': 0},
-    spotTopRight: {'x': 24, 'y': 2},
-    spotBottomLeft: {'x': 3, 'y': 18},
-    spotBottomRight: {'x': 15, 'y': 18},
-}
+    spotTopLeft: { x: 0, y: 0 },
+    spotTopRight: { x: 24, y: 2 },
+    spotBottomLeft: { x: 3, y: 18 },
+    spotBottomRight: { x: 15, y: 18 },
+};
