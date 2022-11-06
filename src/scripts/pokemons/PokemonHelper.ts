@@ -117,6 +117,11 @@ class PokemonHelper {
         return spotsPosition;
     }
 
+    /**
+     * Determinates which Spinda mask should the game use (shiny or normal)
+     * @param shiny
+     * @returns string (image URL)
+     */
     public static getSpindaMask(shiny: boolean): string {
         let src = 'assets/images/';
         if (shiny) {
