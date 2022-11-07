@@ -1413,6 +1413,17 @@ class Update implements Saveable {
             saveData.pokeballs.pokeballSelectors = Update.moveIndex(saveData.pokeballs.pokeballSelectors, GameConstants.PokeballSelector.legendaryMythical);
             saveData.pokeballs.pokeballSelectors[GameConstants.PokeballSelector.legendaryMythical] = GameConstants.Pokeball.None;
         },
+        '0.10.2': ({ playerData, saveData }) => {
+            // Kecleon Fights
+            saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 15);
+            saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 16);
+            saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 17);
+
+            // Translations
+            saveData.logbook.logs.forEach(
+                log => log.content = createLogContent.notTranslated({ text: log.description })
+            );
+        },
     };
 
     constructor() {
