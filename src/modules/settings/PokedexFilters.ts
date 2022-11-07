@@ -76,6 +76,11 @@ const PokedexFilters: Record<string, FilterOption> = {
         ko.observable(false),
         'pokedexHideAltFilter',
     ),
+    genderDiff: new FilterOption<boolean>(
+        'Show gender differences',
+        ko.observable(false),
+        'pokedexGenderDiffFilter',
+    ),
 };
 
 export default PokedexFilters;

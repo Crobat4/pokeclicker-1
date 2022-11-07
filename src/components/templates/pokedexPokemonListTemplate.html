@@ -17,7 +17,7 @@
     }">
     <!-- ko if: PokedexHelper.pokemonSeen($data.pokemonId) -->
     <span style="bottom: 0; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; overflow: hidden;">
-        <knockout class="" data-bind="text: PokemonHelper.displayName($data.pokemonName), css: { 'marquee': $data.pokemonName.length > 18 }">name</knockout>
+        <knockout class="" data-bind="text: PokemonHelper.displayName($data.pokemonName), css: { 'marquee': PokemonHelper.displayName($data.pokemonName)().length > 18 }">name</knockout>
     </span>
     <!-- /ko -->
 </script>
