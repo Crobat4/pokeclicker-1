@@ -107,46 +107,4 @@ class RouteHelper {
     public static sanitizedPokemonList(route: number, region: GameConstants.Region) {
         return [...new Set(this.getAvailablePokemonList(route, region))];
     }
-
-    // TODO: Move all this to a proper template
-    public static getAvailablePokemonListForTooltip(route: number, region: GameConstants.Region) {
-        const possiblePokemon = this.getAvailablePokemonList(route, region);
-        const possiblePokemonSanitized = [...new Set(possiblePokemon)]; // Remove duplicates AKA Wingull
-        let pokeballFilename = '';
-        let pokemonName = '';
-        let pokemonListString = '';
-        let invertClass = '';
-        pokemonListString += '<strong>Available Pokémon</strong>';
-        pokemonListString += '<table class="w-100">';
-        for (const pokemon of possiblePokemonSanitized) {
-            pokemonListString += '<tr>';
-            pokemonName = pokemon;
-            invertClass = '';
-            switch (PartyController.getCaughtStatusByName(pokemon)) {
-                case CaughtStatus.NotCaught:
-                    pokeballFilename = 'None';
-                    if (!PokedexHelper.pokemonSeenByName(pokemon)()) {
-                        pokemonName = '???';
-                    }
-                    invertClass = 'filter-invert';
-                    break;
-                case CaughtStatus.Caught:
-                    pokeballFilename = 'Pokeball';
-                    break;
-                case CaughtStatus.CaughtShiny:
-                    pokeballFilename = 'Pokeball-shiny';
-                    break;
-                default: console.error('Invalid Caught Status');
-            }
-            pokemonListString += `<td class="text-left">${pokemonName}</td>`;
-            pokemonListString += `<td class="text-right"><img class="pokeball-smallest ${invertClass}" src="assets/images/pokeball/${pokeballFilename}.svg" /></td>`;
-            if (App.game.party.getPokemonByName(pokemon)?.pokerus > GameConstants.Pokerus.Uninfected) {
-                const pokerusFilename = GameConstants.Pokerus[App.game.party.getPokemonByName(pokemon)?.pokerus];
-                pokemonListString += `<td><img src="assets/images/breeding/pokerus/${pokerusFilename}.png"/></td>`;
-            }
-            pokemonListString += '</tr>';
-        }
-        pokemonListString += '</table>';
-        return pokemonListString;
-    }
 }

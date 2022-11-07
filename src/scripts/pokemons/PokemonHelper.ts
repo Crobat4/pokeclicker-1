@@ -571,4 +571,8 @@ class PokemonHelper {
         // Return the list of items
         return encounterTypes;
     }
+
+    public static displayName(englishName: string): KnockoutComputed<string> {
+        return App.translation.get(englishName, 'pokemon');
+    }
 }
