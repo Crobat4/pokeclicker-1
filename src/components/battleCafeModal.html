@@ -2,104 +2,196 @@
 aria-labelledby="battleCafeModal"Label">
 <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
    <div class="modal-content">
-       <div class="modal-header">
-           <h5 class="modal-title">Battle Café</h5>
-       </div>
-       <div class="modal-body">
-            <div>
-                <div class="row">
-                    <div class="col-12 d-md-none d-block">
-                        <button class="w-100 my-1 btn btn-secondary" type="button" data-toggle="collapse"
-                                data-target="#evo-item-list" aria-expanded="false" aria-controls="evo-item-list">
-                            Sweet
-                        </button>
-                    </div>
-                    <!-- Sweets -->
-                    <div class="col-md-6 col-12 collapse dont-collapse-sm justify-content-center" id="evo-item-list">
-                        <h4>Sweets</h4>
-                        <div class="scrolling-div-cafe" data-bind="foreach: GameHelper.enumStrings(GameConstants.AlcremieSweet)">
-                            <div class="col-12 breedingListItem">
-                                <button class="btn btn-secondary smallButton list-group-item-action" style="cursor: pointer; padding-right:15px"
-                                        data-bind="css:{'item-selected': BattleCafeController.selectedSweet() == GameConstants.AlcremieSweet[$data]},
-                                            click: function(){ BattleCafeController.selectedSweet(GameConstants.AlcremieSweet[$data]) },
-                                            style: { 'opacity' : BattleCafeController.canBuySweet(GameConstants.AlcremieSweet[$data])() ? '1' : '0.5' }">
-                                    <img data-bind="attr: {src: 'assets/images/sweets/' + $data + '.png' }" style="max-width: 32px; margin: -10px; padding: 12px 0px;">
-                                    <div class="d-inline-block" data-bind="text: $data" style="margin-left: 20px; margin-top:8px;"></div>
-                                    <knockout data-bind="template: { name: 'caughtStatusTemplate', data: {'status': BattleCafeController.getCaughtStatus(GameConstants.AlcremieSweet[$data])()}}" style="float:right; margin-top:8px;"></knockout>
-                                </button>
+       <div class="modal-header row p-0">
+            <div class="col-12">
+                <h5 class="modal-title text-left p-3" style="border-bottom: 1px solid #444;">Battle Café</h5>
+            </div>
+            <div class="col-12">
+                <ul class="nav nav-tabs nav-fill">
+                    <li class="nav-item"><a data-toggle='tab' class='nav-link active' href="#battleCafe">Spin</a></li>
+                    <li class="nav-item"><a data-toggle='tab' class='nav-link' href="#helpBattleCafe">Help</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="modal-body p-0">
+            
+            <div class="tab-content">
+                <div id="battleCafe" class="tab-pane active p-3 fade in active show">
+                    <div class="row">
+                        <div class="col-12 d-md-none d-block">
+                            <button class="w-100 my-1 btn btn-secondary" type="button" data-toggle="collapse"
+                                    data-target="#sweet-list" aria-expanded="false" aria-controls="sweet-list">
+                                Sweet
+                            </button>
+                        </div>
+                        <!-- Sweets -->
+                        <div class="col-md-6 col-12 collapse dont-collapse-sm justify-content-center" id="sweet-list">
+                            <h4>Sweets</h4>
+                            <div class="scrolling-div-cafe" data-bind="foreach: GameHelper.enumStrings(GameConstants.AlcremieSweet)">
+                                <div class="col-12 breedingListItem">
+                                    <button class="btn btn-secondary smallButton list-group-item-action" style="cursor: pointer; padding-right:15px"
+                                            data-bind="css:{'item-selected': BattleCafeController.selectedSweet() == GameConstants.AlcremieSweet[$data]},
+                                                click: function(){ BattleCafeController.selectedSweet(GameConstants.AlcremieSweet[$data]) },
+                                                style: { 'opacity' : BattleCafeController.canBuySweet(GameConstants.AlcremieSweet[$data])() ? '1' : '0.5' }">
+                                        <img data-bind="attr: {src: 'assets/images/sweets/' + $data + '.png' }" style="max-width: 32px; margin: -10px; padding: 12px 0px;">
+                                        <div class="d-inline-block" data-bind="text: $data" style="margin-left: 20px; margin-top:8px;"></div>
+                                        <knockout data-bind="template: { name: 'caughtStatusTemplate', data: {'status': BattleCafeController.getCaughtStatus(GameConstants.AlcremieSweet[$data])()}}" style="float:right; margin-top:8px;"></knockout>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-12 d-md-none d-block">
-                        <button class="w-100 my-1 btn btn-secondary" type="button" data-toggle="collapse"
-                                data-target="#evo-pokemon-list" aria-expanded="false" aria-controls="evo-pokemon-list">
-                            Berries
-                        </button>
-                    </div>
-                    <!-- Berries -->
-                    <div class="col-md-6 col-12 justify-content-center">
-                        <div class="collapse dont-collapse-sm" id="evo-pokemon-list">
-                            <h4>Berries</h4>
-                            <knockout data-bind="using: BattleCafeController.selectedSweet(), as: 'sweet'">
-                                <div class="scrolling-div-cafe"
-                                    data-bind="foreach: BattleCafeController.getPrice(GameConstants.AlcremieSweet[GameHelper.enumStrings(GameConstants.AlcremieSweet)[sweet]])">
-                                    <div class="col-md-6 col-sm-10 col-lg-12 breedingListItem"> <!--offset-sm-1 offset-md-0 offset-md-0 -->
-                                        <div class="btn btn-secondary smallButton list-group-item-action" style="padding-right:15px"
-                                            data-bind="style: { 'opacity' : App.game.farming.berryList[$data.berry]() >= $data.amount ? '1' : '0.5' }">
-                                            <img class="smallImage" data-bind="attr:{src: FarmController.getBerryImage($data.berry) }"/>
-                                            <div class="d-inline-block" data-bind="text: BerryType[$data.berry]" style="margin-left: 20px; margin-top: 8px;">Name</div>
-                                            <span data-bind="text: `${App.game.farming.berryList[$data.berry]().toLocaleString('en-US')}/${$data.amount.toLocaleString('en-US')}`" style="float:right; margin-top:8px;"></span>
+                        <div class="col-12 d-md-none d-block">
+                            <button class="w-100 my-1 btn btn-secondary" type="button" data-toggle="collapse"
+                                    data-target="#sweet-berry-list" aria-expanded="false" aria-controls="sweet-berry-list">
+                                Berries
+                            </button>
+                        </div>
+                        <!-- Berries -->
+                        <div class="col-md-6 col-12 justify-content-center">
+                            <div class="collapse dont-collapse-sm" id="sweet-berry-list">
+                                <h4>Berries</h4>
+                                <knockout data-bind="using: BattleCafeController.selectedSweet(), as: 'sweet'">
+                                    <div class="scrolling-div-cafe"
+                                        data-bind="foreach: BattleCafeController.getPrice(GameConstants.AlcremieSweet[GameHelper.enumStrings(GameConstants.AlcremieSweet)[sweet]])">
+                                        <div class="col-md-6 col-sm-10 col-lg-12 breedingListItem"> <!--offset-sm-1 offset-md-0 offset-md-0 -->
+                                            <div class="btn btn-secondary smallButton list-group-item-action" style="padding-right:15px"
+                                                data-bind="style: { 'opacity' : App.game.farming.berryList[$data.berry]() >= $data.amount ? '1' : '0.5' }">
+                                                <img class="smallImage" data-bind="attr:{src: FarmController.getBerryImage($data.berry) }"/>
+                                                <div class="d-inline-block" data-bind="text: BerryType[$data.berry]" style="margin-left: 20px; margin-top: 8px;">Name</div>
+                                                <span data-bind="text: `${App.game.farming.berryList[$data.berry]().toLocaleString('en-US')}/${$data.amount.toLocaleString('en-US')}`" style="float:right; margin-top:8px;"></span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </knockout>
-                        </div>
-                        <hr class="border-top"/>
-                        <div>
-                            <h4>Spin!</h4>
-                            <div class="pb-2">
-                                <span data-bind="text: `Spins left: ${BattleCafeController.spinsLeft()}/${BattleCafeController.calcMaxSpins()}`"></span>
+                                </knockout>
                             </div>
+                            <hr class="border-top"/>
                             <div>
-                                <img class="cafe-trainer-sprite" data-bind="
-                                attr: { src: `assets/images/profile/trainer-${App.game.profile.trainer() || 0}.png` },
-                                class: BattleCafeController.isSpinning() ? 'player-animated' + (BattleCafeController.clockwise() ? '' : '-counter') : ''
-                                " src="assets/images/profile/trainer-1.png">
-                            </div>
-                            <div class="input-group justify-content-center align-items-center pt-3">
-                                <!--<label class="m-0 pr-1" for="battleCafeDuration">Spin duration:</label>-->
-                                <div class="btn-group justify-content-center">
-                                    <div class="input-group mx-1">
-                                        <div class="input-group-prepend" data-bind="tooltip: { title: 'Spin duration', trigger: 'hover' }">
-                                            <div class="input-group-text bg-secondary text-light border-secondary">
-                                                <i class="bi bi-alarm"></i>
+                                <h4>Spin!</h4>
+                                <div class="pb-2">
+                                    <span data-bind="text: `Spins left: ${BattleCafeController.spinsLeft()}/${BattleCafeController.calcMaxSpins()}`"></span>
+                                </div>
+                                <div>
+                                    <img class="cafe-trainer-sprite" data-bind="
+                                    attr: { src: `assets/images/profile/trainer-${App.game.profile.trainer() || 0}.png` },
+                                    class: BattleCafeController.isSpinning() ? 'player-animated' + (BattleCafeController.clockwise() ? '' : '-counter') : ''
+                                    " src="assets/images/profile/trainer-1.png">
+                                </div>
+                                <div class="input-group justify-content-center align-items-center pt-3">
+                                    <!--<label class="m-0 pr-1" for="battleCafeDuration">Spin duration:</label>-->
+                                    <div class="btn-group justify-content-center">
+                                        <div class="input-group mx-1">
+                                            <div class="input-group-prepend" data-bind="tooltip: { title: 'Spin duration', trigger: 'hover' }">
+                                                <div class="input-group-text bg-secondary text-light border-secondary">
+                                                    <i class="bi bi-alarm"></i>
+                                                </div>
+                                            </div>
+                                            <input class="form-control input-spin" id="battleCafeDuration" type="number" min="1" max="20" value="3"/>
+                                            <div class="input-group-append">
+                                                <div class="input-group-text bg-secondary text-light border-secondary">
+                                                    sec.
+                                                </div>
                                             </div>
                                         </div>
-                                        <input class="form-control input-spin" id="battleCafeDuration" type="number" min="1" max="20" value="3"/>
-                                        <div class="input-group-append">
-                                            <div class="input-group-text bg-secondary text-light border-secondary">
-                                                sec.
-                                            </div>
+                                        <div class="d-inline-flex">
+                                            <button class="btn btn-primary mx-1" onclick="BattleCafeController.spin(true);" data-bind="
+                                                tooltip: { title: 'Clockwise', trigger: 'hover' },
+                                                css: { 'disabled': BattleCafeController.spinsLeft() < 1 }">
+                                                <i class="bi bi-arrow-clockwise"></i>
+                                            </button>
+                                            <button class="btn btn-primary mx-1" onclick="BattleCafeController.spin(false);" data-bind="
+                                                tooltip: { title: 'Counter-Clockwise', trigger: 'hover' },
+                                                css: { 'disabled': BattleCafeController.spinsLeft() < 1 }">
+                                                <i class="bi bi-arrow-counterclockwise"></i>
+                                            </button>
                                         </div>
-                                    </div>
-                                    <div class="d-inline-flex">
-                                        <button class="btn btn-primary mx-1" onclick="BattleCafeController.spin(true);" data-bind="
-                                            tooltip: { title: 'Clockwise', trigger: 'hover' },
-                                            css: { 'disabled': BattleCafeController.spinsLeft() < 1 }">
-                                            <i class="bi bi-arrow-clockwise"></i>
-                                        </button>
-                                        <button class="btn btn-primary mx-1" onclick="BattleCafeController.spin(false);" data-bind="
-                                            tooltip: { title: 'Counter-Clockwise', trigger: 'hover' },
-                                            css: { 'disabled': BattleCafeController.spinsLeft() < 1 }">
-                                            <i class="bi bi-arrow-counterclockwise"></i>
-                                        </button>
                                     </div>
                                 </div>
+                                    
                             </div>
-                                
                         </div>
                     </div>
+                </div>
+                <div id="helpBattleCafe" class="tab-pane p-3 fade">
+                    <h4><u>Spin</u></h4>
+                    <p>In the Battle Café you can spin around with Milcery to evolve it into Alcremie.</p>
+                    <p>Alcremie has several forms, the Alcremie's form you get will depend on the sweet you use, the day time, how many spins you do and the spin method (clockwise/counter-clockwise).</p>
+                    <p>You do 1 spin per second. You can't do more than 20 spins.</p>
+
+                    <p>There are nine Alcremie's forms to unlock per sweet, you can get them by spinning around with the following conditions:</p>
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th>Type</th>
+                            <th>Day time</th>
+                            <th>Spin amount</th>
+                            <th>Spin method</th>
+                        </tr>
+                        <tr>
+                            <td>Vanilla</td>
+                            <td>Day</td>
+                            <td>1-4</td>
+                            <td>Clockwise</td>
+                        </tr>
+                        <tr>
+                            <td>Lemon</td>
+                            <td>Night</td>
+                            <td>5+</td>
+                            <td>Clockwise</td>
+                        </tr>
+                        <tr>
+                            <td>Mint</td>
+                            <td>Night</td>
+                            <td>5+</td>
+                            <td>Counter-Clockwise</td>
+                        </tr>
+                        <tr>
+                            <td>Matcha</td>
+                            <td>Night</td>
+                            <td>1-4</td>
+                            <td>Clockwise</td>
+                        </tr>
+                        <tr>
+                            <td>Ruby Cream</td>
+                            <td>Day</td>
+                            <td>1-4</td>
+                            <td>Counter-Clockwise</td>
+                        </tr>
+                        <tr>
+                            <td>Caramel</td>
+                            <td>Day</td>
+                            <td>5+</td>
+                            <td>Clockwise</td>
+                        </tr>
+                        <tr>
+                            <td>Rainbow</td>
+                            <td>Dusk</td>
+                            <td>11+</td>
+                            <td>Counter-Clockwise</td>
+                        </tr>
+                        <tr>
+                            <td>Ruby Swirl</td>
+                            <td>Day</td>
+                            <td>5+</td>
+                            <td>Counter-Clockwise</td>
+                        </tr>
+                        <tr>
+                            <td>Salted</td>
+                            <td>Night</td>
+                            <td>1-4</td>
+                            <td>Counter-Clockwise</td>
+                        </tr>
+                    </table>
+
+                    <h4><u>Spin chances</u></h4>
+                    <p>You'll get 3 daily spin chances, then 1 spin chance will recharge every two hours. If you get all Alcremie's forms, the spin chances will recharge every hour.</p>
+                    <p>You can store up to 3 spins chances, the max. amount of stored spin chances increases if you get all Alcremie's forms from a sweet (up to 7).</p>
+
+                    <h4><u>Sweets</u></h4>
+                    <p>Berries are needed to make a sweet. You can't spin if you don't have enough berries.</p>
+                    <p>If you get all Alcremie's forms as shiny, the berry price will be halved.</p>
+
+                    <h4><u>Day time</u></h4>
+                    <p>Milcery has a wrong sense of the time, when evolving, it considers dusk time between 7pm - 7:59pm</p>
                 </div>
             </div>
         </div>
