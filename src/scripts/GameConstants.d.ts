@@ -685,4 +685,11 @@ namespace GameConstants {
     // Legendary and Mythical IDs
     declare const LegendaryType: number[];
     declare const MythicalType: number[];
+
+    declare const SpindaSpotsMinPosition: {
+        spotTopLeft,
+        spotTopRight,
+        spotBottomLeft,
+        spotBottomRight,
+    };
 }

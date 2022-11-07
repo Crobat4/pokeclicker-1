@@ -97,6 +97,40 @@ class PokemonHelper {
         return src;
     }
 
+    /**
+     * Generate Spinda spots in the sprite
+     * Spots info taken from:
+     * https://gatorshark.webs.com/SpindaDocumentation.htm
+     * https://github.com/magical/spinda/blob/master/spinda.py
+     * @param spindaSpot
+     * @returns object
+     */
+    public static generateSpindaSpots(spindaSpot) {
+        const originTop = 23;
+        const originLeft = 15;
+        const spotMaxX = spindaSpot.x + 16;
+        const spotMaxY = spindaSpot.y + 16;
+        const spotsPosition = {
+            'spotX': originTop + Math.floor(Math.random() * (spotMaxX - spindaSpot.x) + spindaSpot.x),
+            'spotY': originLeft + Math.floor(Math.random() * (spotMaxY - spindaSpot.y) + spindaSpot.y),
+        };
+        return spotsPosition;
+    }
+
+    /**
+     * Determinates which Spinda mask should the game use (shiny or normal)
+     * @param shiny
+     * @returns string (image URL)
+     */
+    public static getSpindaMask(shiny: boolean): string {
+        let src = 'assets/images/';
+        if (shiny) {
+            src += 'shiny';
+        }
+        src += 'pokemon/327-mask.png';
+        return src;
+    }
+
     public static getPokeballImage(pokemonName: PokemonNameType): string {
         let src = '';
         if (App.game.party.alreadyCaughtPokemon(PokemonHelper.getPokemonByName(pokemonName).id)) {

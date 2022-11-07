@@ -1653,29 +1653,6 @@ export enum ExtraAchievementCategories {
 export const ICON_SORT_UP = '<i class=\'bi bi-sort-up\'>';
 export const ICON_SORT_DOWN = '<i class=\'bi bi-sort-down\'>';
 
-// Gender Types
-export const GENDERLESS = 0;
-export const MALE_ONLY = 1;
-export const FEMALE_ONLY = 2;
-export const MALE_FEMALE = 3; // Default
-
-// Gender Ratio
-export const MALE_12_5 = 8 / 7;
-export const MALE_25 = 4 / 3;
-export const MALE_50 = 2; // Default
-export const MALE_75 = 4;
-export const MALE_87_5 = 8;
-
-// Gender Text
-export const TEXT_GENDERLESS = '';
-export const TEXT_MALE = '<i class="bi bi-gender-male gender-icon-male"></i>';
-export const TEXT_FEMALE = '<i class="bi bi-gender-female gender-icon-female"></i>';
-
-// Current Pokémon Gender
-export const NO_GENDER = 0;
-export const GENDER_MALE = 1;
-export const GENDER_FEMALE = 2;
-
 // Poké Ball Selectors
 export enum PokeballSelector {
     alreadyCaught = 0,
@@ -1776,3 +1753,11 @@ export const MythicalType = [
     809, // Melmetal
     893, // Zarude
 ];
+
+// Spinda Spots min positions
+export const SpindaSpotsMinPosition = {
+    spotTopLeft: { x: 0, y: 0 },
+    spotTopRight: { x: 24, y: 2 },
+    spotBottomLeft: { x: 3, y: 18 },
+    spotBottomRight: { x: 15, y: 18 },
+};
