@@ -172,7 +172,7 @@ $(document).ready(() => {
     $('#pokemonStatisticsModal').on('hidden.bs.modal', () => {
         PokedexHelper.toggleStatisticShiny(false);
     });
-    
+
     $('#pokedexModal').on('shown.bs.modal', () => {
         PokedexHelper.isModalOpen(true);
     });
