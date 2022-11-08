@@ -248,7 +248,7 @@ class BattleCafeController {
                     {berry: BerryType.Passho, amount: Math.ceil(1000 / discount)},
                     {berry: BerryType.Yache, amount: Math.ceil(75 / discount)},
                     {berry: BerryType.Coba, amount: Math.ceil(150 / discount)},
-                    
+
                 ];
             // max gen 4
             case GameConstants.AlcremieSweet['Ribbon Sweet']:
