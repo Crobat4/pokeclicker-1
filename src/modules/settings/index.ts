@@ -104,6 +104,7 @@ Settings.add(new Setting<string>('farmDisplay', 'Farm timer display',
         new SettingOption('Ripe/Death', 'ripeDeath'),
     ],
     'ripeDeath'));
+Settings.add(new BooleanSetting('breedingIncludeEVBonus', 'Include EVs in Breeding Efficiency Calculation', false));
 Settings.add(new BooleanSetting('currencyMainDisplayReduced', 'Shorten currency amount shown on main screen', false));
 Settings.add(new BooleanSetting('currencyMainDisplayExtended', 'Show Diamonds, Farm Points and Battle Points on main screen', false));
 Settings.add(new BooleanSetting('confirmLeaveDungeon', 'Confirm before leaving dungeons', false));
@@ -206,6 +207,7 @@ const heldItemSortSettings = Object.keys(SortOptionConfigs).map((opt) => (
 ));
 Settings.add(new Setting<number>('heldItemSort', 'Sort:', heldItemSortSettings, SortOptions.id));
 Settings.add(new BooleanSetting('heldItemSortDirection', 'reverse', false));
+Settings.add(new Setting<string>('heldItemSearchFilter', 'Search', [], ''));
 
 // Breeding Filters
 Object.keys(BreedingFilters).forEach((key) => {

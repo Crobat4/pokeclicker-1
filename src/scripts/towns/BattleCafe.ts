@@ -245,9 +245,10 @@ class BattleCafeController {
             // max gen 4
             case GameConstants.AlcremieSweet['Berry Sweet']:
                 return [
+                    {berry: BerryType.Passho, amount: Math.ceil(1000 / discount)},
                     {berry: BerryType.Yache, amount: Math.ceil(75 / discount)},
                     {berry: BerryType.Coba, amount: Math.ceil(150 / discount)},
-                    {berry: BerryType.Passho, amount: Math.ceil(1000 / discount)},
+                    
                 ];
             // max gen 4
             case GameConstants.AlcremieSweet['Ribbon Sweet']:
@@ -266,8 +267,8 @@ class BattleCafeController {
             // max gen 5
             case GameConstants.AlcremieSweet['Love Sweet']:
                 return [
-                    {berry: BerryType.Roseli, amount: Math.ceil(700 / discount)},
                     {berry: BerryType.Haban, amount: Math.ceil(200 / discount)},
+                    {berry: BerryType.Roseli, amount: Math.ceil(700 / discount)},
                     {berry: BerryType.Lansat, amount: Math.ceil(5 / discount)},
                 ];
 
