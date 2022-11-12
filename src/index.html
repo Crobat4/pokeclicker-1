@@ -130,6 +130,7 @@
 @import "templates/clickAttackTemplate.html"
 @import "templates/pokedexPokemonListTemplate.html"
 @import "templates/spindaSpotTemplate.html"
+@import "templates/pokemonGenderStatisticTemplate.html"
 
 <div id="window-container" style="width: 100%; height: 100%; position: fixed; top: 0; left: 0;"></div>
 <div id="game" class="container loading" data-bind="css: {'container': Settings.getSetting('gameDisplayStyle').observableValue() === 'standard3', 'container-fluid': Settings.getSetting('gameDisplayStyle').observableValue() !== 'standard3'}">
@@ -669,6 +670,9 @@
 
 <!-- Route Pokemon List Modal -->
 @import "routePokemonListModal.html"
+
+<!-- Dream Orbs Modal -->
+@import "dreamOrbsModal.html"
 
 </body>
 </html>
