@@ -3,9 +3,12 @@
     <div data-bind="visible: App.game.party.alreadyCaughtPokemonByName($data.pokemonName)" style="position: absolute; right: 2px; top: -15px;">
         <img width="18px" src="" data-bind="attr: { src: `assets/images/pokeball/Pokeball${App.game.party.alreadyCaughtPokemon($data.pokemonId, true) ? '-shiny' : ''}.svg`}"/>
     </div>
-    <!-- ko ifnot: App.game.party.getPokemon($data.pokemonId) == undefined -->
-    <div data-bind="if: App.game.party.alreadyCaughtPokemonByName($data.pokemonName) && App.game.party.getPokemon($data.pokemonId)?.pokerus" style="position: absolute;left: 2px;top: -11px;">
+    <!-- ko if: App.game.party.alreadyCaughtPokemonByName($data.pokemonName) -->
+    <div data-bind="if: App.game.party.getPokemon($data.pokemonId)?.pokerus" style="position: absolute;left: 2px;top: -11px;">
         <img width="32px" src="" data-bind="attr: { src: `assets/images/breeding/pokerus/${GameConstants.Pokerus[App.game.party.getPokemon($data.pokemonId)?.pokerus]}.png`}"/>
+    </div>
+    <div data-bind="if: App.game.party.getPokemon($data.pokemonId)?.megaStone" style="position: absolute; right: 1px;top: 4px;">
+        <img width="20px" data-bind="attr: { src: App.game.party.getPokemon($data.pokemonId).megaStone.getImage()}"/>
     </div>
     <!-- /ko -->
     <img src="" width="96px" data-bind="css: { 
