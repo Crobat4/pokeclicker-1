@@ -194,7 +194,7 @@ aria-labelledby="breedingModalLabel" aria-hidden="true">
                                 </span>
                                 <div class="breedingListShiny" data-bind="visible: App.game.party.alreadyCaughtPokemon($data.id, true)">✨</div>
                                 <div class="breedingListPokerus" data-bind="if: App.game.party.getPokemon($data.id)?.pokerus">
-                                    <img width="32px" src="" data-bind="attr: { src: `assets/images/breeding/pokerus/${GameConstants.Pokerus[App.game.party.getPokemon($data.id).pokerus]}.png`}"/>
+                                    <knockout data-bind="template: { name: 'pokerusStatusIconTemplate', data: { 'pokerusConstant': App.game.party.getPokemon($data.id).pokerus, 'iconWidth': '32px' } }">Pokerus icon</knockout>
                                 </div>
                                 <img src="" width="80px" data-bind="attr:{ src: PokemonHelper.getImage($data.id) }">
                                 <span class="breedingListDisplayValue" data-bind="text: BreedingController.getDisplayValue($data)">value</span>

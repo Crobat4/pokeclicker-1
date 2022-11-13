@@ -149,7 +149,11 @@ Settings.add(new Setting<string>('saveReminder', 'Save reminder interval (in gam
     ],
     (12 * HOUR).toString()));
 Settings.add(new Setting('breedingQueueSizeSetting', 'Breeding Queue Size', [], '-1'));
+
 // Crobat Fork
+// Accessibility tab
+Settings.add(new BooleanSetting('accessibilityPokerus', 'Increase contrast of Pokérus resistant icon', false));
+// Other tab
 Settings.add(new BooleanSetting('enableRemovedBerries', 'Enable berries removed from dungeons loot in Official v0.9.4 update', false));
 Settings.add(new BooleanSetting('confirmFightBoss', 'Confirm before fighting bosses in dungeons', false));
 

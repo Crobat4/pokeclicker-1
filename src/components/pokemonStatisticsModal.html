@@ -13,8 +13,8 @@
             </div>
             <div class="modal-body p-0">
               <div style="position: absolute; top: 0px; right: 0px;" data-bind="if: App.game.party.getPokemon(pokemonMap[$data].id)?.pokerus">
-                  <img width="40px" src="" data-bind="attr: { src: `assets/images/breeding/pokerus/${GameConstants.Pokerus[App.game.party.getPokemon(pokemonMap[$data].id)?.pokerus]}.png`}"/>
-              </div>
+                  <knockout data-bind="template: { name: 'pokerusStatusIconTemplate', data: { 'pokerusConstant': App.game.party.getPokemon(pokemonMap[$data].id)?.pokerus } }">Pokerus icon</knockout>
+                </div>
               <div style="display: inline-block;">
                 <div>
                   <!-- General sprite -->

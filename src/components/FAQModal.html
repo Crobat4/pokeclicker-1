@@ -158,10 +158,21 @@
             <span class="text-muted">The EV Damage Multiplier is multiplicative, and scales linearly until 1.5x (50EVs). The bonus thereafter has diminishing returns relative to the number of EVs gained, but has no limit.</span></p>
 
             <p><strong>What do the Pokérus status filters mean?</strong><br/>
-            <span class="text-muted"><code>None</code>: Pokémon that have not been infected with Pokérus.<br/>
-            <span class="text-muted"><img src ='../assets/images/breeding/pokerus/Infected.png'/> <code>Infected</code>: Pokémon has Pokérus, but cannot spread Pokérus or gain EVs until hatching.<br/>
-            <span class="text-muted"><img src ='../assets/images/breeding/pokerus/Contagious.png'/> <code>Contagious</code>: Pokémon with less than 50 EVs.<br/>
-            <span class="text-muted"><img src ='../assets/images/breeding/pokerus/Resistant.png'/> <code>Resistant</code>: Pokémon with 50 or more EVs. These Pokémon will still be able to spread Pokérus.<br/>
+            <span class="text-muted">
+                <code>None</code>: Pokémon that have not been infected with Pokérus.<br/>
+            </span>
+            <span class="text-muted">
+                <knockout data-bind="template: { name: 'pokerusStatusIconTemplate', data: { 'pokerusConstant': GameConstants.Pokerus.Infected } }">Pokerus icon</knockout>
+                <code>Infected</code>: Pokémon has Pokérus, but cannot spread Pokérus or gain EVs until hatching.<br/>
+            </span>
+            <span class="text-muted">
+                <knockout data-bind="template: { name: 'pokerusStatusIconTemplate', data: { 'pokerusConstant': GameConstants.Pokerus.Contagious } }">Pokerus icon</knockout>
+                <code>Contagious</code>: Pokémon with less than 50 EVs.<br/>
+            </span>
+            <span class="text-muted">
+                <knockout data-bind="template: { name: 'pokerusStatusIconTemplate', data: { 'pokerusConstant': GameConstants.Pokerus.Resistant } }">Pokerus icon</knockout>
+                <code>Resistant</code>: Pokémon with 50 or more EVs. These Pokémon will still be able to spread Pokérus.<br/>
+            </span>
 
             <p><h5 class="text-primary"><strong>Development:</strong></h5></p>
             <p><strong>When will the development version be fully released?</strong><br/>
