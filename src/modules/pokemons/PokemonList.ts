@@ -21042,6 +21042,7 @@ export const pokemonList = createPokemonArray(
         'gender': {
             'type': Genders.Genderless,
         },
+        'heldItem': { type: ItemType.item, id: 'Pure_light' },
     },
     {
         'id': 800.01,
@@ -21051,6 +21052,7 @@ export const pokemonList = createPokemonArray(
         'levelType': LevelType.slow,
         'exp': 270,
         'catchRate': 255,
+        'evolutions': [StoneEvolution('Necrozma (Dusk Mane)', 'Ultra Necrozma', StoneType.Pure_light)],
         'base': {
             'hitpoints': 97,
             'attack': 157,
@@ -21071,6 +21073,7 @@ export const pokemonList = createPokemonArray(
         'levelType': LevelType.slow,
         'exp': 270,
         'catchRate': 255,
+        'evolutions': [StoneEvolution('Necrozma (Dawn Wings)', 'Ultra Necrozma', StoneType.Pure_light)],
         'base': {
             'hitpoints': 97,
             'attack': 113,
@@ -21085,7 +21088,7 @@ export const pokemonList = createPokemonArray(
     },
     {
         'id': 800.03,
-        'name': 'Necrozma (Ultra)',
+        'name': 'Ultra Necrozma',
         'type': [PokemonType.Psychic, PokemonType.Dragon],
         'eggCycles': 120,
         'levelType': LevelType.slow,
