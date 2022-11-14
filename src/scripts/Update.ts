@@ -1656,6 +1656,180 @@ class Update implements Saveable {
         });
     }
 
+    static swapPokemonStatisticsByIDs(saveData, pokemonIDs, shouldDeleteOld = false) {
+        pokemonIDs.forEach(([oldID, newID]) => {
+            const oldIDPokemon = saveData.party.caughtPokemon.find(p => p.id === oldID);
+            const newIDPokemon = saveData.party.caughtPokemon.find(p => p.id === newID);
+            // If player hasn't caught neither of both Pokemon yet, return.
+            if (oldIDPokemon === undefined && newIDPokemon === undefined) {
+                return;
+            }
+            
+            // Update our ID
+            if (oldIDPokemon != undefined) {
+                oldIDPokemon.id = newID;
+            }
+            if (newIDPokemon != undefined) {
+                newIDPokemon.id = oldID
+            }
+            
+            // Update our statistics
+            let newIDStatistic;
+
+            newIDStatistic = saveData.statistics.pokemonEncountered[newID] || 0;
+            saveData.statistics.pokemonEncountered[newID] = saveData.statistics.pokemonEncountered[oldID] || 0;
+            saveData.statistics.pokemonEncountered[oldID] = newIDStatistic;
+
+            newIDStatistic = saveData.statistics.pokemonDefeated[newID] || 0;
+            saveData.statistics.pokemonDefeated[newID] = saveData.statistics.pokemonDefeated[oldID] || 0;
+            saveData.statistics.pokemonDefeated[oldID] = newIDStatistic;
+
+            newIDStatistic = saveData.statistics.pokemonCaptured[newID] || 0;
+            saveData.statistics.pokemonCaptured[newID] = saveData.statistics.pokemonCaptured[oldID] || 0;
+            saveData.statistics.pokemonCaptured[oldID] = newIDStatistic;
+
+            newIDStatistic = saveData.statistics.pokemonHatched[newID] || 0;
+            saveData.statistics.pokemonHatched[newID] = saveData.statistics.pokemonHatched[oldID] || 0;
+            saveData.statistics.pokemonHatched[oldID] = newIDStatistic;
+
+            newIDStatistic = saveData.statistics.shinyPokemonEncountered[newID] || 0;
+            saveData.statistics.shinyPokemonEncountered[newID] = saveData.statistics.shinyPokemonEncountered[oldID] || 0;
+            saveData.statistics.shinyPokemonEncountered[oldID] = newIDStatistic;
+
+            newIDStatistic = saveData.statistics.shinyPokemonDefeated[newID] || 0;
+            saveData.statistics.shinyPokemonDefeated[newID] = saveData.statistics.shinyPokemonDefeated[oldID] || 0;
+            saveData.statistics.shinyPokemonDefeated[oldID] = newIDStatistic;
+
+            newIDStatistic = saveData.statistics.shinyPokemonCaptured[newID] || 0;
+            saveData.statistics.shinyPokemonCaptured[newID] = saveData.statistics.shinyPokemonCaptured[oldID] || 0;
+            saveData.statistics.shinyPokemonCaptured[oldID] = newIDStatistic;
+
+            newIDStatistic = saveData.statistics.shinyPokemonHatched[newID] || 0;
+            saveData.statistics.shinyPokemonHatched[newID] = saveData.statistics.shinyPokemonHatched[oldID] || 0;
+            saveData.statistics.shinyPokemonHatched[oldID] = newIDStatistic;
+
+            // Gender statistics (Genderless has no pokemon statistics)
+            newIDStatistic = saveData.statistics.malePokemonCaptured[newID] || 0;
+            saveData.statistics.malePokemonCaptured[newID] = saveData.statistics.malePokemonCaptured[oldID] || 0;
+            saveData.statistics.malePokemonCaptured[oldID] = newIDStatistic;
+            
+            newIDStatistic = saveData.statistics.malePokemonDefeated[newID] || 0;
+            saveData.statistics.malePokemonDefeated[newID] = saveData.statistics.malePokemonDefeated[oldID] || 0;
+            saveData.statistics.malePokemonDefeated[oldID] = newIDStatistic;
+
+            newIDStatistic = saveData.statistics.malePokemonEncountered[newID] || 0;
+            saveData.statistics.malePokemonEncountered[newID] = saveData.statistics.malePokemonEncountered[oldID] || 0;
+            saveData.statistics.malePokemonEncountered[oldID] = newIDStatistic;
+
+            newIDStatistic = saveData.statistics.malePokemonHatched[newID] || 0;
+            saveData.statistics.malePokemonHatched[newID] = saveData.statistics.malePokemonHatched[oldID] || 0;
+            saveData.statistics.malePokemonHatched[oldID] = newIDStatistic;
+
+            newIDStatistic = saveData.statistics.shinyMalePokemonCaptured[newID] || 0;
+            saveData.statistics.shinyMalePokemonCaptured[newID] = saveData.statistics.shinyMalePokemonCaptured[oldID] || 0;
+            saveData.statistics.shinyMalePokemonCaptured[oldID] = newIDStatistic;
+
+            newIDStatistic = saveData.statistics.shinyMalePokemonDefeated[newID] || 0;
+            saveData.statistics.shinyMalePokemonDefeated[newID] = saveData.statistics.shinyMalePokemonDefeated[oldID] || 0;
+            saveData.statistics.shinyMalePokemonDefeated[oldID] = newIDStatistic;
+
+            newIDStatistic = saveData.statistics.shinyMalePokemonEncountered[newID] || 0;
+            saveData.statistics.shinyMalePokemonEncountered[newID] = saveData.statistics.shinyMalePokemonEncountered[oldID] || 0;
+            saveData.statistics.shinyMalePokemonEncountered[oldID] = newIDStatistic;
+
+            newIDStatistic = saveData.statistics.shinyMalePokemonHatched[newID] || 0;
+            saveData.statistics.shinyMalePokemonHatched[newID] = saveData.statistics.shinyMalePokemonHatched[oldID] || 0;
+            saveData.statistics.shinyMalePokemonHatched[oldID] = newIDStatistic;
+            
+            newIDStatistic = saveData.statistics.femalePokemonCaptured[newID] || 0;
+            saveData.statistics.femalePokemonCaptured[newID] = saveData.statistics.femalePokemonCaptured[oldID] || 0;
+            saveData.statistics.femalePokemonCaptured[oldID] = newIDStatistic;
+
+            newIDStatistic = saveData.statistics.femalePokemonDefeated[newID] || 0;
+            saveData.statistics.femalePokemonDefeated[newID] = saveData.statistics.femalePokemonDefeated[oldID] || 0;
+            saveData.statistics.femalePokemonDefeated[oldID] = newIDStatistic;
+
+            newIDStatistic = saveData.statistics.femalePokemonEncountered[newID] || 0;
+            saveData.statistics.femalePokemonEncountered[newID] = saveData.statistics.femalePokemonEncountered[oldID] || 0;
+            saveData.statistics.femalePokemonEncountered[oldID] = newIDStatistic;
+
+            newIDStatistic = saveData.statistics.femalePokemonHatched[newID] || 0;
+            saveData.statistics.femalePokemonHatched[newID] = saveData.statistics.femalePokemonHatched[oldID] || 0;
+            saveData.statistics.femalePokemonHatched[oldID] = newIDStatistic;
+
+            newIDStatistic = saveData.statistics.shinyFemalePokemonCaptured[newID] || 0;
+            saveData.statistics.shinyFemalePokemonCaptured[newID] = saveData.statistics.shinyFemalePokemonCaptured[oldID] || 0;
+            saveData.statistics.shinyFemalePokemonCaptured[oldID] = newIDStatistic;
+
+            newIDStatistic = saveData.statistics.shinyFemalePokemonDefeated[newID] || 0;
+            saveData.statistics.shinyFemalePokemonDefeated[newID] = saveData.statistics.shinyFemalePokemonDefeated[oldID] || 0;
+            saveData.statistics.shinyFemalePokemonDefeated[oldID] = newIDStatistic;
+
+            newIDStatistic = saveData.statistics.shinyFemalePokemonEncountered[newID] || 0;
+            saveData.statistics.shinyFemalePokemonEncountered[newID] = saveData.statistics.shinyFemalePokemonEncountered[oldID] || 0;
+            saveData.statistics.shinyFemalePokemonEncountered[oldID] = newIDStatistic;
+
+            newIDStatistic = saveData.statistics.shinyFemalePokemonHatched[newID] || 0;
+            saveData.statistics.shinyFemalePokemonHatched[newID] = saveData.statistics.shinyFemalePokemonHatched[oldID] || 0;
+            saveData.statistics.shinyFemalePokemonHatched[oldID] = newIDStatistic;
+
+            // DELETE
+            // Delete our old statistics
+            if (shouldDeleteOld) { // Generic statistics
+                Update.deleteStatistics(saveData, oldID, true, true);
+            }
+
+            // Delete gender statistics if genderless
+            if (pokemonMap[oldID].gender.type == GameConstants.Genders.Genderless) { // Only gender statistics
+                Update.deleteStatistics(saveData, oldID, false, true);
+            }
+            if (pokemonMap[newID].gender.type == GameConstants.Genders.Genderless) { // Only gender statistics
+                Update.deleteStatistics(saveData, newID, false, true);
+            }
+
+            // Delete statistics if pokemon doesn't exists
+            if (newIDPokemon === undefined) {
+                Update.deleteStatistics(saveData, oldID, true, true);
+            }
+            if (oldIDPokemon === undefined) {
+                Update.deleteStatistics(saveData, newID, true, true);
+            }
+        });
+    }
+
+    static deleteStatistics(saveData, pokemonID, deleteGenericStatistics = false, deleteGenderStatistics = false) {
+        if (deleteGenericStatistics) {
+            delete saveData.statistics.pokemonEncountered[pokemonID];
+            delete saveData.statistics.pokemonDefeated[pokemonID];
+            delete saveData.statistics.pokemonCaptured[pokemonID];
+            delete saveData.statistics.pokemonHatched[pokemonID];
+            delete saveData.statistics.shinyPokemonEncountered[pokemonID];
+            delete saveData.statistics.shinyPokemonDefeated[pokemonID];
+            delete saveData.statistics.shinyPokemonCaptured[pokemonID];
+            delete saveData.statistics.shinyPokemonHatched[pokemonID];
+        }
+
+        if (deleteGenderStatistics) {
+            delete saveData.statistics.malePokemonEncountered[pokemonID];
+            delete saveData.statistics.malePokemonDefeated[pokemonID];
+            delete saveData.statistics.malePokemonCaptured[pokemonID];
+            delete saveData.statistics.malePokemonHatched[pokemonID];
+            delete saveData.statistics.shinyMalePokemonEncountered[pokemonID];
+            delete saveData.statistics.shinyMalePokemonDefeated[pokemonID];
+            delete saveData.statistics.shinyMalePokemonCaptured[pokemonID];
+            delete saveData.statistics.shinyMalePokemonHatched[pokemonID];
+
+            delete saveData.statistics.femalePokemonEncountered[pokemonID];
+            delete saveData.statistics.femalePokemonDefeated[pokemonID];
+            delete saveData.statistics.femalePokemonCaptured[pokemonID];
+            delete saveData.statistics.femalePokemonHatched[pokemonID];
+            delete saveData.statistics.shinyFemalePokemonEncountered[pokemonID];
+            delete saveData.statistics.shinyFemalePokemonDefeated[pokemonID];
+            delete saveData.statistics.shinyFemalePokemonCaptured[pokemonID];
+            delete saveData.statistics.shinyFemalePokemonHatched[pokemonID];
+        }
+    }
+
     static startQuestLine = (saveData, questLineName: string) => {
         const questLine = saveData.quests.questLines.find(ql => ql.name == questLineName);
         if (questLine) {
