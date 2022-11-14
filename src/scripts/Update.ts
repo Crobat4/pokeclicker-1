@@ -1664,15 +1664,15 @@ class Update implements Saveable {
             if (oldIDPokemon === undefined && newIDPokemon === undefined) {
                 return;
             }
-            
+
             // Update our ID
             if (oldIDPokemon != undefined) {
                 oldIDPokemon.id = newID;
             }
             if (newIDPokemon != undefined) {
-                newIDPokemon.id = oldID
+                newIDPokemon.id = oldID;
             }
-            
+
             // Update our statistics
             let newIDStatistic;
 
@@ -1712,7 +1712,7 @@ class Update implements Saveable {
             newIDStatistic = saveData.statistics.malePokemonCaptured[newID] || 0;
             saveData.statistics.malePokemonCaptured[newID] = saveData.statistics.malePokemonCaptured[oldID] || 0;
             saveData.statistics.malePokemonCaptured[oldID] = newIDStatistic;
-            
+
             newIDStatistic = saveData.statistics.malePokemonDefeated[newID] || 0;
             saveData.statistics.malePokemonDefeated[newID] = saveData.statistics.malePokemonDefeated[oldID] || 0;
             saveData.statistics.malePokemonDefeated[oldID] = newIDStatistic;
@@ -1740,7 +1740,7 @@ class Update implements Saveable {
             newIDStatistic = saveData.statistics.shinyMalePokemonHatched[newID] || 0;
             saveData.statistics.shinyMalePokemonHatched[newID] = saveData.statistics.shinyMalePokemonHatched[oldID] || 0;
             saveData.statistics.shinyMalePokemonHatched[oldID] = newIDStatistic;
-            
+
             newIDStatistic = saveData.statistics.femalePokemonCaptured[newID] || 0;
             saveData.statistics.femalePokemonCaptured[newID] = saveData.statistics.femalePokemonCaptured[oldID] || 0;
             saveData.statistics.femalePokemonCaptured[oldID] = newIDStatistic;
