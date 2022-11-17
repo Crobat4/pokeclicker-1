@@ -135,7 +135,7 @@ class PokemonFactory {
      * @returns {any}
      */
     public static generateGymPokemon(gym: Gym, index: number): BattlePokemon {
-        const pokemon = gym.pokemons[index];
+        const pokemon = gym.getPokemonList()[index];
         const basePokemon = PokemonHelper.getPokemonByName(pokemon.name);
 
         const exp: number = basePokemon.exp;
@@ -212,7 +212,7 @@ class PokemonFactory {
     }
 
     public static generateTemporaryBattlePokemon(battle: TemporaryBattle, index: number): BattlePokemon {
-        const pokemon = battle.pokemons[index];
+        const pokemon = battle.getPokemonList()[index];
         const basePokemon = PokemonHelper.getPokemonByName(pokemon.name);
         const catchRate: number = this.catchRateHelper(basePokemon.catchRate);
 
@@ -281,6 +281,9 @@ class PokemonFactory {
 
         // Apply drop chance by item ID
         switch (item.id) {
+            case 'Griseous_Orb':
+                chance = GameConstants.GRISEOUS_ITEM_CHANCE;
+                break;
             case 'Black_DNA':
             case 'White_DNA':
                 chance = GameConstants.DNA_ITEM_CHANCE;
