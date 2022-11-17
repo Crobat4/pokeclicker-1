@@ -1178,10 +1178,10 @@ class Update implements Saveable {
             /* Crobat Fork */
             // Moving balls from old selectors to new selectors
             saveData.pokeballs.pokeballSelectors = [];
-            saveData.pokeballs.pokeballSelectors[GameConstants.PokeballSelector.alreadyCaught] = saveData.pokeballs.alreadyCaughtSelection;
-            saveData.pokeballs.pokeballSelectors[GameConstants.PokeballSelector.alreadyCaughtShiny] = saveData.pokeballs.alreadyCaughtShinySelection;
-            saveData.pokeballs.pokeballSelectors[GameConstants.PokeballSelector.notCaught] = saveData.pokeballs.notCaughtSelection;
-            saveData.pokeballs.pokeballSelectors[GameConstants.PokeballSelector.notCaughtShiny] = saveData.pokeballs.notCaughtShinySelection;
+            saveData.pokeballs.pokeballSelectors[GameConstants.PokeballSelector.alreadyCaught] = saveData.pokeballs.alreadyCaughtSelection || GameConstants.Pokeball.None;
+            saveData.pokeballs.pokeballSelectors[GameConstants.PokeballSelector.alreadyCaughtShiny] = saveData.pokeballs.alreadyCaughtShinySelection || GameConstants.Pokeball.None;
+            saveData.pokeballs.pokeballSelectors[GameConstants.PokeballSelector.notCaught] = saveData.pokeballs.notCaughtSelection || GameConstants.Pokeball.None;
+            saveData.pokeballs.pokeballSelectors[GameConstants.PokeballSelector.notCaughtShiny] = saveData.pokeballs.notCaughtShinySelection || GameConstants.Pokeball.None;
         },
 
         '0.9.16': ({ playerData, saveData }) => {
@@ -1410,8 +1410,8 @@ class Update implements Saveable {
             saveData.pokeballs.pokeballSelectors = Update.moveIndex(saveData.pokeballs.pokeballSelectors, GameConstants.PokeballSelector.contagious);
             saveData.pokeballs.pokeballSelectors[GameConstants.PokeballSelector.contagious] = GameConstants.Pokeball.None;
             // Add Legendary/Mythical selection and set the ball to none (probably not needed since it's the last index)
-            saveData.pokeballs.pokeballSelectors = Update.moveIndex(saveData.pokeballs.pokeballSelectors, GameConstants.PokeballSelector.legendaryMythical);
-            saveData.pokeballs.pokeballSelectors[GameConstants.PokeballSelector.legendaryMythical] = GameConstants.Pokeball.None;
+            //saveData.pokeballs.pokeballSelectors = Update.moveIndex(saveData.pokeballs.pokeballSelectors, GameConstants.PokeballSelector.legendaryMythical);
+            //saveData.pokeballs.pokeballSelectors[GameConstants.PokeballSelector.legendaryMythical] = GameConstants.Pokeball.None;
         },
         '0.10.2': ({ playerData, saveData }) => {
             // Kecleon Fights
