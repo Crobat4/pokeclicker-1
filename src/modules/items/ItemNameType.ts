@@ -129,6 +129,7 @@ export type ItemNameType
     | 'Soul_Dew'
     | 'Adamant_Orb'
     | 'Lustrous_Orb'
+    | 'Griseous_Orb'
     | 'Leek'
     | 'Rusted_Sword'
     | 'Rusted_Shield'
@@ -203,4 +204,5 @@ export type ItemNameType
     | 'Thundurus (Therian)'
     | 'Landorus (Therian)'
     | 'RareCandy'
-    | 'Protein';
+    | 'Protein'
+    | 'Abomasite';
