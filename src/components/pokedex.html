@@ -183,7 +183,7 @@ aria-labelledby="pokedexModalLabel">
                     <!-- ko if: PokedexHelper.isModalOpen() -->
                     <div class="row justify-content-center p-0" id="pokemon-elements" data-bind="foreach: lazyLoad($element, PokedexHelper.filteredList)"
                         style="max-width: 100%; padding:0; margin:0;">
-                        <div class="col-sm-4 col-md-3 col-lg-2 pokedexEntry"
+                        <div class="col-12 col-sm-4 col-md-3 col-lg-2 pokedexEntry"
                             data-bind="style:{background: PokedexHelper.getBackgroundColors($data.name)}">
                             <knockout data-bind="template: { name: 'pokedexPokemonListTemplate', 
                             data: { 

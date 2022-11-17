@@ -19,7 +19,7 @@
         src: $data.pokemonSprite
     }">
     <!-- ko if: PokedexHelper.pokemonSeen($data.pokemonId) -->
-    <span style="bottom: 0; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; overflow: hidden;">
+    <span style="bottom: 0; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; overflow: hidden; min-height: 21px;">
         <knockout class="" data-bind="text: PokemonHelper.displayName($data.pokemonName), css: { 'marquee': PokemonHelper.displayName($data.pokemonName)().length > 18 }">name</knockout>
     </span>
     <!-- /ko -->
