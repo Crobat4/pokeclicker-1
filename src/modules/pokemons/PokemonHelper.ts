@@ -202,14 +202,14 @@ export function incrementPokemonStatistics(pokemonId: number, statistic: string,
      * @param spindaSpot
      * @returns object
      */
- export function generateSpindaSpots(spindaSpot) {
+export function generateSpindaSpots(spindaSpot) {
     const originTop = 23;
     const originLeft = 15;
     const spotMaxX = spindaSpot.x + 16;
     const spotMaxY = spindaSpot.y + 16;
     const spotsPosition = {
-        'spotX': originTop + Math.floor(Math.random() * (spotMaxX - spindaSpot.x) + spindaSpot.x),
-        'spotY': originLeft + Math.floor(Math.random() * (spotMaxY - spindaSpot.y) + spindaSpot.y),
+        spotX: originTop + Math.floor(Math.random() * (spotMaxX - spindaSpot.x) + spindaSpot.x),
+        spotY: originLeft + Math.floor(Math.random() * (spotMaxY - spindaSpot.y) + spindaSpot.y),
     };
     return spotsPosition;
 }
@@ -219,7 +219,7 @@ export function incrementPokemonStatistics(pokemonId: number, statistic: string,
  * @param shiny
  * @returns string (image URL)
  */
- export function getSpindaMask(shiny: boolean): string {
+export function getSpindaMask(shiny: boolean): string {
     let src = 'assets/images/';
     if (shiny) {
         src += 'shiny';
