@@ -66,7 +66,7 @@ export function getImage(pokemonId: number, shiny: boolean = undefined, gender: 
     if (shiny === undefined) {
         // eslint-disable-next-line no-param-reassign
         shiny = App.game.party.alreadyCaughtPokemon(pokemonId, true)
-            && !App.game.party.getPokemon(pokemonId)?.hideShinyImage();
+            && App.game.party.getPokemon(pokemonId)?.hideShinyImage();
     }
     if (gender === undefined) {
         // eslint-disable-next-line no-param-reassign
