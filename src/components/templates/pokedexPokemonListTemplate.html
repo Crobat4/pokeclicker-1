@@ -4,6 +4,11 @@
         <img width="18px" src="" data-bind="attr: { src: `assets/images/pokeball/Pokeball${App.game.party.alreadyCaughtPokemon($data.pokemonId, true) ? '-shiny' : ''}.svg`}"/>
     </div>
     <!-- ko if: App.game.party.alreadyCaughtPokemonByName($data.pokemonName) -->
+    <!-- ko if: BagHandler.displayName($data.pokemonHeldItem) -->
+    <div style="position: absolute; right: 2px; top: 65px;">
+        <img class="item-icon rounded-circle" src="" width="24px" data-bind="attr: {src: BagHandler.image($data.pokemonHeldItem)}">
+    </div>
+    <!-- /ko -->
     <div data-bind="if: App.game.party.getPokemon($data.pokemonId)?.pokerus" style="position: absolute;left: 2px;top: -11px;">
         <knockout data-bind="template: { name: 'pokerusStatusIconTemplate', data: { 'pokerusConstant': App.game.party.getPokemon($data.pokemonId)?.pokerus, 'iconWidth': '32px' } }">Pokerus icon</knockout>
     </div>
