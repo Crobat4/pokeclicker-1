@@ -304,6 +304,9 @@ class Dungeon {
     get allPokemon(): PokemonNameType[] {
         return this.pokemonList.concat(this.bossPokemonList);
     }
+    get allEnemiesDungeon() {
+        return this.normalEncounterListNames.concat(this.bossEncounterListNames);
+    }
 
 
     /**
@@ -340,6 +343,42 @@ class Dungeon {
 
         return encounterInfo;
     }
+
+
+    get normalEncounterListNames(): EncounterInfo[] {
+        const encounterInfo = [];
+        const encounterInfoNames = [];
+
+        // Handling minions
+        this.enemyList.forEach((enemy) => {
+            // Handling Pokemon
+            if (typeof enemy === 'string' || enemy.hasOwnProperty('pokemon')) {
+                let pokemonName: PokemonNameType;
+                let hideEncounter = false;
+                if (enemy.hasOwnProperty('pokemon')) {
+                    pokemonName = (<DetailedPokemon>enemy).pokemon;
+                    hideEncounter = (<DetailedPokemon>enemy).options?.hide ? ((<DetailedPokemon>enemy).options?.requirement ? !(<DetailedPokemon>enemy).options?.requirement.isCompleted() : (<DetailedPokemon>enemy).options?.hide) : false;
+                } else {
+                    pokemonName = <PokemonNameType>enemy;
+                }
+                const encounter = {
+                    image: `assets/images/${(App.game.party.alreadyCaughtPokemonByName(pokemonName, true) ? 'shiny' : '')}pokemon/${pokemonMap[pokemonName].id}.png`,
+                    shiny:  App.game.party.alreadyCaughtPokemonByName(pokemonName, true),
+                    name: pokemonName,
+                    hide: hideEncounter,
+                    uncaught: !App.game.party.alreadyCaughtPokemonByName(pokemonName),
+                    lock: false,
+                    lockMessage: '',
+                };
+                encounterInfo.push(encounter);
+                encounterInfoNames.push(encounter);
+            // Handling Trainers
+            } else { /* We don't display minion Trainers */ }
+        });
+
+        return encounterInfoNames;
+    }
+
 
 
     /**
@@ -379,6 +418,49 @@ class Dungeon {
 
         return encounterInfo;
     }
+
+
+
+    get bossEncounterListNames(): EncounterInfo[] {
+        const encounterInfo = [];
+
+        // Handling Bosses
+        this.bossList.forEach((boss) => {
+            // Handling Pokemon
+            if (boss instanceof DungeonBossPokemon) {
+                const pokemonName = boss.name;
+                const encounter = {
+                    image: `assets/images/${(App.game.party.alreadyCaughtPokemonByName(pokemonName, true) ? 'shiny' : '')}pokemon/${pokemonMap[pokemonName].id}.png`,
+                    shiny:  App.game.party.alreadyCaughtPokemonByName(pokemonName, true),
+                    boss: true,
+                    name: pokemonName,
+                    hide: boss.options?.hide ? (boss.options?.requirement ? !boss.options?.requirement.isCompleted() : boss.options?.hide) : false,
+                    uncaught: !App.game.party.alreadyCaughtPokemonByName(pokemonName),
+                    lock: boss.options?.requirement ? !boss.options?.requirement.isCompleted() : false,
+                    lockMessage: boss.options?.requirement ? boss.options?.requirement.hint() : '',
+                };
+                encounterInfo.push(encounter);
+            // Handling Trainer
+            } else {
+                const encounter = {
+                    image: boss.image,
+                    name: boss.name,
+                    boss: true,
+                    trainer: true,
+                    shiny:  false,
+                    hide: boss.options?.hide ? (boss.options?.requirement ? !boss.options?.requirement.isCompleted() : boss.options?.hide) : false,
+                    uncaught: false,
+                    lock: boss.options?.requirement ? !boss.options?.requirement.isCompleted() : false,
+                    lockMessage: boss.options?.requirement ? boss.options?.requirement.hint() : '',
+                };
+                encounterInfo.push(encounter);
+            }
+        });
+
+        return encounterInfo;
+    }
+
+
 }
 
 /**

@@ -187,6 +187,7 @@ aria-labelledby="pokedexModalLabel">
                             data-bind="style:{background: PokedexHelper.getBackgroundColors($data.name)}">
                             <knockout data-bind="template: { name: 'pokedexPokemonListTemplate', 
                             data: { 
+                                'pokemonHeldItem': $data.heldItem,
                                 'pokemonName': $data.name, 
                                 'pokemonId': $data.id, 
                                 'pokemonSprite': PokemonHelper.getImage($data.id, App.game.party.alreadyCaughtPokemon($data.id, true) && PokedexHelper.toggleAllShiny(), PokedexHelper.toggleFemale()) 

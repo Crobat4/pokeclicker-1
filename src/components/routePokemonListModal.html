@@ -5,17 +5,17 @@
         <div class="modal-content">
             <div class="modal-header">
                 <!-- TODO: Add shiny and pokerus statuses if habitat list is made -->
-                <h4 class="modal-title" data-bind="text: Routes.getName(RouteHelper.route(), RouteHelper.region()) + ` (${GameConstants.camelCaseToString(GameConstants.Region[RouteHelper.region()])})`">
+                <h4 class="modal-title" data-bind="text: RouteHelper.route() + ` (${GameConstants.camelCaseToString(GameConstants.Region[RouteHelper.region()])})`">
                     Route
                 </h4>
             </div>
 
             <div class="modal-body p-0">
-                <div class="row justify-content-center p-0" id="pokemon-elements" data-bind="foreach: { data: RouteHelper.sanitizedPokemonList(RouteHelper.route(), RouteHelper.region()), as: 'pokemonName'}"
+                <div class="row justify-content-center p-0" id="pokemon-elements" data-bind="foreach: { data: RouteHelper.enemyList(), as: 'pokemon'}"
                     style="max-width: 100%; padding:0; margin:0;">
                     <div class="col-sm-4 col-md-3 col-lg-2 pokedexEntry"
-                        data-bind="style:{background: PokedexHelper.getBackgroundColors(pokemonName)}, using: PokemonHelper.getPokemonByName(pokemonName).id, as: 'pokemonId'">
-                        <knockout data-bind="template: { name: 'pokedexPokemonListTemplate', data: { 'pokemonName': pokemonName, 'pokemonId': pokemonId, 'pokemonSprite': PokemonHelper.getImage(pokemonId) } }">Pokémon Dex Container</knockout>
+                        data-bind="style:{background: !pokemon.trainer ? PokedexHelper.getBackgroundColors(pokemon.name) : 'grey'}, using: PokemonHelper.getPokemonByName(pokemon.name).id, as: 'pokemonId'">
+                        <knockout data-bind="template: { name: 'pokedexPokemonListTemplate', data: { 'pokemonName': pokemon.name, 'pokemonId': pokemonId, 'pokemonSprite': pokemonId ? PokemonHelper.getImage(pokemonId) : pokemon.image, 'isTrainer': pokemon.trainer, 'isBoss': pokemon.boss } }">Pokémon Dex Container</knockout>
                     </div>
                 </div>
             </div>

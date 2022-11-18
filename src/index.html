@@ -247,7 +247,7 @@
                                 <!-- Pokemon List -->
                                 <knockout class="right">
                                     <div class="route-pokemon-list-icon px-1 clickable" data-bind="tooltip: { title: 'Check the Pokémon available here', trigger: 'hover' },
-                                        click: function() { RouteHelper.route(player.route()); RouteHelper.region(player.region); $('#routePokemonListModal').modal('show') }">
+                                        click: function() { RouteHelper.route(Routes.getName(player.route(), player.region)); RouteHelper.enemyList(RouteHelper.sanitizedPokemonList(player.route(), player.region)); RouteHelper.region(player.region); $('#routePokemonListModal').modal('show') }">
                                     <!--
                                         <a href="#" class="route-link-overlay" data-bind="tooltip: {
                                             title: RouteHelper.getAvailablePokemonListForTooltip(player.route(), player.region),

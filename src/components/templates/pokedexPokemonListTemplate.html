@@ -1,8 +1,13 @@
 <script type="text/html" id="pokedexPokemonListTemplate">
-    <span class="id" style="top: 0; border-top-left-radius: 6px; border-top-right-radius: 6px;" data-bind="text: ($data.pokemonId > 0 ? Math.floor($data.pokemonId) + '' : '???').padStart(3, 0)">number</span>
+    <span class="" style="top: 0; border-top-left-radius: 6px; border-top-right-radius: 6px;" data-bind="text: ($data.isTrainer ? 'Trainer' : ('#' + ($data.pokemonId > 0 ? Math.floor($data.pokemonId) + '' : '???').padStart(3, 0)))">number</span>
     <div data-bind="visible: App.game.party.alreadyCaughtPokemonByName($data.pokemonName)" style="position: absolute; right: 2px; top: -15px;">
         <img width="18px" src="" data-bind="attr: { src: `assets/images/pokeball/Pokeball${App.game.party.alreadyCaughtPokemon($data.pokemonId, true) ? '-shiny' : ''}.svg`}"/>
     </div>
+    <!-- ko if: $data.pokemonHeldItem -->
+    <div style="position: absolute; right: 2px; top: 65px;">
+        <img class="item-icon rounded-circle" src="" width="24px" data-bind="visible: BagHandler.displayName($data.pokemonHeldItem) && App.game.party.alreadyCaughtPokemonByName(pokemonName), attr: {src: BagHandler.image($data.pokemonHeldItem)}">
+    </div>
+    <!-- /ko -->
     <!-- ko if: App.game.party.alreadyCaughtPokemonByName($data.pokemonName) -->
     <div data-bind="if: App.game.party.getPokemon($data.pokemonId)?.pokerus" style="position: absolute;left: 2px;top: -11px;">
         <knockout data-bind="template: { name: 'pokerusStatusIconTemplate', data: { 'pokerusConstant': App.game.party.getPokemon($data.pokemonId)?.pokerus, 'iconWidth': '32px' } }">Pokerus icon</knockout>
@@ -11,13 +16,20 @@
         <img width="20px" data-bind="attr: { src: App.game.party.getPokemon($data.pokemonId).megaStone.getImage()}"/>
     </div>
     <!-- /ko -->
-    <img src="" width="96px" data-bind="css: { 
-        'pokemon-not-seen': !PokedexHelper.pokemonSeen($data.pokemonId)(), 
-        'pokemon-seen-but-not-caught': !App.game.party.alreadyCaughtPokemonByName($data.pokemonName) && PokedexHelper.pokemonSeen($data.pokemonId)() 
+    <img src="" width="" data-bind="css: { 
+        'pokemon-not-seen': !PokedexHelper.pokemonSeen($data.pokemonId)() && !$data.isTrainer, 
+        'pokemon-seen-but-not-caught': !App.game.party.alreadyCaughtPokemonByName($data.pokemonName) && PokedexHelper.pokemonSeen($data.pokemonId)() && !$data.isTrainer 
     }, 
     attr:{ 
-        src: $data.pokemonSprite
+        src: $data.pokemonSprite,
+        width: !$data.isTrainer ? '96px' : '80px',
+        style: $data.isTrainer ? 'padding: 24px 0;' : '',
     }">
+    <!-- ko if: $data.isBoss -->
+    <div style="position: absolute; left: 2px; top: 65px;">
+        <img class="item-icon rounded-circle" src="" width="24px" data-bind="attr: {src: 'assets/images/dungeons/boss.svg'}">
+    </div>
+    <!-- /ko -->
     <!-- ko if: PokedexHelper.pokemonSeen($data.pokemonId) -->
     <span style="bottom: 0; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; overflow: hidden; min-height: 21px;">
         <knockout class="" data-bind="text: PokemonHelper.displayName($data.pokemonName), css: { 'marquee': PokemonHelper.displayName($data.pokemonName)().length > 18 }">name</knockout>
