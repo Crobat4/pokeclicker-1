@@ -172,7 +172,7 @@ aria-labelledby="pokedexModalLabel">
                 <div class="row justify-content-center w-100 mb-2" style="border-bottom: 1px solid #eceeef">
                     <h4 data-bind="text: 'No Pokémon found'"></h4>
                 </div>
-                <span>Missing a Pokémon but is not appearing here? Look around the region, you haven't seen yet.</span>
+                <span>Missing a Pokémon but don't see it here? Be sure to completely explore the region!</span>
                 <!-- /ko -->
                 <!-- ko if: PokedexHelper.filteredList().length != 0 -->
                 <div class="row justify-content-center w-100 mb-2" style="border-bottom: 1px solid #eceeef">
@@ -189,6 +189,7 @@ aria-labelledby="pokedexModalLabel">
                             data: { 
                                 'pokemonName': $data.name, 
                                 'pokemonId': $data.id, 
+                                'pokemonHeldItem': $data.heldItem,
                                 'pokemonSprite': PokemonHelper.getImage($data.id, App.game.party.alreadyCaughtPokemon($data.id, true) && PokedexHelper.toggleAllShiny(), PokedexHelper.toggleFemale()) 
                             } }">Pokémon Dex Container</knockout>
                             <!-- ko if: PokedexHelper.pokemonSeen($data.id) -->
