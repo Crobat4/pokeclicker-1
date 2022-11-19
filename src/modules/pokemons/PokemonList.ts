@@ -13023,6 +13023,7 @@ export const pokemonList = createPokemonArray(
         'levelType': LevelType.slow,
         'exp': 306,
         'catchRate': 3,
+        'evolutions': [HeldItemLevelEvolution('Griseous_Orb', 'Giratina (Altered)', 'Giratina (Origin)', 70)],
         'base': {
             'hitpoints': 150,
             'attack': 100,
@@ -13034,6 +13035,7 @@ export const pokemonList = createPokemonArray(
         'gender': {
             'type': Genders.Genderless,
         },
+        'heldItem': { type: ItemType.item, id: 'Griseous_Orb' },
     },
     {
         'id': 487.1,
@@ -13043,8 +13045,6 @@ export const pokemonList = createPokemonArray(
         'levelType': LevelType.slow,
         'exp': 306,
         'catchRate': 3,
-        'evolutions': [HeldItemLevelEvolution('Griseous_Orb', 'Giratina (Altered)', 'Giratina (Origin)', 70)],
-        'heldItem': { type: ItemType.item, id: 'Griseous_Orb' },
         'base': {
             'hitpoints': 150,
             'attack': 120,
@@ -17223,7 +17223,7 @@ export const pokemonList = createPokemonArray(
     },
     {
         'id': 666.01,
-        'name': 'Vivillon (Poké Ball)',
+        'name': 'Vivillon (Icy Snow)',
         'type': [PokemonType.Bug, PokemonType.Flying],
         // Boosted to match standard Vivillon (Meadow)
         'eggCycles': 35,
@@ -17331,24 +17331,6 @@ export const pokemonList = createPokemonArray(
     },
     {
         'id': 666.07,
-        'name': 'Vivillon (Icy Snow)',
-        'type': [PokemonType.Bug, PokemonType.Flying],
-        // Boosted to match standard Vivillon (Meadow)
-        'eggCycles': 35,
-        'levelType': LevelType.mediumfast,
-        'exp': 185,
-        'catchRate': 45,
-        'base': {
-            'hitpoints': 80,
-            'attack': 52,
-            'specialAttack': 90,
-            'defense': 50,
-            'specialDefense': 50,
-            'speed': 89,
-        },
-    },
-    {
-        'id': 666.08,
         'name': 'Vivillon (Modern)',
         'type': [PokemonType.Bug, PokemonType.Flying],
         // Boosted to match standard Vivillon (Meadow)
@@ -17366,7 +17348,7 @@ export const pokemonList = createPokemonArray(
         },
     },
     {
-        'id': 666.09,
+        'id': 666.08,
         'name': 'Vivillon (Marine)',
         'type': [PokemonType.Bug, PokemonType.Flying],
         // Boosted to match standard Vivillon (Meadow)
@@ -17384,7 +17366,7 @@ export const pokemonList = createPokemonArray(
         },
     },
     {
-        'id': 666.10,
+        'id': 666.09,
         'name': 'Vivillon (Archipelago)',
         'type': [PokemonType.Bug, PokemonType.Flying],
         // Boosted to match standard Vivillon (Meadow)
@@ -17402,7 +17384,7 @@ export const pokemonList = createPokemonArray(
         },
     },
     {
-        'id': 666.11,
+        'id': 666.10,
         'name': 'Vivillon (High Plains)',
         'type': [PokemonType.Bug, PokemonType.Flying],
         // Boosted to match standard Vivillon (Meadow)
@@ -17420,7 +17402,7 @@ export const pokemonList = createPokemonArray(
         },
     },
     {
-        'id': 666.12,
+        'id': 666.11,
         'name': 'Vivillon (Sandstorm)',
         'type': [PokemonType.Bug, PokemonType.Flying],
         // Boosted to match standard Vivillon (Meadow)
@@ -17438,7 +17420,7 @@ export const pokemonList = createPokemonArray(
         },
     },
     {
-        'id': 666.13,
+        'id': 666.12,
         'name': 'Vivillon (River)',
         'type': [PokemonType.Bug, PokemonType.Flying],
         // Boosted to match standard Vivillon (Meadow)
@@ -17456,7 +17438,7 @@ export const pokemonList = createPokemonArray(
         },
     },
     {
-        'id': 666.14,
+        'id': 666.13,
         'name': 'Vivillon (Monsoon)',
         'type': [PokemonType.Bug, PokemonType.Flying],
         // Boosted to match standard Vivillon (Meadow)
@@ -17474,7 +17456,7 @@ export const pokemonList = createPokemonArray(
         },
     },
     {
-        'id': 666.15,
+        'id': 666.14,
         'name': 'Vivillon (Savanna)',
         'type': [PokemonType.Bug, PokemonType.Flying],
         // Boosted to match standard Vivillon (Meadow)
@@ -17492,7 +17474,7 @@ export const pokemonList = createPokemonArray(
         },
     },
     {
-        'id': 666.16,
+        'id': 666.15,
         'name': 'Vivillon (Sun)',
         'type': [PokemonType.Bug, PokemonType.Flying],
         // Boosted to match standard Vivillon (Meadow)
@@ -17510,7 +17492,7 @@ export const pokemonList = createPokemonArray(
         },
     },
     {
-        'id': 666.17,
+        'id': 666.16,
         'name': 'Vivillon (Ocean)',
         'type': [PokemonType.Bug, PokemonType.Flying],
         // Boosted to match standard Vivillon (Meadow)
@@ -17528,8 +17510,26 @@ export const pokemonList = createPokemonArray(
         },
     },
     {
-        'id': 666.18,
+        'id': 666.17,
         'name': 'Vivillon (Jungle)',
+        'type': [PokemonType.Bug, PokemonType.Flying],
+        // Boosted to match standard Vivillon (Meadow)
+        'eggCycles': 35,
+        'levelType': LevelType.mediumfast,
+        'exp': 185,
+        'catchRate': 45,
+        'base': {
+            'hitpoints': 80,
+            'attack': 52,
+            'specialAttack': 90,
+            'defense': 50,
+            'specialDefense': 50,
+            'speed': 89,
+        },
+    },
+    {
+        'id': 666.18,
+        'name': 'Vivillon (Poké Ball)',
         'type': [PokemonType.Bug, PokemonType.Flying],
         // Boosted to match standard Vivillon (Meadow)
         'eggCycles': 35,
@@ -17649,13 +17649,13 @@ export const pokemonList = createPokemonArray(
     },
     {
         'id': 669.02,
-        'name': 'Flabébé (Blue)',
+        'name': 'Flabébé (Orange)',
         'type': [PokemonType.Fairy],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
         'exp': 61,
         'catchRate': 225,
-        'evolutions': [LevelEvolution('Flabébé (Blue)', 'Floette (Blue)', 19)],
+        'evolutions': [LevelEvolution('Flabébé (Orange)', 'Floette (Orange)', 19)],
         'base': {
             'hitpoints': 44,
             'attack': 38,
@@ -17670,13 +17670,13 @@ export const pokemonList = createPokemonArray(
     },
     {
         'id': 669.03,
-        'name': 'Flabébé (Orange)',
+        'name': 'Flabébé (Blue)',
         'type': [PokemonType.Fairy],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
         'exp': 61,
         'catchRate': 225,
-        'evolutions': [LevelEvolution('Flabébé (Orange)', 'Floette (Orange)', 19)],
+        'evolutions': [LevelEvolution('Flabébé (Blue)', 'Floette (Blue)', 19)],
         'base': {
             'hitpoints': 44,
             'attack': 38,
@@ -17754,13 +17754,13 @@ export const pokemonList = createPokemonArray(
     },
     {
         'id': 670.02,
-        'name': 'Floette (Blue)',
+        'name': 'Floette (Orange)',
         'type': [PokemonType.Fairy],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
         'exp': 130,
         'catchRate': 120,
-        'evolutions': [StoneEvolution('Floette (Blue)', 'Florges (Blue)', StoneType.Shiny_stone)],
+        'evolutions': [StoneEvolution('Floette (Orange)', 'Florges (Orange)', StoneType.Shiny_stone)],
         'base': {
             'hitpoints': 54,
             'attack': 45,
@@ -17775,13 +17775,13 @@ export const pokemonList = createPokemonArray(
     },
     {
         'id': 670.03,
-        'name': 'Floette (Orange)',
+        'name': 'Floette (Blue)',
         'type': [PokemonType.Fairy],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
         'exp': 130,
         'catchRate': 120,
-        'evolutions': [StoneEvolution('Floette (Orange)', 'Florges (Orange)', StoneType.Shiny_stone)],
+        'evolutions': [StoneEvolution('Floette (Blue)', 'Florges (Blue)', StoneType.Shiny_stone)],
         'base': {
             'hitpoints': 54,
             'attack': 45,
@@ -17877,7 +17877,7 @@ export const pokemonList = createPokemonArray(
     },
     {
         'id': 671.02,
-        'name': 'Florges (Blue)',
+        'name': 'Florges (Orange)',
         'type': [PokemonType.Fairy],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
@@ -17897,7 +17897,7 @@ export const pokemonList = createPokemonArray(
     },
     {
         'id': 671.03,
-        'name': 'Florges (Orange)',
+        'name': 'Florges (Blue)',
         'type': [PokemonType.Fairy],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
@@ -20645,86 +20645,6 @@ export const pokemonList = createPokemonArray(
     },
     {
         'id': 774.01,
-        'name': 'Minior (Blue Core)',
-        'type': [PokemonType.Rock, PokemonType.Flying],
-        'eggCycles': 25,
-        'levelType': LevelType.mediumslow,
-        'exp': 154,
-        'catchRate': 30,
-        'base': {
-            'hitpoints': 60,
-            'attack': 100,
-            'specialAttack': 100,
-            'defense': 60,
-            'specialDefense': 60,
-            'speed': 120,
-        },
-        'gender': {
-            'type': Genders.Genderless,
-        },
-    },
-    {
-        'id': 774.02,
-        'name': 'Minior (Green Core)',
-        'type': [PokemonType.Rock, PokemonType.Flying],
-        'eggCycles': 25,
-        'levelType': LevelType.mediumslow,
-        'exp': 154,
-        'catchRate': 30,
-        'base': {
-            'hitpoints': 60,
-            'attack': 100,
-            'specialAttack': 100,
-            'defense': 60,
-            'specialDefense': 60,
-            'speed': 120,
-        },
-        'gender': {
-            'type': Genders.Genderless,
-        },
-    },
-    {
-        'id': 774.03,
-        'name': 'Minior (Indigo Core)',
-        'type': [PokemonType.Rock, PokemonType.Flying],
-        'eggCycles': 25,
-        'levelType': LevelType.mediumslow,
-        'exp': 154,
-        'catchRate': 30,
-        'base': {
-            'hitpoints': 60,
-            'attack': 100,
-            'specialAttack': 100,
-            'defense': 60,
-            'specialDefense': 60,
-            'speed': 120,
-        },
-        'gender': {
-            'type': Genders.Genderless,
-        },
-    },
-    {
-        'id': 774.04,
-        'name': 'Minior (Orange Core)',
-        'type': [PokemonType.Rock, PokemonType.Flying],
-        'eggCycles': 25,
-        'levelType': LevelType.mediumslow,
-        'exp': 154,
-        'catchRate': 30,
-        'base': {
-            'hitpoints': 60,
-            'attack': 100,
-            'specialAttack': 100,
-            'defense': 60,
-            'specialDefense': 60,
-            'speed': 120,
-        },
-        'gender': {
-            'type': Genders.Genderless,
-        },
-    },
-    {
-        'id': 774.05,
         'name': 'Minior (Red Core)',
         'type': [PokemonType.Rock, PokemonType.Flying],
         'eggCycles': 25,
@@ -20744,8 +20664,88 @@ export const pokemonList = createPokemonArray(
         },
     },
     {
+        'id': 774.02,
+        'name': 'Minior (Orange Core)',
+        'type': [PokemonType.Rock, PokemonType.Flying],
+        'eggCycles': 25,
+        'levelType': LevelType.mediumslow,
+        'exp': 154,
+        'catchRate': 30,
+        'base': {
+            'hitpoints': 60,
+            'attack': 100,
+            'specialAttack': 100,
+            'defense': 60,
+            'specialDefense': 60,
+            'speed': 120,
+        },
+        'gender': {
+            'type': Genders.Genderless,
+        },
+    },
+    {
+        'id': 774.03,
+        'name': 'Minior (Yellow Core)',
+        'type': [PokemonType.Rock, PokemonType.Flying],
+        'eggCycles': 25,
+        'levelType': LevelType.mediumslow,
+        'exp': 154,
+        'catchRate': 30,
+        'base': {
+            'hitpoints': 60,
+            'attack': 100,
+            'specialAttack': 100,
+            'defense': 60,
+            'specialDefense': 60,
+            'speed': 120,
+        },
+        'gender': {
+            'type': Genders.Genderless,
+        },
+    },
+    {
+        'id': 774.04,
+        'name': 'Minior (Green Core)',
+        'type': [PokemonType.Rock, PokemonType.Flying],
+        'eggCycles': 25,
+        'levelType': LevelType.mediumslow,
+        'exp': 154,
+        'catchRate': 30,
+        'base': {
+            'hitpoints': 60,
+            'attack': 100,
+            'specialAttack': 100,
+            'defense': 60,
+            'specialDefense': 60,
+            'speed': 120,
+        },
+        'gender': {
+            'type': Genders.Genderless,
+        },
+    },
+    {
+        'id': 774.05,
+        'name': 'Minior (Blue Core)',
+        'type': [PokemonType.Rock, PokemonType.Flying],
+        'eggCycles': 25,
+        'levelType': LevelType.mediumslow,
+        'exp': 154,
+        'catchRate': 30,
+        'base': {
+            'hitpoints': 60,
+            'attack': 100,
+            'specialAttack': 100,
+            'defense': 60,
+            'specialDefense': 60,
+            'speed': 120,
+        },
+        'gender': {
+            'type': Genders.Genderless,
+        },
+    },
+    {
         'id': 774.06,
-        'name': 'Minior (Violet Core)',
+        'name': 'Minior (Indigo Core)',
         'type': [PokemonType.Rock, PokemonType.Flying],
         'eggCycles': 25,
         'levelType': LevelType.mediumslow,
@@ -20765,7 +20765,7 @@ export const pokemonList = createPokemonArray(
     },
     {
         'id': 774.07,
-        'name': 'Minior (Yellow Core)',
+        'name': 'Minior (Violet Core)',
         'type': [PokemonType.Rock, PokemonType.Flying],
         'eggCycles': 25,
         'levelType': LevelType.mediumslow,
