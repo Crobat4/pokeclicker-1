@@ -159,6 +159,7 @@ export const DUNGEON_HELD_ITEM_MODIFIER = ROUTE_HELD_ITEM_MODIFIER * 4;
 export const DUNGEON_BOSS_HELD_ITEM_MODIFIER = DUNGEON_HELD_ITEM_MODIFIER * 1.5;
 export const HELD_ITEM_CHANCE = 512;
 export const HELD_UNDERGROUND_ITEM_CHANCE = 2048;
+export const GRISEOUS_ITEM_CHANCE = 80;
 export const DNA_ITEM_CHANCE = 60;
 export const LIGHT_ITEM_CHANCE = 100;
 export const RUST_ITEM_CHANCE = 90;
@@ -625,11 +626,11 @@ export const EnvironmentCssClass: Record<Environment, string> = {
 };
 
 export enum Starter {
-    'None' = -1,
-    'Bulbasaur' = 0,
-    'Charmander' = 1,
-    'Squirtle' = 2,
-    'Pikachu' = 3,
+    None = -1,
+    Grass = 0,
+    Fire = 1,
+    Water = 2,
+    Special = 3,
 }
 
 export enum StoneType {
@@ -663,9 +664,11 @@ export enum StoneType {
     'White_DNA',
     'Sachet',
     'Whipped_dream',
+    'Key_stone',
     'Ice_stone',
     'Solar_light',
     'Lunar_light',
+    'Pure_light',
     'Sweet_apple',
     'Tart_apple',
     'Cracked_pot',
@@ -792,6 +795,7 @@ export enum BulletinBoards {
     Johto,
     Hoenn,
     Sevii4567,
+    Sinnoh,
     Kalos,
     Alola,
     Galar,
@@ -1274,7 +1278,7 @@ export const DockTowns = [
 ];
 
 export const RegionalStarters = [
-    [1, 4, 7], // Kanto
+    [1, 4, 7, 25], // Kanto
     [152, 155, 158], // Johto
     [252, 255, 258], // Hoenn
     [387, 390, 393], // Sinnoh
@@ -1285,14 +1289,25 @@ export const RegionalStarters = [
 ];
 
 export const TemporaryBattles = [
+    'Blue 1',
+    'Blue 2',
+    'Blue 3',
+    'Blue 4',
     'Fighting Dojo',
     'Snorlax route 12',
     'Snorlax route 16',
+    'Blue 5',
     'Biker Goon 1',
     'Biker Goon 2',
     'Biker Goon 3',
     'Cue Ball Paxton',
+    'Blue 6',
+    'Silver 1',
+    'Silver 2',
     'Sudowoodo',
+    'Silver 3',
+    'Silver 4',
+    'Silver 5',
     'Suicune 1',
     'Eusine',
     'Suicune 2',
@@ -1300,6 +1315,18 @@ export const TemporaryBattles = [
     'Suicune 4',
     'Suicune 5',
     'Suicune 6',
+    'Silver 6',
+    'Silver 7',
+    'May 1',
+    'May 2',
+    'May 3',
+    'Wally 1',
+    'May 4',
+    'Kecleon 1',
+    'Kecleon 2',
+    'Kecleon 3',
+    'May 5',
+    'Wally 2',
     'Sevii Rocket Grunt 1',
     'Sevii Rocket Grunt 2',
     'Sevii Rocket Grunt 3',
@@ -1313,14 +1340,29 @@ export const TemporaryBattles = [
     'Kimono Girls',
     'Spiky-eared Pichu',
     'Rocket Boss Giovanni',
+    'Barry 1',
+    'Barry 2',
+    'Barry 3',
+    'Barry 4',
     'Galactic Boss Cyrus',
+    'Barry 5',
+    'Barry 6',
+    'Barry 7',
+    'Zero',
+    'Hugh 1',
+    'Hugh 2',
     'Team Plasma Grunt 1',
+    'Colress 1',
     'Team Plasma Grunt 2',
     'Team Plasma Grunt 3',
+    'Hugh 3',
+    'Cheren',
+    'Colress 2',
     'Team Plasma Grunt 4',
     'Team Plasma Grunt 5',
     'Team Plasma Grunts 1',
     'Team Plasma Grunts 2',
+    'Hugh 4',
     'Team Plasma Grunt 6',
     'Zinzolin 1',
     'Team Plasma Grunt 7',
@@ -1328,18 +1370,36 @@ export const TemporaryBattles = [
     'Team Plasma Grunt 9',
     'Zinzolin 2',
     'Plasma Shadow 1',
-    'Colress',
+    'Colress 3',
     'Plasma Shadow 2',
     'Plasma Shadow 3',
     'Plasma Shadow 4',
     'Ghetsis 1',
     'Ghetsis 2',
+    'Hugh 5',
+    'Hugh 6',
+    'Hugh 7',
+    'Dream Researcher',
+    'Shauna 1',
+    'Sycamore 1',
+    'Tierno 1',
+    'Trevor & Tierno',
+    'Calem 1',
+    'Korrina',
     'Aipom Alley',
     'Mime Interview',
     'Underground Fighting Ring',
     'Lab Ambush',
     'Imposter',
     'Possessed Mewtwo',
+    'Calem 2',
+    'Calem 3',
+    'Calem 4',
+    'Sycamore 2',
+    'Shauna 2',
+    'Tierno 2',
+    'Trevor',
+    'Calem 5',
     'Riot',
     'Merilyn',
     'Millis and Argus Steel',
@@ -1351,7 +1411,21 @@ export const TemporaryBattles = [
     'Ash Ketchum Unova',
     'Ash Ketchum Kalos',
     'Ash Ketchum Pinkan',
+    'Calem 6',
+    'Hau 1',
+    'Hau 2',
+    'Hau 3',
+    'Dexio',
+    'Sina',
+    'Hau 4',
+    'Gladion 1',
+    'Battle Royal',
+    'Plumeria 1',
     'Ultra Wormhole',
+    'Hau 5',
+    'Plumeria 2',
+    'Gladion 2',
+    'Necrozma',
     'Ultra Megalopolis',
     'Captain Mina',
     'Captain Ilima',
@@ -1360,28 +1434,38 @@ export const TemporaryBattles = [
     'Captain Kiawe',
     'Captain Sophocles',
     'Kahuna Nanu',
+    'Gladion 3',
     'Anabel',
     'Captain Mina UB',
     'Kahuna Nanu UB',
     'Ash Ketchum Alola',
-    'Hop1',
+    'Rainbow Rocket Grunt 1',
+    'Rainbow Rocket Grunt 2',
+    'Aether Branch Chief Faba',
+    'Team Aqua Leader Archie',
+    'Team Magma Leader Maxie',
+    'Team Galactic Leader Cyrus',
+    'Team Flare Leader Lysandre',
+    'Team Plasma Leader Ghetsis',
+    'Team Rainbow Leader Giovanni',
+    'Hop 1',
     'Mirages',
-    'Hop2',
-    'Hop3',
-    'Bede1',
-    'Hop4',
-    'Bede2',
-    'Marnie1',
-    'Hop5',
-    'Bede3',
-    'Hop6',
-    'Hop7',
-    'Marnie2',
+    'Hop 2',
+    'Hop 3',
+    'Bede 1',
+    'Hop 4',
+    'Bede 2',
+    'Marnie 1',
+    'Hop 5',
+    'Bede 3',
+    'Hop 6',
+    'Hop 7',
+    'Marnie 2',
     'Eternatus',
     'The Darkest Day',
-    'Hop8',
-    'Sordward1',
-    'Shielbert1',
+    'Hop 8',
+    'Sordward 1',
+    'Shielbert 1',
     'Rampaging Tsareena',
     'Rampaging Gyarados',
     'Rampaging Torkoal',
@@ -1393,17 +1477,17 @@ export const TemporaryBattles = [
     'Rampaging Froslass',
     'Gym Leader Marnie',
     'Rampaging Haxorus',
-    'Sordward2',
-    'Shielbert2',
+    'Sordward 2',
+    'Shielbert 2',
     'Rampaging Zacian',
     'Rampaging Zamazenta',
-    'Klara1',
-    'Avery1',
+    'Klara 1',
+    'Avery 1',
     'Mustard',
-    'Klara2',
-    'Avery2',
-    'Klara3',
-    'Avery3',
+    'Klara 2',
+    'Avery 2',
+    'Klara 3',
+    'Avery 3',
     'Kubfu',
     'Zarude Tribe 1',
     'Zarude Tribe 2',
@@ -1577,6 +1661,7 @@ export enum AlolaSubRegions {
     AkalaIsland,
     UlaulaIsland,
     PoniIsland,
+    MagikarpJump,
 }
 
 export enum GalarSubRegions {
@@ -1585,6 +1670,21 @@ export enum GalarSubRegions {
     IsleofArmor,
     CrownTundra,
 }
+
+export enum FinalSubRegions {
+    Final = 0,
+}
+
+export type SubRegions =
+    | KantoSubRegions
+    | JohtoSubRegions
+    | HoennSubRegions
+    | SinnohSubRegions
+    | UnovaSubRegions
+    | KalosSubRegions
+    | AlolaSubRegions
+    | GalarSubRegions
+    | FinalSubRegions;
 
 // Gender Types
 export enum Genders {
@@ -1634,29 +1734,6 @@ export enum ExtraAchievementCategories {
 // Sort Icons
 export const ICON_SORT_UP = '<i class=\'bi bi-sort-up\'>';
 export const ICON_SORT_DOWN = '<i class=\'bi bi-sort-down\'>';
-
-// Gender Types
-export const GENDERLESS = 0;
-export const MALE_ONLY = 1;
-export const FEMALE_ONLY = 2;
-export const MALE_FEMALE = 3; // Default
-
-// Gender Ratio
-export const MALE_12_5 = 8 / 7;
-export const MALE_25 = 4 / 3;
-export const MALE_50 = 2; // Default
-export const MALE_75 = 4;
-export const MALE_87_5 = 8;
-
-// Gender Text
-export const TEXT_GENDERLESS = '';
-export const TEXT_MALE = '<i class="bi bi-gender-male gender-icon-male"></i>';
-export const TEXT_FEMALE = '<i class="bi bi-gender-female gender-icon-female"></i>';
-
-// Current Pokémon Gender
-export const NO_GENDER = 0;
-export const GENDER_MALE = 1;
-export const GENDER_FEMALE = 2;
 
 // Poké Ball Selectors
 export enum PokeballSelector {
@@ -1758,3 +1835,11 @@ export const MythicalType = [
     809, // Melmetal
     893, // Zarude
 ];
+
+// Spinda Spots min positions
+export const SpindaSpotsMinPosition = {
+    spotTopLeft: { x: 0, y: 0 },
+    spotTopRight: { x: 24, y: 2 },
+    spotBottomLeft: { x: 3, y: 18 },
+    spotBottomRight: { x: 15, y: 18 },
+};

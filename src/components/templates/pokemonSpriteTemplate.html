@@ -1,7 +1,53 @@
 <script type="text/html" id="pokemonSpriteTemplate">
-    <img class="enemy"
-        data-bind="attr:{ src: PokemonHelper.getImage($data.pokemon.id, $data.pokemon.shiny, $data.pokemon.gender == GameConstants.BattlePokemonGender.Female) }"
-        src=""/>
+    <knockout class="position-relative d-inline-block">
+        <img class="enemy"
+            data-bind="attr:{ src: PokemonHelper.getImage($data.pokemon.id, $data.pokemon.shiny, $data.pokemon.gender == GameConstants.BattlePokemonGender.Female) }"
+            src=""/>
+        <!-- ko if: $data.pokemon.id === 327 -->
+            <!-- ko using: PokemonHelper.getSpindaMask($data.pokemon.shiny), as: 'spindaMaskSprite' -->
+                <!-- ko using: PokemonHelper.generateSpindaSpots(GameConstants.SpindaSpotsMinPosition.spotTopLeft), as: 'spotTopLeft' -->
+                <knockout data-bind="template: { 
+                    name: 'spindaSpotTemplate', 
+                    data: { 
+                        'spotClass': 'spot-top-left', 
+                        'spotPositions': spotTopLeft,
+                        'spindaMaskSprite': spindaMaskSprite
+                    } 
+                }">Spinda Spot</knockout>
+                <!-- /ko -->
+                <!-- ko using: PokemonHelper.generateSpindaSpots(GameConstants.SpindaSpotsMinPosition.spotTopRight), as: 'spotTopRight' -->
+                <knockout data-bind="template: { 
+                    name: 'spindaSpotTemplate', 
+                    data: { 
+                        'spotClass': 'spot-top-right', 
+                        'spotPositions': spotTopRight,
+                        'spindaMaskSprite': spindaMaskSprite
+                    } 
+                }">Spinda Spot</knockout>
+                <!-- /ko -->
+                <!-- ko using: PokemonHelper.generateSpindaSpots(GameConstants.SpindaSpotsMinPosition.spotBottomLeft), as: 'spotBottomLeft' -->
+                <knockout data-bind="template: { 
+                    name: 'spindaSpotTemplate', 
+                    data: { 
+                        'spotClass': 'spot-bottom-left', 
+                        'spotPositions': spotBottomLeft,
+                        'spindaMaskSprite': spindaMaskSprite
+                    } 
+                }">Spinda Spot</knockout>
+                <!-- /ko -->
+                <!-- ko using: PokemonHelper.generateSpindaSpots(GameConstants.SpindaSpotsMinPosition.spotBottomRight), as: 'spotBottomRight' -->
+                <knockout data-bind="template: { 
+                    name: 'spindaSpotTemplate', 
+                    data: { 
+                        'spotClass': 'spot-bottom-right', 
+                        'spotPositions': spotBottomRight,
+                        'spindaMaskSprite': spindaMaskSprite
+                    } 
+                }">Spinda Spot</knockout>
+                <!-- /ko -->
+            <!-- /ko -->
+        <!-- /ko -->
+    </knockout>
 </script>
 
 <!-- Example usage -->

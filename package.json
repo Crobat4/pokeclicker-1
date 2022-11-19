@@ -1,7 +1,7 @@
 {
   "name": "pokeclicker",
-  "version": "0.10.1",
-  "crobatVersion": "0.3.7",
+  "version": "0.10.2",
+  "crobatVersion": "0.3.8",
   "description": "PokéClicker repository",
   "main": "index.js",
   "scripts": {
@@ -10,8 +10,11 @@
     "ts-test": "gulp scripts",
     "eslint": "eslint --ext ts ./src/scripts ./src/modules",
     "eslint-fix": "eslint --ext ts --fix ./src/scripts ./src/modules",
-    "website": "npm test && cross-env NODE_ENV=production gulp website",
-    "publish": "npm test && git push origin develop:master"
+    "website": "npm run tl:update && npm test && cross-env NODE_ENV=production gulp website",
+    "publish": "npm test && git push origin develop:master",
+    "tl:init": "git submodule update --init",
+    "tl:update": "git submodule update --remote",
+    "clean": "npm ci && npm run tl:init"
   },
   "repository": {
     "type": "git",
@@ -82,6 +85,10 @@
     "bootstrap": "^4.5.3",
     "bootstrap-icons": "^1.9.1",
     "eslint": "^7.4.0",
+    "i18next": "^21.9.2",
+    "i18next-browser-languagedetector": "^6.1.5",
+    "i18next-chained-backend": "^3.1.0",
+    "i18next-http-backend": "^1.4.4",
     "intro.js": "^2.9.3",
     "jquery": "^3.5.1",
     "jquery-ui": "^1.13.2",

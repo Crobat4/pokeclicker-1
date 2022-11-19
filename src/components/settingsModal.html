@@ -14,6 +14,7 @@
                     <li class="nav-item"><a class="nav-link" href="#settings-sound" data-toggle="tab">Sound</a></li>
                     <li class="nav-item"><a class="nav-link" href="#settings-notifications" data-toggle="tab">Notifications</a></li>
                     <li class="nav-item"><a class="nav-link" href="#settings-hotkeys" data-toggle="tab">Hotkeys</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#settings-accessibility" data-toggle="tab">Accessibility</a></li>
                     <li class="nav-item"><a class="nav-link" href="#settings-other" data-toggle="tab">Other</a></li>
                 </ul>
 
@@ -27,6 +28,7 @@
                               </tr>
                             </thead> -->
                             <tbody>
+                                <tr data-bind="template: { name: 'MultipleChoiceSettingTemplate', data: Settings.getSetting('translation.language')}"></tr>
                                 <tr data-bind="template: { name: 'MultipleChoiceSettingTemplate', data: Settings.getSetting('gameDisplayStyle')}"></tr>
                                 <tr data-bind="template: { name: 'MultipleChoiceSettingTemplate', data: Settings.getSetting('theme')}"></tr>
                                 <tr data-bind="template: { name: 'MultipleChoiceSettingTemplate', data: Settings.getSetting('backgroundImage')}"></tr>
@@ -119,7 +121,7 @@
                                 <tr data-bind="template: { name: 'KeyChoiceSettingTemplate', data: Settings.getSetting('hotkey.underground.bomb')}"></tr>
                                 <tr>
                                     <td class="p-2">
-                                        <knockout>Use Restore:</knockout>
+                                        <knockout data-bind="text: App.translation.get('hotkey.underground.useRestore', 'settings', { defaultValue: 'Use Restore'})"></knockout><span>:</span>
                                     </td>
                                     <td class="p-0" data-bind="tooltip: {
                                         title: 'Each number refers to a specific Restore',
@@ -135,7 +137,7 @@
                             <tbody>
                                 <tr>
                                     <td class="p-2">
-                                        <knockout>Toggle Oak Item:</knockout>
+                                        <knockout data-bind="text: App.translation.get('hotkey.oakItems.toggle', 'settings', { defaultValue: 'Toggle Oak Item'})"></knockout><span>:</span>
                                     </td>
                                     <td class="p-0" data-bind="tooltip: {
                                         title: 'Each number refers to a specific Oak Item',
@@ -151,7 +153,7 @@
                             <tbody>
                                 <tr>
                                     <td class="p-2">
-                                        <knockout>Select Poké Ball Type:</knockout>
+                                        <knockout data-bind="text: App.translation.get('hotkey.pokeballSelector.select', 'settings', { defaultValue: 'Select Poké Ball Type'})"></knockout><span>:</span>
                                     </td>
                                     <td class="p-0" data-bind="tooltip: {
                                         title: 'Each number refers to a specific Poké Ball',
@@ -178,7 +180,7 @@
                                 <tr data-bind="template: { name: 'KeyChoiceSettingTemplate', data: Settings.getSetting('hotkey.town.start')}"></tr>
                                 <tr>
                                     <td class="p-2">
-                                        <knockout>Access the towns content:</knockout>
+                                        <knockout data-bind="text: App.translation.get('hotkey.town.accessContent', 'settings', { defaultValue: 'Access the towns content'})"></knockout><span>:</span>
                                     </td>
                                     <td class="p-0" data-bind="tooltip: {
                                         title: 'Can access anything from Gyms to NPCs. Each number is a button.',
@@ -194,7 +196,7 @@
                             <tbody>
                                 <tr>
                                     <td class="p-2">
-                                        <knockout>Select item:</knockout>
+                                        <knockout data-bind="text: App.translation.get('hotkey.shop.selectItem', 'settings', { defaultValue: 'Select item'})"></knockout><span>:</span>
                                     </td>
                                     <td class="p-0" data-bind="tooltip: {
                                         title: 'Each number selects an item in the shop.',
@@ -214,7 +216,7 @@
                             <tbody>
                                 <tr>
                                     <td class="p-2">
-                                        <knockout>Select region:</knockout>
+                                        <knockout data-bind="text: App.translation.get('hotkey.ship.selectRegion', 'settings', { defaultValue: 'Select region'})"></knockout><span>:</span>
                                     </td>
                                     <td class="p-0" data-bind="tooltip: {
                                         title: 'Each number selects a region.',
@@ -230,7 +232,7 @@
                             <tbody>
                                 <tr>
                                     <td class="p-2">
-                                        <knockout>Change Routes:</knockout>
+                                        <knockout data-bind="text: App.translation.get('hotkey.changeRoutes', 'settings', { defaultValue: 'Change Routes'})"></knockout><span>:</span>
                                     </td>
                                     <td class="p-0" data-bind="tooltip: {
                                         title: 'Change routes based on route order',
@@ -240,6 +242,14 @@
                                     </td>
                                 </tr>
                                 <tr data-bind="template: { name: 'KeyChoiceSettingTemplate', data: Settings.getSetting('hotkey.forceSave')}"></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="tab-pane" id="settings-accessibility">
+                        <table class="table table-striped table-hover m-0">
+                            <tbody>
+                                <tr data-bind="template: { name: 'BooleanSettingTemplate', data: Settings.getSetting('accessibilityPokerus')}"></tr>
                             </tbody>
                         </table>
                     </div>

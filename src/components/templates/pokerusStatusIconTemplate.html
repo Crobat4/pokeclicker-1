@@ -1,0 +1,12 @@
+<script type="text/html" id="pokerusStatusIconTemplate">
+    <img data-bind="
+      attr:{ 
+        src: 'assets/images/breeding/pokerus/' + GameConstants.Pokerus[$data.pokerusConstant] + '' + (Settings.getSetting('accessibilityPokerus').observableValue() ? '-accessibility' : '') + '.png',
+        width: `${$data.iconWidth || '40px'}`
+      }"
+    src=""/>
+</script>
+
+<!-- Example usage -->
+<!-- <knockout data-bind="template: { name: 'pokerusStatusIconTemplate', data: { 'pokerusConstant': App.game.party.getPokemonByName(Battle.enemyPokemon().name)?.pokerus, 'iconWidth': 40px } }">Pokerus icon</knockout> -->
+

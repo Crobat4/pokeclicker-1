@@ -13,11 +13,21 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.DEFAULT, '<div class="w-100 d-flex justify-content-around"><a href="https://github.com/Crobat4/pokeclicker" target="_blank">Repository</a><a href="https://github.com/Crobat4/Pokeclicker-desktop" target="_blank">Desktop build</a><a href="https://github.com/Crobat4/pokeclicker/wiki" target="_blank">Github Wiki</a></div>'),
     new Changelog(changelogType.DEFAULT, 'This will keep being updated as long as the thread is alive...'),
     // ⥂⥄
+    // v0.3.8
+    new ChangelogUpdate('v0.3.8', new Date(2022, 11 - 1, 19)),
+    new Changelog(changelogType.NEW, 'Added Official updates (v0.10.2)'),
+    new Changelog(changelogType.NEW, 'Spinda now show its spots in the wild'),
+    new Changelog(changelogType.NEW, 'Added Accessibility tab in Settings (accessibility features made in Official updates)'),
+    new Changelog(changelogType.CHANGE, 'Battle Café: Misc changes'),
+    new Changelog(changelogType.CHANGE, 'Hatchery: Shiny indicator in queue changed'),
+    new Changelog(changelogType.CHANGE, 'Pokédex: Misc styles changes'),
+    new Changelog(changelogType.FIXED, 'Battle view text'),
+    new Changelog(changelogType.FIXED, 'Held item not appearing in Pokédex'),
+    new Changelog(changelogType.FIXED, '"No Pokémon found" text in Pokédex'),
     // v0.3.7
     new ChangelogUpdate('v0.3.7', new Date(2022, 10 - 1, 30)),
     new Changelog(changelogType.NEW, 'Added Official updates (v0.10.1)'),
     new Changelog(changelogType.NEW, 'Added new ball selections (Contagious and Legendary/Mythical)'),
-    // new Changelog(changelogType.CHANGE, 'Battle Café: Max spins now increase for each completed sweet'),
     new Changelog(changelogType.CHANGE, 'Eiscue and its form now change according to the weather and environment'),
     new Changelog(changelogType.CHANGE, 'Cramorant and its forms now change according to the weather'),
     new Changelog(changelogType.CHANGE, 'Castform\'s forms now change according to the weather'),
