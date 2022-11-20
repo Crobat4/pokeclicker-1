@@ -22,9 +22,9 @@ class FluteEffectRunner {
 
         GameHelper.enumStrings(GameConstants.FluteItemType).forEach((itemName: GameConstants.FluteItemType) => {
             if (this.getLowestGem(itemName) > 0 && this.isActive(itemName)()) {
-                player.effectList[itemName](Math.max(0, this.getLowestGem(itemName) - this.numActiveFlutes()));
+                player.effectList[itemName](Math.max(0, this.getLowestGem(itemName) - 1));
                 this.updateFormattedTimeLeft(itemName);
-                if (this.numActiveFlutes() >= this.getLowestGem(itemName)) {
+                if (1 >= this.getLowestGem(itemName)) {
                     this.removeEffect(itemName);
                     Notifier.notify({
                         message: `You ran out of gems for the ${GameConstants.humanifyString(itemName)}'s effect!`,
@@ -63,7 +63,7 @@ class FluteEffectRunner {
     }
 
     public static gemCost() {
-        this.activeGemTypes().forEach(idx => App.game.gems.gainGems(-this.numActiveFlutes(), idx));
+        this.activeGemTypes().forEach(idx => App.game.gems.gainGems(-1, idx));
     }
 
     public static getEffect(itemName: GameConstants.FluteItemType) {
@@ -95,12 +95,12 @@ class FluteEffectRunner {
     }
 
     public static fluteFormattedTime(itemName: GameConstants.FluteItemType): number {
-        return (player.effectList[itemName]() / this.numActiveFlutes());
+        return (player.effectList[itemName]() / 1);
     }
 
     public static fluteTooltip(itemName: GameConstants.FluteItemType): string {
         const str = [];
-        str.push(`Gems/Second: ${FluteEffectRunner.numActiveFlutes()} <br><br>Gem Types Used:`);
+        str.push(`Gems/Second: 1 <br><br>Gem Types Used:`);
         const item = (ItemList[itemName] as FluteItem);
         item.gemTypes.forEach(t => {
             str.push(`${t}: ${App.game.gems.gemWallet[PokemonType[t]]().toLocaleString('en-US')}`);
