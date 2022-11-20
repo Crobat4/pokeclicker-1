@@ -100,7 +100,7 @@ class FluteEffectRunner {
 
     public static fluteTooltip(itemName: GameConstants.FluteItemType): string {
         const str = [];
-        str.push(`Gems/Second: 1 <br><br>Gem Types Used:`);
+        str.push('Gems/Second: 1 <br><br>Gem Types Used:');
         const item = (ItemList[itemName] as FluteItem);
         item.gemTypes.forEach(t => {
             str.push(`${t}: ${App.game.gems.gemWallet[PokemonType[t]]().toLocaleString('en-US')}`);
