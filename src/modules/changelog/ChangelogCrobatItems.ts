@@ -13,6 +13,12 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.DEFAULT, '<div class="w-100 d-flex justify-content-around"><a href="https://github.com/Crobat4/pokeclicker" target="_blank">Repository</a><a href="https://github.com/Crobat4/Pokeclicker-desktop" target="_blank">Desktop build</a><a href="https://github.com/Crobat4/pokeclicker/wiki" target="_blank">Github Wiki</a></div>'),
     new Changelog(changelogType.DEFAULT, 'This will keep being updated as long as the thread is alive...'),
     // ⥂⥄
+    // v0.3.9
+    new ChangelogUpdate('v0.3.9', new Date(2022, 11 - 1, 19)),
+    new Changelog(changelogType.NEW, 'Added Official updates (v0.10.3)'),
+    new Changelog(changelogType.CHANGE, 'Flutes now consumes 1 gem regardless the amount of active flutes'),
+    new Changelog(changelogType.CHANGE, 'Solgaleo\'s, Lunala\'s and Necrozma\'s held items drop rate increased'),
+    new Changelog(changelogType.FIXED, 'Hatchery: Long names not showing'),
     // v0.3.8
     new ChangelogUpdate('v0.3.8', new Date(2022, 11 - 1, 19)),
     new Changelog(changelogType.NEW, 'Added Official updates (v0.10.2)'),
