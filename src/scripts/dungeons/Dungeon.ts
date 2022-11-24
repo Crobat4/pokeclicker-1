@@ -6288,7 +6288,7 @@ dungeonList['P2 Laboratory'] = new Dungeon('P2 Laboratory',
         new DungeonBossPokemon('Zangoose', 62000000, 100, {requirement: new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('P2 Laboratory'))}),
         new DungeonBossPokemon('Audino', 62000000, 100, {requirement: new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('P2 Laboratory'))}),
         new DungeonBossPokemon('Durant', 58000000, 100, {requirement: new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('P2 Laboratory'))}),
-        new DungeonBossPokemon('Genesect', 62000000, 100, {requirement: new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('P2 Laboratory'))}),
+        new DungeonBossPokemon('Genesect', 62000000, 100, {weight: 2.75, requirement: new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('P2 Laboratory'))}),
         new DungeonTrainer('Team Plasma',
             [
                 new GymPokemon('Magneton', 10000000, 72),
@@ -6297,7 +6297,7 @@ dungeonList['P2 Laboratory'] = new Dungeon('P2 Laboratory',
                 new GymPokemon('Beheeyem', 10000000, 72),
                 new GymPokemon('Magnezone', 10000000, 72),
                 new GymPokemon('Klinklang', 11000000, 74),
-            ], { weight: 1 }, 'Colress', '(colress)'),
+            ], { weight: 2 }, 'Colress', '(colress)'),
     ],
     396500, 18);
 
@@ -8294,8 +8294,8 @@ dungeonList['Mount Lanakila'] = new Dungeon('Mount Lanakila',
         new DungeonBossPokemon('Absol', 81064250, 50),
         new DungeonBossPokemon('Glalie', 81064250, 50),
         new DungeonBossPokemon('Vanilluxe', 81064250, 50),
-        new DungeonBossPokemon('Drampa', 81064250, 50, {requirement: new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Mount Lanakila'))}), // Crobat Fork
-        new DungeonBossPokemon('Necrozma', 83527125, 65),
+        new DungeonBossPokemon('Drampa', 81064250, 50, {weight: 2, requirement: new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Mount Lanakila'))}), // Crobat Fork
+        new DungeonBossPokemon('Necrozma', 83527125, 65, {weight: 2.75}),
     ],
     1175000, 26);
 

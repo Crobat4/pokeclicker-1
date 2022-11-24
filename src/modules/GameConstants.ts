@@ -161,7 +161,7 @@ export const HELD_ITEM_CHANCE = 512;
 export const HELD_UNDERGROUND_ITEM_CHANCE = 2048;
 export const GRISEOUS_ITEM_CHANCE = 80;
 export const DNA_ITEM_CHANCE = 60;
-export const LIGHT_ITEM_CHANCE = 90;
+export const LIGHT_ITEM_CHANCE = 100;
 export const RUST_ITEM_CHANCE = 90;
 export const MANE_ITEM_CHANCE = 10;
 
@@ -984,6 +984,18 @@ export const OrangeGyms = [
     'Kumquat Island',
     'Supreme Gym Leader Drake',
 ];
+export const MagikarpJumpGyms = [
+    'Friend League',
+    'Quick League',
+    'Heavy League',
+    'Great League',
+    'Fast League',
+    'Luxury League',
+    'Heal League',
+    'Ultra League',
+    'E4 League',
+    'Master League',
+];
 
 export const RegionGyms = [
     KantoGyms,
@@ -996,6 +1008,7 @@ export const RegionGyms = [
     GalarGyms,
     // Keep it at the bottom, as we want optional badges at the bottom
     OrangeGyms,
+    MagikarpJumpGyms,
 ];
 
 export function getGymIndex(gym: string): number {
