@@ -18,10 +18,10 @@
     <script src="libs/Sortable.min.js"></script>
 
     <!-- New module-based code from './modules' -->
-    <script src="scripts/modules.min.js?v=0.10.3"></script>
+    <script src="scripts/modules.min.js?v=0.10.4"></script>
 
     <!--Minified scripts-->
-    <script src="scripts/script.min.js?v=0.10.3"></script>
+    <script src="scripts/script.min.js?v=0.10.4"></script>
 
     <!--Popper.js-->
     <script src="libs/popper.min.js"></script>
@@ -42,7 +42,7 @@
     <link href="libs/introjs-modern.css" rel="stylesheet">
 
     <!--Minified styles-->
-    <link href="styles/styles.min.css?v=0.10.3" rel="stylesheet">
+    <link href="styles/styles.min.css?v=0.10.4" rel="stylesheet">
 
     <!-- Google Analytics-->
     <style>
@@ -805,7 +805,7 @@
 </span> -->
 
 <script type="text/html" id="pokemonNameTemplate">
-    <knockout class="pokemon-name" data-bind="html: $data.pokemon.displayName"></knockout>
+    <knockout class="pokemon-name" data-bind="text: $data.pokemon.displayName"></knockout>
     <knockout data-bind="template: { name: 'pokemonGenderTemplate', data: { 'pokemon': $data.pokemon } }">Pokémon gender</knockout>
 </script>
 
@@ -1225,7 +1225,7 @@
                     style="font-size: 22px;"
                     data-bind="
                         html: Settings.getSetting('partySortDirection').observableValue() ? GameConstants.ICON_SORT_DOWN : GameConstants.ICON_SORT_UP,
-                        tooltip: { title: Settings.getSetting('partySortDirection').observableValue() ? 'Descending (highest value first)' : 'Ascending (lowest value first)', trigger: 'hover', placement:'top', html: true }"
+                        tooltip: { title: Settings.getSetting('partySortDirection').observableValue() ? 'Descending (highest value first)' : 'Ascending (lowest value first)', trigger: 'hover', placement:'top' }"
                 >⥄⥂</label>
                 <input
                     id="partySortDirection"
@@ -1997,7 +1997,6 @@
             hidden: !$data.lock,
             tooltip: {
                 title: $data.lockMessage,
-                html: true,
                 placement: 'bottom',
                 trigger: 'hover'
             }">
@@ -2014,7 +2013,6 @@
             <img class="lock" src="assets/images/breeding/lock.svg" data-bind="hidden: !$data.lock,
             tooltip: {
                 title: $data.lockMessage,
-                html: true,
                 placement: 'bottom',
                 trigger: 'hover'
             }">
@@ -2214,8 +2212,8 @@
 
     <g data-bind="visible: player.subregion == SubRegions.getSubRegion(GameConstants.Region.kanto, 'Kanto').id">
         <image width="1600" height="960" data-bind="attr: {
-            'xlink:href':'assets/images/kanto-kanto.png?v=0.10.3',
-            href:'assets/images/kanto-kanto.png?v=0.10.3'
+            'xlink:href':'assets/images/kanto-kanto.png?v=0.10.4',
+            href:'assets/images/kanto-kanto.png?v=0.10.4'
         }"></image>
 
         <!-- ------ -->
@@ -4436,8 +4434,8 @@
 
     <g data-bind="visible: player.subregion == SubRegions.getSubRegion(GameConstants.Region.kanto, 'Sevii Islands 123').id">
         <image width="1600" height="960" data-bind="attr: {
-            'xlink:href':'assets/images/kanto-sevii123.png?v=0.10.3',
-            href:'assets/images/kanto-sevii123.png?v=0.10.3'
+            'xlink:href':'assets/images/kanto-sevii123.png?v=0.10.4',
+            href:'assets/images/kanto-sevii123.png?v=0.10.4'
         }"></image>
 
         <!-- ------ -->
@@ -4945,8 +4943,8 @@
 
     <g data-bind="visible: player.subregion == SubRegions.getSubRegion(GameConstants.Region.kanto, 'Sevii Islands 4567').id">
         <image width="1600" height="960" data-bind="attr: {
-            'xlink:href':'assets/images/kanto-sevii4567.png?v=0.10.3',
-            href:'assets/images/kanto-sevii4567.png?v=0.10.3'
+            'xlink:href':'assets/images/kanto-sevii4567.png?v=0.10.4',
+            href:'assets/images/kanto-sevii4567.png?v=0.10.4'
         }"></image>
 
         <!-- ------ -->
@@ -6451,8 +6449,8 @@
 
                             <g data-bind='visible: player.region == GameConstants.Region.johto'>
     <image width="1600" height="960" data-bind="attr: {
-        'xlink:href':'assets/images/johto.png?v=0.10.3',
-        href:'assets/images/johto.png?v=0.10.3'
+        'xlink:href':'assets/images/johto.png?v=0.10.4',
+        href:'assets/images/johto.png?v=0.10.4'
     }"></image>
 
     <!-- ------ -->
@@ -8633,8 +8631,8 @@
 
                             <g data-bind='visible: player.region == GameConstants.Region.hoenn'>
     <image width="1600" height="960" data-bind="attr: {
-        'xlink:href':'assets/images/hoenn.png?v=0.10.3',
-        href:'assets/images/hoenn.png?v=0.10.3'
+        'xlink:href':'assets/images/hoenn.png?v=0.10.4',
+        href:'assets/images/hoenn.png?v=0.10.4'
     }"></image>
 
     <!-- ------ -->
@@ -11461,8 +11459,8 @@
 
                             <g data-bind='visible: player.region == GameConstants.Region.sinnoh'>
     <image width="1600" height="960" data-bind="attr: {
-        'xlink:href':'assets/images/sinnoh.png?v=0.10.3',
-        href:'assets/images/sinnoh.png?v=0.10.3'
+        'xlink:href':'assets/images/sinnoh.png?v=0.10.4',
+        href:'assets/images/sinnoh.png?v=0.10.4'
     }"></image>
 
     <!-- ------ -->
@@ -14284,8 +14282,8 @@
 
                             <g data-bind='visible: player.region == GameConstants.Region.unova'>
     <image width="1600" height="960" data-bind="attr: {
-        'xlink:href':'assets/images/unova.png?v=0.10.3',
-        href:'assets/images/unova.png?v=0.10.3'
+        'xlink:href':'assets/images/unova.png?v=0.10.4',
+        href:'assets/images/unova.png?v=0.10.4'
     }"></image>
 
     <!-- ------ -->
@@ -17149,8 +17147,8 @@
 
                             <g data-bind='visible: player.region == GameConstants.Region.kalos'>
     <image width="1600" height="960" data-bind="attr: {
-        'xlink:href':'assets/images/kalos.png?v=0.10.3',
-        href:'assets/images/kalos.png?v=0.10.3'
+        'xlink:href':'assets/images/kalos.png?v=0.10.4',
+        href:'assets/images/kalos.png?v=0.10.4'
     }"></image>
 
     <!-- ------ -->
@@ -19348,8 +19346,8 @@
 
     <g data-bind="visible: player.subregion == SubRegions.getSubRegion(GameConstants.Region.alola, 'Melemele Island').id">
         <image width="1600" height="960" data-bind="attr: {
-            'xlink:href':'assets/images/alola-melemele.png?v=0.10.3',
-            href:'assets/images/alola-melemele.png?v=0.10.3'
+            'xlink:href':'assets/images/alola-melemele.png?v=0.10.4',
+            href:'assets/images/alola-melemele.png?v=0.10.4'
         }"></image>
 
         <!-- ------ -->
@@ -22644,8 +22642,8 @@
 
     <g data-bind="visible: player.subregion == SubRegions.getSubRegion(GameConstants.Region.alola, 'Akala Island').id">
         <image width="1600" height="960" data-bind="attr: {
-            'xlink:href':'assets/images/alola-akala.png?v=0.10.3',
-            href:'assets/images/alola-akala.png?v=0.10.3'
+            'xlink:href':'assets/images/alola-akala.png?v=0.10.4',
+            href:'assets/images/alola-akala.png?v=0.10.4'
         }"></image>
 
         <!-- ------ -->
@@ -24836,8 +24834,8 @@
 
     <g data-bind="visible: player.subregion == SubRegions.getSubRegion(GameConstants.Region.alola, 'Ula\'ula Island').id">
         <image width="1600" height="960" data-bind="attr: {
-            'xlink:href':'assets/images/alola-ulaula.png?v=0.10.3',
-            href:'assets/images/alola-ulaula.png?v=0.10.3'
+            'xlink:href':'assets/images/alola-ulaula.png?v=0.10.4',
+            href:'assets/images/alola-ulaula.png?v=0.10.4'
         }"></image>
 
         <!-- ------ -->
@@ -27470,8 +27468,8 @@
 
     <g data-bind="visible: player.subregion == SubRegions.getSubRegion(GameConstants.Region.alola, 'Poni Island').id">
         <image width="1600" height="960" data-bind="attr: {
-            'xlink:href':'assets/images/alola-poni.png?v=0.10.3',
-            href:'assets/images/alola-poni.png?v=0.10.3'
+            'xlink:href':'assets/images/alola-poni.png?v=0.10.4',
+            href:'assets/images/alola-poni.png?v=0.10.4'
         }"></image>
 
         <!-- ------ -->
@@ -29510,8 +29508,8 @@
 
     <g data-bind="visible: player.subregion == SubRegions.getSubRegion(GameConstants.Region.alola, 'Magikarp Jump').id">
         <image width="1600" height="960" data-bind="attr: {
-            'xlink:href':'assets/images/alola-magikarp-jump.png?v=0.10.3',
-            href:'assets/images/alola-magikarp-jump.png?v=0.10.3'
+            'xlink:href':'assets/images/alola-magikarp-jump.png?v=0.10.4',
+            href:'assets/images/alola-magikarp-jump.png?v=0.10.4'
         }"></image>
 
         <!-- ------ -->
@@ -30124,8 +30122,8 @@
 
     <g data-bind="visible: player.subregion == SubRegions.getSubRegion(GameConstants.Region.galar, 'South Galar').id">
         <image width="1600" height="960" data-bind="attr: {
-            'xlink:href':'assets/images/galar-south.png?v=0.10.3',
-            href:'assets/images/galar-south.png?v=0.10.3'
+            'xlink:href':'assets/images/galar-south.png?v=0.10.4',
+            href:'assets/images/galar-south.png?v=0.10.4'
         }"></image>
 
         <!-- ------ -->
@@ -32189,8 +32187,8 @@
     </g>
     <g data-bind="visible: player.subregion == SubRegions.getSubRegion(GameConstants.Region.galar, 'North Galar').id">
         <image width="1600" height="960" data-bind="attr: {
-            'xlink:href':'assets/images/galar-north.png?v=0.10.3',
-            href:'assets/images/galar-north.png?v=0.10.3'
+            'xlink:href':'assets/images/galar-north.png?v=0.10.4',
+            href:'assets/images/galar-north.png?v=0.10.4'
         }"></image>
 
         <!-- ------ -->
@@ -33208,8 +33206,8 @@
     </g>
     <g data-bind="visible: player.subregion == SubRegions.getSubRegion(GameConstants.Region.galar, 'Isle of Armor').id">
         <image width="1600" height="960" data-bind="attr: {
-            'xlink:href':'assets/images/galar-isle-of-armor.png?v=0.10.3',
-            href:'assets/images/galar-isle-of-armor.png?v=0.10.3'
+            'xlink:href':'assets/images/galar-isle-of-armor.png?v=0.10.4',
+            href:'assets/images/galar-isle-of-armor.png?v=0.10.4'
         }"></image>
 
         <!-- ------ -->
@@ -35773,8 +35771,8 @@
     </g>
     <g data-bind="visible: player.subregion == SubRegions.getSubRegion(GameConstants.Region.galar, 'Crown Tundra').id">
         <image width="1600" height="960" data-bind="attr: {
-            'xlink:href':'assets/images/galar-crown-tundra.png?v=0.10.3',
-            href:'assets/images/galar-crown-tundra.png?v=0.10.3'
+            'xlink:href':'assets/images/galar-crown-tundra.png?v=0.10.4',
+            href:'assets/images/galar-crown-tundra.png?v=0.10.4'
         }"></image>
 
         <!-- ------ -->
@@ -38091,7 +38089,7 @@ aria-labelledby="AchievementsModalLabel" aria-hidden="true">
                                         <div class="input-group-append bg-primary text-light">
                                             <label for="achievementSortDirection" class="clickable m-0 pl-2 pr-2 sort-icons" style="font-size: 22px;" data-bind="
                                             html: Settings.getSetting('achievementSortDirection').observableValue() ? GameConstants.ICON_SORT_DOWN : GameConstants.ICON_SORT_UP,
-                                            tooltip: { title: Settings.getSetting('achievementSortDirection').observableValue() ? 'Descending (highest value first)' : 'Ascending (lowest value first)', trigger: 'hover', placement:'top', html: true }
+                                            tooltip: { title: Settings.getSetting('achievementSortDirection').observableValue() ? 'Descending (highest value first)' : 'Ascending (lowest value first)', trigger: 'hover', placement:'top' }
                                             ">⥄⥂</label>
                                             <input id="achievementSortDirection" style="vertical-align: middle" class="hidden" type='checkbox'
                                                    data-bind="checked: Settings.getSetting('achievementSortDirection').observableValue()"
@@ -38390,9 +38388,9 @@ aria-labelledby="AchievementsModalLabel" aria-hidden="true">
                     </thead>
                     <tbody data-bind="foreach: App.game.logbook.filteredLogs()">
                       <tr>
-                        <td class="tight" data-bind="html:type.label, class: 'table-' + type.display"></td>
-                        <td class="text-left" data-bind="text:description">-</td>
-                        <td class="text-left"><code data-bind="text:new Date(date).toLocaleString()">-</code></td>
+                        <td class="tight" data-bind="text: type.label, class: 'table-' + type.display"></td>
+                        <td class="text-left" data-bind="text: description">-</td>
+                        <td class="text-left"><code data-bind="text: new Date(date).toLocaleString()">-</code></td>
                       </tr>
                     </tbody>
                 </table>
@@ -38861,7 +38859,7 @@ aria-labelledby="AchievementsModalLabel" aria-hidden="true">
                 blur: (s, e) => {
                     e.currentTarget.innerHTML = `<code>${s.prefix}</code>${s.observableValue()}<code>${s.suffix}</code>`;
                 }
-            }, html: `<code>${$data.prefix}</code>${$data.observableValue()}<code>${$data.suffix}</code>`">Key</kbd>
+            }"><code data-bind="text: $data.prefix"></code><ko data-bind="text: $data.observableValue()"></ko><code data-bind="text: $data.suffix"></code></kbd>
     </td>
 </script>
 
@@ -38996,7 +38994,7 @@ aria-labelledby="AchievementsModalLabel" aria-hidden="true">
                     <td><center><span class="text-muted">4x Damage</span></center></td>
                 </tr>
                 <tr>
-                    <td><center><span class="text-muted">5,540,000 EVs</span</center>></td>
+                    <td><center><span class="text-muted">5,540,000 EVs</span></center></td>
                     <td><center><span class="text-muted">5x Damage</span></center></td>
                 </tr>
             </table>
@@ -39095,7 +39093,7 @@ aria-labelledby="AchievementsModalLabel" aria-hidden="true">
               </thead>
               <tbody data-bind="foreach: ChangelogItems">
                 <tr data-bind="css: { 'table-dark': type.label == 'UPDATE' }">
-                  <td class="tight" data-bind="html: type.label, class: 'table-' + type.display"></td>
+                  <td class="tight" data-bind="text: type.label, class: 'table-' + type.display"></td>
                   <td class="text-left" data-bind="html: description">-</td>
                 </tr>
               </tbody>
@@ -39403,7 +39401,7 @@ aria-labelledby="hallOfFameModalLabel" aria-hidden="true">
                 <p data-bind="visible: player.region == GameConstants.Region.kanto">
                     So, you won! Congratulations!<br/>
                     You are the new Pokémon League champion!<br/>
-                    You have grown up so much since you first left with <span data-bind="text: PokemonHelper.getPokemonById(GameConstants.RegionalStarters[GameConstants.Region.kanto][this.starterPicked]).name">starter</span>!<br/>
+                    You have grown up so much since you first left with <span data-bind="text: PokemonHelper.getPokemonById(GameConstants.RegionalStarters[GameConstants.Region.kanto][player.regionStarters[GameConstants.Region.kanto]()]).name">starter</span>!<br/>
                     <br/>
                     There are many more regions to explore!
                 </p>
@@ -39710,8 +39708,7 @@ aria-labelledby="breedingModalLabel" aria-hidden="true">
                                     <div class="input-group-append bg-primary text-light">
                                         <label for="hatcherySortDirection" class="clickable m-0 pl-2 pr-2 sort-icons" style="font-size: 22px;" data-bind="
                                         html: Settings.getSetting('hatcherySortDirection').observableValue() ? GameConstants.ICON_SORT_DOWN : GameConstants.ICON_SORT_UP,
-                                        tooltip: { title: Settings.getSetting('hatcherySortDirection').observableValue() ? 'Descending (highest value first)' : 'Ascending (lowest value first)', trigger: 'hover', placement:'top', html: true }
-
+                                        tooltip: { title: Settings.getSetting('hatcherySortDirection').observableValue() ? 'Descending (highest value first)' : 'Ascending (lowest value first)', trigger: 'hover', placement:'top' }
                                         ">⥄⥂</label>
                                         <input id="hatcherySortDirection" style="vertical-align: middle" class="hidden" type='checkbox'
                                             data-bind="checked: Settings.getSetting('hatcherySortDirection').observableValue()"
@@ -39888,7 +39885,7 @@ aria-labelledby="breedingModalLabel" aria-hidden="true">
                                                         <label class="clickable m-0 px-2 sort-icons" style="font-size: 20px;" data-bind="
                                                             attr: {for: 'hatcheryHelperSortDirection' + $index() },
                                                             html: $data.sortDirection() ? GameConstants.ICON_SORT_DOWN : GameConstants.ICON_SORT_UP,
-                                                            tooltip: { title: $data.sortDirection() ? 'Descending (highest value first)' : 'Ascending (lowest value first)', trigger: 'hover', placement:'top', html: true }
+                                                            tooltip: { title: $data.sortDirection() ? 'Descending (highest value first)' : 'Ascending (lowest value first)', trigger: 'hover', placement:'top' }
                                                             ">⥄⥂</label>
                                                         <input class="hidden" type="checkbox"
                                                             data-bind="attr: { id: 'hatcheryHelperSortDirection' + $index() }, checked:  $data.sortDirection" />
@@ -40626,14 +40623,12 @@ aria-labelledby="pokedexModalLabel">
                       <td class="text-left align-middle">Gender Ratio</td>
                       <td class="text-justify tight">
                         <!-- ko if: pokemonMap[$data].gender.type === GameConstants.Genders.Genderless -->
-                          <code data-bind="html: 'Genderless'"></code>
+                          <code>Genderless</code>
                         <!-- /ko -->
                         <!-- ko if: pokemonMap[$data].gender.type != GameConstants.Genders.Genderless -->
-                          <code data-bind="html: '♂: '"></code>
-                          <code data-bind="html: PokedexHelper.getGenderRatioData(pokemonMap[$data]).male + '%'"></code>
+                          <code data-bind="text: '♂: ' + PokedexHelper.getGenderRatioData(pokemonMap[$data]).male + '%'"></code>
                           <br />
-                          <code data-bind="html: '♀: '"></code>
-                          <code data-bind="html: PokedexHelper.getGenderRatioData(pokemonMap[$data]).female + '%'"></code>
+                          <code data-bind="text: '♀: ' + PokedexHelper.getGenderRatioData(pokemonMap[$data]).female + '%'"></code>
                         <!-- /ko -->
                       </td>
                     </tr>
@@ -40863,7 +40858,7 @@ aria-labelledby="pokedexModalLabel">
                       <div class="input-group-append bg-primary text-light">
                           <label for="proteinSortDirection" class="clickable m-0 pl-2 pr-2 sort-icons" style="font-size: 22px;" data-bind="
                             html: Settings.getSetting('proteinSortDirection').observableValue() ? GameConstants.ICON_SORT_DOWN : GameConstants.ICON_SORT_UP,
-                            tooltip: { title: Settings.getSetting('proteinSortDirection').observableValue() ? 'Descending (highest value first)' : 'Ascending (lowest value first)', trigger: 'hover', placement:'top', html: true }
+                            tooltip: { title: Settings.getSetting('proteinSortDirection').observableValue() ? 'Descending (highest value first)' : 'Ascending (lowest value first)', trigger: 'hover', placement:'top' }
                             ">⥄⥂</label>
                           <input id="proteinSortDirection" style="vertical-align: middle" class="hidden" type='checkbox'
                               data-bind="checked: Settings.getSetting('proteinSortDirection').observableValue()"
@@ -42678,7 +42673,7 @@ aria-labelledby="bulletinBoardModalLabel" aria-hidden="true">
                       <div class="input-group-append bg-primary text-light">
                           <label for="heldItemSortDirection" class="clickable m-0 pl-2 pr-2" style="font-size: 22px;" data-bind="
                             text: Settings.getSetting('heldItemSortDirection').observableValue() ? '⥄' : '⥂',
-                            tooltip: { title: Settings.getSetting('heldItemSortDirection').observableValue() ? 'Descending (highest value first)' : 'Ascending (lowest value first)', trigger: 'hover', placement: 'bottom', html: true }
+                            tooltip: { title: Settings.getSetting('heldItemSortDirection').observableValue() ? 'Descending (highest value first)' : 'Ascending (lowest value first)', trigger: 'hover', placement: 'bottom' }
                           ">⥂</label>
                           <input id="heldItemSortDirection" style="vertical-align: middle" class="hidden" type='checkbox'
                               data-bind="checked: Settings.getSetting('heldItemSortDirection').observableValue()"
