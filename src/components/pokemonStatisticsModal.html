@@ -13,7 +13,7 @@
             </div>
             <div class="modal-body p-0">
               <div style="position: absolute; top: 0px; right: 0px;" data-bind="if: App.game.party.getPokemon(pokemonMap[$data].id)?.pokerus">
-                  <knockout data-bind="template: { name: 'pokerusStatusIconTemplate', data: { 'pokerusConstant': App.game.party.getPokemon(pokemonMap[$data].id)?.pokerus } }">Pokerus icon</knockout>
+                  <knockout data-bind="template: { name: 'pokerusStatusTemplate', data: { 'pokerus': App.game.party.getPokemon(pokemonMap[$data].id)?.pokerus } }">Pokerus icon</knockout>
                 </div>
               <div style="display: inline-block;">
                 <div>

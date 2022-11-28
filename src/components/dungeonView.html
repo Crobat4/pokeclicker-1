@@ -115,7 +115,7 @@
                   <!--Pokérus image-->
                   <!-- ko using: DungeonRunner.dungeon.allAvailablePokemon(), as: 'pokemonList' -->
                   <!-- ko if: RouteHelper.minPokerusCheck(pokemonList)  -->
-                  <knockout data-bind="template: { name: 'pokerusStatusIconTemplate', data: { 'pokerusConstant': RouteHelper.minPokerus(pokemonList) } }">Pokerus icon</knockout>
+                  <knockout data-bind="template: { name: 'pokerusStatusTemplate', data: { 'pokerus': RouteHelper.minPokerus(pokemonList) } }">Pokerus icon</knockout>
                   <!-- /ko -->
                   <!-- /ko -->
                 </td>

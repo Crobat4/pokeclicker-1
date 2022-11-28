@@ -26,7 +26,7 @@
                     
                     <!--Pokérus image-->
                     <knockout data-bind="if: RouteHelper.minPokerusCheck(player.town().dungeon.allAvailablePokemon())">
-                        <knockout data-bind="template: { name: 'pokerusStatusIconTemplate', data: { 'pokerusConstant': RouteHelper.minPokerus(player.town().dungeon.allAvailablePokemon()) } }">Pokerus icon</knockout>
+                        <knockout data-bind="template: { name: 'pokerusStatusTemplate', data: { 'pokerus': RouteHelper.minPokerus(player.town().dungeon.allAvailablePokemon()) } }">Pokerus icon</knockout>
                     </knockout>
                 </knockout>
             </h2>

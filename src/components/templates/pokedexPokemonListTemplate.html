@@ -10,7 +10,7 @@
     </div>
     <!-- /ko -->
     <div data-bind="if: App.game.party.getPokemon($data.pokemonId)?.pokerus" style="position: absolute;left: 2px;top: -11px;">
-        <knockout data-bind="template: { name: 'pokerusStatusIconTemplate', data: { 'pokerusConstant': App.game.party.getPokemon($data.pokemonId)?.pokerus, 'iconWidth': '32px' } }">Pokerus icon</knockout>
+        <knockout data-bind="template: { name: 'pokerusStatusTemplate', data: { 'pokerus': App.game.party.getPokemon($data.pokemonId)?.pokerus, 'width': '32px' } }">Pokerus icon</knockout>
     </div>
     <div data-bind="if: App.game.party.getPokemon($data.pokemonId)?.megaStone" style="position: absolute; right: 1px;top: 4px;">
         <img width="20px" data-bind="attr: { src: App.game.party.getPokemon($data.pokemonId).megaStone.getImage()}"/>
