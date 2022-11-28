@@ -117,6 +117,7 @@
 <!--Templates -->
 @import "templates/currencyTemplate.html"
 @import "templates/caughtStatusTemplate.html"
+@import "templates/pokerusStatusTemplate.html"
 @import "templates/eggSVGTemplate.html"
 @import "templates/multiOptionTemplate.html"
 @import "templates/caughtStatusAreaTemplate.html"
@@ -266,8 +267,8 @@
                                 <knockout>
                                     <knockout data-bind="template: { name: 'pokemonNameTemplate', data: { 'pokemon': Battle.enemyPokemon() } }">Pokémon name</knockout>
                                     <knockout data-bind="template: { name: 'caughtStatusTemplate', data: {'status': PartyController.getCaughtStatus(Battle.enemyPokemon().id)}}"></knockout>
-                                    <knockout data-bind="if: App.game.party.getPokemonByName(Battle.enemyPokemon().name)?.pokerus > GameConstants.Pokerus.Uninfected">
-                                      <knockout data-bind="template: { name: 'pokerusStatusIconTemplate', data: { 'pokerusConstant': App.game.party.getPokemonByName(Battle.enemyPokemon().name)?.pokerus } }">Pokerus icon</knockout>
+                                    <knockout style="position: relative; top: -1px;"
+                                        data-bind="template: { name: 'pokerusStatusTemplate', data: { 'pokerus': PartyController.getPokerusStatus(Battle.enemyPokemon().id) }}">
                                     </knockout>
                                 </knockout>
                             </h2>
