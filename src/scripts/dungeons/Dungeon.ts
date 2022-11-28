@@ -9446,7 +9446,7 @@ dungeonList['Newmoon Island'].lootTable.legendary.push(
             new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Newmoon Island')),
             new SettingRequirement('enableRemovedBerries'),
         ])},
-    {loot: 'Chople', 
+    {loot: 'Chople',
         requirement: new MultiRequirement([
             new ClearDungeonRequirement(150, GameConstants.getDungeonIndex('Newmoon Island')),
             new SettingRequirement('enableRemovedBerries'),
