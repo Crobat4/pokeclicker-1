@@ -10,7 +10,7 @@ import P from './mapProvider';
 import PokemonType from '../enums/PokemonType';
 import DataPokemon from './DataPokemon';
 import GameHelper from '../GameHelper';
-import Settings from '../settings';
+import Settings from '../settings/Settings';
 
 // eslint-disable-next-line import/prefer-default-export
 export function calcNativeRegion(pokemonName: PokemonNameType) {
