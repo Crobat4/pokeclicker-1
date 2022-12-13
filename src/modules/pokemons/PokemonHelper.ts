@@ -70,7 +70,7 @@ export function typeIdToString(id: number) {
 export function getImage(pokemonId: number, shiny: boolean = undefined, gender: boolean = undefined): string {
     let src = 'assets/images/';
     if (shiny === undefined) {
-        let showShinySprite = !App.game.party.getPokemon(pokemonId)?.hideShinyImage()
+        let showShinySprite = !App.game.party.getPokemon(pokemonId)?.hideShinyImage();
         if (!Settings.getSetting('showShinySpriteByDefault').observableValue()) {
             showShinySprite = !showShinySprite;
         }
