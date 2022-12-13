@@ -250,6 +250,7 @@
                         </table>
                     </div>
 
+                    <!-- Accessibility tab -->
                     <div class="tab-pane" id="settings-accessibility">
                         <table class="table table-striped table-hover m-0">
                             <tbody>
@@ -287,6 +288,7 @@
                                 <tr data-bind="template: { name: 'BooleanSettingTemplate', data: Settings.getSetting('enableRemovedBerries')}"></tr>
                                 <!-- /ko -->
                                 <tr data-bind="template: { name: 'BooleanSettingTemplate', data: Settings.getSetting('confirmFightBoss')}"></tr>
+                                <tr data-bind="template: { name: 'BooleanSettingTemplate', data: Settings.getSetting('showShinySpriteByDefault')}"></tr>
                             </tbody>
                         </table>
                         <div class="btn-group btn-block">
@@ -378,10 +380,15 @@
             setting name
         </label>
     </td>
-    <td class="p-2">
-        <input class="clickable" type="checkbox"
-            data-bind="checked: $data.observableValue(), attr: {name, id: 'checkbox-' + $data.name }"
-            onchange="Settings.setSettingByName(this.name, this.checked)"/>
+    <td class="p-2 float-right">
+        <label class="form-check-label toggler-wrapper style-1 m-auto">
+            <input class="clickable" type="checkbox"
+                data-bind="checked: $data.observableValue(), attr: {name, id: 'checkbox-' + $data.name }"
+                onchange="Settings.setSettingByName(this.name, this.checked)"/>
+            <div class="toggler-slider">
+                <div class="toggler-knob"></div>
+            </div>
+        </label>
     </td>
 </script>
 

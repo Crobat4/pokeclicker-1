@@ -131,7 +131,8 @@
                     <!-- /ko -->
                     <!-- ko if: App.game.party.getPokemon($data)?.shiny -->
                     <tr>
-                      <td class="text-left align-middle">Show Party Pokémon shiny</td>
+                      <td class="text-left align-middle" 
+                        data-bind="text: `${Settings.getSetting('showShinySpriteByDefault').observableValue() ? 'Hide' : 'Show'} Party Pokémon shiny`"></td>
                       <td class="text-left tight">
                           <label class="form-check-label toggler-wrapper style-1 float-left">
                               <input class="form-check-input" type="checkbox" id=""
