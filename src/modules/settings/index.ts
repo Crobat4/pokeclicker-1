@@ -157,6 +157,7 @@ Settings.add(new BooleanSetting('accessibilityPokerus', 'Increase contrast of Po
 // Other tab
 Settings.add(new BooleanSetting('enableRemovedBerries', 'Enable berries removed from dungeons loot in Official v0.9.4 update', false));
 Settings.add(new BooleanSetting('confirmFightBoss', 'Confirm before fighting bosses in dungeons', false));
+Settings.add(new BooleanSetting('showShinySpriteByDefault', 'Shows Shiny Pokémon sprites by default in party and hatchery (if unlocked)', true));
 
 // Sound settings
 Object.values(NotificationConstants.NotificationSound).forEach((soundGroup) => {
