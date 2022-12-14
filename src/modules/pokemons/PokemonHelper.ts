@@ -1,10 +1,16 @@
 import { Computed } from 'knockout';
-import { MaxIDPerRegion, Region, BattlePokemonGender } from '../GameConstants';
+import {
+    MaxIDPerRegion,
+    Region,
+    BattlePokemonGender,
+    PokemonStatiticsType,
+} from '../GameConstants';
 import { PokemonNameType } from './PokemonNameType';
 import P from './mapProvider';
 import PokemonType from '../enums/PokemonType';
 import DataPokemon from './DataPokemon';
 import GameHelper from '../GameHelper';
+import Settings from '../settings/Settings';
 
 // eslint-disable-next-line import/prefer-default-export
 export function calcNativeRegion(pokemonName: PokemonNameType) {
@@ -64,9 +70,13 @@ export function typeIdToString(id: number) {
 export function getImage(pokemonId: number, shiny: boolean = undefined, gender: boolean = undefined): string {
     let src = 'assets/images/';
     if (shiny === undefined) {
+        let showShinySprite = !App.game.party.getPokemon(pokemonId)?.hideShinyImage();
+        if (!Settings.getSetting('showShinySpriteByDefault').observableValue()) {
+            showShinySprite = !showShinySprite;
+        }
         // eslint-disable-next-line no-param-reassign
         shiny = App.game.party.alreadyCaughtPokemon(pokemonId, true)
-            && App.game.party.getPokemon(pokemonId)?.hideShinyImage();
+            && showShinySprite;
     }
     if (gender === undefined) {
         // eslint-disable-next-line no-param-reassign
@@ -105,7 +115,7 @@ export function displayName(englishName: string): Computed<string> {
 }
 
 // To have encounter/caught/defeat/hatch statistics in a single place
-export function incrementPokemonStatistics(pokemonId: number, statistic: string, shiny: boolean, gender: number) {
+export function incrementPokemonStatistics(pokemonId: number, statistic: PokemonStatiticsType, shiny: boolean, gender: number) {
     const pokemonStatistics = {
         Captured: App.game.statistics.pokemonCaptured[pokemonId],
         Defeated: App.game.statistics.pokemonDefeated[pokemonId],

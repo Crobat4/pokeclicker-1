@@ -6,8 +6,8 @@
                 <knockout data-bind="template: { name: 'pokemonNameTemplate', data: { 'pokemon': DungeonBattle.enemyPokemon() } }">Pokémon name</knockout>
                 <!-- ko if: !DungeonBattle.trainer() -->
                 <knockout data-bind="template: { name: 'caughtStatusTemplate', data: {'status': PartyController.getCaughtStatus(DungeonBattle.enemyPokemon().id)}}"></knockout>
-                <knockout data-bind="if: App.game.party.getPokemonByName(Battle.enemyPokemon().name)?.pokerus > GameConstants.Pokerus.Uninfected">
-                  <knockout data-bind="template: { name: 'pokerusStatusIconTemplate', data: { 'pokerusConstant': App.game.party.getPokemonByName(Battle.enemyPokemon().name)?.pokerus } }">Pokerus icon</knockout>
+                <knockout style="position: relative; top: -1px;"
+                    data-bind="template: { name: 'pokerusStatusTemplate', data: { 'pokerus': PartyController.getPokerusStatus(DungeonBattle.enemyPokemon().id) }}">
                 </knockout>
                 <!-- /ko -->
             </knockout>
@@ -115,7 +115,7 @@
                   <!--Pokérus image-->
                   <!-- ko using: DungeonRunner.dungeon.allAvailablePokemon(), as: 'pokemonList' -->
                   <!-- ko if: RouteHelper.minPokerusCheck(pokemonList)  -->
-                  <knockout data-bind="template: { name: 'pokerusStatusIconTemplate', data: { 'pokerusConstant': RouteHelper.minPokerus(pokemonList) } }">Pokerus icon</knockout>
+                  <knockout data-bind="template: { name: 'pokerusStatusTemplate', data: { 'pokerus': RouteHelper.minPokerus(pokemonList) } }">Pokerus icon</knockout>
                   <!-- /ko -->
                   <!-- /ko -->
                 </td>

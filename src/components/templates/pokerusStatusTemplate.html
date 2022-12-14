@@ -1,0 +1,13 @@
+<script type="text/html" id="pokerusStatusTemplate">
+    <knockout style="display: inline;">
+        <!-- ko if: $data.pokerus -->
+        <img width="" src="" data-bind="attr: { src: 'assets/images/breeding/pokerus/' + GameConstants.Pokerus[$data.pokerus] + '' + (Settings.getSetting('accessibilityPokerus').observableValue() ? '-accessibility' : '') + '.png', width: `${$data.width || '40px'}` }"/>
+        <!-- /ko -->
+    </knockout>
+</script>
+<!-- Example usage -->
+<!-- 
+    <knockout style="position: relative; top: -1px;"
+        data-bind="template: { name: 'pokerusStatusTemplate', data: { 'pokerus': PartyController.getPokerusStatus(DungeonBattle.enemyPokemon().id) }}">
+    </knockout>
+-->

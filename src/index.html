@@ -117,6 +117,7 @@
 <!--Templates -->
 @import "templates/currencyTemplate.html"
 @import "templates/caughtStatusTemplate.html"
+@import "templates/pokerusStatusTemplate.html"
 @import "templates/eggSVGTemplate.html"
 @import "templates/multiOptionTemplate.html"
 @import "templates/caughtStatusAreaTemplate.html"
@@ -130,7 +131,6 @@
 @import "templates/pokedexPokemonListTemplate.html"
 @import "templates/spindaSpotTemplate.html"
 @import "templates/pokemonGenderStatisticTemplate.html"
-@import "templates/pokerusStatusIconTemplate.html"
 
 <div id="window-container" style="width: 100%; height: 100%; position: fixed; top: 0; left: 0;"></div>
 <div id="game" class="container loading" data-bind="css: {'container': Settings.getSetting('gameDisplayStyle').observableValue() === 'standard3', 'container-fluid': Settings.getSetting('gameDisplayStyle').observableValue() !== 'standard3'}">
@@ -266,8 +266,8 @@
                                 <knockout>
                                     <knockout data-bind="template: { name: 'pokemonNameTemplate', data: { 'pokemon': Battle.enemyPokemon() } }">Pokémon name</knockout>
                                     <knockout data-bind="template: { name: 'caughtStatusTemplate', data: {'status': PartyController.getCaughtStatus(Battle.enemyPokemon().id)}}"></knockout>
-                                    <knockout data-bind="if: App.game.party.getPokemonByName(Battle.enemyPokemon().name)?.pokerus > GameConstants.Pokerus.Uninfected">
-                                      <knockout data-bind="template: { name: 'pokerusStatusIconTemplate', data: { 'pokerusConstant': App.game.party.getPokemonByName(Battle.enemyPokemon().name)?.pokerus } }">Pokerus icon</knockout>
+                                    <knockout style="position: relative; top: -1px;"
+                                        data-bind="template: { name: 'pokerusStatusTemplate', data: { 'pokerus': PartyController.getPokerusStatus(Battle.enemyPokemon().id) }}">
                                     </knockout>
                                 </knockout>
                             </h2>
@@ -312,7 +312,7 @@
                                         <!-- Pokérus image -->
                                         <!-- ko using: RouteHelper.getAvailablePokemonList(player.route(), player.region, true), as: 'pokemonList' -->
                                         <!-- ko if: RouteHelper.minPokerusCheck(pokemonList) -->
-                                        <knockout data-bind="template: { name: 'pokerusStatusIconTemplate', data: { 'pokerusConstant': RouteHelper.minPokerus(pokemonList) } }">Pokerus icon</knockout>
+                                        <knockout data-bind="template: { name: 'pokerusStatusTemplate', data: { 'pokerus': RouteHelper.minPokerus(pokemonList) } }">Pokerus icon</knockout>
                                         <!-- /ko -->
                                         <!-- /ko -->
                                       </span>
@@ -443,6 +443,12 @@
                         </div>
                         <div class='col-2'>
                             <span class='float-right px-4 bg-missingAchievement'>&nbsp;</span>
+                        </div>
+                        <div class='col-10 legend-item'>
+                            <span>Missing Resistant:</span>
+                        </div>
+                        <div class='col-2'>
+                            <span class='float-right px-4 bg-missingResistant'>&nbsp;</span>
                         </div>
                         <div class='col-10 legend-item'>
                             <span>Completed:</span>
@@ -613,7 +619,7 @@
 @import "pokemonStatisticsModal.html"
 
 <!-- Pokemon Selector Modal-->
-@import "pokemonSelectorModal.html"
+@import "pokemonVitaminModal.html"
 
 <!-- Badge Case Modal-->
 @import "badgeCase.html"
