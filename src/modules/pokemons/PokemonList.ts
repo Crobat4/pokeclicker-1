@@ -27018,10 +27018,9 @@ pokemonList.forEach((p) => {
         (p as PokemonListData).evolutions?.forEach((evo) => {
             const poke = pokemonList.find((_p) => _p.name === evo.evolvedPokemon);
             const basePoke = pokemonList.find((_p) => _p.id === Math.floor(poke.id));
-            if (Math.floor(p.id) != Math.floor(poke.id)) {
+            if (Math.floor(p.id) !== Math.floor(poke.id)) {
                 poke.eggCycles = Math.min(maxEggCycles, Math.round(p.eggCycles * 1.5));
-            }
-            else {
+            } else {
                 poke.eggCycles = basePoke.eggCycles;
             }
         });
