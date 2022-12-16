@@ -54,7 +54,7 @@ export default class Item {
     }
 
     totalPrice(amount: number): number {
-        if (this.name === Pokeball[Pokeball.Pokeball]) {
+        if (this.name === Pokeball[Pokeball.Pokeball] || this.currency === Currency.questPoint || this.currency === Currency.diamond) {
             return Math.max(0, this.basePrice * amount);
         }
 
