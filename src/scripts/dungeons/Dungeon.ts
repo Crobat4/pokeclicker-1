@@ -319,6 +319,10 @@ class Dungeon {
     get allPokemon(): PokemonNameType[] {
         return this.pokemonList.concat(this.bossPokemonList, this.getCaughtMimics());
     }
+
+    /**
+     * For habitat list
+     */
     get allEnemiesDungeon() {
         return this.normalEncounterList.concat(this.bossEncounterList);
     }
