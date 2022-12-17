@@ -14,6 +14,10 @@ export default class Statistics implements Saveable {
 
     selectedBerryID = ko.observable(0).extend({ numeric: 0 });
 
+    selectedDungeon = ko.observable({ name: '', pokemonList: [], region: -1 });
+
+    selectedRoute = ko.observable({ name: '', pokemonList: [], region: -1 });
+
     /*
      * observables
      */

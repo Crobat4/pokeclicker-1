@@ -1,8 +1,8 @@
 <script type="text/html" id="pokemonSpriteTemplate">
     <knockout class="position-relative d-inline-block">
         <img class="enemy"
-            data-bind="attr:{ src: PokemonHelper.getImage($data.pokemon.id, $data.pokemon.shiny, $data.pokemon.gender == GameConstants.BattlePokemonGender.Female) }"
-            src=""/>
+            data-bind="attr:{ src: $data.image || PokemonHelper.getImage($data.pokemon.id, $data.pokemon.shiny, $data.pokemon.gender == GameConstants.BattlePokemonGender.Female) }"
+            src="" onerror="this.src='assets/images/trainers/Mysterious Trainer.png';"/>
         <!-- ko if: $data.pokemon.id === 327 -->
             <!-- ko using: PokemonHelper.getSpindaMask($data.pokemon.shiny), as: 'spindaMaskSprite' -->
                 <!-- ko using: PokemonHelper.generateSpindaSpots(GameConstants.SpindaSpotsMinPosition.spotTopLeft), as: 'spotTopLeft' -->
@@ -51,4 +51,4 @@
 </script>
 
 <!-- Example usage -->
-<!-- <knockout data-bind="template: { name: 'pokemonSpriteTemplate', data: { 'pokemon': Battle.enemyPokemon() } }">Pokémon sprite</knockout> -->
+<!-- <knockout data-bind="template: { name: 'pokemonSpriteTemplate', data: { 'pokemon': Battle.enemyPokemon(), 'image': DungeonBattle.trainer().image } }">Pokémon sprite</knockout> -->

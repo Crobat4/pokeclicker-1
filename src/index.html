@@ -128,7 +128,6 @@
 @import "templates/areaNameTemplate.html"
 @import "templates/areaStatisticTemplate.html"
 @import "templates/clickAttackTemplate.html"
-@import "templates/pokedexPokemonListTemplate.html"
 @import "templates/spindaSpotTemplate.html"
 @import "templates/pokemonGenderStatisticTemplate.html"
 
@@ -253,7 +252,7 @@
                                 <!-- Pokemon List -->
                                 <knockout class="right">
                                     <div class="route-pokemon-list-icon px-1 clickable" data-bind="tooltip: { title: 'Check the Pokémon available here', trigger: 'hover' },
-                                        click: function() { RouteHelper.route(player.route()); RouteHelper.region(player.region); $('#routePokemonListModal').modal('show') }">
+                                        click: function() { App.game.statistics.selectedRoute({'name': Routes.getName(player.route(), player.region), 'pokemonList': RouteHelper.sanitizedPokemonList(player.route(), player.region, player.subregion), 'region': player.region}); $('#routeHabitatListModal').modal('show') }">
                                     <!--
                                         <a href="#" class="route-link-overlay" data-bind="tooltip: {
                                             title: RouteHelper.getAvailablePokemonListForTooltip(player.route(), player.region),
@@ -684,7 +683,10 @@
 @import "battleCafeModal.html"
 
 <!-- Route Pokemon List Modal -->
-@import "routePokemonListModal.html"
+@import "routeHabitatListModal.html"
+
+<!-- Dungeon Habitat List Modal -->
+@import "dungeonHabitatListModal.html"
 
 <!-- Dream Orbs Modal -->
 @import "dreamOrbsModal.html"

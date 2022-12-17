@@ -170,12 +170,32 @@
     flex-basis: 18% !important;
     margin: 8px !important;
   }
+}
 
-  .item-icon{
-    padding: 2px;
-    margin: 16px 0;
-    background:rgba(0, 0, 0, 0.5);
-  }
+/* Item Icon Pokedex */
+.item-icon-container, .mega-icon-container {
+  position: absolute; 
+}
+.item-icon-container {
+  top: 65px;
+}
+.mega-icon-container {
+  bottom: 65px;
+}
+.item-icon{
+  padding: 2px !important;
+  margin: 16px 0;
+  background:rgba(0, 0, 0, 0.5);
+  max-width: 24px; 
+  max-height: 24px;
+}
+/* Left icons (Roaming/Boss/Chest) */
+div[class*='-icon-container'].item-icon-left {
+  left: 2px;
+}
+/* Right icons (Rare Hold Item/Mega Stone) */
+div[class*='-icon-container'].item-icon-right {
+  right: 2px;
 }
 
 #pokedex-filter-container, #pokemon-list{
@@ -254,4 +274,52 @@
 .spot-bottom-right {
   -webkit-mask-image: url('../assets/images/spinda-spots/spotBR.png');
   mask-image: url('../assets/images/spinda-spots/spotBR.png');
+}
+
+/* Habitat List */
+/* Dungeon lock */
+#dungeon-habitat-list .lock {
+  position: absolute;
+  height: 100%;
+  left: 50%;
+  bottom: 0px;
+  transform: translateX(-50%);
+}
+
+/* Enemy Name */
+.habitat-list, .pokedex-list {
+
+  /* Pokemon ID / Trainer */
+  .pokemon-id {
+    top: 0; 
+    border-top-left-radius: 6px; 
+    border-top-right-radius: 6px;
+  }
+
+  /* Pokerus Status */
+  .pokerus-status {
+    position: absolute; 
+    left: 2px; 
+    top: -11px;
+  }
+
+  /* Poke Ball Icon */
+  .caught-status-icon {
+    position: absolute; 
+    right: 2px; 
+    top: -1px;
+
+    .pokeball-smallest {
+      padding: 0;
+    }
+  }
+
+  /* Enemy Name */
+  .enemy-name {
+    bottom: 0; 
+    border-bottom-left-radius: 6px; 
+    border-bottom-right-radius: 6px; 
+    overflow: hidden; 
+    min-height: 21px;
+  }
 }

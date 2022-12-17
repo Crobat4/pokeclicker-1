@@ -320,6 +320,13 @@ class Dungeon {
         return this.pokemonList.concat(this.bossPokemonList, this.getCaughtMimics());
     }
 
+    /**
+     * For habitat list
+     */
+    get allEnemiesDungeon() {
+        return this.normalEncounterList.concat(this.bossEncounterList);
+    }
+
 
     /**
      * Gets all non-boss Pokemon encounters in the dungeon
@@ -332,6 +339,7 @@ class Dungeon {
 
         const getEncounterInfo = function(pokemonName, mimic) {
             const encounter = {
+                name: pokemonName,
                 image: `assets/images/${(App.game.party.alreadyCaughtPokemonByName(pokemonName, true) ? 'shiny' : '')}pokemon/${pokemonMap[pokemonName].id}.png`,
                 shiny:  App.game.party.alreadyCaughtPokemonByName(pokemonName, true),
                 hide: hideEncounter,
@@ -367,7 +375,6 @@ class Dungeon {
         return encounterInfo;
     }
 
-
     /**
      * Gets all boss encounters in the dungeon
      * Used for generating the dungeon encounter list view
@@ -381,6 +388,8 @@ class Dungeon {
             if (boss instanceof DungeonBossPokemon) {
                 const pokemonName = boss.name;
                 const encounter = {
+                    name: pokemonName,
+                    boss: true,
                     image: `assets/images/${(App.game.party.alreadyCaughtPokemonByName(pokemonName, true) ? 'shiny' : '')}pokemon/${pokemonMap[pokemonName].id}.png`,
                     shiny:  App.game.party.alreadyCaughtPokemonByName(pokemonName, true),
                     hide: boss.options?.hide ? (boss.options?.requirement ? !boss.options?.requirement.isCompleted() : boss.options?.hide) : false,
@@ -392,6 +401,9 @@ class Dungeon {
             // Handling Trainer
             } else {
                 const encounter = {
+                    name: boss.name,
+                    boss: true,
+                    trainer: true,
                     image: boss.image,
                     shiny:  false,
                     hide: boss.options?.hide ? (boss.options?.requirement ? !boss.options?.requirement.isCompleted() : boss.options?.hide) : false,

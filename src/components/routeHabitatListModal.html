@@ -1,0 +1,83 @@
+<!-- Show Items modal-->
+<div class="modal fade" id="routeHabitatListModal" tabindex="-1" role="dialog"
+     aria-labelledby="routePokemonListLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+        <div class="modal-content">
+            <!-- ko using: App.game.statistics.selectedRoute(), as: 'route' -->
+            <div class="modal-header">
+                <!-- TODO: Add shiny and pokerus statuses if habitat list is made -->
+                <h4 class="modal-title" data-bind="text: `${route.name} (${GameConstants.camelCaseToString(GameConstants.Region[route.region])})`">
+                    Route and region names
+                </h4>
+            </div>
+
+            <div class="modal-body p-0">
+                <div class="row justify-content-center mw-100 p-0 m-0 habitat-list" id="route-habitat-list" data-bind="foreach: { data: route.pokemonList, as: 'pokemon'}">
+                    <!-- Pokemon Entry -->
+                    <div class="col-sm-4 col-md-3 col-lg-2 pokedexEntry"
+                        data-bind="style: { background: PokedexHelper.getBackgroundColors(pokemon.name) }, using: PokemonHelper.getPokemonByName(pokemon.name).id, as: 'pokemonID'">
+
+                        <!-- ko using: App.game.party.alreadyCaughtPokemonByName(pokemon.name), as: 'caughtPokemon' -->
+
+                        <!-- Pokemon ID -->
+                        <span class="pokemon-id" data-bind="text: '#' + (pokemonID > 0 ? Math.floor(pokemonID) + '' : '???').padStart(3, 0)">number</span>
+                        
+                        <!-- ko if: caughtPokemon -->
+
+                        <!-- Pokemon Caught Status -->
+                        <!-- ko using: PartyController.getCaughtStatus(pokemonID), as: 'caughtStatus' -->
+                        <knockout class="caught-status-icon" data-bind="template: { name: 'caughtStatusTemplate', data: {'status': caughtStatus}}"></knockout>
+                        <!-- /ko -->
+
+                        <!-- Pokemon Pokerus Status -->
+                        <!-- ko using: App.game.party.getPokemon(pokemonID)?.pokerus, as: 'pokerusStatus' -->
+                        <div class="pokerus-status" data-bind="if: pokerusStatus">
+                            <knockout data-bind="template: { name: 'pokerusStatusTemplate', data: { 'pokerus': pokerusStatus, 'width': '32px' } }">Pokerus icon</knockout>
+                        </div>
+                        <!-- /ko -->
+
+                        <!-- /ko -->
+
+                        <!-- ko using: PokedexHelper.pokemonSeen(pokemonID)(), as: 'pokemonSeen' -->
+
+                        <!-- Pokemon Sprite -->
+                        <img src="" width="" data-bind="css: { 
+                            'pokemon-not-seen': !pokemonSeen, 
+                            'pokemon-seen-but-not-caught': !caughtPokemon && pokemonSeen
+                        }, 
+                        attr:{ 
+                            src: PokemonHelper.getImage(pokemonID),
+                            width: '96px'
+                        }"
+                        onerror="this.src='assets/images/trainers/Mysterious Trainer.png';">
+
+                        <!-- Pokemon Name -->
+                        <!-- ko if: pokemonSeen -->
+                        <span class="enemy-name" data-bind="using: PokemonHelper.displayName(pokemon.name)(), as: 'displayName'">
+                            <knockout data-bind="text: displayName, css: { 'marquee': displayName.length > 18 }">name</knockout>
+                        </span>
+                        <!-- /ko -->
+
+                        <!-- /ko -->
+
+                        <!-- Roamer Icon -->
+                        <!-- ko if: pokemon.roamer -->
+                        <div class="item-icon-container item-icon-left">
+                            <div class="item-icon rounded-circle" data-bind="tooltip: { title: 'Roaming Pokémon', trigger: 'hover', placement: 'top', boundary: 'window' }">
+                                <img class="mw-100 mh-100 p-0" src="" width="24px" style="vertical-align: unset;" data-bind="attr: { src: 'assets/images/shortcut-icons/roaming.png' }">
+                            </div>
+                        </div>
+                        <!-- /ko -->
+
+                        <!-- /ko -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+            <!-- /ko -->
+        </div>
+    </div>
+</div>
