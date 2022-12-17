@@ -173,9 +173,14 @@
 }
 
 /* Item Icon Pokedex */
-.item-icon-container {
+.item-icon-container, .mega-icon-container {
   position: absolute; 
+}
+.item-icon-container {
   top: 65px;
+}
+.mega-icon-container {
+  bottom: 65px;
 }
 .item-icon{
   padding: 2px !important;
@@ -183,6 +188,14 @@
   background:rgba(0, 0, 0, 0.5);
   max-width: 24px; 
   max-height: 24px;
+}
+/* Left icons (Roaming/Boss/Chest) */
+div[class*='-icon-container'].item-icon-left {
+  left: 2px;
+}
+/* Right icons (Rare Hold Item/Mega Stone) */
+div[class*='-icon-container'].item-icon-right {
+  right: 2px;
 }
 
 #pokedex-filter-container, #pokemon-list{
@@ -274,7 +287,7 @@
 }
 
 /* Enemy Name */
-.habitat-list {
+.habitat-list, .pokedex-list {
 
   /* Pokemon ID / Trainer */
   .pokemon-id {
@@ -308,10 +321,5 @@
     border-bottom-right-radius: 6px; 
     overflow: hidden; 
     min-height: 21px;
-  }
-
-  /* Roaming/Boss/Chest icons */
-  .item-icon-container.item-icon-left {
-    left: 2px;
   }
 }

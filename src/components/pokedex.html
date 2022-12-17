@@ -181,18 +181,65 @@ aria-labelledby="pokedexModalLabel">
                 <!-- /ko -->
                 <div id="pokemon-list">
                     <!-- ko if: PokedexHelper.isModalOpen() -->
-                    <div class="row justify-content-center p-0" id="pokemon-elements" data-bind="foreach: lazyLoad($element, PokedexHelper.filteredList)"
-                        style="max-width: 100%; padding:0; margin:0;">
+                    <div class="row justify-content-center mw-100 p-0 m-0 pokedex-list" id="pokedex-pokemon-list" data-bind="foreach: lazyLoad($element, PokedexHelper.filteredList)">
+                        <!-- Pokemon Entry -->
                         <div class="col-12 col-sm-4 col-md-3 col-lg-2 pokedexEntry"
-                            data-bind="style:{background: PokedexHelper.getBackgroundColors($data.name)}">
-                            <knockout data-bind="template: { name: 'pokedexPokemonListTemplate', 
-                            data: { 
-                                'pokemonHeldItem': $data.heldItem,
-                                'pokemonName': $data.name, 
-                                'pokemonId': $data.id, 
-                                'pokemonHeldItem': $data.heldItem,
-                                'pokemonSprite': PokemonHelper.getImage($data.id, App.game.party.alreadyCaughtPokemon($data.id, true) && PokedexHelper.toggleAllShiny(), PokedexHelper.toggleFemale()) 
-                            } }">Pokémon Dex Container</knockout>
+                            data-bind="style: { background: PokedexHelper.getBackgroundColors($data.name)}">
+
+                            <!-- Pokemon ID -->
+                            <span class="pokemon-id" data-bind="text: '#' + ($data.id > 0 ? Math.floor($data.id) + '' : '???').padStart(3, 0)">number</span>
+                            
+                            <!-- ko if: App.game.party.alreadyCaughtPokemonByName($data.name) -->
+
+                            <!-- Pokemon Caught Status -->
+                            <!-- ko using: PartyController.getCaughtStatus($data.id), as: 'caughtStatus' -->
+                            <knockout class="caught-status-icon" data-bind="template: { name: 'caughtStatusTemplate', data: {'status': caughtStatus}}"></knockout>
+                            <!-- /ko -->
+
+                            <!-- ko using: App.game.party.getPokemon($data.id)?.pokerus, as: 'pokerusStatus' -->
+                            <div class="pokerus-status" data-bind="if: pokerusStatus">
+                                <knockout data-bind="template: { name: 'pokerusStatusTemplate', data: { 'pokerus': pokerusStatus, 'width': '32px' } }">Pokerus icon</knockout>
+                            </div>
+                            <!-- /ko -->
+
+                            <!-- Pokemon Mega Stone -->
+                            <!-- ko if: App.game.party.getPokemon($data.id)?.megaStone -->
+                            <div class="mega-icon-container item-icon-right">
+                                <div class="item-icon rounded-circle">
+                                    <img class="mw-100 mh-100 p-0" src="" width="24px" style="vertical-align: unset;" data-bind="attr: { src: App.game.party.getPokemon($data.id).megaStone.getImage() }">
+                                </div>
+                            </div>
+                            <!-- /ko -->
+                            
+                            <!-- /ko -->
+
+                            <!-- Pokemon Sprite -->
+                            <img src="" width="" data-bind="css: { 
+                                'pokemon-not-seen': !PokedexHelper.pokemonSeen($data.id)(), 
+                                'pokemon-seen-but-not-caught': !App.game.party.alreadyCaughtPokemonByName($data.name) && PokedexHelper.pokemonSeen($data.id)() 
+                            }, 
+                            attr:{ 
+                                src: PokemonHelper.getImage($data.id, App.game.party.alreadyCaughtPokemon($data.id, true) && PokedexHelper.toggleAllShiny(), PokedexHelper.toggleFemale()),
+                                width: '96px'
+                            }">
+
+                            <!-- Pokemon Name -->
+                            <!-- ko if: PokedexHelper.pokemonSeen($data.id) -->
+                            <span class="enemy-name" data-bind="using: PokemonHelper.displayName($data.name)(), as: 'displayName'">
+                                <knockout class="" data-bind="text: displayName, css: { 'marquee': displayName.length > 18 }">name</knockout>
+                            </span>
+                            <!-- /ko -->
+
+                            <!-- Pokemon Rare Hold Item (Drop) -->
+                            <!-- ko if: $data.heldItem && BagHandler.displayName($data.heldItem) && App.game.party.alreadyCaughtPokemonByName($data.name) -->
+                            <div class="item-icon-container item-icon-right">
+                                <div class="item-icon rounded-circle">
+                                    <img class="mw-100 mh-100 p-0" src="" width="24px" style="vertical-align: unset;" data-bind="attr: { src: BagHandler.image($data.heldItem) }">
+                                </div>
+                            </div>
+                            <!-- /ko -->
+
+                            <!-- Overlay Link -->
                             <!-- ko if: PokedexHelper.pokemonSeen($data.id) -->
                             <a class="overlay" href="#pokemonStatisticsModal" data-toggle="modal" data-bind="click: () => {App.game.statistics.selectedPokemonID($data.id)},
                                 tooltip: {

@@ -16,10 +16,13 @@
                     <!-- Pokemon Entry -->
                     <div class="col-sm-4 col-md-3 col-lg-2 pokedexEntry"
                         data-bind="style: { background: PokedexHelper.getBackgroundColors(pokemon.name) }, using: PokemonHelper.getPokemonByName(pokemon.name).id, as: 'pokemonID'">
+
+                        <!-- ko using: App.game.party.alreadyCaughtPokemonByName(pokemon.name), as: 'caughtPokemon' -->
+
                         <!-- Pokemon ID -->
-                        <span class="pokemon-id" data-bind="text: ('#' + (pokemonID > 0 ? Math.floor(pokemonID) + '' : '???').padStart(3, 0))">number</span>
+                        <span class="pokemon-id" data-bind="text: '#' + (pokemonID > 0 ? Math.floor(pokemonID) + '' : '???').padStart(3, 0)">number</span>
                         
-                        <!-- ko if: App.game.party.alreadyCaughtPokemonByName(pokemon.name) -->
+                        <!-- ko if: caughtPokemon -->
 
                         <!-- Pokemon Caught Status -->
                         <!-- ko using: PartyController.getCaughtStatus(pokemonID), as: 'caughtStatus' -->
@@ -40,7 +43,7 @@
                         <!-- Pokemon Sprite -->
                         <img src="" width="" data-bind="css: { 
                             'pokemon-not-seen': !pokemonSeen, 
-                            'pokemon-seen-but-not-caught': !App.game.party.alreadyCaughtPokemonByName(pokemon.name) && pokemonSeen
+                            'pokemon-seen-but-not-caught': !caughtPokemon && pokemonSeen
                         }, 
                         attr:{ 
                             src: PokemonHelper.getImage(pokemonID),
@@ -51,7 +54,7 @@
                         <!-- Pokemon Name -->
                         <!-- ko if: pokemonSeen -->
                         <span class="enemy-name" data-bind="using: PokemonHelper.displayName(pokemon.name)(), as: 'displayName'">
-                            <knockout class="" data-bind="text: displayName, css: { 'marquee': displayName.length > 18 }">name</knockout>
+                            <knockout data-bind="text: displayName, css: { 'marquee': displayName.length > 18 }">name</knockout>
                         </span>
                         <!-- /ko -->
 
@@ -64,6 +67,8 @@
                                 <img class="mw-100 mh-100 p-0" src="" width="24px" style="vertical-align: unset;" data-bind="attr: { src: 'assets/images/shortcut-icons/roaming.png' }">
                             </div>
                         </div>
+                        <!-- /ko -->
+
                         <!-- /ko -->
                     </div>
                 </div>

@@ -18,10 +18,13 @@
                         data-bind="style: { background: !pokemon.trainer && !pokemon.lock ? PokedexHelper.getBackgroundColors(pokemon.name) : 'grey' }, 
                             using: PokemonHelper.getPokemonByName(pokemon.name).id, as: 'pokemonID',
                             hidden: pokemon.hide">
+
+                        <!-- ko using: App.game.party.alreadyCaughtPokemonByName(pokemon.name), as: 'caughtPokemon' -->
+
                         <!-- Pokemon ID / Trainer -->
                         <span class="pokemon-id" data-bind="text: (pokemon.trainer ? 'Trainer' : ('#' + (pokemonID > 0 && !pokemon.lock ? Math.floor(pokemonID) + '' : '???').padStart(3, 0)))">number</span>
 
-                        <!-- ko if: App.game.party.alreadyCaughtPokemonByName(pokemon.name) && !pokemon.lock -->
+                        <!-- ko if: caughtPokemon && !pokemon.lock -->
 
                         <!-- Pokemon Caught Status -->
                         <!-- ko using: PartyController.getCaughtStatus(pokemonID), as: 'caughtStatus' -->
@@ -42,7 +45,7 @@
                         <!-- Enemy Sprite -->
                         <img src="" width="" data-bind="css: { 
                             'pokemon-not-seen': (!pokemonSeen && !pokemon.trainer) || pokemon.lock, 
-                            'pokemon-seen-but-not-caught': !App.game.party.alreadyCaughtPokemonByName(pokemon.name) && pokemonSeen && !pokemon.trainer 
+                            'pokemon-seen-but-not-caught': !caughtPokemon && pokemonSeen && !pokemon.trainer 
                         }, 
                         attr:{ 
                             src: pokemonID ? PokemonHelper.getImage(pokemonID) : pokemon.image,
@@ -54,7 +57,7 @@
                         <!-- Enemy Name -->                        
                         <!-- ko if: pokemonSeen && !pokemon.lock -->
                         <span class="enemy-name" data-bind="using: PokemonHelper.displayName(pokemon.name)(), as: 'displayName'">
-                            <knockout class="" data-bind="text: displayName, css: { 'marquee': displayName.length > 18 }">name</knockout>
+                            <knockout data-bind="text: displayName, css: { 'marquee': displayName.length > 18 }">name</knockout>
                         </span>
                         <!-- /ko -->
 
@@ -86,6 +89,8 @@
                             trigger: 'hover',
                             boundary: 'window'
                         }">
+
+                        <!-- /ko -->
                     </div>
                 </div>
             </div>
