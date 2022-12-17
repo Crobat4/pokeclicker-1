@@ -17,7 +17,7 @@
                     <!-- Pokemon Entry -->
                     <div class="col-sm-4 col-md-3 col-lg-2 pokedexEntry"
                         data-bind="style: { background: PokedexHelper.getBackgroundColors(pokemon.name) }, using: PokemonHelper.getPokemonByName(pokemon.name).id, as: 'pokemonID'">
-                        <!-- Pokemon Number -->
+                        <!-- Pokemon ID -->
                         <span class="" style="top: 0; border-top-left-radius: 6px; border-top-right-radius: 6px;" data-bind="text: ('#' + (pokemonID > 0 ? Math.floor(pokemonID) + '' : '???').padStart(3, 0))">number</span>
                         
                         <!-- ko if: App.game.party.alreadyCaughtPokemonByName(pokemon.name) -->
@@ -36,8 +36,9 @@
 
                         <!-- /ko -->
 
-                        <!-- Pokemon Sprite -->
                         <!-- ko using: PokedexHelper.pokemonSeen(pokemonID)(), as: 'pokemonSeen' -->
+
+                        <!-- Pokemon Sprite -->
                         <img src="" width="" data-bind="css: { 
                             'pokemon-not-seen': !pokemonSeen, 
                             'pokemon-seen-but-not-caught': !App.game.party.alreadyCaughtPokemonByName(pokemon.name) && pokemonSeen
@@ -60,8 +61,8 @@
                         <!-- Roamer Icon -->
                         <!-- ko if: pokemon.roamer -->
                         <div style="position: absolute; left: 2px; top: 65px;">
-                            <div class="item-icon rounded-circle" data-bind="tooltip: {title: 'Roaming Pokémon', trigger: 'hover', placement: 'top', boundary: 'window'}" style="max-width: 24px; max-height: 24px; padding: 2px !important;">
-                                <img class="p-0" src="" width="24px" style="max-width: 100%; max-height: 100%; vertical-align: unset;" data-bind="attr: {src: 'assets/images/shortcut-icons/roaming.png'}">
+                            <div class="item-icon rounded-circle" data-bind="tooltip: { title: 'Roaming Pokémon', trigger: 'hover', placement: 'top', boundary: 'window' }" style="max-width: 24px; max-height: 24px; padding: 2px !important;">
+                                <img class="p-0" src="" width="24px" style="max-width: 100%; max-height: 100%; vertical-align: unset;" data-bind="attr: { src: 'assets/images/shortcut-icons/roaming.png' }">
                             </div>
                         </div>
                         <!-- /ko -->
