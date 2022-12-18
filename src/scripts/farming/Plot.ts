@@ -54,7 +54,7 @@ class Plot implements Saveable {
 
         this.emittingAura = {
             type: ko.pureComputed(() => {
-                if (this.stage() < PlotStage.Taller || this.mulch === MulchType.Freeze_Mulch || index >= 25) {
+                if (this.stage() < PlotStage.Taller || this.mulch === MulchType.Freeze_Mulch || index >= 25 && (this.berry !== BerryType.Passho && this.berry !== BerryType.Lum)) {
                     return null;
                 }
 
@@ -531,14 +531,14 @@ class Plot implements Saveable {
      * Finds the plot indices that are around the plot in a 3x3 square
      * @param index The plot index
      */
-    public static findNearPlots(index: number): number[] {
+    public static findNearPlots(index: number, allowedAura = false): number[] {
         const plots = [];
         // If index >= 25, subtract 25 to the index, calculate nearby plots and add 25 to those plots to get the plots indexes after 25
         let subtraction = 0;
         if (index >= 25) {
             subtraction = 25
         }
-        if (index < 25) {
+        //if (index < 25 || allowedAura) {
             const posX = (index - subtraction) % GameConstants.FARM_PLOT_WIDTH;
             const posY = ((index - subtraction) - posX) / 5; // GameConstants.FARM_PLOT_HEIGHT
     
@@ -554,11 +554,11 @@ class Plot implements Saveable {
                     if (index >= 25) {
                         id += subtraction
                     }
-                    console.log(index, id)
+                    //console.log(index, id)
                     plots.push(id);
                 }
             }
-        }
+        //}
         return plots;
     }
 
