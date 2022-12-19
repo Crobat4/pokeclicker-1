@@ -107,9 +107,14 @@ class FarmController {
     }
 
     public static toggleAllPlotsLocked(lock: boolean) {
-        App.game.farming.plotList.forEach((plot, index) => {
+        let addition = 0;
+        if (!FarmController.selectedFirstFarm() && FarmController.selectedSecondFarm()) {
+            addition = 25;
+        }
+
+        App.game.farming.plotList.slice(0 + addition, 25 + addition).forEach((plot, index) => {
             if (plot.isUnlocked && ((lock && !plot.isSafeLocked) || (!lock && plot.isSafeLocked))) {
-                App.game.farming.togglePlotSafeLock(index);
+                App.game.farming.togglePlotSafeLock(plot.index);
             }
         });
     }

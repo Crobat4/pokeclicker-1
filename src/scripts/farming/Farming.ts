@@ -1278,7 +1278,7 @@ class Farming implements Feature {
         if (!FarmController.selectedFirstFarm() && FarmController.selectedSecondFarm()) {
             addition = 25;
         }
-        
+
         const mulchPlots = this.plotList.slice(0 + addition, 25 + addition).filter((plot, index) => this.canMulch(plot.index, mulch));
         amount *= mulchPlots.length;
         amount = Math.min(this.mulchList[mulch](), amount);
