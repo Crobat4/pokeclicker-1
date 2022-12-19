@@ -465,7 +465,7 @@
                             visible: FarmController.farmingModalTabSelected() == 'farmHandsView'
                         ">Fire All</button>
 
-                <div class="farmPages">
+                <div class="farmPages" data-bind="visible: FarmController.farmingModalTabSelected() == 'berryFarmView'">
                     <ul class="nav nav-pills">
                         <li class="nav-item rounded-left bg-primary">
                             <a class="nav-link active btn btn-primary" data-toggle='pill' href="#farmPageOne"
