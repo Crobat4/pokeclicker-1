@@ -169,7 +169,7 @@ class Plot implements Saveable {
                 tooltip.push(`<u>${BerryType[this.berry]}</u>`);
 
                 // Petaya Effect
-                if ((App.game.farming.berryInFarm(BerryType.Petaya, PlotStage.Berry, true, false) && this.berry !== BerryType.Petaya && this.stage() == PlotStage.Berry && index < 25) || 
+                if ((App.game.farming.berryInFarm(BerryType.Petaya, PlotStage.Berry, true, false) && this.berry !== BerryType.Petaya && this.stage() == PlotStage.Berry && index < 25) ||
                     (App.game.farming.berryInFarm(BerryType.Petaya, PlotStage.Berry, true, true) && this.berry !== BerryType.Petaya && this.stage() == PlotStage.Berry && index >= 25)) {
                     tooltip.push('∞ until death');
                 // Normal Time
@@ -538,28 +538,28 @@ class Plot implements Saveable {
         // If index >= 25, subtract 25 to the index, calculate nearby plots and add 25 to those plots to get the plots indexes after 25
         let subtraction = 0;
         if (index >= 25) {
-            subtraction = 25
+            subtraction = 25;
         }
         //if (index < 25) {
-            const posX = (index - subtraction) % GameConstants.FARM_PLOT_WIDTH;
-            const posY = ((index - subtraction) - posX) / 5; // GameConstants.FARM_PLOT_HEIGHT
-    
-            for (let y = posY - 1; y <= posY + 1; y++) {
-                for (let x = posX - 1; x <= posX + 1; x++) {
-                    if (y < 0 || y > 5 - 1 || x < 0 || x >  GameConstants.FARM_PLOT_WIDTH - 1) {
-                        continue;
-                    }
-                    if (y === posY && x === posX) {
-                        continue;
-                    }
-                    let id = y * 5 + x;
-                    if (index >= 25) {
-                        id += subtraction
-                    }
-                    //console.log(index, id)
-                    plots.push(id);
+        const posX = (index - subtraction) % GameConstants.FARM_PLOT_WIDTH;
+        const posY = ((index - subtraction) - posX) / 5; // GameConstants.FARM_PLOT_HEIGHT
+
+        for (let y = posY - 1; y <= posY + 1; y++) {
+            for (let x = posX - 1; x <= posX + 1; x++) {
+                if (y < 0 || y > 5 - 1 || x < 0 || x >  GameConstants.FARM_PLOT_WIDTH - 1) {
+                    continue;
                 }
+                if (y === posY && x === posX) {
+                    continue;
+                }
+                let id = y * 5 + x;
+                if (index >= 25) {
+                    id += subtraction;
+                }
+                //console.log(index, id)
+                plots.push(id);
             }
+        }
         //}
         return plots;
     }
