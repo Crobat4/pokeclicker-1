@@ -169,7 +169,8 @@ class Plot implements Saveable {
                 tooltip.push(`<u>${BerryType[this.berry]}</u>`);
 
                 // Petaya Effect
-                if (App.game.farming.berryInFarm(BerryType.Petaya, PlotStage.Berry, true) && this.berry !== BerryType.Petaya && this.stage() == PlotStage.Berry) {
+                if ((App.game.farming.berryInFarm(BerryType.Petaya, PlotStage.Berry, true, false) && this.berry !== BerryType.Petaya && this.stage() == PlotStage.Berry && index < 25) || 
+                    (App.game.farming.berryInFarm(BerryType.Petaya, PlotStage.Berry, true, true) && this.berry !== BerryType.Petaya && this.stage() == PlotStage.Berry && index >= 25)) {
                     tooltip.push('∞ until death');
                 // Normal Time
                 } else {
@@ -251,7 +252,8 @@ class Plot implements Saveable {
             this.age += growthTime;
 
             // Checking for Petaya Berries
-            if (App.game.farming.berryInFarm(BerryType.Petaya, PlotStage.Berry, true) && this.berry !== BerryType.Petaya) {
+            if ((App.game.farming.berryInFarm(BerryType.Petaya, PlotStage.Berry, true, false) && this.berry !== BerryType.Petaya && this.index < 25) ||
+                App.game.farming.berryInFarm(BerryType.Petaya, PlotStage.Berry, true, true) && this.berry !== BerryType.Petaya && this.index >= 25) {
                 this.age = Math.min(this.age, this.berryData.growthTime[3] + 1);
             }
 
@@ -538,7 +540,7 @@ class Plot implements Saveable {
         if (index >= 25) {
             subtraction = 25
         }
-        //if (index < 25 || allowedAura) {
+        //if (index < 25) {
             const posX = (index - subtraction) % GameConstants.FARM_PLOT_WIDTH;
             const posY = ((index - subtraction) - posX) / 5; // GameConstants.FARM_PLOT_HEIGHT
     
