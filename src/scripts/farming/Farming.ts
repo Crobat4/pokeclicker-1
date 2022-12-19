@@ -1274,7 +1274,12 @@ class Farming implements Feature {
      * @param amount The amount of mulch to apply to each plot. Defaults to 1
      */
     public mulchAll(mulch: MulchType, amount = 1) {
-        const mulchPlots = this.plotList.filter((_, index) => this.canMulch(index, mulch));
+        let addition = 0;
+        if (!FarmController.selectedFirstFarm() && FarmController.selectedSecondFarm()) {
+            addition = 25;
+        }
+        
+        const mulchPlots = this.plotList.slice(0 + addition, 25 + addition).filter((plot, index) => this.canMulch(plot.index, mulch));
         amount *= mulchPlots.length;
         amount = Math.min(this.mulchList[mulch](), amount);
 
@@ -1283,8 +1288,8 @@ class Farming implements Feature {
             return;
         }
 
-        this.plotList.forEach((_, index) => {
-            this.addMulch(index, mulch, sharedMulch);
+        this.plotList.slice(0 + addition, 25 + addition).forEach((plot, index) => {
+            this.addMulch(plot.index, mulch, sharedMulch);
         });
     }
 
