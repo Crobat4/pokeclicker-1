@@ -408,6 +408,12 @@
                                                     <!-- ko if: $index() % GameConstants.FARM_PLOT_WIDTH == 0 -->
                                                     <div class="w-100"></div>
                                                     <!-- /ko -->
+                                                    <!-- ko if: $index() === 0 -->
+                                                    <div class="w-100 text-center">First Farm</div>
+                                                    <!-- /ko -->
+                                                    <!-- ko if: $index() === 25 -->
+                                                    <div class="w-100 text-center">Second Farm</div>
+                                                    <!-- /ko -->
                                                     <div class="plot col p-1">
                                                         <div class="plot-content clickable" data-bind="click: () => { $parent.togglePlot($index()) }">
                                                             <div class="plotImage">
