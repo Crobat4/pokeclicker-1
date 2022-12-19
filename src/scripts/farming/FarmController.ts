@@ -17,6 +17,9 @@ class FarmController {
 
     public static berryListVisible: KnockoutObservable<boolean> = ko.observable(true);
 
+    public static selectedFirstFarm: KnockoutObservable<boolean> = ko.observable(true);
+    public static selectedSecondFarm: KnockoutObservable<boolean> = ko.observable(false);
+
     public static multipliers = ['×1', '×10', '×100', '×1000', 'All'];
     public static multIndex: KnockoutObservable<number> = ko.observable(0);
 

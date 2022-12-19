@@ -1154,8 +1154,12 @@ class Farming implements Feature {
     }
 
     plantAll(berry: BerryType) {
-        this.plotList.forEach((plot, index) => {
-            this.plant(index, berry);
+        let addition = 0;
+        if (!FarmController.selectedFirstFarm() && FarmController.selectedSecondFarm()) {
+            addition = 25;
+        }
+        this.plotList.slice(0 + addition, 25 + addition).forEach((plot, index) => {
+            this.plant(plot.index, berry);
         });
     }
 
@@ -1187,8 +1191,12 @@ class Farming implements Feature {
      * Try to harvest all plots
      */
     public harvestAll() {
-        this.plotList.forEach((plot, index) => {
-            this.harvest(index);
+        let addition = 0;
+        if (!FarmController.selectedFirstFarm() && FarmController.selectedSecondFarm()) {
+            addition = 25;
+        }
+        this.plotList.slice(0 + addition, 25 + addition).forEach((plot, index) => {
+            this.harvest(plot.index);
         });
     }
 
