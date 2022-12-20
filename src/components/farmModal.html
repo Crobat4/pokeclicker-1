@@ -184,6 +184,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- ko if: player.highestRegion() >= GameConstants.Region.alola -->
                             <div id="farmPageTwo" class="tab-pane fade">
                                 <div class="">
                                     <div id="plotListTwo" class="row" data-bind="foreach: App.game.farming.plotList.slice(25,50)">
@@ -227,6 +228,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- /ko -->
                         </div>
 
                     </div>
@@ -411,9 +413,11 @@
                                                     <!-- ko if: $index() === 0 -->
                                                     <div class="w-100 text-center">First Farm</div>
                                                     <!-- /ko -->
-                                                    <!-- ko if: $index() === 25 -->
+                                                    <!-- ko if: $index() === 25 && player.highestRegion() >= GameConstants.Region.alola-->
                                                     <div class="w-100 text-center">Second Farm</div>
                                                     <!-- /ko -->
+
+                                                    <!-- ko if: $index() < 25 || $index() >= 25 && player.highestRegion() >= GameConstants.Region.alola -->
                                                     <div class="plot col p-1">
                                                         <div class="plot-content clickable" data-bind="click: () => { $parent.togglePlot($index()) }">
                                                             <div class="plotImage">
@@ -421,6 +425,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <!-- /ko -->
                                                 </div>
                                             </td>
                                         </tr>
@@ -465,18 +470,24 @@
                             visible: FarmController.farmingModalTabSelected() == 'farmHandsView'
                         ">Fire All</button>
 
+                <!-- ko if: player.highestRegion() >= GameConstants.Region.alola -->
                 <div class="farmPages" data-bind="visible: FarmController.farmingModalTabSelected() == 'berryFarmView'">
                     <ul class="nav nav-pills">
                         <li class="nav-item rounded-left bg-primary">
                             <a class="nav-link active btn btn-primary" data-toggle='pill' href="#farmPageOne"
-                                data-bind="click: () => { FarmController.selectedFirstFarm(true); FarmController.selectedSecondFarm(false); }">1</a>
+                                data-bind="click: () => { FarmController.selectedFirstFarm(true); FarmController.selectedSecondFarm(false); }">
+                                1
+                            </a>
                         </li>
                         <li class="nav-item rounded-right bg-primary">
                             <a class="nav-link btn btn-primary" data-toggle='pill' href="#farmPageTwo"
-                                data-bind="click: () => { FarmController.selectedFirstFarm(false); FarmController.selectedSecondFarm(true); }">2</a>
+                                data-bind="click: () => { FarmController.selectedFirstFarm(false); FarmController.selectedSecondFarm(true); }">
+                                2
+                            </a>
                         </li>
                     </ul>
                 </div>
+                <!-- /ko -->
 
                 <div class="safeLockButton" data-bind="visible: FarmController.farmingModalTabSelected() == 'berryFarmView'">
                     <div class="btn-group" role="group">
