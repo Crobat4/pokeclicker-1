@@ -27,7 +27,20 @@
                             <!-- /ko -->
 
                             <h3>Save Data</h3>
-                            <button class="btn btn-primary btn-block" onClick="Save.download()">Download Save</button>
+                            <div class="row">
+                                <div class="col-md-6 col-12">
+                                    <button class="btn btn-primary btn-block" onClick="Save.download()">
+                                        Download Save
+                                    </button>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <button class="btn btn-primary btn-block" onClick="Save.download(true)" 
+                                        data-bind="tooltip: { title: 'Download a save file compatible with the Vanilla game' }">
+                                        Download Save for Vanilla
+                                    </button>
+                                </div>
+                            </div>
+                            
                             <i>If this does not work, you can copy the contents of the save and paste it into a '.txt' file</i>
                             <button class="btn btn-primary btn-block" onclick="Save.copySaveToClipboard()">Copy to Clipboard</button>
                             <hr>
