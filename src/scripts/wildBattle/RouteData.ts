@@ -2100,7 +2100,7 @@ Routes.add(new RegionRoute(
 Routes.add(new RegionRoute(
     'Luxury League Bridge', GameConstants.Region.alola, 36,
     new RoutePokemon({
-        water: ['Magikarp', 'Magikarp Pink Two Tone'],
+        water: ['Magikarp', 'Magikarp Pink Two-Tone'],
     }),
     [new GymBadgeRequirement(BadgeEnums.Fast_League)],
     undefined,
