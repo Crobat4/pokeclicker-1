@@ -21,8 +21,8 @@
                         name: 'caughtStatusAreaTemplate', 
                         data: { 
                             'areaTypeText': 'in the Safari Zone',
-                            'areaCompleted': Safari.completed(false),
-                            'areaCompletedShiny': Safari.completed(true)
+                            'areaCompleted': Safari.completed(false, player.region),
+                            'areaCompletedShiny': Safari.completed(true, player.region)
                         }
                     }"></knockout>
                 </h4>
