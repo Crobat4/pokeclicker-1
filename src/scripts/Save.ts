@@ -38,11 +38,11 @@ class Save {
 
     public static removeCrobatStuff(saveObject) {
         // Remove second farm plots
-        saveObject['farming'].plotList = saveObject['farming'].plotList.slice(0, 25);
+        saveObject.farming.plotList = saveObject.farming.plotList.slice(0, 25);
 
         // Remove extra Oak loadouts
-        saveObject['oakItemLoadouts'] = saveObject['oakItemLoadouts'].slice(0, 3);
-        
+        saveObject.oakItemLoadouts = saveObject.oakItemLoadouts.slice(0, 3);
+
         return saveObject;
     }
 
