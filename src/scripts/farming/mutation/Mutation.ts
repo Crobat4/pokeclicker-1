@@ -96,13 +96,15 @@ abstract class Mutation {
         let mutated = false;
 
         plots.forEach((idx) => {
-            const willMutate =  Rand.chance(this.mutationChance(idx) * App.game.farming.getMutationMultiplier() * App.game.farming.plotList[idx].getMutationMultiplier());
-            if (!willMutate) {
-                return;
+            if (idx < 25) {
+                const willMutate = Rand.chance(this.mutationChance(idx) * App.game.farming.getMutationMultiplier() * App.game.farming.plotList[idx].getMutationMultiplier());
+                if (!willMutate) {
+                    return;
+                }
+                this.handleMutation(idx);
+                App.game.oakItems.use(OakItemType.Squirtbottle);
+                mutated = true;
             }
-            this.handleMutation(idx);
-            App.game.oakItems.use(OakItemType.Squirtbottle);
-            mutated = true;
         });
 
         return mutated;

@@ -140,47 +140,97 @@
                             </ul>
                         </div>
 
-                        <div class="col-12 col-lg-8">
-                            <div id="plotList" class="row" data-bind="foreach: App.game.farming.plotList">
-                                <!-- ko if: $index() % GameConstants.FARM_PLOT_WIDTH == 0 -->
-                                <div class="w-100"></div>
-                                <!-- /ko -->
-                                <div class="plot col" data-bind="css: { plotLocked : !$data.isUnlocked }">
-                                    <div class="plot-content" data-bind="class: FarmController.calculateCssClass()">
-                                        <div class="plotImage">
-                                            <img style="width: 100%" src="assets/images/farm/soil.png"
-                                                data-bind="class: FarmController.calcMulchClass($data)">
-                                            <!-- ko if: $data.isSafeLocked -->
-                                            <img class ="plotSafeLockIcon" src= "assets/images/farm/plotSafeLock.svg" >
-                                            <!-- /ko -->
-                                            <!-- ko if: !$data.isUnlocked -->
-                                            <div class="plotButton plotLockHover">
-                                                <div>
-                                                    <span style="display: inline;">
-                                                        <img alt="Berry" style="height: 28px;"
-                                                            data-bind="attr:{ src: FarmController.getBerryImage(App.game.farming.plotBerryCost($index()).type) },
-                                                            css: {'berryLocked': !App.game.farming.unlockedBerries[App.game.farming.plotBerryCost($index()).type]() }"/>
-                                                        <span data-bind="text: GameConstants.formatNumber(App.game.farming.plotBerryCost($index()).amount)">0</span>
-                                                    </span>
+                        <div class="tab-content col-12 col-lg-8">
+                            <div id="farmPageOne" class="tab-pane fade show active">
+                                <div class="">
+                                    <div id="plotListOne" class="row" data-bind="foreach: App.game.farming.plotList.slice(0,25)">
+                                        <!-- ko if: $data.index % GameConstants.FARM_PLOT_WIDTH == 0 -->
+                                        <div class="w-100"></div>
+                                        <!-- /ko -->
+                                        <div class="plot col" data-bind="css: { plotLocked : !$data.isUnlocked }">
+                                            <div class="plot-content" data-bind="class: FarmController.calculateCssClass()">
+                                                <div class="plotImage">
+                                                    <img style="width: 100%" src="assets/images/farm/soil.png"
+                                                        data-bind="class: FarmController.calcMulchClass($data)">
+                                                    <!-- ko if: $data.isSafeLocked -->
+                                                    <img class ="plotSafeLockIcon" src= "assets/images/farm/plotSafeLock.svg" >
+                                                    <!-- /ko -->
+                                                    <!-- ko if: !$data.isUnlocked -->
+                                                    <div class="plotButton plotLockHover">
+                                                        <div>
+                                                            <span style="display: inline;">
+                                                                <img alt="Berry" style="height: 28px;"
+                                                                    data-bind="attr:{ src: FarmController.getBerryImage(App.game.farming.plotBerryCost($data.index).type) },
+                                                                    css: {'berryLocked': !App.game.farming.unlockedBerries[App.game.farming.plotBerryCost($data.index).type]() }"/>
+                                                                <span data-bind="text: GameConstants.formatNumber(App.game.farming.plotBerryCost($data.index).amount)">0</span>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span data-bind="template: { name: 'currencyTemplate', data: {'amount': App.game.farming.plotFPCost($data.index), 'currency': GameConstants.Currency.farmPoint}}"></span>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /ko -->
+                                                    <div class="plotButton"
+                                                        data-bind="ifnot: $data.isEmpty(),
+                                                        click: function(data, event){FarmController.plotClick($data.index, event)},
+                                                        tooltip: {title: $data.tooltip(), trigger: 'hover', animation: false, html: true}">
+                                                        <img width="100%" height="100%" src=""
+                                                            style="width: 68.75%; max-height: 100%; image-rendering: pixelated;"
+                                                            data-bind="attr:{ src: FarmController.getImage($data.index)}">
+                                                    </div>
                                                 </div>
-                                                <div>
-                                                    <span data-bind="template: { name: 'currencyTemplate', data: {'amount': App.game.farming.plotFPCost($index()), 'currency': GameConstants.Currency.farmPoint}}"></span>
-                                                </div>
-                                            </div>
-                                            <!-- /ko -->
-                                            <div class="plotButton"
-                                                data-bind="ifnot: $data.isEmpty(),
-                                                click: function(data, event){FarmController.plotClick($index(), event)},
-                                                tooltip: {title: $data.tooltip(), trigger: 'hover', animation: false, html: true}">
-                                                <img width="100%" height="100%" src=""
-                                                    style="width: 68.75%; max-height: 100%; image-rendering: pixelated;"
-                                                    data-bind="attr:{ src: FarmController.getImage($index())}">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <!-- ko if: player.highestRegion() >= GameConstants.Region.alola -->
+                            <div id="farmPageTwo" class="tab-pane fade">
+                                <div class="">
+                                    <div id="plotListTwo" class="row" data-bind="foreach: App.game.farming.plotList.slice(25,50)">
+                                        <!-- ko if: $data.index % GameConstants.FARM_PLOT_WIDTH == 0 -->
+                                        <div class="w-100"></div>
+                                        <!-- /ko -->
+                                        <div class="plot col" data-bind="css: { plotLocked : !$data.isUnlocked }">
+                                            <div class="plot-content" data-bind="class: FarmController.calculateCssClass()">
+                                                <div class="plotImage">
+                                                    <img style="width: 100%" src="assets/images/farm/soil.png"
+                                                        data-bind="class: FarmController.calcMulchClass($data)">
+                                                    <!-- ko if: $data.isSafeLocked -->
+                                                    <img class ="plotSafeLockIcon" src= "assets/images/farm/plotSafeLock.svg" >
+                                                    <!-- /ko -->
+                                                    <!-- ko if: !$data.isUnlocked -->
+                                                    <div class="plotButton plotLockHover">
+                                                        <div>
+                                                            <span style="display: inline;">
+                                                                <img alt="Berry" style="height: 28px;"
+                                                                    data-bind="attr:{ src: FarmController.getBerryImage(App.game.farming.plotBerryCost($data.index).type) },
+                                                                    css: {'berryLocked': !App.game.farming.unlockedBerries[App.game.farming.plotBerryCost($data.index).type]() }"/>
+                                                                <span data-bind="text: GameConstants.formatNumber(App.game.farming.plotBerryCost($data.index).amount)">0</span>
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <span data-bind="template: { name: 'currencyTemplate', data: {'amount': App.game.farming.plotFPCost($data.index), 'currency': GameConstants.Currency.farmPoint}}"></span>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /ko -->
+                                                    <div class="plotButton"
+                                                        data-bind="ifnot: $data.isEmpty(),
+                                                        click: function(data, event){FarmController.plotClick($data.index, event)},
+                                                        tooltip: {title: $data.tooltip(), trigger: 'hover', animation: false, html: true}">
+                                                        <img width="100%" height="100%" src=""
+                                                            style="width: 68.75%; max-height: 100%; image-rendering: pixelated;"
+                                                            data-bind="attr:{ src: FarmController.getImage($data.index)}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /ko -->
                         </div>
+
                     </div>
                 </div>
 
@@ -283,6 +333,14 @@
                     <p>If they run out of energy, they won't do any work for that cycle, but will regenerate some energy instead. If there's no work to do currently, they will also regenerate some energy.</p>
                     <p>Efficiency refers to how many actions they can do per work cycle.</p>
                     <p><i>More Farm Hands can be unlocked through shops and unlocking unique berries</i></p>
+
+                    <h4><u>Second Farm</u></h4>
+                    <p><i>(unlocked after reaching the Alola region)</i></p>
+                    <p>Focused on berry harvest and getting Farm Points. It works like the first farm with some differences.</p>
+                    <p>Most auras and mutations are disabled in this farm.</p>
+                    <p>The auras that work are: Harvest Amount (Passho), Aura Boost (Lum), Wither Prevention (Petaya)</p>
+                    <p>Farms don't share auras each other. (ex. Petaya only works in the farm where it is planted in)</p>
+                    <p>Plots are locked in the start, they can be unlocked by spending berries and Farm Points.</p>
                 </div>
 
                 <div id="farmHandsView" class="tab-pane fade">
@@ -360,6 +418,14 @@
                                                     <!-- ko if: $index() % GameConstants.FARM_PLOT_WIDTH == 0 -->
                                                     <div class="w-100"></div>
                                                     <!-- /ko -->
+                                                    <!-- ko if: $index() === 0 -->
+                                                    <div class="w-100 text-center">First Farm</div>
+                                                    <!-- /ko -->
+                                                    <!-- ko if: $index() === 25 && player.highestRegion() >= GameConstants.Region.alola-->
+                                                    <div class="w-100 text-center">Second Farm</div>
+                                                    <!-- /ko -->
+
+                                                    <!-- ko if: $index() < 25 || $index() >= 25 && player.highestRegion() >= GameConstants.Region.alola -->
                                                     <div class="plot col p-1">
                                                         <div class="plot-content clickable" data-bind="click: () => { $parent.togglePlot($index()) }">
                                                             <div class="plotImage">
@@ -367,6 +433,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <!-- /ko -->
                                                 </div>
                                             </td>
                                         </tr>
@@ -410,6 +477,26 @@
                             click: () => App.game.farming.farmHands.hired().forEach((f) => f.fire()),
                             visible: FarmController.farmingModalTabSelected() == 'farmHandsView'
                         ">Fire All</button>
+
+                <!-- ko if: player.highestRegion() >= GameConstants.Region.alola -->
+                <div class="farmPages" data-bind="visible: FarmController.farmingModalTabSelected() == 'berryFarmView'">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item rounded-left bg-primary">
+                            <a class="nav-link active btn btn-primary" data-toggle='pill' href="#farmPageOne"
+                                data-bind="click: () => { FarmController.selectedFirstFarm(true); FarmController.selectedSecondFarm(false); }">
+                                1
+                            </a>
+                        </li>
+                        <li class="nav-item rounded-right bg-primary">
+                            <a class="nav-link btn btn-primary" data-toggle='pill' href="#farmPageTwo"
+                                data-bind="click: () => { FarmController.selectedFirstFarm(false); FarmController.selectedSecondFarm(true); }">
+                                2
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /ko -->
+
                 <div class="safeLockButton" data-bind="visible: FarmController.farmingModalTabSelected() == 'berryFarmView'">
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-primary" data-bind="

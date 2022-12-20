@@ -17,6 +17,9 @@ class FarmController {
 
     public static berryListVisible: KnockoutObservable<boolean> = ko.observable(true);
 
+    public static selectedFirstFarm: KnockoutObservable<boolean> = ko.observable(true);
+    public static selectedSecondFarm: KnockoutObservable<boolean> = ko.observable(false);
+
     public static multipliers = ['×1', '×10', '×100', '×1000', 'All'];
     public static multIndex: KnockoutObservable<number> = ko.observable(0);
 
@@ -104,9 +107,14 @@ class FarmController {
     }
 
     public static toggleAllPlotsLocked(lock: boolean) {
-        App.game.farming.plotList.forEach((plot, index) => {
+        let addition = 0;
+        if (!FarmController.selectedFirstFarm() && FarmController.selectedSecondFarm()) {
+            addition = 25;
+        }
+
+        App.game.farming.plotList.slice(0 + addition, 25 + addition).forEach((plot, index) => {
             if (plot.isUnlocked && ((lock && !plot.isSafeLocked) || (!lock && plot.isSafeLocked))) {
-                App.game.farming.togglePlotSafeLock(index);
+                App.game.farming.togglePlotSafeLock(plot.index);
             }
         });
     }

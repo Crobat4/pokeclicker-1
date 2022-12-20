@@ -54,7 +54,7 @@ class Plot implements Saveable {
 
         this.emittingAura = {
             type: ko.pureComputed(() => {
-                if (this.stage() < PlotStage.Taller || this.mulch === MulchType.Freeze_Mulch) {
+                if (this.stage() < PlotStage.Taller || this.mulch === MulchType.Freeze_Mulch || index >= 25 && (this.berry !== BerryType.Passho && this.berry !== BerryType.Lum)) {
                     return null;
                 }
 
@@ -169,7 +169,8 @@ class Plot implements Saveable {
                 tooltip.push(`<u>${BerryType[this.berry]}</u>`);
 
                 // Petaya Effect
-                if (App.game.farming.berryInFarm(BerryType.Petaya, PlotStage.Berry, true) && this.berry !== BerryType.Petaya && this.stage() == PlotStage.Berry) {
+                if ((App.game.farming.berryInFarm(BerryType.Petaya, PlotStage.Berry, true, false) && this.berry !== BerryType.Petaya && this.stage() == PlotStage.Berry && index < 25) ||
+                    (App.game.farming.berryInFarm(BerryType.Petaya, PlotStage.Berry, true, true) && this.berry !== BerryType.Petaya && this.stage() == PlotStage.Berry && index >= 25)) {
                     tooltip.push('∞ until death');
                 // Normal Time
                 } else {
@@ -251,7 +252,8 @@ class Plot implements Saveable {
             this.age += growthTime;
 
             // Checking for Petaya Berries
-            if (App.game.farming.berryInFarm(BerryType.Petaya, PlotStage.Berry, true) && this.berry !== BerryType.Petaya) {
+            if ((App.game.farming.berryInFarm(BerryType.Petaya, PlotStage.Berry, true, false) && this.berry !== BerryType.Petaya && this.index < 25) ||
+                App.game.farming.berryInFarm(BerryType.Petaya, PlotStage.Berry, true, true) && this.berry !== BerryType.Petaya && this.index >= 25) {
                 this.age = Math.min(this.age, this.berryData.growthTime[3] + 1);
             }
 
@@ -531,25 +533,34 @@ class Plot implements Saveable {
      * Finds the plot indices that are around the plot in a 3x3 square
      * @param index The plot index
      */
-    public static findNearPlots(index: number): number[] {
+    public static findNearPlots(index: number, allowedAura = false): number[] {
         const plots = [];
-
-        const posX = index % GameConstants.FARM_PLOT_WIDTH;
-        const posY = (index - posX) / GameConstants.FARM_PLOT_HEIGHT;
+        // If index >= 25, subtract 25 to the index, calculate nearby plots and add 25 to those plots to get the plots indexes after 25
+        let subtraction = 0;
+        if (index >= 25) {
+            subtraction = 25;
+        }
+        //if (index < 25) {
+        const posX = (index - subtraction) % GameConstants.FARM_PLOT_WIDTH;
+        const posY = ((index - subtraction) - posX) / 5; // GameConstants.FARM_PLOT_HEIGHT
 
         for (let y = posY - 1; y <= posY + 1; y++) {
             for (let x = posX - 1; x <= posX + 1; x++) {
-                if (y < 0 || y > GameConstants.FARM_PLOT_HEIGHT - 1 || x < 0 || x >  GameConstants.FARM_PLOT_WIDTH - 1) {
+                if (y < 0 || y > 5 - 1 || x < 0 || x >  GameConstants.FARM_PLOT_WIDTH - 1) {
                     continue;
                 }
                 if (y === posY && x === posX) {
                     continue;
                 }
-                const id = y * GameConstants.FARM_PLOT_HEIGHT + x;
+                let id = y * 5 + x;
+                if (index >= 25) {
+                    id += subtraction;
+                }
+                //console.log(index, id)
                 plots.push(id);
             }
         }
-
+        //}
         return plots;
     }
 

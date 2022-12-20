@@ -140,7 +140,7 @@ export const BREEDING_ATTACK_BONUS = 25;
 
 // Farming
 export const FARM_PLOT_WIDTH = 5;
-export const FARM_PLOT_HEIGHT = 5;
+export const FARM_PLOT_HEIGHT = 10;
 
 export const BerryDistribution = [0.39, 0.63, 0.78, 0.87, 0.93, 0.96, 0.98, 1];
 

@@ -19,7 +19,7 @@ class Farming implements Feature {
         unlockedBerries: Array<boolean>(GameHelper.enumLength(BerryType) - 1).fill(false),
         mulchList: Array<number>(GameHelper.enumLength(MulchType)).fill(0),
         plotList: new Array(GameConstants.FARM_PLOT_WIDTH * GameConstants.FARM_PLOT_HEIGHT).fill(null).map((value, index) => {
-            const middle = Math.floor(GameConstants.FARM_PLOT_HEIGHT / 2) * GameConstants.FARM_PLOT_WIDTH + Math.floor(GameConstants.FARM_PLOT_WIDTH / 2);
+            const middle = Math.floor(5 / 2) * GameConstants.FARM_PLOT_WIDTH + Math.floor(GameConstants.FARM_PLOT_WIDTH / 2);
             return new Plot(index === middle, BerryType.None, 0, MulchType.None, 0, index);
         }),
         shovelAmt: 0,
@@ -1083,11 +1083,18 @@ class Farming implements Feature {
     //#region Plot Unlocking
 
     static unlockMatrix = [
+        // First Farm
         BerryType.Kelpsy, BerryType.Mago, BerryType.Persim, BerryType.Wepear, BerryType.Qualot,
         BerryType.Wiki, BerryType.Aspear, BerryType.Cheri, BerryType.Leppa, BerryType.Aguav,
         BerryType.Nanab, BerryType.Rawst, BerryType.None, BerryType.Chesto, BerryType.Razz,
         BerryType.Pomeg, BerryType.Sitrus, BerryType.Pecha, BerryType.Oran, BerryType.Pinap,
         BerryType.Grepa, BerryType.Figy, BerryType.Bluk, BerryType.Iapapa, BerryType.Hondew,
+        // Second Farm
+        BerryType.Charti, BerryType.Shuca, BerryType.Belue, BerryType.Rindo, BerryType.Kasib,
+        BerryType.Kebia, BerryType.Spelon, BerryType.Cornn, BerryType.Pamtre, BerryType.Coba,
+        BerryType.Wacan, BerryType.Nomel, BerryType.Tamato, BerryType.Magost, BerryType.Occa,
+        BerryType.Tanga, BerryType.Durin, BerryType.Rabuta, BerryType.Watmel, BerryType.Yache,
+        BerryType.Colbur, BerryType.Chople, BerryType.Passho, BerryType.Payapa, BerryType.Haban,
     ]
 
     unlockPlot(index: number) {
@@ -1147,8 +1154,12 @@ class Farming implements Feature {
     }
 
     plantAll(berry: BerryType) {
-        this.plotList.forEach((plot, index) => {
-            this.plant(index, berry);
+        let addition = 0;
+        if (!FarmController.selectedFirstFarm() && FarmController.selectedSecondFarm()) {
+            addition = 25;
+        }
+        this.plotList.slice(0 + addition, 25 + addition).forEach((plot, index) => {
+            this.plant(plot.index, berry);
         });
     }
 
@@ -1180,8 +1191,12 @@ class Farming implements Feature {
      * Try to harvest all plots
      */
     public harvestAll() {
-        this.plotList.forEach((plot, index) => {
-            this.harvest(index);
+        let addition = 0;
+        if (!FarmController.selectedFirstFarm() && FarmController.selectedSecondFarm()) {
+            addition = 25;
+        }
+        this.plotList.slice(0 + addition, 25 + addition).forEach((plot, index) => {
+            this.harvest(plot.index);
         });
     }
 
@@ -1259,7 +1274,12 @@ class Farming implements Feature {
      * @param amount The amount of mulch to apply to each plot. Defaults to 1
      */
     public mulchAll(mulch: MulchType, amount = 1) {
-        const mulchPlots = this.plotList.filter((_, index) => this.canMulch(index, mulch));
+        let addition = 0;
+        if (!FarmController.selectedFirstFarm() && FarmController.selectedSecondFarm()) {
+            addition = 25;
+        }
+
+        const mulchPlots = this.plotList.slice(0 + addition, 25 + addition).filter((plot, index) => this.canMulch(plot.index, mulch));
         amount *= mulchPlots.length;
         amount = Math.min(this.mulchList[mulch](), amount);
 
@@ -1268,8 +1288,8 @@ class Farming implements Feature {
             return;
         }
 
-        this.plotList.forEach((_, index) => {
-            this.addMulch(index, mulch, sharedMulch);
+        this.plotList.slice(0 + addition, 25 + addition).forEach((plot, index) => {
+            this.addMulch(plot.index, mulch, sharedMulch);
         });
     }
 
@@ -1347,8 +1367,8 @@ class Farming implements Feature {
      * @param berry The Berry type
      * @param stage The stage of the Berry plant. Defaults to PlotStage.Berry
      */
-    berryInFarm(berry: BerryType, stage = PlotStage.Berry, ignoreFrozen = false) {
-        return this.plotList.some(plot => plot.berry == berry && plot.stage() >= stage && (!ignoreFrozen || plot.mulch !== MulchType.Freeze_Mulch));
+    berryInFarm(berry: BerryType, stage = PlotStage.Berry, ignoreFrozen = false, secondFarm = false) {
+        return this.plotList.some(plot => plot.berry == berry && plot.stage() >= stage && (!ignoreFrozen || plot.mulch !== MulchType.Freeze_Mulch) && (!secondFarm ? plot.index < 25 : plot.index >= 25));
     }
 
     toJSON(): Record<string, any> {
