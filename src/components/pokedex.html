@@ -74,6 +74,19 @@ aria-labelledby="pokedexModalLabel">
                                     value: PokedexFilters.statusPokerus.value">
                             </select>
                         </div>
+                        <!-- ko if: PokedexHelper.isModalOpen() -->
+                        <div class="form-group col-md-6 col-6">
+                            <label for="pokedex-filter-category">Category</label>
+                            <select id="pokedex-filter-category" autocomplete="off" class="custom-select" 
+                                data-bind="options: PokedexFilters.category.options,
+                                    optionsValue: 'value',
+                                    optionsText: 'text',
+                                    value: PokedexFilters.category.value,
+                                    optionsAfterRender: function(option, item) { option.style.background = item.color; option.style.color = item.value === '-1' ? 'black' : 'white' }">
+                            </select>
+                        </div>
+                        <!-- /ko -->
+
                         <!-- Rare Hold Item -->
                         <div class="form-group col-md-9 col-6">
                             <span>Rare Hold Item</span>
@@ -210,6 +223,17 @@ aria-labelledby="pokedexModalLabel">
                                 </div>
                             </div>
                             <!-- /ko -->
+
+                            <!-- Category Button -->
+                            <div class="pokemonCategory dropdown" style="z-index: 1000;">
+                                <button data-toggle="dropdown" data-bind="class: `category-${App.game.party.getPokemon($data.id).category + 1}`"></button>
+                                <div class="dropdown-menu p-0 pokedex-category-dropdown">
+                                    <!-- ko foreach: { data: PokemonCategories.categories, as: 'pokemonCategory' } -->
+                                    <a class="dropdown-item category" href="#" data-bind="text: pokemonCategory.name, style: { background: pokemonCategory.color, 'text-shadow': '0 0 6px black' }, click: () => { App.game.party.getPokemon($parent.id).category = $index() }">Category</a>
+                                    <!-- /ko -->
+                                    <a class="dropdown-item bg-dark py-1" href="#categoryModal" data-toggle="modal"><i>Edit</i></a>
+                                </div>
+                            </div>
                             
                             <!-- /ko -->
 

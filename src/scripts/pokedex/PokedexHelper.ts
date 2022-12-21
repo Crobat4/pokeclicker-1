@@ -152,6 +152,10 @@ class PokedexHelper {
                 return false;
             }
 
+            if (PokedexFilters.category.value() != -1 && PokedexFilters.category.value() != App.game.party.getPokemon(pokemon.id)?.category) {
+                return false;
+            }
+
             return true;
         }) as typeof pokemonList;
     }
@@ -179,6 +183,10 @@ $(document).ready(() => {
 
     $('#pokedexModal').on('shown.bs.modal', () => {
         PokedexHelper.isModalOpen(true);
+        PokedexFilters.category.options = [
+            new SettingOption('All', '-1'),
+            ...Object.keys(PokemonCategories.categories()).map((n) => ({text: PokemonCategories.categories()[n].name(), value: n, color: PokemonCategories.categories()[n].color()})),
+        ]
     });
     $('#pokedexModal').on('hidden.bs.modal', () => {
         PokedexHelper.isModalOpen(false);
