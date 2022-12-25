@@ -183,10 +183,12 @@ $(document).ready(() => {
 
     $('#pokedexModal').on('shown.bs.modal', () => {
         PokedexHelper.isModalOpen(true);
+        /*
         PokedexFilters.category.options = [
             new SettingOption('All', '-1'),
             ...Object.keys(PokemonCategories.categories()).map((n) => ({text: PokemonCategories.categories()[n].name(), value: n, color: PokemonCategories.categories()[n].color()})),
         ]
+        */
     });
     $('#pokedexModal').on('hidden.bs.modal', () => {
         PokedexHelper.isModalOpen(false);

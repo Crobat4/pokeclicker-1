@@ -325,6 +325,12 @@ div[class*='-icon-container'].item-icon-right {
 }
 
 /* Pokedex Category dropdown */
-.pokedex-category-dropdown {
-  transform: translate3d(16px, 10px, 0px) !important;
+.dropdown button,
+.dropdown .dropdown-item {
+  word-wrap: break-word;
+  white-space: normal !important;
+  overflow: hidden;
+}
+.dropdown-item:hover {
+  background-color: var(--secondary) !important;
 }
