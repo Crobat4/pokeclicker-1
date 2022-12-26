@@ -90,9 +90,11 @@ class Mine {
     }
 
     private static canAddReward(x: number, y: number, reward: UndergroundItem): boolean {
+        /*
         if (Mine.alreadyHasRewardId(reward.id)) {
             return false;
         }
+        */
         if (y + reward.space.length >= App.game.underground.getSizeY() || x + reward.space[0].length >= Underground.sizeX) {
             return false;
         }
@@ -126,6 +128,7 @@ class Mine {
                     Mine.rewardGrid[i + y][j + x] = {
                         ...reward.space[i][j],
                         revealed: 0,
+                        mineID: Mine.rewardNumbers.length,
                     };
                 }
             }
@@ -345,67 +348,70 @@ class Mine {
 
     public static checkItemsRevealed() {
         for (let i = 0; i < Mine.rewardNumbers.length; i++) {
-            if (Mine.checkItemRevealed(Mine.rewardNumbers[i])) {
-                let amount = 1;
-                const itemName = UndergroundItems.getById(Mine.rewardNumbers[i]).name;
-                Notifier.notify({
-                    message: `You found ${GameHelper.anOrA(itemName)} ${GameConstants.humanifyString(itemName)}.`,
-                    type: NotificationConstants.NotificationOption.success,
-                    setting: NotificationConstants.NotificationSetting.Underground.underground_item_found,
-                });
-
-                if (App.game.oakItems.isActive(OakItemType.Treasure_Scanner)) {
-                    const giveDouble = App.game.oakItems.calculateBonus(OakItemType.Treasure_Scanner) / 100;
-                    if (Rand.chance(giveDouble)) {
-                        amount++;
-                        Notifier.notify({
-                            message: `You found an extra ${GameConstants.humanifyString(itemName)} in the Mine!`,
-                            type: NotificationConstants.NotificationOption.success,
-                            title: 'Treasure Scanner',
-                            timeout: 4000,
-                            setting: NotificationConstants.NotificationSetting.Underground.underground_item_found,
-                        });
-
+            if (Mine.rewardNumbers[i] !== -1) {
+                if (Mine.checkItemRevealed(i, Mine.rewardNumbers[i])) {
+                    let amount = 1;
+                    const itemName = UndergroundItems.getById(Mine.rewardNumbers[i]).name;
+                    Notifier.notify({
+                        message: `You found ${GameHelper.anOrA(itemName)} ${GameConstants.humanifyString(itemName)}.`,
+                        type: NotificationConstants.NotificationOption.success,
+                        setting: NotificationConstants.NotificationSetting.Underground.underground_item_found,
+                    });
+    
+                    if (App.game.oakItems.isActive(OakItemType.Treasure_Scanner)) {
+                        const giveDouble = App.game.oakItems.calculateBonus(OakItemType.Treasure_Scanner) / 100;
                         if (Rand.chance(giveDouble)) {
                             amount++;
                             Notifier.notify({
-                                message: `Lucky! You found another ${GameConstants.humanifyString(itemName)}!`,
+                                message: `You found an extra ${GameConstants.humanifyString(itemName)} in the Mine!`,
                                 type: NotificationConstants.NotificationOption.success,
                                 title: 'Treasure Scanner',
-                                timeout: 6000,
+                                timeout: 4000,
                                 setting: NotificationConstants.NotificationSetting.Underground.underground_item_found,
                             });
-
+    
                             if (Rand.chance(giveDouble)) {
                                 amount++;
                                 Notifier.notify({
-                                    message: `Jackpot! You found another ${GameConstants.humanifyString(itemName)}!`,
+                                    message: `Lucky! You found another ${GameConstants.humanifyString(itemName)}!`,
                                     type: NotificationConstants.NotificationOption.success,
                                     title: 'Treasure Scanner',
-                                    timeout: 8000,
+                                    timeout: 6000,
                                     setting: NotificationConstants.NotificationSetting.Underground.underground_item_found,
                                 });
+    
+                                if (Rand.chance(giveDouble)) {
+                                    amount++;
+                                    Notifier.notify({
+                                        message: `Jackpot! You found another ${GameConstants.humanifyString(itemName)}!`,
+                                        type: NotificationConstants.NotificationOption.success,
+                                        title: 'Treasure Scanner',
+                                        timeout: 8000,
+                                        setting: NotificationConstants.NotificationSetting.Underground.underground_item_found,
+                                    });
+                                }
                             }
                         }
                     }
+    
+                    App.game.oakItems.use(OakItemType.Treasure_Scanner);
+                    Underground.gainMineItem(Mine.rewardNumbers[i], amount);
+                    GameHelper.incrementObservable(Mine.itemsFound);
+                    GameHelper.incrementObservable(App.game.statistics.undergroundItemsFound, amount);
+                    // Mine.rewardNumbers.splice(i, 1);
+                    Mine.rewardNumbers[i] = -1;
+                    i--;
+                    Mine.checkCompleted();
                 }
-
-                App.game.oakItems.use(OakItemType.Treasure_Scanner);
-                Underground.gainMineItem(Mine.rewardNumbers[i], amount);
-                GameHelper.incrementObservable(Mine.itemsFound);
-                GameHelper.incrementObservable(App.game.statistics.undergroundItemsFound, amount);
-                Mine.rewardNumbers.splice(i, 1);
-                i--;
-                Mine.checkCompleted();
             }
         }
     }
 
-    public static checkItemRevealed(id: number) {
+    public static checkItemRevealed(mineID: number, itemID: number) {
         for (let i = 0; i < Underground.sizeX; i++) {
             for (let j = 0; j < this.getHeight(); j++) {
                 if (Mine.rewardGrid[j][i] != 0) {
-                    if (Mine.rewardGrid[j][i].value == id) {
+                    if (Mine.rewardGrid[j][i].value == itemID && Mine.rewardGrid[j][i].mineID == mineID) {
                         if (Mine.rewardGrid[j][i].revealed === 0) {
                             return false;
                         }
