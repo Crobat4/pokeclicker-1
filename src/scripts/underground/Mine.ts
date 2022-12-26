@@ -357,7 +357,7 @@ class Mine {
                         type: NotificationConstants.NotificationOption.success,
                         setting: NotificationConstants.NotificationSetting.Underground.underground_item_found,
                     });
-    
+
                     if (App.game.oakItems.isActive(OakItemType.Treasure_Scanner)) {
                         const giveDouble = App.game.oakItems.calculateBonus(OakItemType.Treasure_Scanner) / 100;
                         if (Rand.chance(giveDouble)) {
@@ -369,7 +369,7 @@ class Mine {
                                 timeout: 4000,
                                 setting: NotificationConstants.NotificationSetting.Underground.underground_item_found,
                             });
-    
+
                             if (Rand.chance(giveDouble)) {
                                 amount++;
                                 Notifier.notify({
@@ -379,7 +379,7 @@ class Mine {
                                     timeout: 6000,
                                     setting: NotificationConstants.NotificationSetting.Underground.underground_item_found,
                                 });
-    
+
                                 if (Rand.chance(giveDouble)) {
                                     amount++;
                                     Notifier.notify({
@@ -393,7 +393,7 @@ class Mine {
                             }
                         }
                     }
-    
+
                     App.game.oakItems.use(OakItemType.Treasure_Scanner);
                     Underground.gainMineItem(Mine.rewardNumbers[i], amount);
                     GameHelper.incrementObservable(Mine.itemsFound);

@@ -23,13 +23,13 @@ export default class UndergroundItems {
     }
 
     // Filter shards and plates out
-    public static checkItemType(item) {
-        return item.valueType != UndergroundItemValueType.Shard && item.valueType != UndergroundItemValueType.Gem;
+    public static checkShardPlate(item) {
+        return item.valueType !== UndergroundItemValueType.Shard && item.valueType !== UndergroundItemValueType.Gem;
     }
 
     // Returns a random unlocked item
     public static getRandomItem(): UndergroundItem {
-        const unlockedItems = this.list.filter((item) => item.isUnlocked() && this.checkItemType(item));
+        const unlockedItems = this.list.filter((item) => item.isUnlocked() && this.checkShardPlate(item));
         return Rand.fromWeightedArray(unlockedItems, unlockedItems.map((i) => i.getWeight())) || this.list[0];
     }
 
@@ -51,8 +51,8 @@ export default class UndergroundItems {
 }
 
 // Weights
-const diamondWeight = () => player.highestRegion() >= Region.unova ? 3 : 1;
-const evoStoneWeight = () => player.highestRegion() >= Region.unova ? 0.5 : 1;
+const diamondWeight = () => (player.highestRegion() >= Region.unova ? 3 : 1);
+const evoStoneWeight = () => (player.highestRegion() >= Region.unova ? 0.5 : 1);
 
 // Diamond Items
 UndergroundItems.addItem(new UndergroundItem('Rare Bone', 1, [[1, 0, 0, 0, 0, 1], [1, 1, 1, 1, 1, 1], [1, 0, 0, 0, 0, 1]], 3, UndergroundItemValueType.Diamond, null, diamondWeight));
@@ -102,25 +102,25 @@ UndergroundItems.addItem(new UndergroundItem('Root Fossil', 203, [[0, 0, 1, 1, 1
 UndergroundItems.addItem(new UndergroundItem('Claw Fossil', 204, [[1, 1, 1, 0, 0], [1, 1, 1, 1, 0], [0, 1, 1, 1, 1], [0, 0, 0, 1, 1]], 0, UndergroundItemValueType.Fossil, new MaxRegionRequirement(Region.hoenn),
     () => (App.game.party.alreadyCaughtPokemonByName('Anorith') || player.getUndergroundItemAmount(204) > 0 ? 1 : 2)));
 UndergroundItems.addItem(new UndergroundItem('Armor Fossil', 205, [[0, 1, 1, 1, 0], [0, 1, 1, 1, 0], [1, 1, 1, 1, 1], [0, 1, 1, 1, 0]], 0, UndergroundItemValueType.Fossil, new MaxRegionRequirement(Region.sinnoh),
-() => (App.game.party.alreadyCaughtPokemonByName('Shieldon') || player.getUndergroundItemAmount(205) > 0 ? 1 : 2)));
+    () => (App.game.party.alreadyCaughtPokemonByName('Shieldon') || player.getUndergroundItemAmount(205) > 0 ? 1 : 2)));
 UndergroundItems.addItem(new UndergroundItem('Skull Fossil', 206, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [0, 1, 1, 0]], 0, UndergroundItemValueType.Fossil, new MaxRegionRequirement(Region.sinnoh),
-() => (App.game.party.alreadyCaughtPokemonByName('Cranidos') || player.getUndergroundItemAmount(206) > 0 ? 1 : 2)));
+    () => (App.game.party.alreadyCaughtPokemonByName('Cranidos') || player.getUndergroundItemAmount(206) > 0 ? 1 : 2)));
 UndergroundItems.addItem(new UndergroundItem('Cover Fossil', 207, [[1, 1, 1, 1, 0], [1, 1, 1, 1, 1], [1, 1, 1, 1, 1], [1, 1, 1, 1, 1], [0, 1, 1, 1, 1]], 0, UndergroundItemValueType.Fossil, new MaxRegionRequirement(Region.unova),
-() => (App.game.party.alreadyCaughtPokemonByName('Tirtouga') || player.getUndergroundItemAmount(207) > 0 ? 1 : 2)));
+    () => (App.game.party.alreadyCaughtPokemonByName('Tirtouga') || player.getUndergroundItemAmount(207) > 0 ? 1 : 2)));
 UndergroundItems.addItem(new UndergroundItem('Plume Fossil', 208, [[0, 0, 1, 1, 1], [0, 1, 1, 1, 1], [1, 1, 1, 1, 0], [1, 1, 1, 1, 0], [1, 1, 0, 0, 0]], 0, UndergroundItemValueType.Fossil, new MaxRegionRequirement(Region.unova),
-() => (App.game.party.alreadyCaughtPokemonByName('Archen') || player.getUndergroundItemAmount(208) > 0 ? 1 : 2)));
+    () => (App.game.party.alreadyCaughtPokemonByName('Archen') || player.getUndergroundItemAmount(208) > 0 ? 1 : 2)));
 UndergroundItems.addItem(new UndergroundItem('Jaw Fossil', 209, [[0, 0, 1, 1, 1], [0, 1, 1, 1, 1], [1, 1, 1, 1, 1], [1, 1, 1, 1, 0]], 0, UndergroundItemValueType.Fossil, new MaxRegionRequirement(Region.kalos),
-() => (App.game.party.alreadyCaughtPokemonByName('Tyrunt') || player.getUndergroundItemAmount(209) > 0 ? 1 : 2)));
+    () => (App.game.party.alreadyCaughtPokemonByName('Tyrunt') || player.getUndergroundItemAmount(209) > 0 ? 1 : 2)));
 UndergroundItems.addItem(new UndergroundItem('Sail Fossil', 210, [[1, 1, 1, 0, 0], [1, 1, 1, 1, 1], [0, 1, 1, 1, 1], [0, 1, 1, 1, 0]], 0, UndergroundItemValueType.Fossil, new MaxRegionRequirement(Region.kalos),
-() => (App.game.party.alreadyCaughtPokemonByName('Amaura') || player.getUndergroundItemAmount(210) > 0 ? 1 : 2)));
+    () => (App.game.party.alreadyCaughtPokemonByName('Amaura') || player.getUndergroundItemAmount(210) > 0 ? 1 : 2)));
 UndergroundItems.addItem(new UndergroundItem('Fossilized Bird', 211, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [0, 1, 1, 0]], 0, UndergroundItemValueType.FossilPiece, new MaxRegionRequirement(Region.galar),
-() => ((App.game.party.alreadyCaughtPokemonByName('Dracozolt') && App.game.party.alreadyCaughtPokemonByName('Arctozolt')) || player.getUndergroundItemAmount(211) > 1 ? 1 : 2)));
+    () => ((App.game.party.alreadyCaughtPokemonByName('Dracozolt') && App.game.party.alreadyCaughtPokemonByName('Arctozolt')) || player.getUndergroundItemAmount(211) > 1 ? 1 : 2)));
 UndergroundItems.addItem(new UndergroundItem('Fossilized Fish', 212, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], 0, UndergroundItemValueType.FossilPiece, new MaxRegionRequirement(Region.galar),
-() => ((App.game.party.alreadyCaughtPokemonByName('Dracovish') && App.game.party.alreadyCaughtPokemonByName('Arctovish')) || player.getUndergroundItemAmount(211) > 1 ? 1 : 2)));
+    () => ((App.game.party.alreadyCaughtPokemonByName('Dracovish') && App.game.party.alreadyCaughtPokemonByName('Arctovish')) || player.getUndergroundItemAmount(211) > 1 ? 1 : 2)));
 UndergroundItems.addItem(new UndergroundItem('Fossilized Drake', 213, [[1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1]], 0, UndergroundItemValueType.FossilPiece, new MaxRegionRequirement(Region.galar),
-() => ((App.game.party.alreadyCaughtPokemonByName('Dracozolt') && App.game.party.alreadyCaughtPokemonByName('Dracovish')) || player.getUndergroundItemAmount(211) > 1 ? 1 : 2)));
+    () => ((App.game.party.alreadyCaughtPokemonByName('Dracozolt') && App.game.party.alreadyCaughtPokemonByName('Dracovish')) || player.getUndergroundItemAmount(211) > 1 ? 1 : 2)));
 UndergroundItems.addItem(new UndergroundItem('Fossilized Dino', 214, [[1, 1, 1, 0], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], 0, UndergroundItemValueType.FossilPiece, new MaxRegionRequirement(Region.galar),
-() => ((App.game.party.alreadyCaughtPokemonByName('Arctozolt') && App.game.party.alreadyCaughtPokemonByName('Arctovish')) || player.getUndergroundItemAmount(211) > 1 ? 1 : 2)));
+    () => ((App.game.party.alreadyCaughtPokemonByName('Arctozolt') && App.game.party.alreadyCaughtPokemonByName('Arctovish')) || player.getUndergroundItemAmount(211) > 1 ? 1 : 2)));
 
 // Evolution Stones
 UndergroundItems.addItem(new UndergroundEvolutionItem('Fire Stone', 300, [[1, 1, 1], [1, 1, 1], [1, 1, 1]], 1, StoneType.Fire_stone, null, evoStoneWeight));
