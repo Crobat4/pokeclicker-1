@@ -17,7 +17,13 @@
               <div id="selections" class="tab-pane fade in active show p-3">
                 <div class="row">
                   <!-- Poké Ball Selections -->
-                  <div class="col-md-6 col-12 collapse dont-collapse-sm justify-content-center" id="evo-item-list">
+                  <div class="col-12 d-md-none d-block">
+                    <button class="w-100 my-1 btn btn-secondary" type="button" data-toggle="collapse"
+                        data-target="#ball-selection-list" aria-expanded="false" aria-controls="ball-selection-list">
+                        Poké Ball Selections
+                    </button>
+                  </div>
+                  <div class="col-md-6 col-12 collapse dont-collapse-sm justify-content-center" id="ball-selection-list">
                     <h4>Selections</h4>
                     <div class="scrolling-div-pokeball" data-bind="foreach: App.game.pokeballs.pokeballSelectors">
                       <div class="col-12 pokeballListItem">
@@ -36,7 +42,13 @@
                   </div>
 
                   <!-- Poké Balls -->
-                  <div class="col-md-6 col-12 collapse dont-collapse-sm justify-content-center" id="evo-pokemon-list">
+                  <div class="col-12 d-md-none d-block">
+                    <button class="w-100 my-1 btn btn-secondary" type="button" data-toggle="collapse"
+                        data-target="#ball-list" aria-expanded="false" aria-controls="ball-list">
+                        Poké Balls
+                    </button>
+                  </div>
+                  <div class="col-md-6 col-12 collapse dont-collapse-sm justify-content-center" id="ball-list">
                     <h4>Poké Balls</h4>
                     <div class="scrolling-div-pokeball">
                       <div class="col-md-6 col-sm-10 col-lg-12 pokeballListItem"> <!--offset-sm-1 offset-md-0 offset-md-0 -->
@@ -73,8 +85,14 @@
               <div id="settings" class="tab-pane fade p-3">
                   <div class="row">
                       <!-- Ultra Beasts -->
+                      <div class="col-12 d-md-none d-block">
+                        <button class="w-100 my-1 btn btn-secondary" type="button" data-toggle="collapse"
+                            data-target="#ultra-beast-list" aria-expanded="false" aria-controls="ultra-beast-list">
+                            Ultra Beasts
+                        </button>
+                      </div>
                       <!-- ko if: new TemporaryBattleRequirement('Anabel').isCompleted() -->
-                      <div class="col-md-6 col-12 collapse dont-collapse-sm justify-content-center mx-auto" id="evo-item-list">
+                      <div class="col-md-6 col-12 collapse dont-collapse-sm justify-content-center mx-auto" id="ultra-beast-list">
                         <h4 class="d-inline-block">Ultra Beasts</h4>
                         <i class="bi bi-question-circle mx-1"
                         data-bind="tooltip: { title: `Beast Balls remaining: ${App.game.pokeballs.getBallQuantity(GameConstants.Pokeball.Beastball)}`, trigger: 'hover', html: true }"></i>
@@ -121,7 +139,13 @@
                       </div>
                       <!-- /ko -->
                       <!-- Types -->
-                      <div class="col-md-6 col-12 collapse dont-collapse-sm justify-content-center mx-auto" id="">
+                      <div class="col-12 d-md-none d-block">
+                        <button class="w-100 my-1 btn btn-secondary" type="button" data-toggle="collapse"
+                            data-target="#types-list" aria-expanded="false" aria-controls="types-list">
+                            Types
+                        </button>
+                      </div>
+                      <div class="col-md-6 col-12 collapse dont-collapse-sm justify-content-center mx-auto" id="types-list">
                         <h4 class="d-inline-block">Types</h4>
                         <i class="bi bi-question-circle mx-1"
                         data-bind="tooltip: { title: `These types are used by the 'By Type' selection`, trigger: 'hover', html: true }"></i>
