@@ -22,4 +22,23 @@ export default class VitaminController {
         const vitaminName = VitaminType[vitaminType ?? this.currentlySelected()];
         return `assets/images/items/vitamin/${vitaminName}.png`;
     }
+
+    public static giveAllVitamins(vitaminType: VitaminType, pokemonFilteredList) {
+        const maxVitamin = (player.highestRegion() + 1) * 5;
+        for (let i = 0; i < pokemonFilteredList.length && player.itemList[VitaminType[vitaminType]]() >= maxVitamin; i++) {
+            const pokemon = pokemonFilteredList[i];
+            if (pokemon.vitaminUsesRemaining() > 0) {
+                pokemon.useVitamin(vitaminType, Infinity);
+            }
+        }
+    }
+
+    public static takeAllVitamins(vitaminType: VitaminType, pokemonFilteredList) {
+        for (let i = 0; i < pokemonFilteredList.length; i++) {
+            const pokemon = pokemonFilteredList[i];
+            if (pokemon.vitaminsUsed[vitaminType]() > 0) {
+                pokemon.removeVitamin(vitaminType, Infinity);
+            }
+        }
+    }
 }
