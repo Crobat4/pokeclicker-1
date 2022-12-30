@@ -6805,7 +6805,7 @@ export const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumslow,
         'exp': 230,
         'eggCycles': 20,
-        'evolutions': [MegaEvolution('Ampharos', 'Mega Ampharos')],
+        // 'evolutions': [MegaEvolution('Ampharos', 'Mega Ampharos')],
         'base': {
             'hitpoints': 90,
             'attack': 75,
@@ -14483,7 +14483,7 @@ export const pokemonList = createPokemonArray(
         'id': 485,
         'name': 'Heatran',
         'type': [PokemonType.Fire, PokemonType.Steel],
-        'eggCycles': 80,
+        'eggCycles': 10,
         'levelType': LevelType.slow,
         'exp': 270,
         'catchRate': 3,
