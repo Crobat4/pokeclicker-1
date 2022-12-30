@@ -1911,6 +1911,20 @@ class Update implements Saveable {
             }
             //Red Gyarados
             saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 22);
+
+            // Crobat Fork
+            // Add mineID to current underground items in mine
+            const mineY = saveData.underground.upgrades.NewYLayer === 1 ? 13 : 12;
+            for (let i = 0; i < Underground.sizeX; i++) {
+                for (let j = 0; j < mineY; j++) {
+                    if (saveData.underground.mine.rewardGrid[j][i] != 0) {
+                        if (!saveData.underground.mine.rewardGrid[j][i].mineID) {
+                            saveData.underground.mine.rewardGrid[j][i].mineID = 0;
+                        }
+                        saveData.underground.mine.rewardGrid[j][i].mineID = saveData.underground.mine.rewardNumbers.indexOf(saveData.underground.mine.rewardGrid[j][i].value);
+                    }
+                }
+            }
         },
     };
 
