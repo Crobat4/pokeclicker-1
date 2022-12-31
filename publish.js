@@ -8,7 +8,7 @@ ghpages.publish('docs', {
     src: ['./**/*', '../package.json'],
     branch: 'master-crobat',
     dest: 'docs',
-    message: `[v${version}] Live website`,
+    message: `Crobat [v${crobatVersion}] Live website`,
 }, (err) => {
     if (err) {
         console.error('Something went wrong publishing...\n', err);
