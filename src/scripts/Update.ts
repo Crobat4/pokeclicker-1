@@ -1926,6 +1926,9 @@ class Update implements Saveable {
                 }
             }
         },
+
+        '0.10.6': ({ playerData, saveData }) => {
+        },
     };
 
     constructor() {
