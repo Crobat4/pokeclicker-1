@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const ghpages = require('gh-pages');
-const { version } = require('./package.json');
+const { version, crobatVersion } = require('./package.json');
 
 console.info('Starting publish..');
 
