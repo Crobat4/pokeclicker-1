@@ -450,7 +450,7 @@ class QuestLineHelper {
         celebiJohtoQuestLine.addQuest(talktoIlexForestShrine1);
 
         const SpikyEaredPichuReward = () => {
-            App.game.party.gainPokemonById(172.1);
+            App.game.party.gainPokemonByName('Spiky-eared Pichu');
             Notifier.notify({
                 title: celebiJohtoQuestLine.name,
                 message: 'You captured the Spiky-eared Pichu!',
@@ -1007,7 +1007,7 @@ class QuestLineHelper {
         detectivePikachuQuestLine.addQuest(searchForClues10);
 
         const DetectiveRaichuReward = () => {
-            App.game.party.gainPokemonById(26.02);
+            App.game.party.gainPokemonByName('Detective Raichu');
             Notifier.notify({
                 title: detectivePikachuQuestLine.name,
                 message: 'Detective Pikachu\'s partner has been nursed back to health!',
@@ -1135,7 +1135,7 @@ class QuestLineHelper {
         ashKetchumQuestLine.addQuest(clearUnovaAsh);
 
         const AshKetchumReward = () => {
-            App.game.party.gainPokemonById(658.01);
+            App.game.party.gainPokemonByName('Ash-Greninja');
             Notifier.notify({
                 title: ashKetchumQuestLine.name,
                 message: 'You obtained Ash-Greninja!',
@@ -1171,7 +1171,7 @@ class QuestLineHelper {
         princessDiancieQuestLine.addQuest(fightSteels);
 
         const BladeAegislashReward = () => {
-            App.game.party.gainPokemonById(681.1);
+            App.game.party.gainPokemonByName('Aegislash (Blade)');
             Notifier.notify({
                 title: princessDiancieQuestLine.name,
                 message: 'Your Doublade has evolved into Blade Forme Aegislash!',
@@ -1397,6 +1397,99 @@ class QuestLineHelper {
         App.game.quests.questLines().push(UltraBeastQuestLine);
     }
 
+    // Magikarp Jump
+    public static createDrSplashQuestLine() {
+        const drSplashQuestLine = new QuestLine('Dr. Splash\'s Research Project', 'Help Dr. Splash unlock the full potential of your Magikarps.', new GymBadgeRequirement(BadgeEnums.Great_League), GameConstants.BulletinBoards.Hoppy);
+
+        const talkToDrSplash1 = new TalkToNPCQuest(DrSplash1, 'Talk to Dr. Splash in Hoppy Town.');
+        drSplashQuestLine.addQuest(talkToDrSplash1);
+
+        const farmOran = new HarvestBerriesQuest(129, undefined, BerryType.Oran);
+        const farmSitrus = new HarvestBerriesQuest(129, undefined, BerryType.Sitrus);
+        const farmPecha = new HarvestBerriesQuest(129, undefined, BerryType.Pecha);
+        const farmRindo = new HarvestBerriesQuest(129, undefined, BerryType.Rindo);
+        const farmWacan = new HarvestBerriesQuest(129, undefined, BerryType.Wacan);
+        const farmLeppa = new HarvestBerriesQuest(129, undefined, BerryType.Leppa);
+        const farmRawst = new HarvestBerriesQuest(129, undefined, BerryType.Rawst);
+        const farmAspear = new HarvestBerriesQuest(129, undefined, BerryType.Aspear);
+        const farmRazz = new HarvestBerriesQuest(129, undefined, BerryType.Razz);
+        const farmBluk = new HarvestBerriesQuest(129, undefined, BerryType.Bluk);
+
+        drSplashQuestLine.addQuest(new MultipleQuestsQuest([
+            farmOran,
+            farmSitrus,
+            farmPecha,
+            farmRindo,
+            farmWacan,
+            farmLeppa,
+            farmRawst,
+            farmAspear,
+            farmRazz,
+            farmBluk,
+        ],'Gather berries for Dr. Splash.'));
+
+        const talkToDrSplash2 = new TalkToNPCQuest(DrSplash2, 'Report back to Dr. Splash about your berry research.');
+        drSplashQuestLine.addQuest(talkToDrSplash2);
+
+        const sandBag = new GainGemsQuest(5000, 0, PokemonType.Ground);
+        const jumpCounter = new CaptureSpecificPokemonQuest('Spoink', 'Catch 10 Spoink.', 10, true, 0, undefined);
+        const timber = new GainGemsQuest(5000, 0, PokemonType.Grass);
+        const rockCruncher = new GainGemsQuest(5000, 0, PokemonType.Rock);
+        const powerGenerator = new CaptureSpecificPokemonQuest('Voltorb', 'Catch 10 Voltorb.', 10, true, 0, undefined);
+        const pokeballSmash = new BuyPokeballsQuest(100000, 0, GameConstants.Pokeball.Pokeball);
+        const frostCruncher = new GainGemsQuest(5000, 0, PokemonType.Ice);
+
+        drSplashQuestLine.addQuest(new MultipleQuestsQuest([
+            sandBag,
+            jumpCounter,
+            timber,
+            rockCruncher,
+            powerGenerator,
+            pokeballSmash,
+            frostCruncher,
+        ],'Gather materials for Dr. Splash.'));
+
+        const talkToDrSplash3 = new TalkToNPCQuest(DrSplash3, 'Return to Dr. Splash in Hoppy Town with the training materials.');
+        drSplashQuestLine.addQuest(talkToDrSplash3);
+
+
+        const pushDwebble = new CaptureSpecificPokemonQuest('Dwebble', 'Catch 10 Dwebble.', 10, true, 0, undefined);
+        const pushBoldore = new CaptureSpecificPokemonQuest('Boldore', 'Catch 10 Boldore.', 10, true, 0, undefined);
+        const pushForretress = new CaptureSpecificPokemonQuest('Forretress', 'Catch 10 Forretress.', 10, true, 0, undefined);
+        const pushGolem = new CaptureSpecificPokemonQuest('Golem', 'Catch 10 Golem.', 10, true, 0, undefined);
+        const pushSteelix = new CaptureSpecificPokemonQuest('Steelix', 'Catch 10 Steelix.', 10, true, 0, undefined);
+
+        drSplashQuestLine.addQuest(new MultipleQuestsQuest([
+            pushDwebble,
+            pushBoldore,
+            pushForretress,
+            pushGolem,
+            pushSteelix,
+        ],'Catch Pokémon for Dr. Splash\'s training grounds.'));
+
+        const talkToDrSplash4 = new TalkToNPCQuest(DrSplash4, 'Return to Dr. Splash in Hoppy Town with the pushable Pokémon.');
+        drSplashQuestLine.addQuest(talkToDrSplash4);
+
+        const tackleMachine = new CustomQuest(5000, 0, 'Defeat 5,000 Pokémon', App.game.statistics.totalPokemonDefeated);
+        drSplashQuestLine.addQuest(tackleMachine);
+
+        const SaucyBlueReward = () => {
+            App.game.party.gainPokemonByName('Magikarp Saucy Blue');
+            Notifier.notify({
+                title: drSplashQuestLine.name,
+                message: 'Dr. Splash gives you a Saucy Blue Magikarp!',
+                type: NotificationConstants.NotificationOption.success,
+                timeout: 3e4,
+                sound: NotificationConstants.NotificationSound.General.new_catch,
+            });
+        };
+
+        const talkToDrSplash5 = new TalkToNPCQuest(DrSplash5, 'Wrap up your research project by talking to Dr. Splash in Hoppy Town.', SaucyBlueReward);
+        drSplashQuestLine.addQuest(talkToDrSplash5);
+
+        App.game.quests.questLines().push(drSplashQuestLine);
+
+    }
     public static createMeltanQuestLine() {
         const meltanQuestLine = new QuestLine('Let\'s Go, Meltan!', 'I need your assistance in learning more about the newly discovered Pokémon that has really sent me and other Pokémon researchers into quite a tizzy.', new GymBadgeRequirement(BadgeEnums.Elite_AlolaChampion), GameConstants.BulletinBoards.Alola);
 
@@ -1408,7 +1501,7 @@ class QuestLineHelper {
         meltanQuestLine.addQuest(new MultipleQuestsQuest([
             meltanMine10,
             meltanCatch50,
-        ],''));
+        ],'Step 1 of Let\'s Go, Meltan!'));
 
         // Multi-step #1:
 
@@ -1418,7 +1511,7 @@ class QuestLineHelper {
         meltanQuestLine.addQuest(new MultipleQuestsQuest([
             meltanBreed50,
             meltanObtain15kFP,
-        ],''));
+        ],'Step 2 of Let\'s Go, Meltan!'));
 
         // Multi-step #2:
 
@@ -1428,7 +1521,7 @@ class QuestLineHelper {
         meltanQuestLine.addQuest(new MultipleQuestsQuest([
             meltanCatch5Ditto,
             meltanDefeatMolayne10,
-        ],''));
+        ],'Step 3 of Let\'s Go, Meltan!'));
 
         // Multi-step #3:
 
@@ -1440,7 +1533,7 @@ class QuestLineHelper {
             meltanCatch50Steel,
             meltanCatch50Electric,
             meltanDefeatOlivia10,
-        ],''));
+        ],'Step 4 of Let\'s Go, Meltan!'));
 
         // Multi-step #4:
 
@@ -1452,12 +1545,12 @@ class QuestLineHelper {
             meltanCatch5Grimer,
             meltanCatch5Slugma,
             meltanCatch10Gulpin,
-        ],''));
+        ],'Step 5 of Let\'s Go, Meltan!'));
 
         // Multi-step #5:
 
         const meltanObtain10MB = new BuyPokeballsQuest(10, 0, GameConstants.Pokeball.Masterball);
-        meltanQuestLine.addQuest(new MultipleQuestsQuest([meltanObtain10MB],''));
+        meltanQuestLine.addQuest(new MultipleQuestsQuest([meltanObtain10MB],'Step 6 of Let\'s Go, Meltan!'));
 
         // Multi-step #6:
 
@@ -1469,7 +1562,7 @@ class QuestLineHelper {
             meltanCatch10Magnemite,
             meltanCatch10Exeggcute,
             meltanDefeatAcerola10,
-        ],''));
+        ],'Step 7 of Let\'s Go, Meltan!'));
 
         // Multi-step #7:
 
@@ -1483,7 +1576,7 @@ class QuestLineHelper {
             meltanCatch15Cubone,
             meltanCatch15Scyther,
             meltanDefeatKahili10,
-        ],''));
+        ],'Step 8 of Let\'s Go, Meltan!'));
 
         // Multi-step #8:
 
@@ -1495,7 +1588,7 @@ class QuestLineHelper {
             meltanCatch20Kabuto,
             meltanCatch20Omanyte,
             meltanDig30,
-        ],''));
+        ],'Step 9 of Let\'s Go, Meltan!'));
 
         // Multi-step #9:
 
@@ -1509,7 +1602,7 @@ class QuestLineHelper {
             meltanCatch20Lileep,
             meltanCatch20Aerodactyl,
             meltanDefeatHau15,
-        ],'', () => App.game.quests.getQuestLine('Defeat Rainbow Rocket').beginQuest()));
+        ],'Step 10 of Let\'s Go, Meltan!', () => App.game.quests.getQuestLine('Defeat Rainbow Rocket').beginQuest()));
 
         // Multi-step #10
 
@@ -1517,7 +1610,7 @@ class QuestLineHelper {
         const meltanRainbowRocket = new CustomQuest(1, 0, 'Defeat Team Rainbow Leader Giovanni.', () => App.game.statistics.temporaryBattleDefeated[GameConstants.getTemporaryBattlesIndex('Team Rainbow Leader Giovanni')]());
 
         const meltanGetMelmetal = () => {
-            App.game.party.gainPokemonById(PokemonHelper.getPokemonByName('Melmetal').id);
+            App.game.party.gainPokemonByName('Melmetal');
             Notifier.notify({
                 title: meltanQuestLine.name,
                 message: 'You found Melmetal!',
@@ -1529,7 +1622,7 @@ class QuestLineHelper {
         meltanQuestLine.addQuest(new MultipleQuestsQuest([
             meltanCatch400Meltan,
             meltanRainbowRocket,
-        ],'',meltanGetMelmetal));
+        ],'Let\'s Go, Meltan!',meltanGetMelmetal));
 
         App.game.quests.questLines().push(meltanQuestLine);
 
@@ -1550,7 +1643,7 @@ class QuestLineHelper {
         rainbowQuestLine.addQuest(new MultipleQuestsQuest([
             rainbowArchie,
             rainbowMaxie,
-        ],''));
+        ],'Defeat Archie and Maxie.'));
 
         const rainbowCyrus = new CustomQuest(1, 0, 'Defeat Team Galactic Leader Cyrus.', () => App.game.statistics.temporaryBattleDefeated[GameConstants.getTemporaryBattlesIndex('Team Galactic Leader Cyrus')]());
         rainbowQuestLine.addQuest(rainbowCyrus);
@@ -1569,7 +1662,7 @@ class QuestLineHelper {
     }
 
     public static createMagikarpJumpQuestLine() {
-        const magikarpJumpQuestLine = new QuestLine('Magikarp Jump', 'Go to Hoppy Town and share their love for Magikarp.', new MultiRequirement([new DevelopmentRequirement(), new GymBadgeRequirement(BadgeEnums.Elite_AlolaChampion)]), GameConstants.BulletinBoards.Alola);
+        const magikarpJumpQuestLine = new QuestLine('Magikarp Jump', 'Go to Hoppy Town and share their love for Magikarp.', new GymBadgeRequirement(BadgeEnums.Elite_AlolaChampion), GameConstants.BulletinBoards.Alola);
 
         const talkToMayor = new TalkToNPCQuest(MayorKarp, 'Use the subregion travel to talk to Mayor Karp in Hoppy Town.');
         magikarpJumpQuestLine.addQuest(talkToMayor);
@@ -2123,7 +2216,7 @@ class QuestLineHelper {
             ]), GameConstants.BulletinBoards.Galar);
 
         const mysteryGift = new TalkToNPCQuest(MagearnaMysteryGift, 'Go home and open your Mystery Gift', () => {
-            App.game.party.gainPokemonById(801.1);
+            App.game.party.gainPokemonByName('Magearna (Original Color)');
             Notifier.notify({
                 title: magearnaQuestLine.name,
                 message: 'You obtained Magearna (Original Color)!',
@@ -2256,6 +2349,7 @@ class QuestLineHelper {
         this.createOriginalColorMagearnaQuestLine();
         this.createFindSurpriseTogepiForEasterQuestLine();
         this.createHoopaDayPikabluQuestLine();
+        this.createDrSplashQuestLine();
         this.createMeltanQuestLine();
         this.createRainbowRocketQuestLine();
     }

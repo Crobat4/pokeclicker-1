@@ -14,8 +14,8 @@ class Save {
         console.log('%cGame saved', 'color:#3498db;font-weight:900;');
     }
 
-    public static getSaveObject() {
-        const saveObject = {achievements : []};
+    public static getSaveObject(removeCrobatStuff = false) {
+        let saveObject = {achievements : []};
 
         Object.keys(App.game).filter(key => App.game[key].saveKey).forEach(key => {
             saveObject[App.game[key].saveKey] = App.game[key].toJSON();
@@ -28,6 +28,20 @@ class Save {
         if (!saveObject.achievements.length) {
             delete saveObject.achievements;
         }
+
+        if (removeCrobatStuff) {
+            saveObject = this.removeCrobatStuff(saveObject);
+        }
+
+        return saveObject;
+    }
+
+    public static removeCrobatStuff(saveObject) {
+        // Remove second farm plots
+        saveObject.farming.plotList = saveObject.farming.plotList.slice(0, 25);
+
+        // Remove extra Oak loadouts
+        saveObject.oakItemLoadouts = saveObject.oakItemLoadouts.slice(0, 3);
 
         return saveObject;
     }
@@ -49,8 +63,8 @@ class Save {
         }
     }
 
-    public static download() {
-        const backupSaveData = {player, save: this.getSaveObject(), settings: Settings.toJSON()};
+    public static download(removeCrobatStuff = false) {
+        const backupSaveData = {player, save: this.getSaveObject(removeCrobatStuff), settings: Settings.toJSON()};
         try {
             const element = document.createElement('a');
             element.setAttribute('href', `data:text/plain;charset=utf-8,${encodeURIComponent(btoa(JSON.stringify(backupSaveData)))}`);

@@ -72,6 +72,16 @@
                             </select>
                         </div>
                     </div>
+                    <button class="btn btn-primary" data-bind="
+                        click: () => VitaminController.giveAllVitamins(VitaminController.currentlySelected(), PartyController.getvitaminSortedList().filter(p => !p.hideFromProteinList())),
+                        text: `Give ${GameConstants.VitaminType[VitaminController.currentlySelected()]} to all`">
+                        Give all
+                    </button>
+                    <button class="btn btn-primary" data-bind="
+                        click: () => VitaminController.takeAllVitamins(VitaminController.currentlySelected(), PartyController.getvitaminSortedList().filter(p => !p.hideFromProteinList())),
+                        text: `Take all ${GameConstants.VitaminType[VitaminController.currentlySelected()]}`">
+                        Take all
+                    </button>
                 </div>
                 <i data-bind="text: VitaminController.add() ? 'Left click to give, Right click to take' : 'Left/Right click to take'">Left click to give, Right click to take</i>
                 <table class="table table-striped table-hover table-bordered table-sm m-0">
