@@ -152,6 +152,10 @@ class PokedexHelper {
                 return false;
             }
 
+            if (PokedexFilters.category.value() != -1 && PokedexFilters.category.value() != App.game.party.getPokemon(pokemon.id)?.category) {
+                return false;
+            }
+
             return true;
         }) as typeof pokemonList;
     }

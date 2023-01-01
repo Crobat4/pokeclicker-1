@@ -66,6 +66,11 @@ const PokedexFilters: Record<string, FilterOption> = {
             ...Settings.enumToNumberSettingOptionArray(Pokerus, (t) => t !== 'Infected'),
         ],
     ),
+    category: new FilterOption<number>(
+        'Category',
+        ko.observable(-1).extend({ numeric: 0 }),
+        'pokedexCategoryFilter',
+    ),
     heldItem: new FilterOption<boolean>(
         'Rare Held Item',
         ko.observable(false),
