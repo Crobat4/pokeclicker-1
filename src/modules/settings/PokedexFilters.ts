@@ -4,7 +4,6 @@ import SettingOption from './SettingOption';
 import Settings from './Settings';
 import FilterOption from './FilterOption';
 import GameHelper from '../GameHelper';
-import PokemonCategories from '../party/Category';
 
 const PokedexFilters: Record<string, FilterOption> = {
     name: new FilterOption<string>(
@@ -71,12 +70,6 @@ const PokedexFilters: Record<string, FilterOption> = {
         'Category',
         ko.observable(-1).extend({ numeric: 0 }),
         'pokedexCategoryFilter',
-        /*
-        [
-            new SettingOption('All', '-1'),
-            ...Object.keys(PokemonCategories.categories()).map((n) => ({text: PokemonCategories.categories()[n].name(), value: n, color: PokemonCategories.categories()[n].color()})),
-        ]
-        */
     ),
     heldItem: new FilterOption<boolean>(
         'Rare Held Item',

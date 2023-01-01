@@ -74,19 +74,8 @@ aria-labelledby="pokedexModalLabel">
                                     value: PokedexFilters.statusPokerus.value">
                             </select>
                         </div>
-                        <!-- ko if: PokedexHelper.isModalOpen() -->
                         <div class="form-group col-md-6 col-6">
                             <label for="pokedex-filter-category">Category</label>
-                            <!--
-                            <select id="pokedex-filter-category" autocomplete="off" class="custom-select" 
-                                data-bind="options: PokedexFilters.category.options,
-                                    optionsValue: 'value',
-                                    optionsText: 'text',
-                                    value: PokedexFilters.category.value,
-                                    optionsAfterRender: function(option, item) { option.style.background = item.color; option.style.color = item.value === '-1' ? 'black' : 'white' }">
-                            </select>
-                            -->
-
                             <div class="dropdown show">
                                 <button type="button" class="text-left custom-select col-12 btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                     data-bind="text: PokedexFilters.category.value() == -1 ? 'All' : PokemonCategories.categories()[PokedexFilters.category.value()].name()">
@@ -105,7 +94,6 @@ aria-labelledby="pokedexModalLabel">
                                 </div>
                             </div>
                         </div>
-                        <!-- /ko -->
 
                         <!-- Rare Hold Item -->
                         <div class="form-group col-md-9 col-6">
