@@ -135,6 +135,13 @@ class Party implements Feature {
                 // Only magikarps can attack in magikarp jump
                 continue;
             }
+            if (App.game.challenges.list.monotype.active()) {
+                const dataPokemon = PokemonHelper.getPokemonByName(pokemon.name);
+                if (dataPokemon.type1 != App.game.challenges.list.monotype.pokemonType() && dataPokemon.type2 != App.game.challenges.list.monotype.pokemonType()) {
+                    // Only pokemon with selected type can attack in monotype challenge
+                    continue;
+                }
+            }
             attack += this.calculateOnePokemonAttack(pokemon, type1, type2, region, ignoreRegionMultiplier, includeBreeding, useBaseAttack, overrideWeather, ignoreLevel, includeFlute);
         }
 

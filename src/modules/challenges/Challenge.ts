@@ -1,18 +1,22 @@
 import {
     Observable as KnockoutObservable,
 } from 'knockout';
+import PokemonType from '../enums/PokemonType';
 import * as GameConstants from '../GameConstants';
 import Notifier from '../notifications/Notifier';
 
 export default class Challenge {
     public active: KnockoutObservable<boolean>;
+    public pokemonType: KnockoutObservable<PokemonType>;
 
     constructor(
         public type: string,
         public description: string,
         active = false,
+        pokemonType = PokemonType.None, // For monotype challenge
     ) {
         this.active = ko.observable(active);
+        this.pokemonType = ko.observable(pokemonType);
     }
 
     activate(): void {

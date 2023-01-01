@@ -1,4 +1,5 @@
 import { Saveable } from '../DataStore/common/Saveable';
+import PokemonType from '../enums/PokemonType';
 import Challenge from './Challenge';
 
 export default class Challenges implements Saveable {
@@ -17,7 +18,10 @@ export default class Challenges implements Saveable {
         disableVitamins: new Challenge('No Vitamins', 'Disables the usage of Vitamins'),
         slowEVs: new Challenge('Slow EVs', 'Gain EVs 10x slower'),
         realEvolutions: new Challenge('Real evolutions', 'Your Pokémon go away, when they evolve'),
+        monotype: new Challenge('Monotype', 'Only Pokémon that contains the selected type will deal damage'),
     };
+
+    monotypeSelectedType = PokemonType.None;
 
     fromJSON(json): void {
         if (!json || !json.list) {
@@ -26,16 +30,24 @@ export default class Challenges implements Saveable {
 
         Object.entries(json.list).forEach(([challenge, value]) => {
             this.list[challenge]?.active(!!value);
+            if (challenge == 'monotype') {
+                this.list[challenge]?.pokemonType(json.monotypeSelectedType);
+            }
         });
+        
     }
 
     toJSON(): Record<string, any> {
         const list = {};
+        let monotypeSelectedType = PokemonType.None;
         Object.entries(this.list).forEach(([c, v]) => {
             list[c] = v.active();
+            if (c == 'monotype') {
+                monotypeSelectedType = v.pokemonType();
+            }
         });
         return {
-            list,
+            list, monotypeSelectedType,
         };
     }
 }

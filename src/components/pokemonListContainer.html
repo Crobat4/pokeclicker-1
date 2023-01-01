@@ -55,7 +55,17 @@
                 </tr>
             </thead>
             <tbody data-bind="foreach: PartyController.getSortedList()">
-                <tr data-bind="hidden: $data.breeding">
+                <tr data-bind="hidden: $data.breeding, 
+                    style: { 'opacity': 
+                        App.game.challenges.list.monotype.pokemonType() != PokemonHelper.getPokemonByName($data.name).type1 && 
+                        App.game.challenges.list.monotype.pokemonType() != PokemonHelper.getPokemonByName($data.name).type2 ? 0.4 : 1 
+                    },
+                    tooltip: {
+                        title: App.game.challenges.list.monotype.pokemonType() != PokemonHelper.getPokemonByName($data.name).type1 && 
+                            App.game.challenges.list.monotype.pokemonType() != PokemonHelper.getPokemonByName($data.name).type2 ? 'This Pokémon can\'t attack due Monotype Challenge' : '',
+                        trigger: 'hover',
+                        boundary: 'window',
+                    }">
                     <td>
                         <img
                             class="smallImage"

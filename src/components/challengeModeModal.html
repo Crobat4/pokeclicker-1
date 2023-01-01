@@ -22,6 +22,13 @@
                         }">
                             <td class="text-left font-weight-bold" data-bind="text: $data.type"></td>
                             <td class="p-1">
+                                <!-- ko if: ($data.type === 'Monotype' && $data.active()) && player.regionStarters[GameConstants.Region.kanto]() == GameConstants.Starter.None -->
+                                <select autocomplete="off" data-bind="value: $data.pokemonType">
+                                    <!-- ko foreach: GameHelper.enumStrings(PokemonType) -->
+                                    <option data-bind="attr: { value: PokemonType[$data] }, text: $data">Type</option>
+                                    <!-- /ko -->
+                                </select>
+                                <!-- /ko -->
                                 <!-- ko if: !$data.active() && player.regionStarters[GameConstants.Region.kanto]() == GameConstants.Starter.None --><button class="btn btn-warning btn-block" data-bind="click: ()=>{$data.activate();}">ACTIVATE</button><!-- /ko -->
                                 <!-- ko if: !$data.active() && player.regionStarters[GameConstants.Region.kanto]() != GameConstants.Starter.None --><button class="btn btn-secondary btn-block disabled">DISABLED</button><!-- /ko -->
                                 <!-- ko if: $data.active() --><button class="btn btn-success btn-block" data-bind="click: ()=>{$data.disable();}">ACTIVE</button><!-- /ko -->

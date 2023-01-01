@@ -1906,6 +1906,14 @@ class Update implements Saveable {
             if (saveData.statistics.dungeonsCleared[157] > 0) { // Tower of Waters
                 Update.giveMissingPokemon(saveData, 892.01);
             }
+
+            // Start Monotype
+            setTimeout(async () => {
+                // Check if player wants to activate the new challenge modes
+                if (!await Notifier.confirm({ title: 'Monotype', message: 'New challenge mode added: Monotype.\n\nOnly Pokémon that contains the selected type will deal damage.\n\nThis is an optional challenge and is NOT the recommended way to play.\n\nPlease choose if you would like this challenge mode to be disabled or enabled.\n\nCan be disabled later. Can NOT be enabled later!', confirm: 'Disable', cancel: 'Enable' })) {
+                    App.game.challenges.list.slowEVs.activate();
+                }
+            }, GameConstants.SECOND);
         },
     };
 
