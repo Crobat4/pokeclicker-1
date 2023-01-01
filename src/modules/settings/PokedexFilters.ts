@@ -86,6 +86,18 @@ const PokedexFilters: Record<string, FilterOption> = {
         ko.observable(false),
         'pokedexGenderDiffFilter',
     ),
+    uniqueTransformation: new FilterOption<string>(
+        'Unique Transformations',
+        ko.observable('all'),
+        'pokedexUniqueTransformationFilter',
+        [
+            new SettingOption('Show All Pokémon', 'all'),
+            new SettingOption('Mega Evolution Available', 'mega-available'),
+            new SettingOption('Obtained Mega Evolution', 'mega-pokemon'),
+            // new SettingOption('Gigantamax Available', 'gigantamax-available'),
+            // new SettingOption('Gigantamax Pokémon', 'gigantamax-pokemon'),
+        ],
+    ),
 };
 
 export default PokedexFilters;

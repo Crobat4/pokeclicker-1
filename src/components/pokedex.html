@@ -74,6 +74,8 @@ aria-labelledby="pokedexModalLabel">
                                     value: PokedexFilters.statusPokerus.value">
                             </select>
                         </div>
+
+                        <!-- Category -->
                         <div class="form-group col-md-6 col-6">
                             <label for="pokedex-filter-category">Category</label>
                             <div class="dropdown show">
@@ -93,6 +95,17 @@ aria-labelledby="pokedexModalLabel">
                                     <!-- /ko-->
                                 </div>
                             </div>
+                        </div>
+
+                         <!-- Mega Evolution -->
+                         <div class="form-group col-md-6 col-6">
+                            <label for="pokedex-filter-unique-transformation">Unique Forms</label>
+                            <select id="pokedex-filter-unique-transformation" autocomplete="off" class="custom-select" 
+                                data-bind="options: PokedexFilters.uniqueTransformation.options,
+                                    optionsValue: 'value',
+                                    optionsText: 'text',
+                                    value: PokedexFilters.uniqueTransformation.value">
+                            </select>
                         </div>
 
                         <!-- Rare Hold Item -->
@@ -123,6 +136,7 @@ aria-labelledby="pokedexModalLabel">
                                 </div>
                             </label>
                         </div>
+
                         <!-- Gender differences -->
                         <div class="form-group col-md-9 col-6">
                             <span>Gender differences</span>
