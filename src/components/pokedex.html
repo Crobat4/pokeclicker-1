@@ -74,6 +74,16 @@ aria-labelledby="pokedexModalLabel">
                                     value: PokedexFilters.statusPokerus.value">
                             </select>
                         </div>
+
+                        <div class="form-group col-md-12 col-12">
+                            <label for="pokedex-filter-unique-transformation">Unique Transformations</label>
+                            <select id="pokedex-filter-unique-transformation" autocomplete="off" class="custom-select" 
+                                data-bind="options: PokedexFilters.uniqueTransformation.options,
+                                    optionsValue: 'value',
+                                    optionsText: 'text',
+                                    value: PokedexFilters.uniqueTransformation.value">
+                            </select>
+                        </div>
                         <!-- Rare Hold Item -->
                         <div class="form-group col-md-9 col-6">
                             <span>Rare Hold Item</span>
@@ -102,6 +112,7 @@ aria-labelledby="pokedexModalLabel">
                                 </div>
                             </label>
                         </div>
+
                         <!-- Gender differences -->
                         <div class="form-group col-md-9 col-6">
                             <span>Gender differences</span>
