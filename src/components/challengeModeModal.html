@@ -25,7 +25,12 @@
                                 <!-- ko if: ($data.type === 'Monotype' && $data.active()) && player.regionStarters[GameConstants.Region.kanto]() == GameConstants.Starter.None -->
                                 <select autocomplete="off" data-bind="value: $data.pokemonType">
                                     <!-- ko foreach: GameHelper.enumStrings(PokemonType) -->
+
+                                    <!-- No monotype for none or dark -->
+                                    <!-- ko if: $data != 'None' && $data != 'Dark' -->
                                     <option data-bind="attr: { value: PokemonType[$data] }, text: $data">Type</option>
+                                    <!-- /ko -->
+
                                     <!-- /ko -->
                                 </select>
                                 <!-- /ko -->

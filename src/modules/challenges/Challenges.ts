@@ -18,7 +18,7 @@ export default class Challenges implements Saveable {
         disableVitamins: new Challenge('No Vitamins', 'Disables the usage of Vitamins'),
         slowEVs: new Challenge('Slow EVs', 'Gain EVs 10x slower'),
         realEvolutions: new Challenge('Real evolutions', 'Your Pokémon go away, when they evolve'),
-        monotype: new Challenge('Monotype', 'Only Pokémon that contains the selected type will deal damage'),
+        monotype: new Challenge('Monotype', 'Only Pokémon that contains the selected type will deal damage. Dark-type can NOT be selected'),
     };
 
     monotypeSelectedType = PokemonType.None;

@@ -710,6 +710,10 @@ export const RegionalStarters = [
     [810, 813, 816], // Galar
 ];
 
+export const RegionalStartersMonotype = [
+    [19, 4, 7, 25, 1, 131, 56, 23, 27, 16, 63, 10, 74, 92, 147, 0, 81, 39], // Kanto
+]
+
 export enum StoneType {
     'None' = -1,
     'Leaf_stone',

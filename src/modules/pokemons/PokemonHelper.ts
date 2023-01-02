@@ -198,3 +198,16 @@ export function incrementPokemonStatistics(pokemonId: number, statistic: Pokemon
         GameHelper.incrementObservable(totalStatistics[shinyString + genderString + statistic]);
     }
 }
+
+// Check if Pokemon contains the monotype challenge selected type
+export function checkPokemonTypeMonotype(pokemonID) {
+    if (App.game.challenges.list.monotype.active()) {
+        // TODO: Move Number to the challenge class maybe
+        const monotypeSelectedType = Number(App.game.challenges.list.monotype.pokemonType());
+        const pokemon = this.getPokemonById(pokemonID);
+        if (pokemon.type1 != monotypeSelectedType && pokemon.type2 != monotypeSelectedType) {
+            return false;
+        }
+    }
+    return true;
+}

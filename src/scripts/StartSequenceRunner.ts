@@ -9,13 +9,16 @@ class StartSequenceRunner {
 
     }
 
-    public static pickStarter(s: GameConstants.Starter) {
+    public static pickStarter(s: GameConstants.Starter, monotypeSelected: PokemonType = PokemonType.None) {
         // Reload the achievements in case the user has any challenge modes activated
         AchievementHandler.load();
         App.game.quests.getQuestLine('Tutorial Quests').beginQuest(0);
         this.starterPicked = s;
         $('#pickStarterTutorialModal').modal('hide');
-        const dataPokemon = PokemonHelper.getPokemonById(GameConstants.RegionalStarters[GameConstants.Region.kanto][this.starterPicked]);
+        const pokemonID = !App.game.challenges.list.monotype.active() || monotypeSelected == PokemonType.None || monotypeSelected == PokemonType.Dark ? 
+            GameConstants.RegionalStarters[GameConstants.Region.kanto][this.starterPicked] :
+            GameConstants.RegionalStartersMonotype[GameConstants.Region.kanto][monotypeSelected]
+        const dataPokemon = PokemonHelper.getPokemonById(pokemonID);
         const shiny: boolean = PokemonFactory.generateShiny(GameConstants.SHINY_CHANCE_BATTLE);
         const gender = PokemonFactory.generateGender(dataPokemon.gender.femaleRatio, dataPokemon.gender.type);
 
@@ -71,18 +74,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     $('#pickStarterTutorialModal').on('hidden.bs.modal', () => {
         if (StartSequenceRunner.starterPicked == GameConstants.Starter.None) {
-            StartSequenceRunner.noStarterCount++;
-            const startersCount = StartSequenceRunner.noStarterCount >= 5 ? 'four' : 'three';
-            $('#pickStarterTutorialModalText').text(`I can't hold off all ${startersCount}! Please pick the Pokémon you want to fight!`);
-            $('#pickStarterTutorialModal').modal('show');
-            if (StartSequenceRunner.noStarterCount == 5) {
-                // Add Pikachu to the selections
-                $('#starterSelection').append(`<div class="col">
-                        <input class="image-starter" type="image"
-                           src="assets/images/pokemon/25.png"
-                           onclick="StartSequenceRunner.pickStarter(GameConstants.Starter.Special)">
-                    </div>`);
+            if (!App.game.challenges.list.monotype.active()) { // Don't add Pikachu if monotype challenge is enabled
+                StartSequenceRunner.noStarterCount++;
+                const startersCount = StartSequenceRunner.noStarterCount >= 5 ? 'four' : 'three';
+                $('#pickStarterTutorialModalText').text(`I can't hold off all ${startersCount}! Please pick the Pokémon you want to fight!`);
+                if (StartSequenceRunner.noStarterCount == 5) {
+                    // Add Pikachu to the selections
+                    $('#starterSelection').append(`<div class="col">
+                            <input class="image-starter" type="image"
+                               src="assets/images/pokemon/25.png"
+                               onclick="StartSequenceRunner.pickStarter(GameConstants.Starter.Special)">
+                        </div>`);
+                }
             }
+            $('#pickStarterTutorialModal').modal('show');
         }
     });
 
