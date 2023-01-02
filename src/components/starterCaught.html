@@ -41,7 +41,17 @@ aria-labelledby="starterCaughtModalLabel" aria-hidden="true">
                    <br>
                    <p>Poké Ball Bag</p>
                </div>
-
+               
+                <!-- ko if: App.game.challenges.list.monotype.active() -->
+                <div class="col-sm-3">
+                    <img
+                            title="A very convenient map that can be viewed anytime. It even shows you your present location in the region."
+                            class="key-item"
+                            src="assets/images/keyitems/Town_map.png"/>
+                    <br>
+                    <p>Town Map</p>
+                </div>
+                <!-- /ko -->
            </div>
 
        </div>

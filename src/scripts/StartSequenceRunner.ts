@@ -94,13 +94,29 @@ document.addEventListener('DOMContentLoaded', () => {
     $('#starterCaughtModal').on('hidden.bs.modal', () => {
         Save.store(player);
         App.game.gameState = GameConstants.GameState.fighting;
-        Information.show({
-            steps: [
-                {
-                    element: document.getElementById('questDisplayContainer'),
-                    intro: 'Complete the tutorial quests to continue.',
-                },
-            ],
-        });
+        if (App.game.challenges.list.monotype.active() && !App.game.keyItems.itemList[KeyItemType.Town_map].isUnlocked()) {
+            App.game.keyItems.gainKeyItem(KeyItemType.Town_map, true);
+            Information.show({
+                steps: [
+                    {
+                        element: document.getElementById('questDisplayContainer'),
+                        intro: 'Complete the tutorial quests to continue.',
+                    },
+                    {
+                        element: document.getElementById('townMap'),
+                        intro: 'This is the Town Map.<br/>Use this to move to between different Routes, Towns and Dungeons.',
+                    }
+                ],
+            });
+        } else {
+            Information.show({
+                steps: [
+                    {
+                        element: document.getElementById('questDisplayContainer'),
+                        intro: 'Complete the tutorial quests to continue.',
+                    },
+                ],
+            });
+        }
     });
 });
