@@ -102,7 +102,20 @@ class QuestLineHelper {
         tutorial.addQuest(buyDungeonTicket);
 
         //Clear Viridian Forest
-        const clearViridianForest = new CustomQuest(1, 50,
+        const viridianForestReward = () => {
+            if (App.game.challenges.list.monotype.active()) {
+                Information.show({
+                    steps: [
+                        {
+                            element: document.getElementById('questDisplayContainer'),
+                            intro: 'Click "List" to see the current quests that can be completed for <img title="Quest points" src="assets/images/currency/questPoint.svg" height="24px"> Quest Points.',
+                        },
+                    ],
+                });
+            }
+            return 50;
+        };
+        const clearViridianForest = new CustomQuest(1, viridianForestReward,
             'Gather 50 Dungeon Tokens by (re)capturing Pokémon, then clear the Viridian Forest dungeon.',
             () => App.game.statistics.dungeonsCleared[GameConstants.getDungeonIndex('Viridian Forest')](),
             0
@@ -112,18 +125,29 @@ class QuestLineHelper {
         //Defeat Pewter Gym
         const pewterReward = () => {
             Notifier.notify({ message: 'Tutorial completed!', type: NotificationConstants.NotificationOption.success });
-            Information.show({
-                steps: [
-                    {
-                        element: document.getElementById('questDisplayContainer'),
-                        intro: 'Click "List" to see the current quests that can be completed for <img title="Quest points" src="assets/images/currency/questPoint.svg" height="24px"> Quest Points.',
-                    },
-                    {
-                        element: document.getElementById('startMenu'),
-                        intro: 'See the badges you\'ve earned in the Badge Case. Badges influence the max level of your Pokémon.',
-                    },
-                ],
-            });
+            if (App.game.challenges.list.monotype.active()) {
+                Information.show({
+                    steps: [
+                        {
+                            element: document.getElementById('startMenu'),
+                            intro: 'See the badges you\'ve earned in the Badge Case. Badges influence the max level of your Pokémon.',
+                        },
+                    ],
+                });
+            } else {
+                Information.show({
+                    steps: [
+                        {
+                            element: document.getElementById('questDisplayContainer'),
+                            intro: 'Click "List" to see the current quests that can be completed for <img title="Quest points" src="assets/images/currency/questPoint.svg" height="24px"> Quest Points.',
+                        },
+                        {
+                            element: document.getElementById('startMenu'),
+                            intro: 'See the badges you\'ve earned in the Badge Case. Badges influence the max level of your Pokémon.',
+                        },
+                    ],
+                });
+            }
         };
         const pewter = new CustomQuest(1, pewterReward,
             'Defeat Pewter City Gym. Click the town on the map to move there, then click the Gym button to start the battle.',

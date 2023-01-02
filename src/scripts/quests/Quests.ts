@@ -279,7 +279,7 @@ class Quests implements Saveable {
     }
 
     public isDailyQuestsUnlocked() {
-        return QuestLineHelper.isQuestLineCompleted('Tutorial Quests');
+        return App.game.challenges.list.monotype.active() ? App.game.statistics.dungeonsCleared[GameConstants.getDungeonIndex('Viridian Forest')]() >= 1 : QuestLineHelper.isQuestLineCompleted('Tutorial Quests');
     }
 
     loadQuestList(questList) {
