@@ -17,7 +17,7 @@ export default class BadgeCase implements Feature {
 
     badgeList: Array<Observable<boolean>> = emptyBadgeList.map((v) => ko.observable(v));
 
-    maxLevel: PureComputed<number> = ko.pureComputed(() => Math.min(100, (this.badgeCount() + 2) * 10));
+    maxLevel: PureComputed<number> = ko.pureComputed(() => App.game.challenges.list.monotype.active() ? 100 : Math.min(100, (this.badgeCount() + 2) * 10));
 
     badgeCaseTooltip: PureComputed<string> = ko.pureComputed(() => {
         const maxLevel = this.maxLevel();
