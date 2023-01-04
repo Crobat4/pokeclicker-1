@@ -13,14 +13,18 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.DEFAULT, '<div class="w-100 d-flex justify-content-around"><a href="https://github.com/Crobat4/pokeclicker" target="_blank">Repository</a><a href="https://github.com/Crobat4/Pokeclicker-desktop" target="_blank">Desktop build</a><a href="https://github.com/Crobat4/pokeclicker/wiki" target="_blank">Github Wiki</a></div>'),
     new Changelog(changelogType.DEFAULT, 'This will keep being updated as long as the thread is alive...'),
     // ⥂⥄
+    // v0.3.13
+    new ChangelogUpdate('v0.3.13', new Date(2023, 1 - 1, 4)),
+    new Changelog(changelogType.FIXED, 'Pokédex not showing uncaught Pokémon properly'),
+    new Changelog(changelogType.FIXED, 'Long names overlapping Habitat List button'),
     // v0.3.12
-    new ChangelogUpdate('v0.3.12', new Date(2022, 11 - 1, 23)),
+    new ChangelogUpdate('v0.3.12', new Date(2023, 1 - 1, 1)),
     new Changelog(changelogType.NEW, 'Added Official updates (v0.10.6)'),
     new Changelog(changelogType.NEW, 'Added new filters in Pokédex (Category and Mega Evolution)'),
     new Changelog(changelogType.NEW, 'You can now assign a category to a Pokémon in the Pokédex'),
     new Changelog(changelogType.FIXED, 'Mega Evolution egg cycles'),
     // v0.3.11
-    new ChangelogUpdate('v0.3.11', new Date(2022, 11 - 1, 23)),
+    new ChangelogUpdate('v0.3.11', new Date(2022, 12 - 1, 30)),
     new Changelog(changelogType.NEW, 'Added Official updates (v0.10.5)'),
     new Changelog(changelogType.NEW, 'Added setting to change the default sprites between normal or shiny (if unlocked)'),
     new Changelog(changelogType.NEW, 'Added second farm'),
