@@ -295,6 +295,8 @@ aria-labelledby="pokedexModalLabel">
                                 }">
                             </a>
                             <!-- Category Button -->
+
+                            <!-- ko if: App.game.party.alreadyCaughtPokemonByName($data.name) -->
                             <div class="pokemonCategory dropdown">
                                 <button data-toggle="dropdown" data-bind="class: `category-${App.game.party.getPokemon($data.id).category + 1}`"></button>
                                 <div class="dropdown-menu p-0">
@@ -304,6 +306,8 @@ aria-labelledby="pokedexModalLabel">
                                     <a class="dropdown-item bg-dark py-1" href="#categoryModal" data-toggle="modal"><i>Edit</i></a>
                                 </div>
                             </div>
+                            <!-- /ko -->
+
                             <!-- /ko -->
                         </div>
                     </div>
