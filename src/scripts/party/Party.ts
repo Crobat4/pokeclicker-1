@@ -134,8 +134,8 @@ class Party implements Feature {
                 Math.floor(pokemon.id) != 129) {
                 // Only magikarps can attack in magikarp jump
                 continue;
-            }
-            if (App.game.challenges.list.monotype.active()) {
+            } 
+            if (App.game.challenges.list.monotype.active() && !(region == GameConstants.Region.alola && player.region == GameConstants.Region.alola && player.subregion == GameConstants.AlolaSubRegions.MagikarpJump)) {
                 const dataPokemon = PokemonHelper.getPokemonByName(pokemon.name);
                 if (dataPokemon.type1 != App.game.challenges.list.monotype.pokemonType() && dataPokemon.type2 != App.game.challenges.list.monotype.pokemonType()) {
                     // Only pokemon with selected type can attack in monotype challenge
@@ -261,6 +261,13 @@ class Party implements Feature {
         if (player.region == GameConstants.Region.alola && player.subregion == GameConstants.AlolaSubRegions.MagikarpJump) {
             // Only magikarps can attack in magikarp jump subregion
             caughtPokemon = caughtPokemon.filter((p) => Math.floor(p.id) == 129);
+        }
+        else if (App.game.challenges.list.monotype.active()) {
+            const selectedType = App.game.challenges.list.monotype.pokemonType();
+            caughtPokemon = caughtPokemon.filter((p) => {
+                const pokemon = PokemonHelper.getPokemonById(p.id);
+                return selectedType != PokemonType['None'] && (pokemon.type1 == selectedType || pokemon.type2 == selectedType);
+            });
         }
         const caught = caughtPokemon.length;
         const shiny = caughtPokemon.filter(p => p.shiny).length;
