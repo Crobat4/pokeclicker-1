@@ -4,6 +4,7 @@ import {
     Region,
     BattlePokemonGender,
     PokemonStatiticsType,
+    AlolaSubRegions,
 } from '../GameConstants';
 import { PokemonNameType } from './PokemonNameType';
 import P from './mapProvider';
@@ -200,8 +201,11 @@ export function incrementPokemonStatistics(pokemonId: number, statistic: Pokemon
 }
 
 // Check if Pokemon contains the monotype challenge selected type
-export function checkPokemonTypeMonotype(pokemonID) {
-    if (App.game.challenges.list.monotype.active()) {
+export function canPokemonDealDamage(pokemonID) {
+    if (player.region == Region.alola && player.subregion == AlolaSubRegions.MagikarpJump) {
+        return Math.floor(pokemonID) == 129; 
+    }
+    else if (App.game.challenges.list.monotype.active()) {
         // TODO: Move Number to the challenge class maybe
         const monotypeSelectedType = Number(App.game.challenges.list.monotype.pokemonType());
         const pokemon = this.getPokemonById(pokemonID);
