@@ -1911,13 +1911,22 @@ class Update implements Saveable {
             // Start Monotype
             // Remove None and Dark
             const typeArray = GameHelper.enumSelectOption(PokemonType).filter((t) => t.name != 'None' && t.name != 'Dark');
-            const notifier = Notifier.selectConfirm({ title: 'Monotype', message: 'New challenge mode added: Monotype.\n\nOnly Pokémon that contains the selected type will deal damage.\n\nThis is an optional challenge and is NOT the recommended way to play.\n\nPlease choose if you would like this challenge mode to be disabled or enabled.\n\nCan be disabled later. Can NOT be enabled later!\n\nIf you are enabling this challenge, please select a type:', confirm: 'Disable', cancel: 'Enable', dropdownOptions: typeArray });
+            const notifier = Notifier.selectConfirm({ title: 'Monotype', message: 'New challenge mode added: Monotype.\n\nOnly Pokémon that contains the selected type will deal damage.\n\nThis is an optional challenge and is NOT the recommended way to play.\n\nPlease choose if you would like this challenge mode to be disabled or enabled.\n\nCan be disabled later. Can NOT be enabled later!\n<hr/>If you are enabling this challenge, please select a type.\n\nYou will be handed a Pokémon of the selected type to join you in your journey.', confirm: 'Disable', cancel: 'Enable', dropdownOptions: typeArray });
             notifier.then((challenge) => {
                 setTimeout(async () => {
                     // Check if player wants to activate the new challenge modes
                     if (!await challenge.confirm) {
                         App.game.challenges.list.monotype.activate();
                         App.game.challenges.list.monotype.pokemonType(challenge.selectValue);
+                        const pokemonID = GameConstants.RegionalStartersMonotype[GameConstants.Region.kanto][App.game.challenges.list.monotype.pokemonType()];
+                        const pokemon = PokemonHelper.getPokemonById(pokemonID);
+                        App.game.party.gainPokemonByName(pokemon.name);
+                        Notifier.notify({
+                            title: 'Monotype Challenge',
+                            message: `Professor Oak handed you ${GameHelper.anOrA(pokemon.name)} ${pokemon.name}!`,
+                            type: NotificationConstants.NotificationOption.success,
+                            timeout: 3e4,
+                        });
                     }
                 }, GameConstants.SECOND);
             });
