@@ -20,9 +20,12 @@
               </tr>
             </thead>
             <tbody>
+              <!-- ko using: player.regionStarters[GameConstants.Region.kanto]() != GameConstants.Starter.None, as: 'haveStarter' -->
               <tr class="clickable"
                 data-bind="template: { name: 'pokeballSelectionTemplate', data: { 'image': 'None', 'type': -1, 'description': 'Do not catch' }},
-                    click: function(){App.game.pokeballs.selectedSelection()(GameConstants.Pokeball.None)}"></tr>
+                    click: function(){App.game.pokeballs.selectedSelection()(GameConstants.Pokeball.None)},
+                    css: { 'disabled text-muted': !haveStarter }"></tr>
+              <!-- /ko -->
               <!-- ko foreach: App.game.pokeballs.pokeballs -->
               <tr class="clickable"
                 data-bind="template: { name: 'pokeballSelectionTemplate', data: $data},

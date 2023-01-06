@@ -129,6 +129,14 @@ class Pokeballs implements Feature {
                         message: 'Master Balls are disabled!',
                         type: NotificationConstants.NotificationOption.danger,
                     });
+                } else if (value == GameConstants.Pokeball.None && player.regionStarters[GameConstants.Region.kanto]() == GameConstants.Starter.None) {
+                    // switch to Pokeball if None is selected and player didn't catch the starter yet
+                    selection(GameConstants.Pokeball.Pokeball);
+                    Notifier.notify({
+                        title: 'Professor Oak',
+                        message: 'This isn\'t the time to use that!',
+                        type: NotificationConstants.NotificationOption.danger,
+                    });
                 } else if (!this.pokeballs[value]?.unlocked()) {
                     selection(GameConstants.Pokeball.None);
                 }
