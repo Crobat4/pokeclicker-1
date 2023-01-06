@@ -136,12 +136,12 @@ class MoveToDungeon extends TownContent {
 
 class WalkAround extends TownContent {
     public cssClass() {
-        return 'btn btn-info';
+        return 'btn btn-secondary';
     }
 
     public isVisible() {
         // return MapHelper.ableToTravel();
-        return true;
+        return App.game.challenges.list.monotype.active();
     }
 
     public onclick(): void {
@@ -150,6 +150,6 @@ class WalkAround extends TownContent {
     }
 
     public text() {
-        return `Walk around ${GameConstants.StartingTowns[GameConstants.Region.kanto]}`;
+        return `Walk around ${GameConstants.StartingTowns[player.region]}`;
     }
 }

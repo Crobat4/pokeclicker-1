@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="modal-header">
-                <h4 style='text-align:center' class="modal-title">
+                <h4 style='text-align:center' class="modal-title" data-bind="text: GameConstants.StartingTowns[player.region]">
                     TownWalk
                 </h4>
                 <button class='btn btn-danger modalClose' onclick='TownWalk.closeModal()'>Leave</button>
@@ -42,7 +42,6 @@
 
                 <!-- Tab Contents -->
                 <div class="tab-content">
-
                     <!-- Main tab -->
                     <div  id="townWalkExplore" class="tab-pane fade in active show">
                         <div class="modal-body p-0">
@@ -55,10 +54,6 @@
                             </div>
                         </div>
                     </div>
-
-
-                    
-
                 </div>
             </div>
         </div>

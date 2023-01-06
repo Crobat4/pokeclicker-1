@@ -23,7 +23,6 @@ class TownWalk {
         TownWalk.playerXY.y = 0;
         TownWalk.lastDirection = 'up';
         TownWalk.inProgress(true);
-        console.log(this.sizeX());
         for ( let i = 0; i < this.sizeY(); i++) {
             TownWalk.grid.push(Array(this.sizeX()).fill(0));
         }
@@ -204,6 +203,6 @@ class TownWalk {
 
 document.addEventListener('DOMContentLoaded', () => {
     $('#townWalkModal').on('hide.bs.modal', () => {
-        MapHelper.moveToTown('Pallet Town');
+        MapHelper.moveToTown(GameConstants.StartingTowns[player.region]);
     });
 });
