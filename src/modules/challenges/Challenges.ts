@@ -1,5 +1,7 @@
 import { Saveable } from '../DataStore/common/Saveable';
+import BadgeEnums from '../enums/Badges';
 import PokemonType from '../enums/PokemonType';
+import GymBadgeRequirement from '../requirements/GymBadgeRequirement';
 import Challenge from './Challenge';
 
 export default class Challenges implements Saveable {
@@ -18,7 +20,7 @@ export default class Challenges implements Saveable {
         disableVitamins: new Challenge('No Vitamins', 'Disables the usage of Vitamins'),
         slowEVs: new Challenge('Slow EVs', 'Gain EVs 10x slower'),
         realEvolutions: new Challenge('Real evolutions', 'Your Pokémon go away, when they evolve'),
-        monotype: new Challenge('Monotype', 'Only Pokémon that contains the selected type will deal damage. Dark-type can NOT be selected'),
+        monotype: new Challenge('Monotype', 'Only Pokémon that contains the selected type will deal damage. Dark-type can NOT be selected. Once enabled, you can\'t disable it until you get the Earth Badge',undefined, undefined, new GymBadgeRequirement(BadgeEnums.Earth)),
     };
 
     monotypeSelectedType = PokemonType.None;

@@ -3,7 +3,11 @@ import {
 } from 'knockout';
 import PokemonType from '../enums/PokemonType';
 import * as GameConstants from '../GameConstants';
+import NotificationConstants from '../notifications/NotificationConstants';
 import Notifier from '../notifications/Notifier';
+import MultiRequirement from '../requirements/MultiRequirement';
+import OneFromManyRequirement from '../requirements/OneFromManyRequirement';
+import Requirement from '../requirements/Requirement';
 
 export default class Challenge {
     public active: KnockoutObservable<boolean>;
@@ -14,6 +18,7 @@ export default class Challenge {
         public description: string,
         active = false,
         pokemonType = PokemonType.None, // For monotype challenge
+        public requirement?: MultiRequirement | OneFromManyRequirement | Requirement,
     ) {
         this.active = ko.observable(active);
         this.pokemonType = ko.observable(pokemonType);
@@ -30,12 +35,20 @@ export default class Challenge {
             return;
         }
 
-        // Confirm they want to disable the challenge mode
-        if (await Notifier.confirm({
-            title: `Disable "${this.type}" challenge`,
-            message: 'Are you sure you want to disable this challenge?\n\nOnce disabled, you will not be able to enable it again later!',
-        })) {
-            this.active(false);
+        if (this.requirement && !this.requirement.isCompleted()) {
+            // If challenge can't be disabled yet, give a message
+            Notifier.notify({
+                message: `You can't disable this challenge yet.\n${this.requirement.hint()}`,
+                type: NotificationConstants.NotificationOption.warning,
+            });
+        } else {
+            // Confirm they want to disable the challenge mode
+            if (await Notifier.confirm({
+                title: `Disable "${this.type}" challenge`,
+                message: 'Are you sure you want to disable this challenge?\n\nOnce disabled, you will not be able to enable it again later!',
+            })) {
+                this.active(false);
+            }
         }
     }
 
