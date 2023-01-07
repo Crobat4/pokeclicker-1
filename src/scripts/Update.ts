@@ -1919,8 +1919,7 @@ class Update implements Saveable {
             saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 41);
             saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 42);
             saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 43);
-        },
-        '0.10.7': ({ playerData, saveData }) => {
+
             // Start Monotype
             // Remove None and Dark
             const typeArray = GameHelper.enumSelectOption(PokemonType).filter((t) => t.name != 'None' && t.name != 'Dark');
@@ -1952,7 +1951,7 @@ class Update implements Saveable {
                     }
                 }, GameConstants.SECOND);
             });
-        }
+        },
     };
 
     constructor() {
