@@ -261,7 +261,7 @@ export default class Notifier {
 
         return new Promise((resolve) => {
             // Get the notification ready to display
-            const resolveValue = {confirm: false, selectValue: '-1'};
+            const resolveValue = {confirm: false, selectValue: '0'};
             const modalID = Rand.string(7);
             let options = '';
             for (let i=0; i < dropdownOptions.length; i++) {
@@ -281,7 +281,7 @@ export default class Notifier {
             <div class="modal-body py-2 px-2 text-left">
                 ${message.replace(/\n/g, '<br/>')}
                 <div>
-                    <select id="dropdown-${modalID}" autocomplete="off">
+                    <select id="dropdown-${modalID}" class="custom-select" autocomplete="off">
                         ${options}
                     </select>
                 </div>

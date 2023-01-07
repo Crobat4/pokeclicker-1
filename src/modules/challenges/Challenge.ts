@@ -17,7 +17,7 @@ export default class Challenge {
         public type: string,
         public description: string,
         active = false,
-        pokemonType = PokemonType.None, // For monotype challenge
+        pokemonType = PokemonType.Normal, // For monotype challenge
         public requirement?: MultiRequirement | OneFromManyRequirement | Requirement,
     ) {
         this.active = ko.observable(active);

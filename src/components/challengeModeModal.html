@@ -15,25 +15,37 @@
                 <br/>
                 <table class="table" width="100%">
                     <tbody data-bind="foreach: Object.values(App.game.challenges.list)">
-                        <tr data-bind="tooltip: {
-                            title: $data.description,
-                            placement: 'bottom',
-                            trigger: 'hover'
-                        }">
-                            <td class="text-left font-weight-bold" data-bind="text: $data.type"></td>
+                        <tr>
+                            <td class="text-left font-weight-bold" data-bind="text: $data.type, attr: { colspan: $data.type !== 'Monotype' ? 2 : 1 },
+                                tooltip: {
+                                    title: $data.description,
+                                    placement: 'bottom',
+                                    trigger: 'hover'
+                                }">
+                            </td>
+                            <!-- ko if: $data.type === 'Monotype' -->
                             <td class="p-1">
-                                <!-- ko if: ($data.type === 'Monotype' && $data.active()) && player.regionStarters[GameConstants.Region.kanto]() == GameConstants.Starter.None -->
-                                <select autocomplete="off" data-bind="value: $data.pokemonType">
-                                    <!-- ko foreach: GameHelper.enumStrings(PokemonType) -->
-
-                                    <!-- No monotype for none or dark -->
-                                    <!-- ko if: $data != 'None' && $data != 'Dark' -->
-                                    <option data-bind="attr: { value: PokemonType[$data] }, text: $data">Type</option>
+                                <!-- ko if: $data.active() -->
+                                <div class="dropdown show">
+                                    <!-- ko using: App.game.challenges.list.monotype.pokemonType(), as: 'type' -->
+                                    <button type="button" class="btn btn-block text-white text-uppercase" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" 
+                                        data-bind="text: PokemonType[type], 
+                                        style: { background: GameConstants.TypeColor[type] },
+                                        attr: { disabled: player.regionStarters[GameConstants.Region.kanto]() != GameConstants.Starter.None }">
+                                    </button>
                                     <!-- /ko -->
-
-                                    <!-- /ko -->
-                                </select>
+                                    <div class="border-secondary dropdown-menu col-12 p-0">
+                                        <!-- ko foreach : GameHelper.enumSelectOption(PokemonType).filter((t) => t.name != 'None' && t.name != 'Dark') -->
+                                        <div class="dropdown-item py-1 border border-white text-white text-uppercase" data-bind="text : $data.name, style: { background: GameConstants.TypeColor[$data.value] },
+                                            click : function(){ App.game.challenges.list.monotype.pokemonType($data.value) }">
+                                        </div>
+                                        <!-- /ko-->
+                                    </div>
+                                </div>
                                 <!-- /ko -->
+                            </td>
+                            <!-- /ko -->
+                            <td class="p-1">
                                 <!-- ko if: !$data.active() && player.regionStarters[GameConstants.Region.kanto]() == GameConstants.Starter.None --><button class="btn btn-warning btn-block" data-bind="click: ()=>{$data.activate();}">ACTIVATE</button><!-- /ko -->
                                 <!-- ko if: !$data.active() && player.regionStarters[GameConstants.Region.kanto]() != GameConstants.Starter.None --><button class="btn btn-secondary btn-block disabled">DISABLED</button><!-- /ko -->
                                 <!-- ko if: $data.active() -->
