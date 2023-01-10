@@ -22,14 +22,9 @@ export default class UndergroundItems {
         return this.list.find((item) => item.id === id);
     }
 
-    // Filter shards and plates out
-    public static checkShardPlate(item) {
-        return item.valueType !== UndergroundItemValueType.Shard && item.valueType !== UndergroundItemValueType.Gem;
-    }
-
     // Returns a random unlocked item
     public static getRandomItem(): UndergroundItem {
-        const unlockedItems = this.list.filter((item) => item.isUnlocked() && this.checkShardPlate(item));
+        const unlockedItems = this.list.filter((item) => item.isUnlocked());
         return Rand.fromWeightedArray(unlockedItems, unlockedItems.map((i) => i.getWeight())) || this.list[0];
     }
 
