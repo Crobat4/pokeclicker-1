@@ -160,18 +160,6 @@ aria-labelledby="breedingModalLabel" aria-hidden="true">
                                     </div>
                                 </div>
                             </div>
-                            <!--Breeding Efficiency Toggle-->
-                            <div class="form-group col-md-3 col-6" style="max-width: 100%; flex-grow: 1">
-                                    <label>Include EV bonus</label>
-                                    <label class="form-check-label toggler-wrapper style-1">
-                                        <input class="form-check-input" type="checkbox" id="breeding-include-ev-bonus"
-                                            data-bind="checked: Settings.getSetting('breedingIncludeEVBonus').observableValue()"
-                                            onchange="Settings.setSettingByName('breedingIncludeEVBonus', this.checked)">
-                                        <div class="toggler-slider">
-                                            <div class="toggler-knob"></div>
-                                        </div>
-                                    </label>
-                            </div>
                         </div>
                     </div>
                     <div>
@@ -181,7 +169,7 @@ aria-labelledby="breedingModalLabel" aria-hidden="true">
                         </p>
                         <!-- ko if: App.game.party.hasMaxLevelPokemon() -->
                         <!-- ko if: App.game.breeding.isModalOpen() -->
-                        <ul class="row justify-content-center p-0" data-bind="foreach: lazyLoad($element, PartyController.getHatcherySortedList)">
+                        <ul class="row justify-content-center p-0" data-bind="foreach: lazyLoad($element, PartyController.getHatcherySortedList, { reset: modalUtils.observableState.breedingModalObservable })">
                             <li class="eggSlot col-sm-4 col-md-3 col-lg-2 pokedexEntry text-nowrap" data-bind="visible: BreedingController.visible($data), style:{background: PokedexHelper.getBackgroundColors($data.name)}, class: App.game.breeding.hasFreeEggSlot() || App.game.breeding.hasFreeQueueSlot() ? '' : 'disabled'">
                                 <span style="top: 0; border-top-left-radius: 6px; border-top-right-radius: 6px; overflow: hidden; min-height: 21px;">
                                     <knockout class="breedingListPokemonName" data-bind="text: $data.displayName, css: { 'marquee': $data.displayName.length > 18 }">name</knockout>
