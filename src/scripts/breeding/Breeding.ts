@@ -575,5 +575,5 @@ class Breeding implements Feature {
     }
 }
 $(document).ready(() => {
-    
+
 });
