@@ -7069,6 +7069,7 @@ dungeonList['Pokémon Village'] = new Dungeon('Pokémon Village',
             {loot: 'LargeRestore'},
             {loot: 'Pink_Bow'},
         ],
+        mythic: [{loot: 'Quick_Powder'}],
     },
     9003000,
     [
