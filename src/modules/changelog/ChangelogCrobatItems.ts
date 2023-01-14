@@ -14,7 +14,7 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.DEFAULT, 'This will keep being updated as long as the thread is alive...'),
     // ⥂⥄
     // v0.3.14
-    new ChangelogUpdate('v0.3.14', new Date(2023, 1 - 1, 4)),
+    new ChangelogUpdate('v0.3.14', new Date(2023, 1 - 1, 14)),
     new Changelog(changelogType.NEW, 'Added Official updates (v0.10.7)'),
     new Changelog(changelogType.CHANGE, 'Underground: Shards and Plates re-added'),
     new Changelog(changelogType.CHANGE, 'Underground: Shards and Plates will appear less often after reaching Unova'),
