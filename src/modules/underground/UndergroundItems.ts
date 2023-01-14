@@ -47,8 +47,22 @@ export default class UndergroundItems {
 }
 
 // Weights
-const diamondWeight = () => (player.highestRegion() >= Region.unova ? 3 : 1);
-const evoStoneShardPlateWeight = () => (player.highestRegion() >= Region.unova ? 0.5 : 1);
+const diamondWeight = () => {
+    let weight = 1;
+    const megaStoneAmount = UndergroundItems.list.filter((items) => items instanceof UndergroundMegaStoneItem).filter((megaStoneItems) => megaStoneItems.getWeight() !== 0).length;
+    if (player.highestRegion() >= Region.unova && megaStoneAmount === 0) {
+        weight = 3;
+    }
+    return weight;
+};
+const evoStoneShardPlateWeight = () => {
+    let weight = 1;
+    const megaStoneAmount = UndergroundItems.list.filter((items) => items instanceof UndergroundMegaStoneItem).filter((megaStoneItems) => megaStoneItems.getWeight() !== 0).length;
+    if (player.highestRegion() >= Region.unova && megaStoneAmount === 0) {
+        weight = 0.5;
+    }
+    return weight;
+};
 
 // Diamond Items
 UndergroundItems.addItem(new UndergroundItem('Rare Bone', 1, [[1, 0, 0, 0, 0, 1], [1, 1, 1, 1, 1, 1], [1, 0, 0, 0, 0, 1]], 3, UndergroundItemValueType.Diamond, null, diamondWeight));
