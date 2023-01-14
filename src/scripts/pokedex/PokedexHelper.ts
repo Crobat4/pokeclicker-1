@@ -6,7 +6,7 @@ class PokedexHelper {
     public static showAllPokemon = ko.observable(false);
     public static toggleFemale = ko.observable(false);
 
-    public static isModalOpen: KnockoutObservable<boolean> = ko.observable(false);
+    public static resetFilter: KnockoutObservable<boolean> = ko.observable(false);
 
     public static getBackgroundColors(name: PokemonNameType): string {
         const pokemon = PokemonHelper.getPokemonByName(name);
@@ -53,6 +53,9 @@ class PokedexHelper {
             const highestCaught = App.game.statistics.pokemonCaptured.highestID;
             return Math.max(highestEncountered, highestDefeated, highestCaught);
         }).peek();
+
+        $('#pokemon-list').scrollTop(0);
+        PokedexHelper.resetFilter(!PokedexHelper.resetFilter());
 
         return pokemonList.filter((pokemon) => {
             // Checks based on caught/shiny status
@@ -203,13 +206,5 @@ class PokedexHelper {
 $(document).ready(() => {
     $('#pokemonStatisticsModal').on('hidden.bs.modal', () => {
         PokedexHelper.toggleStatisticShiny(false);
-    });
-
-    $('#pokedexModal').on('shown.bs.modal', () => {
-        PokedexHelper.isModalOpen(true);
-    });
-    $('#pokedexModal').on('hidden.bs.modal', () => {
-        PokedexHelper.isModalOpen(false);
-        $('.loader-pokeball').remove();
     });
 });

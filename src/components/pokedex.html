@@ -182,22 +182,6 @@ aria-labelledby="pokedexModalLabel">
                                 </div>
                             </label>
                         </div>
-                        <!-- Load all Pokémon (Temporarily removed) -->
-                        <!--
-                        <div class="form-group col-md-9 col-6">
-                            <span>Load all Pokémon</span>
-                            <i class="bi bi-question-circle mx-1" data-bind="tooltip: { title: 'Loads all the Pokémon (By default, Pokédex shows 50 Pokémon at first and loads 50 more the more you scroll)', trigger: 'hover' }"></i>
-                        </div>
-                        <div class="form-group col-md-3 col-6">
-                            <label class="form-check-label toggler-wrapper style-1 float-right">
-                                <input class="form-check-input" type="checkbox" id="pokedex-filter-show-all"
-                                    data-bind="checked: false">
-                                <div class="toggler-slider">
-                                    <div class="toggler-knob"></div>
-                                </div>
-                            </label>
-                        </div>
-                        -->
                    </div>
                </div>
 
@@ -215,8 +199,7 @@ aria-labelledby="pokedexModalLabel">
                 </div>
                 <!-- /ko -->
                 <div id="pokemon-list">
-                    <!-- ko if: PokedexHelper.isModalOpen() -->
-                    <div class="row justify-content-center mw-100 p-0 m-0 pokedex-list" id="pokedex-pokemon-list" data-bind="foreach: lazyLoad($element, PokedexHelper.filteredList, { reset: modalUtils.observableState.pokedexModalObservable })">
+                    <div class="row justify-content-center mw-100 p-0 m-0 pokedex-list" id="pokedex-pokemon-list" data-bind="foreach: lazyLoad($element, PokedexHelper.filteredList, { reset: PokedexHelper.resetFilter })">
                         <!-- Pokemon Entry -->
                         <div class="col-12 col-sm-4 col-md-3 col-lg-2 pokedexEntry"
                             data-bind="style: { background: PokedexHelper.getBackgroundColors($data.name)}">
@@ -311,7 +294,6 @@ aria-labelledby="pokedexModalLabel">
                             <!-- /ko -->
                         </div>
                     </div>
-                    <!-- /ko -->
                 </div>
             </div>
        </div>
