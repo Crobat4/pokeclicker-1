@@ -13,6 +13,15 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.DEFAULT, '<div class="w-100 d-flex justify-content-around"><a href="https://github.com/Crobat4/pokeclicker" target="_blank">Repository</a><a href="https://github.com/Crobat4/Pokeclicker-desktop" target="_blank">Desktop build</a><a href="https://github.com/Crobat4/pokeclicker/wiki" target="_blank">Github Wiki</a></div>'),
     new Changelog(changelogType.DEFAULT, 'This will keep being updated as long as the thread is alive...'),
     // ⥂⥄
+    // v0.3.14
+    new ChangelogUpdate('v0.3.14', new Date(2023, 1 - 1, 4)),
+    new Changelog(changelogType.NEW, 'Added Official updates (v0.10.7)'),
+    new Changelog(changelogType.CHANGE, 'Underground: Shards and Plates re-added'),
+    new Changelog(changelogType.CHANGE, 'Underground: Shards and Plates will appear less often after reaching Unova'),
+    new Changelog(changelogType.CHANGE, 'Some items rates will be normalized if there are available Mega Stones in the Underground'),
+    new Changelog(changelogType.CHANGE, 'Save for Official filename changed'),
+    new Changelog(changelogType.CHANGE, 'Pokédex: Misc filtering changes'),
+    new Changelog(changelogType.FIXED, 'Habitat List: Dungeon Boss icon color in light themes'),
     // v0.3.13
     new ChangelogUpdate('v0.3.13', new Date(2023, 1 - 1, 4)),
     new Changelog(changelogType.FIXED, 'Pokédex not showing uncaught Pokémon properly'),
