@@ -50,6 +50,10 @@
                       <td class="text-left tight"><code data-bind="text: pokemonMap[$data].attack.toLocaleString('en-US')">-</code></td>
                     </tr>
                     <tr>
+                      <td class="text-left">Current Level</td>
+                      <td class="text-left tight"><code data-bind="text: (App.game.party.getPokemon($data) ? App.game.party.getPokemon($data).level : 0).toLocaleString('en-US')">-</code></td>
+                    </tr>
+                    <tr>
                       <td class="text-left">Current Attack</td>
                       <td class="text-left tight"><code data-bind="text: (App.game.party.getPokemon($data) ? App.game.party.getPokemon($data).attack : 0).toLocaleString('en-US')">-</code></td>
                     </tr>
@@ -59,7 +63,7 @@
                     </tr>
                     <!-- ko foreach: GameHelper.enumNumbers(GameConstants.VitaminType) -->
                     <tr>
-                      <td class="text-left" data-bind="text: `${GameConstants.VitaminType[$data]} Used`">X Used</td>
+                      <td class="text-left" data-bind="text: `- ${GameConstants.VitaminType[$data]} Used`">X Used</td>
                       <td class="text-left tight"><code data-bind="text: (App.game.party.getPokemon($parent) ? App.game.party.getPokemon($parent).vitaminsUsed[$data]() : 0).toLocaleString('en-US')">-</code></td>
                     </tr>
                     <!-- /ko -->
