@@ -1956,6 +1956,10 @@ class Update implements Saveable {
             //Grand Duchess Diantha
             saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 129);
         },
+        '0.10.9': ({ playerData, saveData, settingsData }) => {
+            // Reset Pokedex category filter
+            settingsData.pokedexCategoryFilter = -1;
+        },
     };
 
     constructor() {
