@@ -265,18 +265,8 @@ class Breeding implements Feature {
             }
         }
 
-        let hideHatchery;
-
         for (const pokemonObject of hatcheryListFiltered) {
-            if (Settings.getSetting('hideHatchery').value == 'queue') {
-                hideHatchery = !this.hasFreeEggSlot() && !this.hasFreeQueueSlot();
-            } else if (Settings.getSetting('hideHatchery').value == 'egg') {
-                hideHatchery = !this.hasFreeEggSlot();
-            } else {
-                hideHatchery = true;
-            }
-
-            if (!hideHatchery) {
+            if (!(!this.hasFreeEggSlot() && !this.hasFreeQueueSlot())) {
                 this.addPokemonToHatchery(pokemonObject);
                 this.checkCloseModal();
             } else {
