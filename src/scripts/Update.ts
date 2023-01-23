@@ -1957,7 +1957,7 @@ class Update implements Saveable {
             saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 129);
         },
 
-        '0.10.9': ({ playerData, saveData }) => {
+        '0.10.9': ({ playerData, saveData, settingsData }) => {
             //Hex Maniac Aster
             saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 112);
 
@@ -1971,6 +1971,10 @@ class Update implements Saveable {
             saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 71);
             saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 72);
             saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 73);
+
+            // Crobat Fork
+            // Reset Pokedex category filter
+            settingsData.pokedexCategoryFilter = -1;
         },
     };
 
