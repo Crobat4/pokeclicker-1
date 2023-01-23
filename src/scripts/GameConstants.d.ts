@@ -693,7 +693,7 @@ namespace GameConstants {
         [DayCyclePart.Day]: 7,
         [DayCyclePart.Dusk]: 17,
         [DayCyclePart.Night]: 18,
-    }
+    };
 
     /* Crobat Fork */
     // Sort Icons
