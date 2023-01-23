@@ -688,6 +688,13 @@ namespace GameConstants {
         magikarpJump
     }
 
+    declare const DayCycleStartHours: Record<DayCyclePart, number> = {
+        [DayCyclePart.Dawn]: 6,
+        [DayCyclePart.Day]: 7,
+        [DayCyclePart.Dusk]: 17,
+        [DayCyclePart.Night]: 18,
+    }
+
     /* Crobat Fork */
     // Sort Icons
     declare const ICON_SORT_UP: string;
