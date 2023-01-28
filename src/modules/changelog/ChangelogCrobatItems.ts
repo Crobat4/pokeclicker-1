@@ -13,6 +13,11 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.DEFAULT, '<div class="w-100 d-flex justify-content-around"><a href="https://github.com/Crobat4/pokeclicker" target="_blank">Repository</a><a href="https://github.com/Crobat4/Pokeclicker-desktop" target="_blank">Desktop build</a><a href="https://github.com/Crobat4/pokeclicker/wiki" target="_blank">Github Wiki</a></div>'),
     new Changelog(changelogType.DEFAULT, 'This will keep being updated as long as the thread is alive...'),
     // ⥂⥄
+    // v0.3.16
+    new ChangelogUpdate('v0.3.16', new Date(2023, 1 - 1, 14)),
+    new Changelog(changelogType.NEW, 'Added Official updates (v0.10.9)'),
+    new Changelog(changelogType.FIXED, 'Pokédex: Error when deleting a category'),
+    new Changelog(changelogType.FIXED, 'Hatchery: Fill queue button not working under certain circumstances'),
     // v0.3.15
     new ChangelogUpdate('v0.3.15', new Date(2023, 1 - 1, 14)),
     new Changelog(changelogType.NEW, 'Added Official updates (v0.10.8)'),
