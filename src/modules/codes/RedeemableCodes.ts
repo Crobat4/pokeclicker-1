@@ -21,7 +21,6 @@ import Rand from '../utilities/Rand';
 import OakItemType from '../enums/OakItemType';
 import BadgeEnums from '../enums/Badges';
 
-
 export default class RedeemableCodes implements Saveable {
     defaults: Record<string, any>;
     saveKey = 'redeemableCodes';
