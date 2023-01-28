@@ -4,16 +4,14 @@
       <div class="modal-header">
         <h5>Changelog</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+          <span aria-hidden="true">&times;</span>
         </button>
       </div>
-
       <div class="modal-body p-0">
         <ul class="nav nav-tabs nav-fill">
           <li class="nav-item"><a class="nav-link active" href="#changelog-official" data-toggle="tab">Official</a></li>
           <li class="nav-item"><a class="nav-link" href="#changelog-crobat" data-toggle="tab">Crobat Fork</a></li>
         </ul>
-
         <div class="tab-content">
           <div class="tab-pane active" id="changelog-official">
             <table class="table table-striped table-hover table-bordered table-sm m-0">
@@ -26,7 +24,15 @@
               <tbody data-bind="foreach: ChangelogItems">
                 <tr data-bind="css: { 'table-dark': type.label == 'UPDATE' }">
                   <td class="tight" data-bind="text: type.label, class: 'table-' + type.display"></td>
-                  <td class="text-left" data-bind="html: description">-</td>
+                  <!-- ko if: type.label == 'UPDATE' -->
+                    <td class="text-left" >
+                      <span data-bind="html: description"></span>
+                      <a target="_BLANK" class="float-right" data-bind="attr: { href: `https://github.com/pokeclicker/pokeclicker/compare/${ChangelogItems.find((c, i) => c.version && i > $index())?.version}...${$data.version}` }">Full Changelog</a>
+                    </td>
+                  <!-- /ko -->
+                  <!-- ko ifnot: type.label == 'UPDATE' -->
+                    <td class="text-left" data-bind="html: description"></td>
+                  <!-- /ko -->
                 </tr>
               </tbody>
             </table>
@@ -48,9 +54,7 @@
             </table>
           </div>
         </div>
-        
       </div>
-
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
       </div>
