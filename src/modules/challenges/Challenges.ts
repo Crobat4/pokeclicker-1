@@ -1,15 +1,14 @@
 import { Saveable } from '../DataStore/common/Saveable';
-import BadgeEnums from '../enums/Badges';
 import PokemonType from '../enums/PokemonType';
-import GymBadgeRequirement from '../requirements/GymBadgeRequirement';
 import Challenge from './Challenge';
+import MonotypeChallenge from './MonotypeChallenge';
 
 export default class Challenges implements Saveable {
     saveKey = 'challenges';
 
     defaults: Record<string, any> = {};
 
-    list: Record<string, Challenge> = {
+    list: Record<string, any> = {
         regionalAttackDebuff: new Challenge('Regional Attack Debuff (recommended)', 'Lowers Pokémon attack based on native region and highest-reached region', true),
         requireCompletePokedex: new Challenge('Require Complete Pokédex (recommended)', 'Requires a complete regional Pokédex before moving on to the next region', true),
         disableClickAttack: new Challenge('No Click Attack', 'Disables the ability to use Click Attacks'),
@@ -20,7 +19,7 @@ export default class Challenges implements Saveable {
         disableVitamins: new Challenge('No Vitamins', 'Disables the usage of Vitamins'),
         slowEVs: new Challenge('Slow EVs', 'Gain EVs 10x slower'),
         realEvolutions: new Challenge('Real evolutions', 'Your Pokémon go away, when they evolve'),
-        monotype: new Challenge('Monotype', 'Only Pokémon that contains the selected type will deal damage. Dark-type can NOT be selected. Once enabled, you can\'t disable it until you get the Earth Badge',undefined, undefined, new GymBadgeRequirement(BadgeEnums.Earth)),
+        monotype: new MonotypeChallenge('Monotype', 'Only Pokémon that contains the selected type will deal damage. Dark-type can NOT be selected. Once enabled, you can\'t disable it until you get the Earth Badge'),
     };
 
     monotypeSelectedType = PokemonType.None;
