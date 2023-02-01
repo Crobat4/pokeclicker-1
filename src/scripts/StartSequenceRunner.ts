@@ -15,7 +15,7 @@ class StartSequenceRunner {
         App.game.quests.getQuestLine('Tutorial Quests').beginQuest(0);
         this.starterPicked = s;
         $('#pickStarterTutorialModal').modal('hide');
-        const pokemonID = !App.game.challenges.list.monotype.active() || monotypeSelected == PokemonType.None || monotypeSelected == PokemonType.Dark ? 
+        const pokemonID = !App.game.challenges.listSpecial.monotype.active() || monotypeSelected == PokemonType.None || monotypeSelected == PokemonType.Dark ? 
             GameConstants.RegionalStarters[GameConstants.Region.kanto][this.starterPicked] :
             GameConstants.RegionalStartersMonotype[GameConstants.Region.kanto][monotypeSelected]
         const dataPokemon = PokemonHelper.getPokemonById(pokemonID);
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     $('#pickStarterTutorialModal').on('hidden.bs.modal', () => {
         if (StartSequenceRunner.starterPicked == GameConstants.Starter.None) {
-            if (!App.game.challenges.list.monotype.active()) { // Don't add Pikachu if monotype challenge is enabled
+            if (!App.game.challenges.listSpecial.monotype.active()) { // Don't add Pikachu if monotype challenge is enabled
                 StartSequenceRunner.noStarterCount++;
                 const startersCount = StartSequenceRunner.noStarterCount >= 5 ? 'four' : 'three';
                 $('#pickStarterTutorialModalText').text(`I can't hold off all ${startersCount}! Please pick the Pokémon you want to fight!`);
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
     $('#starterCaughtModal').on('hidden.bs.modal', () => {
         Save.store(player);
         App.game.gameState = GameConstants.GameState.fighting;
-        if (App.game.challenges.list.monotype.active() && !App.game.keyItems.itemList[KeyItemType.Town_map].isUnlocked()) {
+        if (App.game.challenges.listSpecial.monotype.active() && !App.game.keyItems.itemList[KeyItemType.Town_map].isUnlocked()) {
             App.game.keyItems.gainKeyItem(KeyItemType.Town_map, true);
             Information.show({
                 steps: [

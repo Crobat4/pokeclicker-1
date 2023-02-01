@@ -1937,9 +1937,9 @@ class Update implements Saveable {
                 setTimeout(async () => {
                     // Check if player wants to activate the new challenge modes
                     if (!await challenge.confirm) {
-                        App.game.challenges.list.monotype.activate();
-                        App.game.challenges.list.monotype.pokemonType(challenge.selectValue);
-                        const pokemonID = GameConstants.RegionalStartersMonotype[GameConstants.Region.kanto][App.game.challenges.list.monotype.pokemonType()];
+                        App.game.challenges.listSpecial.monotype.activate();
+                        App.game.challenges.listSpecial.monotype.pokemonType(challenge.selectValue);
+                        const pokemonID = GameConstants.RegionalStartersMonotype[GameConstants.Region.kanto][App.game.challenges.listSpecial.monotype.pokemonType()];
                         const pokemon = PokemonHelper.getPokemonById(pokemonID);
                         App.game.party.gainPokemonByName(pokemon.name);
                         Notifier.notify({

@@ -9,18 +9,18 @@
                 </div>
             </div>
             <div class="modal-body">
-                <!-- ko if: !App.game.challenges.list.monotype.active() -->
+                <!-- ko if: !App.game.challenges.listSpecial.monotype.active() -->
                 <p id="pickStarterTutorialModalText">Oh No! We got ambushed by these Pokémon!<br>
                     I can only hold off two! Pick the one you want to fight!</p>
                 <!-- /ko -->
-                <!-- ko if: App.game.challenges.list.monotype.active() -->
+                <!-- ko if: App.game.challenges.listSpecial.monotype.active() -->
                 <p id="pickStarterTutorialModalText">Oh No! We got ambushed by some Pokémon!<br>
                     I can only hold off most of them! You take care of this one!</p>
                 <!-- /ko -->
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <div id="starterSelection" class="row">
-                                <!-- ko if: !App.game.challenges.list.monotype.active() -->
+                            <!-- ko if: !App.game.challenges.listSpecial.monotype.active() -->
                             <div class="col">
                                 <input class="image-starter" type="image"
                                         src="assets/images/pokemon/1.png"
@@ -37,9 +37,9 @@
                                         onclick="StartSequenceRunner.pickStarter(GameConstants.Starter.Water);">
                             </div>
                             <!-- /ko -->
-                            <!-- ko if: App.game.challenges.list.monotype.active() -->
+                            <!-- ko if: App.game.challenges.listSpecial.monotype.active() -->
                             <div class="col">
-                                <!-- ko using: App.game.challenges.list.monotype.pokemonType(), as: 'selectedType' -->
+                                <!-- ko using: App.game.challenges.listSpecial.monotype.pokemonType(), as: 'selectedType' -->
                                 <input class="image-starter" type="image" data-bind="
                                     attr: { src: 'assets/images/pokemon/' + GameConstants.RegionalStartersMonotype[GameConstants.Region.kanto][selectedType] + '.png' },
                                     click: () => StartSequenceRunner.pickStarter(GameConstants.Starter.Special, selectedType);">

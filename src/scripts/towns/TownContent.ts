@@ -141,7 +141,7 @@ class WalkAround extends TownContent {
 
     public isVisible() {
         // return MapHelper.ableToTravel();
-        return App.game.challenges.list.monotype.active();
+        return App.game.challenges.listSpecial.monotype.active();
     }
 
     public onclick(): void {

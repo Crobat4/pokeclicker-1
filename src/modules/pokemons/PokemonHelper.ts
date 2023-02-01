@@ -205,9 +205,9 @@ export function canPokemonDealDamage(pokemonID) {
     if (player.region == Region.alola && player.subregion == AlolaSubRegions.MagikarpJump) {
         return Math.floor(pokemonID) == 129; 
     }
-    else if (App.game.challenges.list.monotype.active()) {
+    else if (App.game.challenges.listSpecial.monotype.active()) {
         // TODO: Move Number to the challenge class maybe
-        const monotypeSelectedType = Number(App.game.challenges.list.monotype.pokemonType());
+        const monotypeSelectedType = Number(App.game.challenges.listSpecial.monotype.pokemonType());
         const pokemon = this.getPokemonById(pokemonID);
         if (pokemon.type1 != monotypeSelectedType && pokemon.type2 != monotypeSelectedType) {
             return false;

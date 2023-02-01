@@ -103,7 +103,7 @@ class QuestLineHelper {
 
         //Clear Viridian Forest
         const viridianForestReward = () => {
-            if (App.game.challenges.list.monotype.active()) {
+            if (App.game.challenges.listSpecial.monotype.active()) {
                 Information.show({
                     steps: [
                         {
@@ -125,7 +125,7 @@ class QuestLineHelper {
         //Defeat Pewter Gym
         const pewterReward = () => {
             Notifier.notify({ message: 'Tutorial completed!', type: NotificationConstants.NotificationOption.success });
-            if (App.game.challenges.list.monotype.active()) {
+            if (App.game.challenges.listSpecial.monotype.active()) {
                 Information.show({
                     steps: [
                         {
