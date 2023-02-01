@@ -1959,7 +1959,7 @@ class Update implements Saveable {
 
             // Start Monotype
             // Remove None and Dark
-            const typeArray = GameHelper.enumSelectOption(PokemonType).filter((t) => t.name != 'None' && t.name != 'Dark');
+            const typeArray = GameHelper.enumSelectOption(PokemonType).filter((t) => t.name != 'None');
             const notifier = Notifier.selectConfirm({ 
                 title: 'Monotype', 
                 message: `New challenge mode added: Monotype.\n

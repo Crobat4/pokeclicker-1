@@ -1,6 +1,6 @@
 <div class="modal noselect fade" id="challengeModeModal" tabindex="-1" role="dialog" aria-labelledby="challengeModeModal">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
-        <div class="modal-content">
+        <div class="modal-content h-100">
             <div class="modal-header">
                 <h5 class="modal-title">Challenge Modes</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -47,7 +47,6 @@
                             Not recommended for a first time playthrough.<br/>
                             Balance and fairness are not guaranteed.
                         </div>
-                        <br/>
                         <table class="table m-0" width="100%">
                             <tbody data-bind="foreach: Object.values(App.game.challenges.listSpecial)">
                                 <tr>
@@ -69,8 +68,8 @@
                                                 attr: { disabled: player.regionStarters[GameConstants.Region.kanto]() != GameConstants.Starter.None }">
                                             </button>
                                             <!-- /ko -->
-                                            <div class="border-secondary dropdown-menu col-12 p-0">
-                                                <!-- ko foreach : GameHelper.enumSelectOption(PokemonType).filter((t) => t.name != 'None' && t.name != 'Dark') -->
+                                            <div class="border-secondary dropdown-menu col-12 p-0" style="overflow-y: auto; max-height: 30vh;">
+                                                <!-- ko foreach : GameHelper.enumSelectOption(PokemonType).filter((t) => t.name != 'None') -->
                                                 <div class="dropdown-item py-1 border border-white text-white text-uppercase" data-bind="text : $data.name, style: { background: GameConstants.TypeColor[$data.value] },
                                                     click : function(){ App.game.challenges.listSpecial.monotype.pokemonType($data.value) }">
                                                 </div>

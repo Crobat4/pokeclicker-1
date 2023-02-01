@@ -15,7 +15,7 @@ class StartSequenceRunner {
         App.game.quests.getQuestLine('Tutorial Quests').beginQuest(0);
         this.starterPicked = s;
         $('#pickStarterTutorialModal').modal('hide');
-        const pokemonID = !App.game.challenges.listSpecial.monotype.active() || monotypeSelected == PokemonType.None || monotypeSelected == PokemonType.Dark ? 
+        const pokemonID = !App.game.challenges.listSpecial.monotype.active() || monotypeSelected == PokemonType.None ? 
             GameConstants.RegionalStarters[GameConstants.Region.kanto][this.starterPicked] :
             GameConstants.RegionalStartersMonotype[GameConstants.Region.kanto][monotypeSelected]
         const dataPokemon = PokemonHelper.getPokemonById(pokemonID);
