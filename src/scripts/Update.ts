@@ -1958,7 +1958,7 @@ class Update implements Saveable {
             saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 12);
 
             // Start Monotype
-            // Remove None and Dark
+            // Remove None
             const typeArray = GameHelper.enumSelectOption(PokemonType).filter((t) => t.name != 'None');
             const notifier = Notifier.selectConfirm({ 
                 title: 'Monotype', 
@@ -1975,7 +1975,7 @@ class Update implements Saveable {
                     // Check if player wants to activate the new challenge modes
                     if (!await challenge.confirm) {
                         App.game.challenges.listSpecial.monotype.activate();
-                        App.game.challenges.listSpecial.monotype.pokemonType(challenge.selectValue);
+                        App.game.challenges.listSpecial.monotype.pokemonType(Number(challenge.selectValue));
                         const pokemonID = GameConstants.RegionalStartersMonotype[GameConstants.Region.kanto][App.game.challenges.listSpecial.monotype.pokemonType()];
                         const pokemon = PokemonHelper.getPokemonById(pokemonID);
                         App.game.party.gainPokemonByName(pokemon.name);
