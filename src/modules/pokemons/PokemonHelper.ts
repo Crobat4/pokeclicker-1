@@ -203,14 +203,15 @@ export function incrementPokemonStatistics(pokemonId: number, statistic: Pokemon
 // Check if Pokemon contains the monotype challenge selected type
 export function canPokemonDealDamage(pokemonID) {
     if (player.region == Region.alola && player.subregion == AlolaSubRegions.MagikarpJump) {
-        return Math.floor(pokemonID) == 129; 
+        return Math.floor(pokemonID) == 129;
     }
-    else if (App.game.challenges.listSpecial.monotype.active()) {
+    if (App.game.challenges.listSpecial.monotype.active()) {
         const monotypeSelectedType = App.game.challenges.listSpecial.monotype.pokemonType();
         const pokemon = this.getPokemonById(pokemonID);
         if (pokemon.type1 != monotypeSelectedType && pokemon.type2 != monotypeSelectedType) {
             return false;
         }
     }
+
     return true;
 }

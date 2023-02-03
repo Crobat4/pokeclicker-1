@@ -1960,16 +1960,16 @@ class Update implements Saveable {
             // Start Monotype
             // Remove None
             const typeArray = GameHelper.enumSelectOption(PokemonType).filter((t) => t.name != 'None');
-            const notifier = Notifier.selectConfirm({ 
-                title: 'Monotype', 
+            const notifier = Notifier.selectConfirm({
+                title: 'Monotype',
                 message: `New challenge mode added: Monotype.\n
                     Only Pokémon that contains the selected type will deal damage.\n
                     This is an optional challenge and is NOT the recommended way to play.\n
                     Please choose if you would like this challenge mode to be disabled or enabled.\n
                     Can be disabled later. Can NOT be enabled later!\n
-                    Enabling this challenge will give you a Pokémon of the selected type to join you in your journey.\n\n`, 
-                    confirm: 'Disable', cancel: 'Enable', dropdownOptions: typeArray 
-                });
+                    Enabling this challenge will give you a Pokémon of the selected type to join you in your journey.\n\n`,
+                confirm: 'Disable', cancel: 'Enable', dropdownOptions: typeArray,
+            });
             notifier.then((challenge) => {
                 setTimeout(async () => {
                     // Check if player wants to activate the new challenge modes

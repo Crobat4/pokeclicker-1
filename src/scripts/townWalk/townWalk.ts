@@ -26,7 +26,7 @@ class TownWalk {
         for ( let i = 0; i < this.sizeY(); i++) {
             TownWalk.grid.push(Array(this.sizeX()).fill(0));
         }
-        
+
         TownWalk.show();
     }
 
@@ -193,7 +193,7 @@ class TownWalk {
     public static openModal() {
         App.game.gameState = GameConstants.GameState.townWalk;
         $('#townWalkModal').modal({backdrop: 'static', keyboard: false});
-        setTimeout(() => TownWalk.load(), 200)
+        setTimeout(() => TownWalk.load(), 200);
     }
 
     public static closeModal() {

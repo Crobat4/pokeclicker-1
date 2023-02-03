@@ -261,13 +261,13 @@ export default class Notifier {
 
         return new Promise((resolve) => {
             // Get the notification ready to display
-            const resolveValue = {confirm: false, selectValue: '0'};
+            const resolveValue = { confirm: false, selectValue: '0' };
             const modalID = Rand.string(7);
             let options = '';
-            for (let i=0; i < dropdownOptions.length; i++) {
-                options += `<option value="${dropdownOptions[i].value}">${dropdownOptions[i].name}</option>`
+            for (let i = 0; i < dropdownOptions.length; i++) {
+                options += `<option value="${dropdownOptions[i].value}">${dropdownOptions[i].name}</option>`;
             }
-            
+
             const html = `
 <div class="modal fade noselect" id="modal${modalID}" tabindex="-1" role="dialog" aria-badgeledby="prompt">
     <div class="modal-dialog modal-dialog-scrollable modal-sm" role="document">
@@ -296,15 +296,15 @@ export default class Notifier {
             $('#toaster').before(html);
 
             (document.getElementById(`dropdown-${modalID}`) as HTMLInputElement).addEventListener('change', (event) => {
-                //console.log((event.target as HTMLInputElement).value);
+                // console.log((event.target as HTMLInputElement).value);
                 resolveValue.selectValue = (event.target as HTMLInputElement).value;
             });
             (document.getElementById(`modalConfirm${modalID}`) as HTMLInputElement).addEventListener('click', () => {
-                resolveValue.confirm = true
+                resolveValue.confirm = true;
                 resolve(resolveValue);
             });
             (document.getElementById(`modalCancel${modalID}`) as HTMLInputElement).addEventListener('click', () => {
-                resolveValue.confirm = false
+                resolveValue.confirm = false;
                 resolve(resolveValue);
             });
 
@@ -325,8 +325,8 @@ export default class Notifier {
             // Once hidden remove the element
             $(`#modal${modalID}`).on('hidden.bs.modal', () => {
                 document.getElementById(`modal${modalID}`).remove();
-                //resolveValue.confirm = false
-                //resolve(resolveValue)
+                // resolveValue.confirm = false
+                // resolve(resolveValue)
             });
         });
     }

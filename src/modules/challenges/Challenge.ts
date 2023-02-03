@@ -25,7 +25,7 @@ export default class Challenge {
             this.active(false);
             return;
         }
-        
+
         // Confirm they want to disable the challenge mode
         if (await Notifier.confirm({
             title: `Disable "${this.type}" challenge`,

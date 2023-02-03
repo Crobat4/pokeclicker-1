@@ -23,7 +23,7 @@ export default class Challenges implements Saveable {
 
     listSpecial: Record<string, any> = {
         monotype: new MonotypeChallenge('Monotype', 'Only Pokémon that contains the selected type will deal damage. Dark-type can NOT be selected. Once enabled, you can\'t disable it until you get the Earth Badge'),
-    }
+    };
 
     fromJSON(json): void {
         if (!json || !json.list && !json.listSpecial) {
@@ -46,7 +46,7 @@ export default class Challenges implements Saveable {
     toJSON(): Record<string, any> {
         const list = {};
         const listSpecial = {};
-        const objectSpecial = {active: false, options: {}}
+        const objectSpecial = { active: false, options: {} };
         Object.entries(this.list).forEach(([c, v]) => {
             list[c] = v.active();
         });
@@ -54,7 +54,7 @@ export default class Challenges implements Saveable {
             objectSpecial.active = v.active();
             // Monotype
             if (c == 'monotype') {
-                objectSpecial.options = {pokemonType: v.pokemonType()};
+                objectSpecial.options = { pokemonType: v.pokemonType() };
             }
             listSpecial[c] = objectSpecial;
         });

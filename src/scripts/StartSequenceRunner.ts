@@ -15,9 +15,9 @@ class StartSequenceRunner {
         App.game.quests.getQuestLine('Tutorial Quests').beginQuest(0);
         this.starterPicked = s;
         $('#pickStarterTutorialModal').modal('hide');
-        const pokemonID = !App.game.challenges.listSpecial.monotype.active() || monotypeSelected == PokemonType.None ? 
+        const pokemonID = !App.game.challenges.listSpecial.monotype.active() || monotypeSelected == PokemonType.None ?
             GameConstants.RegionalStarters[GameConstants.Region.kanto][this.starterPicked] :
-            GameConstants.RegionalStartersMonotype[GameConstants.Region.kanto][monotypeSelected]
+            GameConstants.RegionalStartersMonotype[GameConstants.Region.kanto][monotypeSelected];
         const dataPokemon = PokemonHelper.getPokemonById(pokemonID);
         const shiny: boolean = PokemonFactory.generateShiny(GameConstants.SHINY_CHANCE_BATTLE);
         const gender = PokemonFactory.generateGender(dataPokemon.gender.femaleRatio, dataPokemon.gender.type);
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     {
                         element: document.getElementById('townMap'),
                         intro: 'This is the Town Map.<br/>Use this to move to between different Routes, Towns and Dungeons.',
-                    }
+                    },
                 ],
             });
         } else {

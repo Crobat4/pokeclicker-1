@@ -21,7 +21,7 @@ class Party implements Feature {
         this._caughtPokemon = ko.observableArray([]);
 
         this.hasMaxLevelPokemon = ko.pureComputed(() => {
-            const pokemonMaxLevel = App.game.challenges.listSpecial.monotype.active() ? Math.min(100, (App.game.badgeCase.badgeCount() + 2) * 10) : 100
+            const pokemonMaxLevel = App.game.challenges.listSpecial.monotype.active() ? Math.min(100, (App.game.badgeCase.badgeCount() + 2) * 10) : 100;
             for (let i = 0; i < this.caughtPokemon.length; i++) {
                 if (this.caughtPokemon[i].level === pokemonMaxLevel) {
                     return true;
@@ -135,7 +135,7 @@ class Party implements Feature {
                 Math.floor(pokemon.id) != 129) {
                 // Only magikarps can attack in magikarp jump
                 continue;
-            } 
+            }
             if (App.game.challenges.listSpecial.monotype.active() && !(region == GameConstants.Region.alola && player.region == GameConstants.Region.alola && player.subregion == GameConstants.AlolaSubRegions.MagikarpJump)) {
                 const dataPokemon = PokemonHelper.getPokemonByName(pokemon.name);
                 if (dataPokemon.type1 != App.game.challenges.listSpecial.monotype.pokemonType() && dataPokemon.type2 != App.game.challenges.listSpecial.monotype.pokemonType()) {
@@ -262,12 +262,11 @@ class Party implements Feature {
         if (player.region == GameConstants.Region.alola && player.subregion == GameConstants.AlolaSubRegions.MagikarpJump) {
             // Only magikarps can attack in magikarp jump subregion
             caughtPokemon = caughtPokemon.filter((p) => Math.floor(p.id) == 129);
-        }
-        else if (App.game.challenges.listSpecial.monotype.active()) {
+        } else if (App.game.challenges.listSpecial.monotype.active()) {
             const selectedType = App.game.challenges.listSpecial.monotype.pokemonType();
             caughtPokemon = caughtPokemon.filter((p) => {
                 const pokemon = PokemonHelper.getPokemonById(p.id);
-                return selectedType != PokemonType['None'] && (pokemon.type1 == selectedType || pokemon.type2 == selectedType);
+                return selectedType != PokemonType.None && (pokemon.type1 == selectedType || pokemon.type2 == selectedType);
             });
         }
         const caught = caughtPokemon.length;

@@ -1,5 +1,5 @@
-import PokemonType from "../enums/PokemonType";
-import Challenge from "./Challenge";
+import PokemonType from '../enums/PokemonType';
+import Challenge from './Challenge';
 
 export default class MonotypeChallenge extends Challenge {
     public pokemonType: KnockoutObservable<PokemonType>;

@@ -123,7 +123,7 @@ class PartyController {
         // For Monotype and Magikarp Jump: Pokemon with selected type/Magikarp will appear on the top of the list
         return [
             ...sortedList.filter((pokemon) => PokemonHelper.canPokemonDealDamage(pokemon.id)),
-            ...sortedList.filter((pokemon) => !PokemonHelper.canPokemonDealDamage(pokemon.id))
+            ...sortedList.filter((pokemon) => !PokemonHelper.canPokemonDealDamage(pokemon.id)),
         ];
     }).extend({ rateLimit: 500 });
 
