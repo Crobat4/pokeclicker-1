@@ -1,5 +1,4 @@
 import { Saveable } from '../DataStore/common/Saveable';
-import PokemonType from '../enums/PokemonType';
 import Challenge from './Challenge';
 import MonotypeChallenge from './MonotypeChallenge';
 
@@ -26,7 +25,7 @@ export default class Challenges implements Saveable {
     };
 
     fromJSON(json): void {
-        if (!json || !json.list && !json.listSpecial) {
+        if (!json || (!json.list && !json.listSpecial)) {
             return;
         }
         // Standard Challenges
@@ -37,7 +36,7 @@ export default class Challenges implements Saveable {
         Object.entries(json.listSpecial).forEach(([challenge, value]: [string, any]) => {
             this.listSpecial[challenge]?.active(!!value.active);
             // Monotype
-            if (challenge == 'monotype') {
+            if (challenge === 'monotype') {
                 this.listSpecial[challenge]?.pokemonType(value.options.pokemonType);
             }
         });
@@ -53,7 +52,7 @@ export default class Challenges implements Saveable {
         Object.entries(this.listSpecial).forEach(([c, v]) => {
             objectSpecial.active = v.active();
             // Monotype
-            if (c == 'monotype') {
+            if (c === 'monotype') {
                 objectSpecial.options = { pokemonType: v.pokemonType() };
             }
             listSpecial[c] = objectSpecial;
