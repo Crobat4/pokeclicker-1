@@ -30,6 +30,7 @@ Routes.add(new RegionRoute(
     new RoutePokemon({
         land: ['Rattata', 'Spearow', 'Mankey'],
         water: ['Psyduck', 'Poliwag', 'Slowpoke', 'Goldeen', 'Magikarp'],
+        special: monotypeSpecialArray,
     }),
     [new RouteKillRequirement(10, GameConstants.Region.kanto, 1)],
     1.1,
@@ -39,7 +40,6 @@ Routes.add(new RegionRoute(
     'Kanto Route 2', GameConstants.Region.kanto, 2,
     new RoutePokemon({
         land: ['Pidgey', 'Rattata', 'Caterpie', 'Weedle'],
-        special: monotypeSpecialArray,
     }),
     [new RouteKillRequirement(10, GameConstants.Region.kanto, 1)],
     undefined,
