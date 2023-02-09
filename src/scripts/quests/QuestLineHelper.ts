@@ -125,16 +125,7 @@ class QuestLineHelper {
         //Defeat Pewter Gym
         const pewterReward = () => {
             Notifier.notify({ message: 'Tutorial completed!', type: NotificationConstants.NotificationOption.success });
-            if (App.game.challenges.listSpecial.monotype.active()) {
-                Information.show({
-                    steps: [
-                        {
-                            element: document.getElementById('startMenu'),
-                            intro: 'See the badges you\'ve earned in the Badge Case. Badges influence the max level of your Pokémon.',
-                        },
-                    ],
-                });
-            } else {
+            if (!App.game.challenges.listSpecial.monotype.active()) {
                 Information.show({
                     steps: [
                         {
