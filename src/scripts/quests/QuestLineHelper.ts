@@ -90,8 +90,10 @@ class QuestLineHelper {
         const talkToOldMan = new TalkToNPCQuest(ViridianCityOldMan2, 'Talk to the Old Man in Viridian City to learn about catching.', OldManReward);
         tutorial.addQuest(talkToOldMan);
 
-        const catch5Pidgey = new CustomQuest(5, 30, 'Use what you\'ve learned to catch 5 Pidgey. Talk to the Old Man again if you need a reminder.', () => App.game.statistics.pokemonCaptured[PokemonHelper.getPokemonByName('Pidgey').id]());
-        tutorial.addQuest(catch5Pidgey);
+        // If the Monotype Challenge is enabled, catch the starter, if not, Pidgey
+        const pokemon = PokemonHelper.getPokemonById(App.game.challenges.listSpecial.monotype.active() ? GameConstants.RegionalStartersMonotype[GameConstants.Region.kanto][App.game.challenges.listSpecial.monotype.pokemonType()] : 16);
+        const catch5StartersOrPidgey = new CustomQuest(5, 30, `Use what you\'ve learned to catch 5 ${pokemon.name}. Talk to the Old Man again if you need a reminder.`, () => App.game.statistics.pokemonCaptured[pokemon.id]());
+        tutorial.addQuest(catch5StartersOrPidgey);
 
         //Buy Dungeon ticket
         const buyDungeonTicket = new CustomQuest(1, 50,

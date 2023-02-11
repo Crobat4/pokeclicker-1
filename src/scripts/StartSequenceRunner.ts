@@ -12,6 +12,15 @@ class StartSequenceRunner {
     public static pickStarter(s: GameConstants.Starter, monotypeSelected: PokemonType = PokemonType.None) {
         // Reload the achievements in case the user has any challenge modes activated
         AchievementHandler.load();
+        // If the Monotype Challenge is enabled, change Pidgey with the starter in the tutorial quest
+        // Reloading after the starter select will change the Pidgey already, but this is needed in case the player doesn't reload
+        if (App.game.challenges.listSpecial.monotype.active()) {
+            const pokemon = PokemonHelper.getPokemonById(GameConstants.RegionalStartersMonotype[GameConstants.Region.kanto][App.game.challenges.listSpecial.monotype.pokemonType()]);
+            const catch5Starters = new CustomQuest(5, 30, `Use what you\'ve learned to catch 5 ${pokemon.name}. Talk to the Old Man again if you need a reminder.`, () => App.game.statistics.pokemonCaptured[pokemon.id]());
+            const tutorialQuestline = App.game.quests.getQuestLine('Tutorial Quests');
+            tutorialQuestline.replaceQuestAfterLoaded(catch5Starters, 6); // 6 is Pidgey quest
+        }
+        
         App.game.quests.getQuestLine('Tutorial Quests').beginQuest(0);
         this.starterPicked = s;
         $('#pickStarterTutorialModal').modal('hide');
