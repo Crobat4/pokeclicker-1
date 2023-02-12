@@ -4,7 +4,7 @@ import Information from '../utilities/Information';
 import KeyItemController from './KeyItemController';
 import { Feature } from '../DataStore/common/Feature';
 import {
-    getDungeonIndex, Region, RegionalStarters, ROUTE_KILLS_NEEDED, Pokerus,
+    getDungeonIndex, Region, RegionalStarters, ROUTE_KILLS_NEEDED, Pokerus, RegionalStartersMonotype,
 } from '../GameConstants';
 
 export default class KeyItems implements Feature {
@@ -60,9 +60,18 @@ export default class KeyItems implements Feature {
                 () => App.game.statistics.dungeonsCleared[getDungeonIndex('Distortion World')]() > 0,
                 undefined,
                 () => {
-                    App.game.party.getPokemon(
-                        RegionalStarters[Region.kanto][player.regionStarters[Region.kanto]()],
-                    ).pokerus = Pokerus.Contagious;
+                    if (App.game.challenges.listSpecial.monotype.active()) {
+                        const starterID = RegionalStartersMonotype[Region.kanto][App.game.challenges.listSpecial.monotype.pokemonType()];
+                        // If for some reason the starter is not in the party, give it to the player and give it Pokerus
+                        if (!App.game.party.alreadyCaughtPokemon(starterID)) {
+                            App.game.party.gainPokemonById(starterID);
+                        }
+                        App.game.party.getPokemon(starterID).pokerus = Pokerus.Contagious;
+                    } else {
+                        App.game.party.getPokemon(
+                            RegionalStarters[Region.kanto][player.regionStarters[Region.kanto]()],
+                        ).pokerus = Pokerus.Contagious;
+                    }
                     App.game.pokeballs.alreadyCaughtContagiousSelection = App.game.pokeballs.alreadyCaughtSelection;
                     Information.show({
                         steps: [

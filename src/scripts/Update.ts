@@ -1979,6 +1979,10 @@ class Update implements Saveable {
                         const pokemonID = GameConstants.RegionalStartersMonotype[GameConstants.Region.kanto][App.game.challenges.listSpecial.monotype.pokemonType()];
                         const pokemon = PokemonHelper.getPokemonById(pokemonID);
                         App.game.party.gainPokemonByName(pokemon.name);
+                        // Give Pokerus to the starter if the player has the key item
+                        if (App.game.keyItems.hasKeyItem(KeyItemType.Pokerus_virus) && App.game.party.getPokemon(pokemon.id).pokerus < GameConstants.Pokerus.Contagious) {
+                            App.game.party.getPokemon(pokemon.id).pokerus = GameConstants.Pokerus.Contagious;
+                        }
                         Notifier.notify({
                             title: 'Monotype Challenge',
                             message: `Professor Oak handed you ${GameHelper.anOrA(pokemon.name)} ${pokemon.name}!`,
