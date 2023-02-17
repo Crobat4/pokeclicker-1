@@ -105,6 +105,7 @@ class QuestLineHelper {
 
         //Clear Viridian Forest
         const viridianForestReward = () => {
+            App.game.wallet.gainQuestPoints(50);
             if (App.game.challenges.listSpecial.monotype.active()) {
                 Information.show({
                     steps: [
@@ -115,7 +116,6 @@ class QuestLineHelper {
                     ],
                 });
             }
-            return 50;
         };
         const clearViridianForest = new CustomQuest(1, viridianForestReward,
             'Gather 50 Dungeon Tokens by (re)capturing Pokémon, then clear the Viridian Forest dungeon.',
