@@ -126,7 +126,7 @@ class TownWalk {
                     document.getElementById('sprite').classList.value = `walk${direction}`;
                 }
             });
-            App.game.breeding.progressEggs(1);
+            App.game.breeding.progressEggs(2);
         } else {
             document.getElementById('sprite').classList.value = `walk${direction}`;
             setTimeout(() => {
