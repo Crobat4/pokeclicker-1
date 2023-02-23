@@ -1960,7 +1960,7 @@ class Update implements Saveable {
             // Start Monotype
             // Remove None
             const typeArray = GameHelper.enumSelectOption(PokemonType).filter((t) => t.name != 'None');
-            const notifier = Notifier.selectConfirm({
+            const notifier = Notifier.confirmWithDropdown({
                 title: 'Monotype',
                 message: `New challenge mode added: Monotype.\n
                     Only Pokémon that contains the selected type will deal damage.\n

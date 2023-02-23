@@ -234,8 +234,8 @@ export default class Notifier {
         });
     }
 
-    // Notifier confirm with select
-    public static selectConfirm({
+    // Notifier confirm with dropdown at the end of the body
+    public static confirmWithDropdown({
         title,
         message,
         confirm = 'Ok',
