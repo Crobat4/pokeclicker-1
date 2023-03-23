@@ -571,7 +571,12 @@ Routes.add(new RegionRoute(
         land: ['Pidgey', 'Nidoran(M)', 'Nidoran(F)', 'Vulpix', 'Growlithe', 'Hoothoot', 'Stantler'],
         headbutt: ['Exeggcute', 'Ledyba', 'Spinarak', 'Pineco'],
     }),
-    [new GymBadgeRequirement(BadgeEnums.Plain)]
+    [
+        new OneFromManyRequirement([
+            new RouteKillRequirement(10, GameConstants.Region.johto, 35),
+            new TemporaryBattleRequirement('Sudowoodo'),
+        ]),
+    ]
 ));
 Routes.add(new RegionRoute(
     'Johto Route 37', GameConstants.Region.johto, 37,
@@ -579,7 +584,10 @@ Routes.add(new RegionRoute(
         land: ['Pidgey', 'Pidgeotto', 'Vulpix', 'Growlithe', 'Hoothoot', 'Ledyba', 'Spinarak', 'Stantler'],
         headbutt: ['Exeggcute', 'Pineco'],
     }),
-    [new TemporaryBattleRequirement('Sudowoodo')]
+    [
+        new TemporaryBattleRequirement('Sudowoodo'),
+        new RouteKillRequirement(10, GameConstants.Region.johto, 36),
+    ]
 ));
 Routes.add(new RegionRoute(
     'Johto Route 38', GameConstants.Region.johto, 38,
@@ -731,7 +739,7 @@ Routes.add(new RegionRoute(
         land: ['Surskit', 'Poochyena', 'Wurmple', 'Lotad', 'Zigzagoon', 'Ralts', 'Seedot'],
         water: ['Marill', 'Goldeen', 'Magikarp', 'Corphish'],
     }),
-    [new RouteKillRequirement(10, GameConstants.Region.hoenn, 101)]
+    [new TemporaryBattleRequirement('May 1')]
 ));
 Routes.add(new RegionRoute(
     'Hoenn Route 103', GameConstants.Region.hoenn, 103,
@@ -869,7 +877,7 @@ Routes.add(new RegionRoute(
         water: ['Goldeen', 'Magikarp', 'Corphish'],
         eggExclusive: ['Roselia'],
     }),
-    [new RouteKillRequirement(10, GameConstants.Region.hoenn, 110)],
+    [new TemporaryBattleRequirement('May 3')],
     110.1
 ));
 Routes.add(new RegionRoute(
@@ -1571,7 +1579,7 @@ Routes.add(new RegionRoute(
     new RoutePokemon({
         land: ['Oddish', 'Sentret', 'Nincada', 'Kecleon', 'Espurr', 'Honedge'],
     }),
-    [new RouteKillRequirement(10, GameConstants.Region.kalos, 5)]
+    [new TemporaryBattleRequirement('Tierno 1')]
 ));
 Routes.add(new RegionRoute(
     'Kalos Route 7', GameConstants.Region.kalos, 7,
@@ -1680,7 +1688,7 @@ Routes.add(new RegionRoute(
     new RoutePokemon({
         land: ['Jigglypuff', 'Noctowl', 'Zoroark', 'Gothorita', 'Amoonguss', 'Trevenant'],
     }),
-    [new RouteKillRequirement(10, GameConstants.Region.kalos, 19)]
+    [new TemporaryBattleRequirement('Trevor')]
 ));
 Routes.add(new RegionRoute(
     'Kalos Route 21', GameConstants.Region.kalos, 21,
@@ -1688,7 +1696,7 @@ Routes.add(new RegionRoute(
         land: ['Scyther', 'Ursaring', 'Spinda', 'Altaria', 'Floatzel'],
         water: ['Poliwag', 'Poliwhirl', 'Lombre', 'Basculin (Red-Striped)', 'Dratini', 'Dragonair'],
     }),
-    [new RouteKillRequirement(10, GameConstants.Region.kalos, 19)]
+    [new TemporaryBattleRequirement('Trevor')]
 ));
 Routes.add(new RegionRoute(
     'Azure Bay', GameConstants.Region.kalos, 23,

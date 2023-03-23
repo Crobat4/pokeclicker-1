@@ -387,8 +387,17 @@ namespace GameConstants {
     declare enum PokeBlockColor {
         Black,
         Red,
+        Blue,
+        Pink,
+        Green,
+        Yellow,
         Gold,
         Purple,
+        Indigo,
+        Brown,
+        LiteBlue,
+        Olive,
+        Flaxen,
         Gray,
         White
     }
@@ -602,6 +611,7 @@ namespace GameConstants {
     }
     declare enum HoennSubRegions {
         Hoenn,
+        Orre,
     }
     declare enum SinnohSubRegions {
         Sinnoh,
