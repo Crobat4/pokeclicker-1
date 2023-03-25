@@ -163,26 +163,14 @@ class PokedexHelper {
 
             const uniqueTransformation = PokedexFilters.uniqueTransformation.value();
             // Only Base Pokémon with Mega available
-            if (uniqueTransformation == 'mega-available' && !(pokemon as PokemonListData).evolutions?.some((p) => p.evolvedPokemon.includes('Mega '))) {
+            if (uniqueTransformation == 'mega-available' && !(pokemon as PokemonListData).evolutions?.some((p) => p.evolvedPokemon.startsWith('Mega '))) {
                 // Another option: !(pokemon as PokemonListData).evolutions?.some((p) => p.restrictions.some(p => p instanceof MegaEvolveRequirement))
                 return false;
             }
             // Only Mega Pokémon
-            if (uniqueTransformation == 'mega-pokemon' && !(pokemon as PokemonListData).name.includes('Mega ')) {
+            if (uniqueTransformation == 'mega-pokemon' && !(pokemon as PokemonListData).name.startsWith('Mega ')) {
                 return false;
             }
-
-            /*
-            // Only Base Pokémon with Gigantamax available
-            if (uniqueTransformation == 'gigantamax-available' && !((pokemon as PokemonListData).evolutions?.some((p) => p.evolvedPokemon.includes('Gigantamax ')))) {
-                return false;
-            }
-
-            // Only Gigantamax Pokémon
-            if (uniqueTransformation == 'gigantamax-pokemon' && !(pokemon as PokemonListData).name.includes('Gigantamax ')) {
-                return false;
-            }
-            */
 
             return true;
         }) as typeof pokemonList;
