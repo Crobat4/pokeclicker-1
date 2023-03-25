@@ -11,6 +11,12 @@ aria-labelledby="breedingModalLabel" aria-hidden="true">
                             <li class="nav-item"><a class="nav-link" href="#breeding-fossils" data-toggle="tab" onclick="$('#breeding-fireall').show()">Fossils</a></li>
                             <li class="nav-item" data-bind="visible: App.game.breeding.hatcheryHelpers.isUnlocked()" onclick="$('#breeding-fireall').show()"><a class="nav-link" href="#breeding-helpers" data-toggle="tab">Helpers (BETA)</a></li>
                             <li class="nav-item"><a class="nav-link" href="#breeding-help" data-toggle="tab" onclick="$('#breeding-fireall').show()">Help</a></li>
+                            <li class="d-md-block d-none mx-2">
+                                <button class="btn btn-primary h-100" type="button"
+                                    data-bind="click: function() { App.game.breeding.fillHatcheryQueue(); }">
+                                    Fill queue
+                                </button>
+                            </li>
                             <li class="d-md-block d-none"><button type="button" class="btn btn-danger" data-dismiss="modal" style="font-size: 18px; font-weight: 700;">×</button></li>
                         </ul>
                     </div>
@@ -220,12 +226,15 @@ aria-labelledby="breedingModalLabel" aria-hidden="true">
                                     <!-- ko if: App.game.party.hasMaxLevelPokemon() -->
                                     <ul class="row justify-content-center w-100 p-0 m-0" data-bind="foreach: lazyLoad($element, PartyController.getHatcherySortedList, { pageSize: 60, reset: modalUtils.observableState.breedingModalObservable })">
                                         <li class="col-sm-4 col-md-3 col-lg-2 pokedexEntry" data-bind="visible: BreedingController.visible($data), style:{background: PokedexHelper.getBackgroundColors($data.name)}, class: App.game.breeding.hasFreeEggSlot() || App.game.breeding.hasFreeQueueSlot() ? '' : 'disabled'">
-                                            <span class="pokedex-top-text" data-bind="text: $data.displayName">name</span>
+                                            <!-- Pokemon Name -->
+                                            <span style="top: 0; border-top-left-radius: 6px; border-top-right-radius: 6px; overflow: hidden; min-height: 21px;">
+                                                <knockout class="breedingListPokemonName" data-bind="text: $data.displayName, css: { 'marquee': $data.displayName.length > 18 }">name</knockout>
+                                            </span>
                                             <div class="breedingListShiny" data-bind="visible: App.game.party.alreadyCaughtPokemon($data.id, true)">✨</div>
                                             <div class="breedingListPokerus" data-bind="if: App.game.party.getPokemon($data.id)?.pokerus">
                                                 <img width="32px" src="" data-bind="attr: { src: `assets/images/breeding/pokerus/${GameConstants.Pokerus[App.game.party.getPokemon($data.id).pokerus]}.png`}"/>
                                             </div>
-                                            <img src="" width="80px" data-bind="attr:{ src: PokemonHelper.getImage($data.id) }">
+                                            <img src="" width="96px" data-bind="attr:{ src: PokemonHelper.getImage($data.id) }">
                                             <span class="pokedex-bottom-text" data-bind="text: BreedingController.getDisplayValue($data)">value</span>
                                             <a class="overlay" href="#breed" data-bind="click: function() { App.game.breeding.addPokemonToHatchery($data); App.game.breeding.checkCloseModal();}"></a>
                                             <div class="pokemonCategory dropdown">
@@ -426,6 +435,12 @@ aria-labelledby="breedingModalLabel" aria-hidden="true">
                 </div>
             </div>
             <div class="modal-footer d-md-none d-flex">
+                <div class="w-100">
+                    <button class="btn btn-primary w-100" type="button"
+                        data-bind="click: function() { App.game.breeding.fillHatcheryQueue(); }">
+                        Fill queue
+                    </button>
+                </div>
                 <div class="mr-auto">
                     <button type="button" class="btn btn-warning hatchery-warnings" 
                         data-bind="visible: !App.game.breeding.hasFreeEggSlot(),
