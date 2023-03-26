@@ -1881,6 +1881,12 @@ export const DayCycleStartHours: Record<DayCyclePart, number> = {
     [DayCyclePart.Night]: 18,
 };
 
+export enum ShadowStatus {
+    None,
+    Shadow,
+    Purified,
+}
+
 /* Crobat Fork */
 // Sort Icons
 export const ICON_SORT_UP = '<i class=\'bi bi-sort-up\'>';
