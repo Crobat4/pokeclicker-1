@@ -1,4 +1,5 @@
 /********** Crobat Fork **********/
+
 /* Sort Icons */
 .sort-icons{
   display: flex;
@@ -22,7 +23,7 @@
 /* Notifications */
 #toaster .text-light,
 #toaster .text-light *{
-  text-shadow: 0px 0px 10px #000 !important;
+  text-shadow: 0 0 10px #000 !important;
   opacity: 1;
 }
 
@@ -45,6 +46,7 @@
   h2 {
     font-size: 1.6rem !important; /* Original: 2rem */
   }
+
   .pageItemFooter {
     font-size: 1rem !important;
   }
@@ -59,6 +61,7 @@
       border-radius:6px;
       cursor: pointer;
   }
+
   .disabled-icon {
       filter: grayscale(100%);
       cursor: default;
@@ -102,10 +105,11 @@
   border: 2px solid #ffbd18;
   border-radius:6px;
 }
+
 .route-link-overlay {
   position: absolute;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
 }
@@ -117,13 +121,16 @@
   animation: marquee 6s linear infinite;
   white-space: nowrap;
   position: absolute; 
-  /*top: 0;*/
+
+  /* top: 0; */
   left: 0;
 }
+
 @keyframes marquee {
   0% {
     transform: translate(0, 0);
   }
+
   100% {
     transform: translate(-100%, 0);
   }
@@ -148,10 +155,12 @@
   text-align: left;
   margin-bottom: 3px;
 }
+
 .pokeballListItem img{
-  margin-left: 0px;
+  margin-left: 0;
   margin-right: -30px;
 }
+
 @media (min-width: 768px) {
   .scrolling-div-pokeball {
     overflow-y: auto;
@@ -164,6 +173,7 @@
 .pokedex-modal {
   max-width: 1250px!important;
 }
+
 #pokemon-list .pokedexEntry {
   @media (min-width: 768px) {
     max-width: 100% !important;
@@ -176,23 +186,28 @@
 .item-icon-container, .mega-icon-container {
   position: absolute; 
 }
+
 .item-icon-container {
   top: 65px;
 }
+
 .mega-icon-container {
   bottom: 65px;
 }
+
 .item-icon{
   padding: 2px !important;
   margin: 16px 0;
-  background:rgba(0, 0, 0, 0.5);
+  background:rgba(0, 0, 0, 50%);
   max-width: 24px; 
   max-height: 24px;
 }
+
 /* Left icons (Roaming/Boss/Chest) */
 div[class*='-icon-container'].item-icon-left {
   left: 2px;
 }
+
 /* Right icons (Rare Hold Item/Mega Stone) */
 div[class*='-icon-container'].item-icon-right {
   right: 2px;
@@ -206,6 +221,7 @@ div[class*='-icon-container'].item-icon-right {
     min-height: 150px;
   }
 }
+
 .cafe-trainer-sprite {
   /*
   -moz-transform: scale(3);
@@ -217,6 +233,7 @@ div[class*='-icon-container'].item-icon-right {
   width: 40px;
   image-rendering: pixelated;
 }
+
 @media (min-width: 768px) {
   .input-spin {
     width: 100px !important;
@@ -226,16 +243,16 @@ div[class*='-icon-container'].item-icon-right {
 /* Hatchery queue */
 .queuePokemon {
   position: relative;
+
   .queueListShiny {
     position: absolute;
-    right: 0px;
-    bottom: 0px;
+    right: 0;
+    bottom: 0;
   }
 }
 
 /* Spinda */
 .spots {
-  -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   top: 40px;
   background-image: url('../assets/images/pokemon/327-mask.png');
@@ -243,41 +260,42 @@ div[class*='-icon-container'].item-icon-right {
   height: 100%;
   position: absolute;
 }
+
 @media (max-width: 768px) {
   .spots {
     top: 20px;
   }
 }
+
 .spot-top-left {
-  -webkit-mask-image: url('../assets/images/spinda-spots/spotTL.png');
   mask-image: url('../assets/images/spinda-spots/spotTL.png');
 }
+
 .spot-top-right {
-  -webkit-mask-image: url('../assets/images/spinda-spots/spotTR.png');
   mask-image: url('../assets/images/spinda-spots/spotTR.png');
 }
+
 .spot-bottom-left {
-  -webkit-mask-image: url('../assets/images/spinda-spots/spotBL.png');
   mask-image: url('../assets/images/spinda-spots/spotBL.png');
 }
+
 .spot-bottom-right {
-  -webkit-mask-image: url('../assets/images/spinda-spots/spotBR.png');
   mask-image: url('../assets/images/spinda-spots/spotBR.png');
 }
 
 /* Habitat List */
+
 /* Dungeon lock */
 #dungeon-habitat-list .lock {
   position: absolute;
   height: 100%;
   left: 50%;
-  bottom: 0px;
+  bottom: 0;
   transform: translateX(-50%);
 }
 
 /* Enemy Name */
 .habitat-list, .pokedex-list {
-
   /* Pokemon ID / Trainer */
   .pokemon-id {
     top: 0; 
@@ -320,6 +338,7 @@ div[class*='-icon-container'].item-icon-right {
   white-space: normal !important;
   overflow: hidden;
 }
+
 .dropdown-item:hover {
   background-color: var(--secondary) !important;
 }
