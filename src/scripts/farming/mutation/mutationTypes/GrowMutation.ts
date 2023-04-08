@@ -15,7 +15,7 @@ abstract class GrowMutation extends Mutation {
      */
     getMutationPlots(): number[] {
         const plots = [];
-        App.game.farming.plotList.forEach((plot, idx) => {
+        App.game.farming.plotList.filter((p) => p.index < 25).forEach((plot, idx) => {
             if (!plot.isUnlocked) {
                 return;
             }

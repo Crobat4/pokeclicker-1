@@ -1622,7 +1622,7 @@ class Farming implements Feature {
             unlockReq: () => App.game?.statistics?.pokemonCaptured[PokemonHelper.getPokemonByName('Rayquaza').id]() > 0,
         }));
         // Petaya
-        this.mutations.push(new PetayaMutation(.00001));
+        this.mutations.push(new PetayaMutation(.1));
         // Apicot
         this.mutations.push(new FieldMutation(.00001, BerryType.Apicot, BerryType.Chilan, undefined, {
             unlockReq: () => App.game?.statistics?.pokemonCaptured[PokemonHelper.getPokemonByName('Palkia').id]() > 0,

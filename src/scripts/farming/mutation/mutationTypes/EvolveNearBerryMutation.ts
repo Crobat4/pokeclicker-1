@@ -29,7 +29,7 @@ class EvolveNearBerryMutation extends EvolveNearMutation {
      * Checks an individual plot for a Berry requirement
      */
     checkRequirement(index: number, berryReq: BerryType) {
-        const plot = App.game.farming.plotList[index];
+        const plot = App.game.farming.plotList.filter((p) => p.index < 25)[index];
         if (!plot.isUnlocked) {
             return false;
         }

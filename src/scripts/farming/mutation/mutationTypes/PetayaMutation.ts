@@ -16,7 +16,7 @@ class PetayaMutation extends GrowMutation {
     getMutationPlots(): number[] {
         const emptyPlots = super.getMutationPlots();
         const fieldPlots: any = {};
-        App.game.farming.plotList.forEach((plot, idx) => {
+        App.game.farming.plotList.filter((p) => p.index < 25).forEach((plot, idx) => {
             if (!plot.isUnlocked) {
                 return;
             }
