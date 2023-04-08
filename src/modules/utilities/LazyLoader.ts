@@ -63,7 +63,7 @@ export type LazyLoadOptions = {
 const defaultOptions: LazyLoadOptions = {
     triggerMargin: '10%',
     threshold: 0,
-    pageSize: 80,
+    pageSize: 100,
 };
 
 const memo = new WeakMap<HTMLElement, PureComputed<Array<unknown>>>();
