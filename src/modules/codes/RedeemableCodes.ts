@@ -184,7 +184,7 @@ export default class RedeemableCodes implements Saveable {
             // Rotom (Crobat)
             // eslint-disable-next-line consistent-return
             new RedeemableCode('rotom-crobat', 855696596, false, async () => { // CROBATISBASED
-                const successfulCode = this.pokemonCode('Rotom (Crobat)', 'Rotom', BadgeEnums.Beacon);
+                const successfulCode = this.pokemonCode('Rotom (Crobat)', BadgeEnums.Beacon, 'Rotom');
                 // Needs to be undefined to be counted as code reedemed
                 // undefined is counted as false so it need "=== false"
                 if (successfulCode === false) {
@@ -194,7 +194,7 @@ export default class RedeemableCodes implements Saveable {
             // Surfing Pikachu
             // eslint-disable-next-line consistent-return
             new RedeemableCode('surfing-pikachu', -1621513525, false, async () => { // FATRATDROWNED
-                const successfulCode = this.pokemonCode('Surfing Pikachu', 'Pikachu', BadgeEnums.Earth);
+                const successfulCode = this.pokemonCode('Surfing Pikachu', BadgeEnums.Earth, 'Pikachu');
                 if (successfulCode === false) {
                     return false;
                 }
@@ -202,42 +202,42 @@ export default class RedeemableCodes implements Saveable {
             // Unown C-R-O-B-A-T
             // eslint-disable-next-line consistent-return
             new RedeemableCode('unown-c', 64085966, false, async () => { // CHASE
-                const successfulCode = this.pokemonCode('Unown (C)', undefined, BadgeEnums.Rising);
+                const successfulCode = this.pokemonCode('Unown (C)', BadgeEnums.Rising);
                 if (successfulCode === false) {
                     return false;
                 }
             }),
             // eslint-disable-next-line consistent-return
             new RedeemableCode('unown-r', -70124742, false, async () => { // REASSURE
-                const successfulCode = this.pokemonCode('Unown (R)', undefined, BadgeEnums.Rising);
+                const successfulCode = this.pokemonCode('Unown (R)', BadgeEnums.Rising);
                 if (successfulCode === false) {
                     return false;
                 }
             }),
             // eslint-disable-next-line consistent-return
             new RedeemableCode('unown-o', -933339908, false, async () => { // OBSERVE
-                const successfulCode = this.pokemonCode('Unown (O)', undefined, BadgeEnums.Rising);
+                const successfulCode = this.pokemonCode('Unown (O)', BadgeEnums.Rising);
                 if (successfulCode === false) {
                     return false;
                 }
             }),
             // eslint-disable-next-line consistent-return
             new RedeemableCode('unown-b', 2034612, false, async () => { // BEAR
-                const successfulCode = this.pokemonCode('Unown (B)', undefined, BadgeEnums.Rising);
+                const successfulCode = this.pokemonCode('Unown (B)', BadgeEnums.Rising);
                 if (successfulCode === false) {
                     return false;
                 }
             }),
             // eslint-disable-next-line consistent-return
             new RedeemableCode('unown-a', 62423425, false, async () => { // ANGRY
-                const successfulCode = this.pokemonCode('Unown (A)', undefined, BadgeEnums.Rising);
+                const successfulCode = this.pokemonCode('Unown (A)', BadgeEnums.Rising);
                 if (successfulCode === false) {
                     return false;
                 }
             }),
             // eslint-disable-next-line consistent-return
             new RedeemableCode('unown-t', 2571185, false, async () => { // TELL
-                const successfulCode = this.pokemonCode('Unown (T)', undefined, BadgeEnums.Rising);
+                const successfulCode = this.pokemonCode('Unown (T)', BadgeEnums.Rising);
                 if (successfulCode === false) {
                     return false;
                 }
@@ -288,7 +288,7 @@ export default class RedeemableCodes implements Saveable {
     }
 
     // eslint-disable-next-line consistent-return
-    pokemonCode(pokemonName, originalName = 'MissingNo.', badge) {
+    pokemonCode(pokemonName, badge, originalName = 'MissingNo.') {
         const shiny = this.generateShiny(GameConstants.SHINY_CHANCE_SHOP);
         const pokemon = pokemonMap[pokemonName];
         const originalForm = pokemonMap[originalName];
