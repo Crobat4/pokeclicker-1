@@ -87,7 +87,7 @@ export type PokemonListData = {
     }
 };
 
-function createPokemonArray<T extends readonly PokemonListData[] & Array<{name: V}>, V extends string>(...args: T) {
+function createPokemonArray<T extends readonly PokemonListData[] & Array<{ name: V }>, V extends string>(...args: T) {
     return args;
 }
 
@@ -5456,7 +5456,7 @@ export const pokemonList = createPokemonArray(
         'levelType': LevelType.slow,
         'exp': 189,
         'eggCycles': 5,
-        // 'evolutions': [MegaEvolution('Gyarados', 'Mega Gyarados')],
+        'evolutions': [MegaEvolution('Gyarados', 'Mega Gyarados')],
         'base': {
             'hitpoints': 95,
             'attack': 125,
@@ -8446,7 +8446,7 @@ export const pokemonList = createPokemonArray(
     {
         'id': 229.01,
         'name': 'Mega Houndoom',
-        'type': [PokemonType.Fire, PokemonType.Dark],
+        'type': [PokemonType.Dark, PokemonType.Fire],
         'eggCycles': 20,
         'levelType': LevelType.slow,
         'exp': 351,
@@ -9032,7 +9032,7 @@ export const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumslow,
         'exp': 239,
         'catchRate': 45,
-        // 'evolutions': [MegaEvolution('Sceptile', 'Mega Sceptile')],
+        'evolutions': [MegaEvolution('Sceptile', 'Mega Sceptile')],
         'base': {
             'hitpoints': 70,
             'attack': 85,
@@ -9116,7 +9116,7 @@ export const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumslow,
         'exp': 239,
         'catchRate': 45,
-        // 'evolutions': [MegaEvolution('Blaziken', 'Mega Blaziken')],
+        'evolutions': [MegaEvolution('Blaziken', 'Mega Blaziken')],
         'base': {
             'hitpoints': 80,
             'attack': 120,
@@ -9200,7 +9200,7 @@ export const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumslow,
         'exp': 241,
         'catchRate': 45,
-        // 'evolutions': [MegaEvolution('Swampert', 'Mega Swampert')],
+        'evolutions': [MegaEvolution('Swampert', 'Mega Swampert')],
         'base': {
             'hitpoints': 100,
             'attack': 110,

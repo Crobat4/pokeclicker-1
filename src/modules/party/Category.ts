@@ -6,7 +6,9 @@ import {
     ObservableArray as KnockoutObservableArray,
 } from 'knockout';
 import { Saveable } from '../DataStore/common/Saveable';
+import BreedingFilters from '../settings/BreedingFilters';
 import PokedexFilters from '../settings/PokedexFilters';
+import Settings from '../settings/Settings';
 
 export type PokemonCategory = {
     name: KnockoutObservable<string>,
@@ -69,8 +71,11 @@ export default class PokemonCategories implements Saveable {
         this.categories()[index].subscriber?.dispose();
         // Remove category
         PokemonCategories.categories.splice(index, 1);
-        // Reset Pokedex filters
+        // Reset Pokedex/Breeding filters
         PokedexFilters.category.value(-1);
+        Settings.setSettingByName('pokedexCategoryFilter', -1);
+        BreedingFilters.category.value(-1);
+        Settings.setSettingByName('breedingCategoryFilter', -1);
     }
 
     toJSON(): Record<string, any> {

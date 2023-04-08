@@ -4,6 +4,7 @@ import {
     Region,
     BattlePokemonGender,
     PokemonStatisticsType,
+    ShadowStatus,
 } from '../GameConstants';
 import { PokemonNameType } from './PokemonNameType';
 import P from './mapProvider';
@@ -67,8 +68,9 @@ export function typeIdToString(id: number) {
     return PokemonType[id];
 }
 
-export function getImage(pokemonId: number, shiny: boolean = undefined, gender: boolean = undefined): string {
+export function getImage(pokemonId: number, shiny: boolean = undefined, gender: boolean = undefined, shadow: ShadowStatus = undefined): string {
     let src = 'assets/images/';
+    let showShadow = false;
     if (shiny === undefined) {
         let showShinySprite = !App.game.party.getPokemon(pokemonId)?.hideShinyImage();
         if (!Settings.getSetting('showShinySpriteByDefault').observableValue()) {
@@ -82,9 +84,23 @@ export function getImage(pokemonId: number, shiny: boolean = undefined, gender: 
         // eslint-disable-next-line no-param-reassign
         gender = App.game.party.getPokemon(pokemonId)?.defaultFemaleSprite() ?? false;
     }
+    if (shadow === undefined) {
+        const partyPokemon = App.game.party.getPokemon(pokemonId);
+        if (partyPokemon) {
+            showShadow = partyPokemon.shadow === ShadowStatus.Shadow
+                || (partyPokemon.shadow === ShadowStatus.Purified && partyPokemon.showShadowImage);
+        } else {
+            showShadow = false;
+        }
+    } else {
+        showShadow = shadow === ShadowStatus.Shadow;
+    }
 
     if (shiny) {
         src += 'shiny';
+    }
+    if (showShadow) {
+        src += 'shadow';
     }
     let genderString = '';
     // If Pokémon is female, use the female sprite, otherwise use the male/genderless one

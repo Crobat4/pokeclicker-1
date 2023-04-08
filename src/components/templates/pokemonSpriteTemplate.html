@@ -1,7 +1,7 @@
 <script type="text/html" id="pokemonSpriteTemplate">
     <knockout class="position-relative d-inline-block">
         <img class="enemy"
-            data-bind="attr:{ src: $data.image || PokemonHelper.getImage($data.pokemon.id, $data.pokemon.shiny, $data.pokemon.gender == GameConstants.BattlePokemonGender.Female) }"
+            data-bind="attr:{ src: $data.image || PokemonHelper.getImage($data.pokemon.id, $data.pokemon.shiny, $data.pokemon.gender == GameConstants.BattlePokemonGender.Female, $data.pokemon.shadow) }"
             src="" onerror="this.src='assets/images/trainers/Mysterious Trainer.png';"/>
         <!-- ko if: $data.pokemon.id === 327 -->
             <!-- ko using: PokemonHelper.getSpindaMask($data.pokemon.shiny), as: 'spindaMaskSprite' -->

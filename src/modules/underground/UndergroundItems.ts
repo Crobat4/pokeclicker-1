@@ -82,23 +82,23 @@ UndergroundItems.addItem(new UndergroundItem('Icy Rock', 14, [[0, 1, 1, 0], [1, 
 UndergroundItems.addItem(new UndergroundItem('Damp Rock', 15, [[1, 1, 1], [1, 1, 1], [1, 0, 1]], 2, UndergroundItemValueType.Diamond, null, diamondWeight));
 
 // Gem Plates
-UndergroundItems.addItem(new UndergroundGemItem('Draco Plate', 100, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], 100, PokemonType.Dragon, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundGemItem('Dread Plate', 101, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], 100, PokemonType.Dark, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundGemItem('Earth Plate', 102, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], 100, PokemonType.Ground, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundGemItem('Fist Plate', 103, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], 100, PokemonType.Fighting, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundGemItem('Flame Plate', 104, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], 100, PokemonType.Fire, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundGemItem('Icicle Plate', 105, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], 100, PokemonType.Ice, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundGemItem('Insect Plate', 106, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], 100, PokemonType.Bug, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundGemItem('Iron Plate', 107, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], 100, PokemonType.Steel, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundGemItem('Meadow Plate', 108, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], 100, PokemonType.Grass, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundGemItem('Mind Plate', 109, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], 100, PokemonType.Psychic, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundGemItem('Sky Plate', 110, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], 100, PokemonType.Flying, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundGemItem('Splash Plate', 111, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], 100, PokemonType.Water, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundGemItem('Spooky Plate', 112, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], 100, PokemonType.Ghost, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundGemItem('Stone Plate', 113, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], 100, PokemonType.Rock, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundGemItem('Toxic Plate', 114, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], 100, PokemonType.Poison, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundGemItem('Zap Plate', 115, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], 100, PokemonType.Electric, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundGemItem('Pixie Plate', 116, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], 100, PokemonType.Fairy, null, evoStoneShardPlateWeight));
+UndergroundItems.addItem(new UndergroundGemItem('Draco Plate', 100, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Dragon, 100, null, evoStoneShardPlateWeight));
+UndergroundItems.addItem(new UndergroundGemItem('Dread Plate', 101, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Dark, 100, null, evoStoneShardPlateWeight));
+UndergroundItems.addItem(new UndergroundGemItem('Earth Plate', 102, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Ground, 100, null, evoStoneShardPlateWeight));
+UndergroundItems.addItem(new UndergroundGemItem('Fist Plate', 103, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Fighting, 100, null, evoStoneShardPlateWeight));
+UndergroundItems.addItem(new UndergroundGemItem('Flame Plate', 104, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Fire, 100, null, evoStoneShardPlateWeight));
+UndergroundItems.addItem(new UndergroundGemItem('Icicle Plate', 105, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Ice, 100, null, evoStoneShardPlateWeight));
+UndergroundItems.addItem(new UndergroundGemItem('Insect Plate', 106, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Bug, 100, null, evoStoneShardPlateWeight));
+UndergroundItems.addItem(new UndergroundGemItem('Iron Plate', 107, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Steel, 100, null, evoStoneShardPlateWeight));
+UndergroundItems.addItem(new UndergroundGemItem('Meadow Plate', 108, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Grass, 100, null, evoStoneShardPlateWeight));
+UndergroundItems.addItem(new UndergroundGemItem('Mind Plate', 109, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Psychic, 100, null, evoStoneShardPlateWeight));
+UndergroundItems.addItem(new UndergroundGemItem('Sky Plate', 110, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Flying, 100, null, evoStoneShardPlateWeight));
+UndergroundItems.addItem(new UndergroundGemItem('Splash Plate', 111, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Water, 100, null, evoStoneShardPlateWeight));
+UndergroundItems.addItem(new UndergroundGemItem('Spooky Plate', 112, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Ghost, 100, null, evoStoneShardPlateWeight));
+UndergroundItems.addItem(new UndergroundGemItem('Stone Plate', 113, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Rock, 100, null, evoStoneShardPlateWeight));
+UndergroundItems.addItem(new UndergroundGemItem('Toxic Plate', 114, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Poison, 100, null, evoStoneShardPlateWeight));
+UndergroundItems.addItem(new UndergroundGemItem('Zap Plate', 115, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Electric, 100, null, evoStoneShardPlateWeight));
+UndergroundItems.addItem(new UndergroundGemItem('Pixie Plate', 116, [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Fairy, 100, null, evoStoneShardPlateWeight));
 
 // Fossils/Fossil Pieces
 UndergroundItems.addItem(new UndergroundItem('Helix Fossil', 200, [[0, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 0]], 0, UndergroundItemValueType.Fossil, null,
@@ -168,6 +168,6 @@ UndergroundItems.addItem(new UndergroundItem('Rose Shard', 413, [[1, 1, 1, 1], [
 UndergroundItems.addItem(new UndergroundItem('Brown Shard', 414, [[1, 1, 0], [1, 1, 0], [1, 1, 1]], 0, UndergroundItemValueType.Shard, new MaxRegionRequirement(Region.galar), evoStoneShardPlateWeight));
 
 // MegaStones
-UndergroundItems.addItem(new UndergroundMegaStoneItem('Aerodactylite', 500, [[1, 1, 1], [1, 1, 1], [1, 1, 1]], 0, 'Aerodactyl', 0.1));
-UndergroundItems.addItem(new UndergroundMegaStoneItem('Mawilite', 501, [[1, 1, 1], [1, 1, 1], [1, 1, 1]], 0, 'Mawile', 0.1));
-UndergroundItems.addItem(new UndergroundMegaStoneItem('Sablenite', 502, [[1, 1, 1], [1, 1, 1], [1, 1, 1]], 0, 'Sableye', 0.1));
+UndergroundItems.addItem(new UndergroundMegaStoneItem('Aerodactylite', 500, [[1, 1, 1], [1, 1, 1], [1, 1, 1]], 'Aerodactyl', 0.1));
+UndergroundItems.addItem(new UndergroundMegaStoneItem('Mawilite', 501, [[1, 1, 1], [1, 1, 1], [1, 1, 1]], 'Mawile', 0.1));
+UndergroundItems.addItem(new UndergroundMegaStoneItem('Sablenite', 502, [[1, 1, 1], [1, 1, 1], [1, 1, 1]], 'Sableye', 0.1));

@@ -2068,6 +2068,7 @@ class Farming implements Feature {
         if (!disableNotification) {
             Notifier.notify({
                 message: `You found ${GameHelper.anOrA(BerryType[berry])} ${BerryType[berry]} Berry!`,
+                image: FarmController.getBerryImage(berry),
                 type: NotificationConstants.NotificationOption.success,
                 setting: NotificationConstants.NotificationSetting.Items.route_item_found,
             });
@@ -2105,6 +2106,7 @@ class Farming implements Feature {
         if (!this.unlockedBerries[berry]()) {
             Notifier.notify({
                 message: `You've discovered the ${BerryType[berry]} Berry!`,
+                image: FarmController.getBerryImage(berry),
                 type: NotificationConstants.NotificationOption.success,
                 setting: NotificationConstants.NotificationSetting.Farming.berry_discovered,
                 sound: NotificationConstants.NotificationSound.Farming.berry_discovered,
