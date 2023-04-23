@@ -63,7 +63,11 @@
 <script type="text/html" id="weatherAppTemplate">
     <!-- ko foreach: { data: $data.weekForecast, as: 'weatherForecast' } -->
     <td class="px-3 clickable" style="height: 60px; position: relative;"
-        data-bind="css: { 'weatherForecastPassed': weatherForecast.status() === WeatherForecastStatus.hasPassed }">
+        data-bind="event: { click: () => {WeatherApp.setNotifier(weatherForecast)} },
+            css: { 
+                'weatherForecastPassed': weatherForecast.status() === WeatherForecastStatus.hasPassed,
+                'weatherForecastSelected': weatherForecast.status() === WeatherForecastStatus.enabled
+            }">
         <button class='btn btn-sm' style="right: 0px; top: 0px; width: auto; height: 41px;"
         data-bind='style: { background: Weather.weatherConditions[weatherForecast.weatherType].color },
             tooltip: {
@@ -75,6 +79,8 @@
             }'>
             <img width=30px src="" data-bind="attr: { src: `assets/images/weather/${WeatherType[weatherForecast.weatherType]}.png` }"/>
         </button>
+        <img data-bind="visible: weatherForecast.status() === WeatherForecastStatus.enabled" 
+            style="position: absolute; bottom: 0; right: 0; width: 36px;" src="assets/images/weather/weatherapp/351-w.png">
     </td>
     <!-- /ko -->
 </script>

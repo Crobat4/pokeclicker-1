@@ -2,6 +2,7 @@ import NotificationOption from './NotificationOption';
 import Sound from '../utilities/Sound';
 import Rand from '../utilities/Rand';
 import type NotificationSetting from '../settings/NotificationSetting';
+import GameHelper from '../GameHelper';
 
 export default class Notifier {
     public static notify({
@@ -14,6 +15,7 @@ export default class Notifier {
         setting = null,
         image = null,
         strippedMessage = null,
+        customBGColor = '',
     }: {
         message?: string;
         type?: NotificationOption;
@@ -24,6 +26,7 @@ export default class Notifier {
         setting?: NotificationSetting;
         image?: string;
         strippedMessage?: string;
+        customBGColor?: string;
     }): void {
         $(document).ready(() => {
             // If we have sounds enabled for this, play it now
@@ -52,14 +55,18 @@ export default class Notifier {
 
             // Get the notification ready to display
             const toastID = Rand.string(7);
-            const toastHTML = `<div id="${toastID}" class="toast bg-${NotificationOption[type]}" data-autohide="false">
+            // For custom background color
+            const backgroundColor = customBGColor ? `style="background-color: ${customBGColor} !important;"` : '';
+            const textColor = customBGColor ? `style="color: ${GameHelper.color_hex_is_light(customBGColor) ? 'black' : 'white'} !important;"` : '';
+            
+            const toastHTML = `<div id="${toastID}" class="toast bg-${NotificationOption[type]}" data-autohide="false" ${backgroundColor}>
                 ${title ? `<div class="toast-header">
                     ${image ? `<img src="${image}" class="icon" />` : ''}
                     <strong class="mr-auto text-primary">${title || ''}</strong>
                     <small class="text-muted">${time}</small>
                     <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">×</button>
                 </div>` : ''}
-                <div class="toast-body text-light">
+                <div class="toast-body text-light" ${textColor}>
                     ${!title && image ? `<img src="${image}" class="icon" />` : ''}
                     ${message.replace(/\n/g, '<br/>')}
                     ${title ? '' : '<button type="button" class="ml-2 mb-1 close" data-dismiss="toast">×</button>'}

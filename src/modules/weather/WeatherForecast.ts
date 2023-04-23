@@ -1,17 +1,21 @@
 import { Observable } from 'knockout';
 import WeatherForecastStatus from '../enums/WeatherForecastStatus';
 import WeatherType from './WeatherType';
+import { Region } from '../GameConstants';
 
 export default class WeatherForecast {
-    public date: Date;
+    public region: Region;
+    public date: string;
     public weatherType: WeatherType;
     public status: Observable<WeatherForecastStatus>
 
     constructor(
-        date: Date,
+        region: Region,
+        date: string,
         weatherType: WeatherType,
         status = WeatherForecastStatus.disabled,
     ) {
+        this.region = region;
         this.date = date;
         this.weatherType = weatherType;
         this.status = ko.observable(status);

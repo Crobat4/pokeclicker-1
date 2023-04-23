@@ -439,7 +439,8 @@ class Game {
                 // Give the players more Battle Cafe spins
                 BattleCafeController.spinsLeft(BattleCafeController.spinsPerDay());
                 // Generate the weather forecast
-                WeatherApp.initialize();
+                WeatherApp.generateAllRegionsForecast();
+                WeatherApp.generateDateList();
 
                 DayOfWeekRequirement.date(now.getDay());
             }
@@ -451,6 +452,7 @@ class Game {
                 // Check if it's weather change time
                 if (now.getHours() % Weather.period === 0) {
                     WeatherApp.checkDateHasPassed();
+                    WeatherApp.getWeatherNotification();
                 }
             }
 
