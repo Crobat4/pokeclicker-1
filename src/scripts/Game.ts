@@ -441,6 +441,7 @@ class Game {
                 // Generate the weather forecast
                 WeatherApp.generateAllRegionsForecast();
                 WeatherApp.generateDateList();
+                WeatherApp.checkDateHasPassed();
 
                 DayOfWeekRequirement.date(now.getDay());
             }

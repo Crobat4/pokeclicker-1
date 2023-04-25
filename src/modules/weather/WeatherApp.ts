@@ -13,35 +13,39 @@ export default class WeatherApp {
     public static fullForecast: ObservableArray<RegionalForecast> = ko.observableArray([]);
     public static selectedRegion: Observable<Region> = ko.observable(Region.kanto);
     public static dateList: ObservableArray<Date> = ko.observableArray([]);
-    public static notifierList: Partial<Record<Region, Array<string>>> = {};
 
     public static defaultDateRange: number = 7;
 
     public static generateAllRegionsForecast() {
-        WeatherApp.fullForecast([]);
         GameHelper.enumNumbers(Region).forEach((r: Region) => {
             WeatherApp.generateRegionalForecast(r);
         });
     }
 
     public static generateRegionalForecast(region: Region, dateRange: number = WeatherApp.defaultDateRange, date: Date = new Date()) {
-        const originalDate = new Date(date);
-        const regionalForecast = [];
+        const weatherForecastList = [];
+        const regionalForecast = WeatherApp.fullForecast()[region];
+        // Creates forecasts for X hour
         for (let hour = 0; hour <= 23; hour += Weather.period) {
-            const weekForecast = [];
+            const hourForecast = [];
             const newDate = new Date(date.setHours(hour, 0, 0, 0));
+            // Gets the weather for every day for that hour
             for (let i = 0; i < dateRange; i++) {
                 const weatherForecastDate = new Date(newDate).toLocaleString();
-                const weatherForecast = new WeatherForecast(region, weatherForecastDate, Weather.getWeather(newDate, region));
-                if (WeatherApp.notifierList[region]?.includes(weatherForecastDate)) {
-                    weatherForecast.status(WeatherForecastStatus.enabled);
-                }
-                weekForecast.push(weatherForecast);
+                // If a weather forecast (WF) for that region and that date exists in the notifier list, push that WF, otherwise, create a new WF
+                const weatherForecast = regionalForecast?.notifierList.find((wf) => wf.date === weatherForecastDate) || 
+                    new WeatherForecast(weatherForecastDate, Weather.getWeather(newDate, region));
+                    hourForecast.push(weatherForecast);
                 newDate.setDate(newDate.getDate() + 1);
             }
-            regionalForecast.push(weekForecast);
+            weatherForecastList.push(hourForecast);
         }
-        WeatherApp.addRegionalForecast(new RegionalForecast(region, regionalForecast));
+        // If a regional forecast (RF) exists, replaces the weather forecast list on said RF, otherwise, creates a new RF
+        if (regionalForecast) {
+            regionalForecast.weatherForecastList(weatherForecastList);
+        } else {
+            WeatherApp.addRegionalForecast(new RegionalForecast(region, weatherForecastList));
+        }
     }
 
     public static generateDateList(dateRange: number = WeatherApp.defaultDateRange, date: Date = new Date()) {
@@ -66,67 +70,59 @@ export default class WeatherApp {
     }
 
     public static addRegionalForecast(regionalForecast: RegionalForecast) {
-        WeatherApp.fullForecast().push(regionalForecast);
+        let exist = false;
+        WeatherApp.fullForecast().map((rf) => {
+            if (rf.region === regionalForecast.region) {
+                rf.weatherForecastList([]);
+                rf.weatherForecastList(regionalForecast.weatherForecastList());
+                exist = true;
+            }
+        });
+        if (!exist) {
+            WeatherApp.fullForecast().push(regionalForecast);
+        }
     }
 
     public static checkDateHasPassed() {
         const now = new Date();
-        // Full forecast
         WeatherApp.fullForecast().forEach((rf) => {
+            // Full forecast
             // Set status to hasPassed if weather end date has passed already
-            rf.regionalForecast.flat().map((wf) => {
+            rf.weatherForecastList().flat().map((wf) => {
                 const weatherEndDate = new Date(new Date(wf.date).setHours(new Date(wf.date).getHours() + Weather.period, 0, 0, 0))
                 if (now > weatherEndDate) {
                     wf.setStatusHasPassed();
                 }
             });
-        });
-
-        // Notifier list
-        Object.entries(WeatherApp.notifierList).forEach(([region, dateList]) => {
-            WeatherApp.notifierList[region] = dateList.filter((date) =>  {
-                const notifierEndDate = new Date(new Date(date).setHours(new Date(date).getHours() + Weather.period, 0, 0, 0));
-                return now < notifierEndDate;
-            });
+            // Notifier list
+            rf.removeOldDates();
         });
     }
 
-    public static setNotifier(wf: WeatherForecast) {
-        const notifierObject = WeatherApp.notifierList || {};
-        // If array for X region doesn't exist, create it
-        if (!notifierObject[wf.region]) {
-            notifierObject[wf.region] = [];
-        }
-        if (!notifierObject[wf.region].includes(wf.date)) { // Set the reminder
-            notifierObject[wf.region].push(wf.date);
-            wf.status(WeatherForecastStatus.enabled);
-        } else { // Remove the date
-            notifierObject[wf.region] = notifierObject[wf.region].filter((d) => d !== wf.date);
-            wf.status(WeatherForecastStatus.disabled);
-        }
-        WeatherApp.notifierList = notifierObject;
+    public static setNotifier(weatherForecast: WeatherForecast, region: Region) {
+        const regionalForecast = WeatherApp.fullForecast()[region];
+        regionalForecast.toggleNotifier(weatherForecast);
+        weatherForecast.toggle();
     }
 
     public static getWeatherNotification() {
         const now = new Date();
-        Object.entries(WeatherApp.notifierList).forEach(([r, dateList]) => {
-            const region = +r;
-            dateList.forEach((reminderDate) => {
-                const notifierDate = new Date(reminderDate);
-                const startDate = new Date(reminderDate);
-                const endDate = new Date(new Date(notifierDate).setHours(notifierDate.getHours() + Weather.period, 0, 0, 0));
+        Object.values(WeatherApp.fullForecast()).forEach((rf: RegionalForecast) => {
+            rf.notifierList.forEach((wf) => {
+                const notifierDate = new Date(wf.date);
+                const startDate = new Date(wf.date);
+                const endDate = new Date(new Date(startDate).setHours(startDate.getHours() + Weather.period, 0, 0, 0));
                 if (now >= startDate && now < endDate) {
-                    const weather = Weather.getWeather(notifierDate, region);
-                    const weatherDesc = Weather.weatherConditions[weather].description.replace(/\.+$/, ""); // Remove all ending dots (for fog weather)
+                    const weatherDesc = Weather.weatherConditions[wf.weatherType].description.replace(/\.+$/, ""); // Remove all ending dots (for fog weather)
                     Notifier.notify({
-                        title: `<img width="30" src="assets/images/weather/weatherapp/${WeatherApp.calculateCastformIcon(weather)}.png"> Castform App`,
-                        message: `${weatherDesc} in ${camelCaseToString(Region[region])}`,
-                        customBGColor: Weather.weatherConditions[weather].color,
+                        title: `<img width="30" src="assets/images/weather/weatherapp/${WeatherApp.calculateCastformIcon(wf.weatherType)}.png"> Castform App`,
+                        message: `${weatherDesc} in ${camelCaseToString(Region[rf.region])}`,
+                        customBGColor: Weather.weatherConditions[wf.weatherType].color,
                         timeout: 30 * MINUTE,
                     });
                 }
-            })
-        })
+            });
+        });
     }
 
     public static calculateCastformIcon(weather: WeatherType) {
@@ -181,13 +177,27 @@ export default class WeatherApp {
         }
 
         WeatherApp.selectedRegion(json.selectedRegion);
-        WeatherApp.notifierList = json.notifierList;
+        const notifierList: Record<Region, Array<WeatherForecast>> = json.notifierList;
+        Object.entries(notifierList).forEach(([region, wfList]) => {
+            const weatherForecastList = [];
+            wfList.forEach((wf) => {
+                weatherForecastList.push(new WeatherForecast(wf.date, wf.weatherType, WeatherForecastStatus.enabled));
+            });
+            WeatherApp.addRegionalForecast(new RegionalForecast(+region, [], weatherForecastList))
+        });
+
     }
 
     toJSON() {
+        const notifierList = {};
+        WeatherApp.fullForecast().forEach((rf: RegionalForecast) => {
+            if (rf.notifierList) {
+                notifierList[rf.region] = rf.notifierList;
+            }
+        });
         return {
             selectedRegion: WeatherApp.selectedRegion(),
-            notifierList: WeatherApp.notifierList,
+            notifierList: notifierList,
         }
     }
 }

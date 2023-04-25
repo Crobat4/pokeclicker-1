@@ -46,8 +46,8 @@
                                     <!-- /ko -->
                                 </tr>
                             </thead>
-                            <tbody data-bind="foreach: { data: WeatherApp.fullForecast().find((rf) => rf.region == WeatherApp.selectedRegion()).regionalForecast, as: 'weekForecast' }">
-                                <tr class="py-2" data-bind="template: { name: 'weatherAppTemplate', data: {'weekForecast': weekForecast} }"></tr>
+                            <tbody data-bind="foreach: { data: WeatherApp.fullForecast().find((rf) => rf.region == WeatherApp.selectedRegion()).weatherForecastList, as: 'weekForecast' }">
+                                <tr class="py-2" data-bind="template: { name: 'weatherAppTemplate', data: {'weekForecast': weekForecast, 'region': WeatherApp.selectedRegion()} }"></tr>
                             </tbody>
                         </table>
                     </div>
@@ -63,7 +63,7 @@
 <script type="text/html" id="weatherAppTemplate">
     <!-- ko foreach: { data: $data.weekForecast, as: 'weatherForecast' } -->
     <td class="px-3 clickable" style="height: 60px; position: relative;"
-        data-bind="event: { click: () => {WeatherApp.setNotifier(weatherForecast)} },
+        data-bind="event: { click: () => {WeatherApp.setNotifier(weatherForecast, $parent.region)} },
             css: { 
                 'weatherForecastPassed': weatherForecast.status() === WeatherForecastStatus.hasPassed,
                 'weatherForecastSelected': weatherForecast.status() === WeatherForecastStatus.enabled
