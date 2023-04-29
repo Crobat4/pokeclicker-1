@@ -26755,8 +26755,8 @@ export const pokemonList = createPokemonArray(
         'exp': 165,
         'catchRate': 60,
         'evolutions': [
-            EnvironmentRestrictedLevelEvolution('Fire', 'Eiscue (Ice Face)', 'Eiscue (No Ice Face)', 1),
-            WeatherRestrictedLevelEvolution([WeatherType.Sunny], 'Eiscue (Ice Face)', 'Eiscue (No Ice Face)', 1),
+            EnvironmentRestrictedLevelEvolution('Fire', 'Eiscue (Ice Face)', 'Eiscue (Noice Face)', 1),
+            WeatherRestrictedLevelEvolution([WeatherType.Sunny], 'Eiscue (Ice Face)', 'Eiscue (Noice Face)', 1),
         ],
     },
     {
@@ -26776,8 +26776,8 @@ export const pokemonList = createPokemonArray(
         'exp': 165,
         'catchRate': 60,
         'evolutions': [
-            EnvironmentRestrictedLevelEvolution('Ice', 'Eiscue (No Ice Face)', 'Eiscue (Ice Face)', 1),
-            WeatherRestrictedLevelEvolution([WeatherType.Snow, WeatherType.Blizzard, WeatherType.Hail], 'Eiscue (No Ice Face)', 'Eiscue (Ice Face)', 1),
+            EnvironmentRestrictedLevelEvolution('Ice', 'Eiscue (Noice Face)', 'Eiscue (Ice Face)', 1),
+            WeatherRestrictedLevelEvolution([WeatherType.Snow, WeatherType.Blizzard, WeatherType.Hail], 'Eiscue (Noice Face)', 'Eiscue (Ice Face)', 1),
         ],
     },
     {
