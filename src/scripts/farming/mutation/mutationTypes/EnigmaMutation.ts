@@ -32,7 +32,7 @@ class EnigmaMutation extends GrowMutation {
                 return false;
             }
             return nearPlots.every((idx, n) => {
-                const plot = App.game.farming.plotList[idx];
+                const plot = App.game.farming.plotList.filter((p) => p.index < 25)[idx];
                 if (!plot.isUnlocked) {
                     return false;
                 }

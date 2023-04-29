@@ -29,7 +29,7 @@ class EvolveNearFlavorMutation extends EvolveNearMutation {
     nearPlotsFitRequirements(plots: number[]) {
         const nearFlavors = [0, 0, 0, 0, 0];
         plots.forEach(idx => {
-            const plot = App.game.farming.plotList[idx];
+            const plot = App.game.farming.plotList.filter((p) => p.index < 25)[idx];
             if (!plot.isUnlocked) {
                 return;
             }
