@@ -753,7 +753,7 @@ namespace GameConstants {
         spotBottomRight,
     };
     // END Crobat Fork
-    
+
     declare enum MegaStoneType {
         Abomasite,
         Absolite,
