@@ -261,9 +261,13 @@ aria-labelledby="pokedexModalLabel">
                                                 <img width="32px" src="" data-bind="attr: { src: `assets/images/breeding/pokerus/${GameConstants.Pokerus[App.game.party.getPokemon($data.id)?.pokerus]}.png`}"/>
                                             </div>
                                             <!-- Pokemon Mega Stone -->
-                                            <!-- ko if: App.game.party.getPokemon($data.id)?.megaStone -->
+                                            <!-- ko if: PokemonHelper.hasMegaEvolution($data.name) -->
                                             <div class="mega-icon-container item-icon-right">
                                                 <div class="item-icon rounded-circle">
+                                                    <knockout data-bind="foreach: PokemonHelper.getMegaStones($data.name).filter(s => player.hasMegaStone(s.megaStone))">
+                                                        <img width="24px" style="position: absolute; top: 4px;"
+                                                            data-bind="attr: { src: $data.image }, style: { right: `${1 + 17 * $index()}px` }"/>
+                                                    </knockout>
                                                     <img class="mw-100 mh-100 p-0" src="" width="24px" style="vertical-align: unset;" data-bind="attr: { src: App.game.party.getPokemon($data.id).megaStone.getImage() }">
                                                 </div>
                                             </div>
@@ -296,9 +300,6 @@ aria-labelledby="pokedexModalLabel">
                                                         (App.game.party.getPokemon($data.id)?.pokerus >= GameConstants.Pokerus.Contagious ?
                                                             `<br/>EVs: <strong>${App.game.party.getPokemon($data.id).evs().toLocaleString('en-US')}</strong>
                                                             <br/>EV bonus: <strong>×${App.game.party.getPokemon($data.id).calculateEVAttackBonus().toLocaleString('en-US')}</strong>`
-                                                            : '') +
-                                                        (App.game.party.getPokemon($data.id)?.megaStone ?
-                                                            `<br/>${App.game.party.getPokemon($data.id).megaStone.getTooltipText()}`
                                                             : ''),
                                                     trigger: 'hover',
                                                     placement:'bottom'

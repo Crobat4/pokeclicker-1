@@ -255,6 +255,7 @@ namespace GameConstants {
         PowerPlant: EnvironmentData,
         Mansion: EnvironmentData,
         Graveyard: EnvironmentData,
+        Default: EnvironmentData,
     };
     declare type Environment = keyof typeof Environments;
     declare const EnvironmentCssClass:Record<Environment, string>;
@@ -723,7 +724,7 @@ namespace GameConstants {
         Purified,
     }
 
-    /* Crobat Fork */
+    // Crobat Fork
     // Sort Icons
     declare const ICON_SORT_UP: string;
     declare const ICON_SORT_DOWN: string;
@@ -751,4 +752,58 @@ namespace GameConstants {
         spotBottomLeft,
         spotBottomRight,
     };
+    // END Crobat Fork
+    
+    declare enum MegaStoneType {
+        Abomasite,
+        Absolite,
+        Aerodactylite,
+        Aggronite,
+        Alakazite,
+        Altarianite,
+        Ampharosite,
+        Audinite,
+        Banettite,
+        Beedrillite,
+        Blastoisinite,
+        Blazikenite,
+        Blue_Orb,
+        Cameruptite,
+        Charizardite_X,
+        Charizardite_Y,
+        Diancite,
+        Galladite,
+        Garchompite,
+        Gardevoirite,
+        Gengarite,
+        Glalitite,
+        Gyaradosite,
+        Heracronite,
+        Houndoominite,
+        Kangaskhanite,
+        Latiasite,
+        Latiosite,
+        Lopunnite,
+        Lucarionite,
+        Manectite,
+        Mawilite,
+        Medichamite,
+        Metagrossite,
+        Meteorite,
+        Mewtwonite_X,
+        Mewtwonite_Y,
+        Pidgeotite,
+        Pinsirite,
+        Red_Orb,
+        Sablenite,
+        Salamencite,
+        Sceptilite,
+        Scizorite,
+        Sharpedonite,
+        Slowbronite,
+        Steelixite,
+        Swampertite,
+        Tyranitarite,
+        Venusaurite,
+    }
 }

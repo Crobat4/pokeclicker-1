@@ -7,31 +7,13 @@ class Pokeballs implements Feature {
 
     defaults = {
         alreadyCaughtSelection: GameConstants.Pokeball.None,
+        alreadyCaughtContagiousSelection: GameConstants.Pokeball.None,
         alreadyCaughtShinySelection: GameConstants.Pokeball.Pokeball,
         notCaughtSelection: GameConstants.Pokeball.Pokeball,
         notCaughtShinySelection: GameConstants.Pokeball.Pokeball,
-        typeSelection: GameConstants.Pokeball.None,
-        contagiousSelection: GameConstants.Pokeball.None,
-        roamingSelection: GameConstants.Pokeball.None,
-        dungeonBossSelection: GameConstants.Pokeball.None,
-        legendaryMythicalSelection: GameConstants.Pokeball.None,
     };
 
     public pokeballs: Pokeball[];
-    public pokeballSelectors: PokeballSelector[];
-
-    // Beast Ball Toggles
-    public catchUltraBeast: KnockoutObservable<boolean>;
-    public catchUltraBeastShiny: KnockoutObservable<boolean>;
-
-    // Types
-    public typeArray: KnockoutObservable<boolean>[];
-
-    // Roaming
-    public isRoaming: KnockoutObservable<boolean>;
-
-    // Dungeon Boss
-    public isDungeonBoss: KnockoutObservable<boolean>;
 
     public selectedSelection: KnockoutObservable<KnockoutObservable<GameConstants.Pokeball>>;
     public selectedTitle: KnockoutObservable<string>;
@@ -120,50 +102,17 @@ class Pokeballs implements Feature {
                 return 10;
             }, 1000, 'Can only be used on Ultra Beasts', new TemporaryBattleRequirement('Anabel')),
         ];
-        this.pokeballSelectors = [
-            new PokeballSelector(GameConstants.PokeballSelector.alreadyCaught, 'Already Caught Pokémon', 'Caught', 'Previously captured Pokémon will use this ball selection', this.defaults.alreadyCaughtSelection),
-            new PokeballSelector(GameConstants.PokeballSelector.alreadyCaughtShiny, 'Already Caught Shiny Pokémon', 'Caught✨', 'Previously captured Shiny Pokémon will use this ball selection', this.defaults.alreadyCaughtShinySelection),
-            new PokeballSelector(GameConstants.PokeballSelector.notCaught, 'New Pokémon', 'New', 'Uncaptured Pokémon will use this ball selection', this.defaults.notCaughtSelection),
-            new PokeballSelector(GameConstants.PokeballSelector.notCaughtShiny, 'New Shiny Pokémon', 'New✨', 'Uncaptured Shiny Pokémon will use this ball selection', this.defaults.notCaughtShinySelection),
-            new PokeballSelector(GameConstants.PokeballSelector.type, 'By Type', 'Type', 'Any Pokémon will use this ball selection if their types match with the selected types<br/>Select the types in the Settings', this.defaults.typeSelection),
-            new PokeballSelector(GameConstants.PokeballSelector.contagious, 'Contagious Pokémon', 'EV < 50', 'Contagious Pokémon (less than 50 EVs) will use this ball selection, regardless if it\'s already caught or not', this.defaults.contagiousSelection),
-            new PokeballSelector(GameConstants.PokeballSelector.roaming, 'Roaming Pokémon', 'Roaming', 'Roaming Pokémon will use this ball selection, regardless if it\'s already caught or not', this.defaults.roamingSelection),
-            new PokeballSelector(GameConstants.PokeballSelector.dungeonBoss, 'Dungeon Boss Pokémon', 'Dungeon Boss', 'Dungeon Boss Pokémon will use this ball selection, regardless if it\'s already caught or not', this.defaults.dungeonBossSelection),
-            new PokeballSelector(GameConstants.PokeballSelector.dungeonBoss, 'Legendary/Mythical Pokémon', 'Legendary/Mythical', 'Legendary and Mythical Pokémon will use this ball selection, regardless if it\'s already caught or not', this.defaults.legendaryMythicalSelection),
-        ];
-
-        // Beast Ball Toggles
-        this.catchUltraBeast = ko.observable(false);
-        this.catchUltraBeastShiny = ko.observable(false);
-
-        // Types
-        this.typeArray = [];
-        for (const type of GameHelper.enumNumbers(PokemonType).filter(value => !isNaN(value) && value != -1)) {
-            this.typeArray[type] = ko.observable(false);
-        }
-
-        // Roaming
-        this.isRoaming = ko.observable(false);
-
-        // Dungeon Boss
-        this.isDungeonBoss = ko.observable(false);
-
         this.selectedTitle = ko.observable('');
-        this.selectedSelection = ko.observable(ko.observable(this.defaults.alreadyCaughtSelection));
+        this.selectedSelection = ko.observable();
     }
 
     initialize(): void {
-        ([
-            this.pokeballSelectors[GameConstants.PokeballSelector.alreadyCaught].pokeball,
-            this.pokeballSelectors[GameConstants.PokeballSelector.alreadyCaughtShiny].pokeball,
-            this.pokeballSelectors[GameConstants.PokeballSelector.notCaught].pokeball,
-            this.pokeballSelectors[GameConstants.PokeballSelector.notCaughtShiny].pokeball,
-            this.pokeballSelectors[GameConstants.PokeballSelector.type].pokeball,
-            this.pokeballSelectors[GameConstants.PokeballSelector.contagious].pokeball,
-            this.pokeballSelectors[GameConstants.PokeballSelector.roaming].pokeball,
-            this.pokeballSelectors[GameConstants.PokeballSelector.dungeonBoss].pokeball,
-        ]).forEach(selection => {
-            selection.subscribe(value => {
+        let subscription: KnockoutSubscription;
+        this.selectedSelection.subscribe((selection) => {
+            if (subscription) {
+                subscription.dispose();
+            }
+            subscription = selection.subscribe(value => {
                 // switch to Ultraball if Masterball is selected
                 if (value == GameConstants.Pokeball.Masterball && App.game.challenges.list.disableMasterballs.active()) {
                     selection(GameConstants.Pokeball.Ultraball);
@@ -190,55 +139,17 @@ class Pokeballs implements Feature {
         const alreadyCaught = App.game.party.alreadyCaughtPokemon(id);
         const alreadyCaughtShiny = App.game.party.alreadyCaughtPokemon(id, true);
         const alreadyCaughtShadow = App.game.party.alreadyCaughtPokemon(id, false, true);
-        const contagious = (App.game.party.getPokemon(id)?.pokerus == GameConstants.Pokerus.Contagious);
         const pokemon = PokemonHelper.getPokemonById(id);
-        let pref: GameConstants.Pokeball;
-        // just check against alreadyCaughtShiny as this returns false when you don't have the pokemon yet.
 
-        if (isShiny || isShadow) {
-            if ((!alreadyCaughtShiny && isShiny) || (!alreadyCaughtShadow && isShadow)) {
-                pref = this.pokeballSelectors[GameConstants.PokeballSelector.notCaughtShiny].pokeball();
-            } else {
-                pref = this.pokeballSelectors[GameConstants.PokeballSelector.alreadyCaughtShiny].pokeball();
-            }
-        } else {
-            if (!alreadyCaught) {
-                pref = this.pokeballSelectors[GameConstants.PokeballSelector.notCaught].pokeball();
-            } else {
-                pref = this.pokeballSelectors[GameConstants.PokeballSelector.alreadyCaught].pokeball();
-            }
-        }
-
-        // Types
-        const typeIndexes = this.typeArray
-            .map((typeChecked, i) => typeChecked() ? i : null)
-            .filter(i => i !== null);
-        for (const typeIndex of typeIndexes) {
-            if (pokemon.type1 == typeIndex || pokemon.type2 == typeIndex) {
-                pref = Math.max(pref, this.pokeballSelectors[GameConstants.PokeballSelector.type].pokeball());
-            }
-        }
-
-        // Contagious Pokerus
-        if (App.game.party.getPokemon(id)?.pokerus === GameConstants.Pokerus.Contagious) {
-            pref = Math.max(pref, this.pokeballSelectors[GameConstants.PokeballSelector.contagious].pokeball());
-        }
-
-        // Roamings
-        if (this.isRoaming()) {
-            pref = Math.max(pref, this.pokeballSelectors[GameConstants.PokeballSelector.roaming].pokeball());
-        }
-
-        // Dungeon Boss
-        if (this.isDungeonBoss()) {
-            pref = Math.max(pref, this.pokeballSelectors[GameConstants.PokeballSelector.dungeonBoss].pokeball());
-        }
-
-        // Legendary and Mythical
-        const legendaryId = Math.floor(id); // Remove decimals
-        if (GameConstants.LegendaryType.includes(legendaryId) || GameConstants.MythicalType.includes(legendaryId)) {
-            pref = Math.max(pref, this.pokeballSelectors[GameConstants.PokeballSelector.legendaryMythical].pokeball());
-        }
+        const pref = App.game.pokeballFilters.findMatch({
+            caught: alreadyCaught,
+            caughtShiny: alreadyCaughtShiny,
+            caughtShadow: alreadyCaughtShadow,
+            shadow: isShadow,
+            shiny: isShiny,
+            pokerus: App.game.party.getPokemon(id)?.pokerus,
+            pokemonType: [pokemon.type1, pokemon.type2],
+        })?.ball() ?? GameConstants.Pokeball.None;
 
         let use: GameConstants.Pokeball = GameConstants.Pokeball.None;
 
@@ -249,17 +160,7 @@ class Pokeballs implements Feature {
                 return GameConstants.Pokeball.None;
             }
         } else if (GameConstants.UltraBeastType[pokemon.name] != undefined) {
-            if (this.pokeballs[GameConstants.Pokeball.Beastball].quantity() > 0) {
-                if (this.catchUltraBeast()) {
-                    return GameConstants.Pokeball.Beastball;
-                } else if (isShiny && this.catchUltraBeastShiny()) {
-                    return GameConstants.Pokeball.Beastball;
-                } else {
-                    return GameConstants.Pokeball.None;
-                }
-            } else {
-                return GameConstants.Pokeball.None;
-            }
+            return GameConstants.Pokeball.None;
         }
 
         if (this.pokeballs[pref]?.quantity()) {
@@ -322,162 +223,15 @@ class Pokeballs implements Feature {
         if (json.pokeballs != null) {
             json.pokeballs.map((amt: number, type: number) => this.pokeballs[type].quantity(amt));
         }
-        if (json.pokeballSelectors != null) {
-            json.pokeballSelectors.map((pokeball: GameConstants.Pokeball, type: number) => this.pokeballSelectors[type].pokeball(pokeball));
-        }
-
-        // Types
-        if (json.typeArray != null) {
-            json.typeArray.map((typeChecked: boolean, type: number) => this.typeArray[type](typeChecked));
-        }
-
-        // Beast Ball
-        this.catchUltraBeast(json.catchUltraBeast ?? false);
-        this.catchUltraBeastShiny(json.catchUltraBeastShiny ?? false);
     }
 
     toJSON(): Record<string, any> {
         return {
             'pokeballs': this.pokeballs.map(p => p.quantity()),
-            'pokeballSelectors': this.pokeballSelectors.map(ps => ps.pokeball()),
-            // Types
-            'typeArray': this.typeArray.map(tChk => tChk()),
-            // Beast Ball Toggles
-            'catchUltraBeast': this.catchUltraBeast(),
-            'catchUltraBeastShiny': this.catchUltraBeastShiny(),
         };
     }
 
     update(delta: number): void {
         // This method intentionally left blank
     }
-
-    // Types
-    /*
-    get typeNormalSelection() {
-        return this._typeNormalSelection();
-    }
-    set typeNormalSelection(ball: GameConstants.Pokeball) {
-        this._typeNormalSelection(ball);
-    }
-
-    get typeFireSelection() {
-        return this._typeFireSelection();
-    }
-    set typeFireSelection(ball: GameConstants.Pokeball) {
-        this._typeFireSelection(ball);
-    }
-
-    get typeWaterSelection() {
-        return this._typeWaterSelection();
-    }
-    set typeWaterSelection(ball: GameConstants.Pokeball) {
-        this._typeWaterSelection(ball);
-    }
-
-    get typeElectricSelection() {
-        return this._typeElectricSelection();
-    }
-    set typeElectricSelection(ball: GameConstants.Pokeball) {
-        this._typeElectricSelection(ball);
-    }
-
-    get typeGrassSelection() {
-        return this._typeGrassSelection();
-    }
-    set typeGrassSelection(ball: GameConstants.Pokeball) {
-        this._typeGrassSelection(ball);
-    }
-
-    get typeIceSelection() {
-        return this._typeIceSelection();
-    }
-    set typeIceSelection(ball: GameConstants.Pokeball) {
-        this._typeIceSelection(ball);
-    }
-
-    get typeFightingSelection() {
-        return this._typeFightingSelection();
-    }
-    set typeFightingSelection(ball: GameConstants.Pokeball) {
-        this._typeFightingSelection(ball);
-    }
-
-    get typePoisonSelection() {
-        return this._typePoisonSelection();
-    }
-    set typePoisonSelection(ball: GameConstants.Pokeball) {
-        this._typePoisonSelection(ball);
-    }
-
-    get typeGroundSelection() {
-        return this._typeGroundSelection();
-    }
-    set typeGroundSelection(ball: GameConstants.Pokeball) {
-        this._typeGroundSelection(ball);
-    }
-
-    get typeFlyingSelection() {
-        return this._typeFlyingSelection();
-    }
-    set typeFlyingSelection(ball: GameConstants.Pokeball) {
-        this._typeFlyingSelection(ball);
-    }
-
-    get typePsychicSelection() {
-        return this._typePsychicSelection();
-    }
-    set typePsychicSelection(ball: GameConstants.Pokeball) {
-        this._typePsychicSelection(ball);
-    }
-
-    get typeBugSelection() {
-        return this._typeBugSelection();
-    }
-    set typeBugSelection(ball: GameConstants.Pokeball) {
-        this._typeBugSelection(ball);
-    }
-
-    get typeRockSelection() {
-        return this._typeRockSelection();
-    }
-    set typeRockSelection(ball: GameConstants.Pokeball) {
-        this._typeRockSelection(ball);
-    }
-
-    get typeGhostSelection() {
-        return this._typeGhostSelection();
-    }
-    set typeGhostSelection(ball: GameConstants.Pokeball) {
-        this._typeGhostSelection(ball);
-    }
-
-    get typeDragonSelection() {
-        return this._typeDragonSelection();
-    }
-    set typeDragonSelection(ball: GameConstants.Pokeball) {
-        this._typeDragonSelection(ball);
-    }
-
-    get typeDarkSelection() {
-        return this._typeDarkSelection();
-    }
-    set typeDarkSelection(ball: GameConstants.Pokeball) {
-        this._typeDarkSelection(ball);
-    }
-
-    get typeSteelSelection() {
-        return this._typeSteelSelection();
-    }
-    set typeSteelSelection(ball: GameConstants.Pokeball) {
-        this._typeSteelSelection(ball);
-    }
-
-    get typeFairySelection() {
-        return this._typeFairySelection();
-    }
-    set typeFairySelection(ball: GameConstants.Pokeball) {
-        this._typeFairySelection(ball);
-    }
-    */
 }

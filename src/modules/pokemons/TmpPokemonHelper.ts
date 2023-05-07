@@ -10,8 +10,12 @@ import {
     incrementPokemonStatistics,
     typeIdToString,
     typeStringToId,
+    // Crobat Fork
     generateSpindaSpots,
     getSpindaMask,
+    // END Crobat Fork
+    hasMegaEvolution,
+    getMegaStones,
 } from './PokemonHelper';
 
 // Tmp class for scripts/pokemons/PokemonHelper to extend
@@ -28,6 +32,10 @@ export default class TmpPokemonHelper {
     static getPokeballImage = getPokeballImage;
     static incrementPokemonStatistics = incrementPokemonStatistics;
     static displayName = displayName;
+    // Crobat Fork
     static generateSpindaSpots = generateSpindaSpots;
     static getSpindaMask = getSpindaMask;
+    // END Crobat Fork
+    static hasMegaEvolution = hasMegaEvolution;
+    static getMegaStones = getMegaStones;
 }

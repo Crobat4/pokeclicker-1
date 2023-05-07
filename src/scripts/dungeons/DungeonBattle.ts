@@ -42,8 +42,7 @@ class DungeonBattle extends Battle {
 
         if (DungeonRunner.fightingBoss()) {
             DungeonRunner.fightingBoss(false);
-            DungeonRunner.defeatedBoss(true);
-            App.game.pokeballs.isDungeonBoss(true);
+            DungeonRunner.defeatedBoss(enemyPokemon.name);
         }
         enemyPokemon.defeat();
         App.game.breeding.progressEggsBattle(DungeonRunner.dungeon.difficultyRoute, player.region);
@@ -129,6 +128,9 @@ class DungeonBattle extends Battle {
 
             DungeonRunner.fighting(false);
             GameHelper.incrementObservable(DungeonRunner.encountersWon);
+            if (DungeonRunner.fightingBoss()) {
+                DungeonRunner.defeatedBoss(DungeonBattle.trainer().name);
+            }
             this.trainer(null);
             this.trainerPokemonIndex(0);
 
@@ -139,7 +141,6 @@ class DungeonBattle extends Battle {
             // Update boss
             if (DungeonRunner.fightingBoss()) {
                 DungeonRunner.fightingBoss(false);
-                DungeonRunner.defeatedBoss(true);
                 DungeonRunner.dungeonWon();
             }
         // Generate next trainer Pokemon
