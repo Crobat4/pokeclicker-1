@@ -13,6 +13,10 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.DEFAULT, '<div class="w-100 d-flex justify-content-around"><a href="https://github.com/Crobat4/pokeclicker" target="_blank">Repository</a><a href="https://github.com/Crobat4/Pokeclicker-desktop" target="_blank">Desktop build</a><a href="https://github.com/Crobat4/pokeclicker/wiki" target="_blank">Github Wiki</a></div>'),
     new Changelog(changelogType.DEFAULT, 'This will keep being updated as long as the thread is alive...'),
     // ⥂⥄
+    // v0.3.18
+    new ChangelogUpdate('v0.3.18', new Date(2023, 5 - 1, 7), 'Good night, Witch... <a href="assets/images/witch.png" target="_blank"> </a>'),
+    new Changelog(changelogType.NEW, 'Added Official updates (v0.10.11)'),
+    new Changelog(changelogType.FIXED, 'Mutations appearing in first farm plots if needed berries were in second farm'),
     // v0.3.17
     new ChangelogUpdate('v0.3.17', new Date(2023, 3 - 1, 26)),
     new Changelog(changelogType.NEW, 'Added Official updates (v0.10.10)'),
