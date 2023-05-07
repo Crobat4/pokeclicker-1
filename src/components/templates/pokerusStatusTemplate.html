@@ -1,7 +1,12 @@
 <script type="text/html" id="pokerusStatusTemplate">
     <knockout style="display: inline;">
         <!-- ko if: $data.pokerus -->
-        <img width="" src="" data-bind="attr: { src: 'assets/images/breeding/pokerus/' + GameConstants.Pokerus[$data.pokerus] + '' + (Settings.getSetting('accessibilityPokerus').observableValue() ? '-accessibility' : '') + '.png', width: `${$data.width || '40px'}` }"/>
+        <img width="" src="" data-bind="attr: { src: 'assets/images/breeding/pokerus/' + GameConstants.Pokerus[$data.pokerus] + '' + (Settings.getSetting('accessibilityPokerus').observableValue() ? '-accessibility' : '') + '.png', width: `${$data.width || '40px'}` },
+            tooltip: {
+                title: $data.evRemainingText || '',
+                placement: 'bottom',
+                trigger: 'hover'
+            }"/>
         <!-- /ko -->
     </knockout>
 </script>

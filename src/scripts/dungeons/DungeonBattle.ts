@@ -25,7 +25,6 @@ class DungeonBattle extends Battle {
      */
     public static defeatPokemon() {
         const enemyPokemon: BattlePokemon = this.enemyPokemon();
-        App.game.pokeballs.isDungeonBoss(false);
 
         // Handle Trainer Pokemon defeat
         if (this.trainer()) {
@@ -72,7 +71,6 @@ class DungeonBattle extends Battle {
         } else if (DungeonRunner.defeatedBoss()) {
             DungeonRunner.dungeonWon();
         }
-        App.game.pokeballs.isDungeonBoss(false);
     }
 
     /**
