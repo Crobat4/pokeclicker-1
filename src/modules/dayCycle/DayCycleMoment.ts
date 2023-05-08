@@ -13,7 +13,7 @@ export default class DayCycleMoment {
         const dayCycleStartHours = Object.entries(DayCycleStartHours);
         return dayCycleStartHours.map(([dayCyclePart, startHour], index) => {
             const [, endHour] = dayCycleStartHours[index + 1] || dayCycleStartHours[0];
-            const content = `${DayCyclePart[dayCyclePart]}: ${GameHelper.twoDigitNumber(startHour)}:00 - ${GameHelper.twoDigitNumber(endHour)}:00`;
+            const content = `${DayCyclePart[dayCyclePart]}: ${GameHelper.twoDigitNumber(startHour)}:00 - ${GameHelper.twoDigitNumber(endHour - 1)}:59`;
 
             return DayCyclePart[dayCyclePart] === DayCyclePart[this.part]
                 ? `<span class="text-success"><b>${content}</b></span>`
