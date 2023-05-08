@@ -35,7 +35,13 @@
             <!-- ko ifnot: $data.isNone() -->
             <div style="margin-top: 20px;" class="clickable" data-bind="click: function(){ if (progress() >= 100) App.game.breeding.hatchPokemonEgg($index()) }">
                 <!-- ko if: $data.type == EggType.Fossil -->
-                <img class="egg" data-bind="attr: {src: BreedingController.getEggImage($data)}, class: BreedingController.getEggCssClass($data)"/>
+                <img class="egg" data-bind="attr: {src: BreedingController.getEggImage($data)}, class: BreedingController.getEggCssClass($data),
+                  tooltip: {
+                    title: '???',
+                    trigger: 'hover',
+                    placement:'top',
+                    boundary: 'window'
+                  }"/>
                 <!-- /ko -->
                 <!-- ko ifnot: $data.type == EggType.Fossil -->
                 <div data-bind="template: { name: 'eggSVGTemplate', data: $data}, class: BreedingController.getEggCssClass($data)"></div>
