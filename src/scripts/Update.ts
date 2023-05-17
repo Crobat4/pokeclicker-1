@@ -2261,6 +2261,15 @@ class Update implements Saveable {
                 delete p[14]; // megaStone
             });
         },
+
+        '0.10.12': ({ playerData, saveData, settingsData }) => {
+            // Rename Unova's Quest for the DNA Splicers questline
+            saveData.quests.questLines.forEach(v => {
+                if (v.name === 'Quest for the DNA Splicers') {
+                    v.name = 'Hollow Truth and Ideals';
+                }
+            });
+        },
     };
 
     constructor() {
