@@ -1,6 +1,5 @@
-[![GitHub package.json version (branch)](https://img.shields.io/github/package-json/crobatVersion/pokeclicker/pokeclicker/develop-crobat?label=dev%20version)](https://github.com/Crobat4/pokeclicker/tree/develop-crobat)<br/>
+[![GitHub package.json version (branch)](https://img.shields.io/github/package-json/crobatVersion/Crobat4/pokeclicker/develop-crobat?label=dev%20version)](https://github.com/Crobat4/pokeclicker/tree/develop-crobat)<br/>
 [![GitHub package.json version (branch)](https://img.shields.io/github/package-json/crobatVersion/Crobat4/pokeclicker/master-crobat?label=live%20version)](https://crobat4.github.io/pokeclicker/)<br/>
-[![Build Status](https://img.shields.io/travis/com/Crobat4/pokeclicker?logo=travis)](https://travis-ci.com/Crobat4/pokeclicker)<br/>
 
 # PokéClicker - Crobat Fork
 A game about catching Pokémon, defeating gym leaders, and watching numbers get bigger.
