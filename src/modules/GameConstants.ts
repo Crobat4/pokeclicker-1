@@ -2015,10 +2015,10 @@ export enum ExtraAchievementCategories {
 }
 
 export const DayCycleStartHours: Record<DayCyclePart, number> = {
-    [DayCyclePart.Dawn]: 5,
-    [DayCyclePart.Day]: 6,
-    [DayCyclePart.Dusk]: 17,
-    [DayCyclePart.Night]: 18,
+    [DayCyclePart.Dawn]: 7,
+    [DayCyclePart.Day]: 8,
+    [DayCyclePart.Dusk]: 19,
+    [DayCyclePart.Night]: 20,
 };
 
 export enum ShadowStatus {

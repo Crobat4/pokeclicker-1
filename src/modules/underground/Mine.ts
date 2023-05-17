@@ -209,9 +209,9 @@ export class Mine {
     }
 
     private static rewardSummary() {
-        return Mine.rewardNumbers.reduce((res, id) => {
+        const rewardNumbers = Mine.rewardNumbers.filter((item) => item != -1);
+        return rewardNumbers.reduce((res, id) => {
             const reward = UndergroundItems.list.find(x => x.id == id);
-
             switch (reward.valueType) {
                 case UndergroundItemValueType.Diamond:
                     res.totalValue += reward.value;
