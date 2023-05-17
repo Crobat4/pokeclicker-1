@@ -251,7 +251,7 @@
                                 <!-- Pokemon List -->
                                 <knockout class="right">
                                     <div class="route-pokemon-list-icon px-1 clickable" data-bind="tooltip: { title: 'Check the Pokémon available here', trigger: 'hover' },
-                                        click: function() { App.game.statistics.selectedRoute({'name': Routes.getName(player.route(), player.region), 'pokemonList': RouteHelper.sanitizedPokemonList(player.route(), player.region, player.subregion), 'region': player.region}); $('#routeHabitatListModal').modal('show') }">
+                                        click: function() { $('#routeHabitatListModal').modal('show') }">
                                     <!--
                                         <a href="#" class="route-link-overlay" data-bind="tooltip: {
                                             title: RouteHelper.getAvailablePokemonListForTooltip(player.route(), player.region),

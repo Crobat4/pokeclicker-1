@@ -10,7 +10,7 @@
                         <div class="col-12 p-3 text-left border-bottom border-secondary">
                             <!-- TODO: Add shiny and pokerus statuses if habitat list is made -->
                             <!-- ko using: Object.values(TownList).find((town) => town.dungeon === dungeon), as: 'townDungeon' -->
-                            <h4 class="modal-title" data-bind="text: `${dungeon.name} - ${GameConstants.camelCaseToString(GameConstants.Region[townDungeon.region])} (${SubRegions.getSubRegionById(townDungeon.region, townDungeon.subRegion).name})`">
+                            <h4 class="modal-title" data-bind="text: `${dungeon.name} - ${GameConstants.camelCaseToString(GameConstants.Region[player.region])} (${player.subregionObject()?.name})`">
                                 Dungeon and region names
                             </h4>
                             <!-- /ko -->
@@ -71,9 +71,12 @@
             
                                     <!-- Enemy Name -->                        
                                     <!-- ko if: pokemonSeen && !pokemon.lock -->
-                                    <span class="enemy-name" data-bind="using: PokemonHelper.displayName(pokemon.name)(), as: 'displayName'">
-                                        <knockout data-bind="text: displayName, css: { 'marquee': displayName.length > 18 }">name</knockout>
-                                    </span>
+                                    <span class="pokedex-bottom-text text-truncate px-1" data-bind="text: PokemonHelper.displayName(pokemon.name),
+                                        tooltip: {
+                                            title: PokemonHelper.displayName(pokemon.name),
+                                            trigger: 'hover',
+                                            placement: 'bottom'
+                                        }">name</span>
                                     <!-- /ko -->
             
                                     <!-- /ko -->
@@ -120,21 +123,28 @@
                                     <div class="row justify-content-center">
                                         <!-- ko foreach: { data: lootEntries[1], as: 'item' } -->
                                         <div class="col-6 col-lg-4 mb-2">
-                                            <div class="btn btn-secondary px-1 py-0 d-flex align-items-center text-left" style="cursor: default;">
-                                                <!-- ko using: PokemonHelper.getPokemonByName(item.loot).name != 'MissingNo.' && !App.game.party.getPokemonByName(item.loot), as: 'isPokemonAndNotCaught' -->
-                                                <img width="42px" data-bind="attr: { src: Dungeon.getLootImage(item.loot) }, 
-                                                    style: { 'filter': isPokemonAndNotCaught ? 'brightness(0)' : '' }">
-                                                <div class="flex-grow-1 small ml-2" style="min-width: 0;">
-                                                    <div class="text-truncate" data-bind="text: isPokemonAndNotCaught ? '???' : Dungeon.getLootName(item.loot)"></div>
-                                                </div>
-                                                <img width="24px" class="lock" src="assets/images/breeding/lock.svg" data-bind=" tooltip: {
-                                                    title: item.requirement?.hint() || '',
-                                                    trigger: 'hover',
-                                                    placement:'top',
-                                                    boundary: 'window',
-                                                }, visible: item.requirement" />
+                                            <!-- ko using: PokemonHelper.getPokemonByName(item.loot).name != 'MissingNo.' && !App.game.party.getPokemonByName(item.loot), as: 'isPokemonAndNotCaught' -->
+                                                <!-- ko using: isPokemonAndNotCaught ? '???' : Dungeon.getLootName(item.loot), as: 'lootName' -->
+                                                    <div class="btn btn-secondary px-1 py-0 d-flex align-items-center text-left" style="cursor: default;" 
+                                                        data-bind="tooltip: {
+                                                            title: lootName,
+                                                            trigger: 'hover',
+                                                            placement: 'bottom'
+                                                        }">
+                                                        <img width="42px" data-bind="attr: { src: Dungeon.getLootImage(item.loot) }, 
+                                                            style: { 'filter': isPokemonAndNotCaught ? 'brightness(0)' : '' }">
+                                                        <div class="flex-grow-1 small ml-2" style="min-width: 0;">
+                                                            <div class="text-truncate" data-bind="text: lootName"></div>
+                                                        </div>
+                                                        <img width="24px" class="lock" src="assets/images/breeding/lock.svg" data-bind=" tooltip: {
+                                                            title: item.requirement?.hint() || '',
+                                                            trigger: 'hover',
+                                                            placement:'top',
+                                                            boundary: 'window',
+                                                        }, visible: item.requirement" />
+                                                    </div>
                                                 <!-- /ko -->
-                                            </div>
+                                            <!-- /ko -->
                                         </div>
                                         <!-- /ko -->
                                     </div>
