@@ -14,7 +14,7 @@
                         <knockout data-bind="visible: QuestLineHelper.isQuestLineCompleted('Tutorial Quests')">clears</knockout>
 
                         <div class="route-pokemon-list-icon px-1 clickable d-inline-block ml-1" data-bind="tooltip: { title: 'Check the Pokémon available here', trigger: 'hover' },
-                            click: function() { App.game.statistics.selectedDungeon({'name': player.town().name, 'pokemonList': player.town().dungeon.allEnemiesDungeon, 'region': player.region}); $('#dungeonHabitatListModal').modal('show') }">
+                            click: function() { $('#dungeonHabitatListModal').modal('show') }">
                             <img src="assets/images/shortcut-icons/poke-list.png">
                         </div>
                     </knockout>
