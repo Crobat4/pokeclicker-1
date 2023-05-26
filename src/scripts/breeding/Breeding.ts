@@ -262,7 +262,7 @@ class Breeding implements Feature {
         const hatcheryListFiltered = [];
 
         for (const partyPokemonObject of hatcheryList) {
-            if (BreedingController.visible(partyPokemonObject)()) {
+            if (partyPokemonObject.isHatchable()) {
                 hatcheryListFiltered.push(partyPokemonObject);
             }
         }
