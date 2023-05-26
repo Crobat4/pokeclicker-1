@@ -145,7 +145,7 @@ export function getMegaStones(pokemonName: PokemonNameType): MegaStoneItem[] {
 }
 
 // To have encounter/caught/defeat/hatch statistics in a single place
-export function incrementPokemonStatistics(pokemonId: number, statistic: PokemonStatisticsType, shiny: boolean, gender: number) {
+export function incrementPokemonStatistics(pokemonId: number, statistic: PokemonStatisticsType, shiny: boolean, gender: number, shadow: ShadowStatus) {
     const pokemonStatistics = {
         Captured: App.game.statistics.pokemonCaptured[pokemonId],
         Defeated: App.game.statistics.pokemonDefeated[pokemonId],
@@ -173,13 +173,10 @@ export function incrementPokemonStatistics(pokemonId: number, statistic: Pokemon
         ShinyFemaleHatched: App.game.statistics.shinyFemalePokemonHatched[pokemonId],
         ShadowCaptured: App.game.statistics.shadowPokemonCaptured[pokemonId],
         ShadowDefeated: App.game.statistics.shadowPokemonDefeated[pokemonId],
-        ShadowEncountered: App.game.statistics.shadowPokemonEncountered[pokemonId],
         ShadowMaleCaptured: App.game.statistics.shadowMalePokemonCaptured[pokemonId],
         ShadowMaleDefeated: App.game.statistics.shadowMalePokemonDefeated[pokemonId],
-        ShadowMaleEncountered: App.game.statistics.shadowMalePokemonEncountered[pokemonId],
         ShadowFemaleCaptured: App.game.statistics.shadowFemalePokemonCaptured[pokemonId],
         ShadowFemaleDefeated: App.game.statistics.shadowFemalePokemonDefeated[pokemonId],
-        ShadowFemaleEncountered: App.game.statistics.shadowFemalePokemonEncountered[pokemonId],
 
     };
     const totalStatistics = {
@@ -217,16 +214,12 @@ export function incrementPokemonStatistics(pokemonId: number, statistic: Pokemon
         ShinyGenderlessHatched: App.game.statistics.totalShinyGenderlessPokemonHatched,
         ShadowCaptured: App.game.statistics.totalShadowPokemonCaptured,
         ShadowDefeated: App.game.statistics.totalShadowPokemonDefeated,
-        ShadowEncountered: App.game.statistics.totalShadowPokemonEncountered,
         ShadowMaleCaptured: App.game.statistics.totalShadowMalePokemonCaptured,
         ShadowMaleDefeated: App.game.statistics.totalShadowMalePokemonDefeated,
-        ShadowMaleEncountered: App.game.statistics.totalShadowMalePokemonEncountered,
         ShadowFemaleCaptured: App.game.statistics.totalShadowFemalePokemonCaptured,
         ShadowFemaleDefeated: App.game.statistics.totalShadowFemalePokemonDefeated,
-        ShadowFemaleEncountered: App.game.statistics.totalShadowFemalePokemonEncountered,
         ShadowGenderlessCaptured: App.game.statistics.totalShadowGenderlessPokemonCaptured,
         ShadowGenderlessDefeated: App.game.statistics.totalShadowGenderlessPokemonDefeated,
-        ShadowGenderlessEncountered: App.game.statistics.totalShadowGenderlessPokemonEncountered,
     };
     let genderString = '';
     // Gender Statistics
@@ -254,7 +247,7 @@ export function incrementPokemonStatistics(pokemonId: number, statistic: Pokemon
         }
         GameHelper.incrementObservable(totalStatistics[shinyString + genderString + statistic]);
     }
-    if (ShadowStatus.Shadow) {
+    if (shadow === ShadowStatus.Shadow) {
         const shadowString = 'Shadow';
         GameHelper.incrementObservable(pokemonStatistics[shadowString + statistic]);
         GameHelper.incrementObservable(totalStatistics[shadowString + statistic]);

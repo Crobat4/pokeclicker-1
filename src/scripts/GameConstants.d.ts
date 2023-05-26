@@ -401,9 +401,9 @@ namespace GameConstants {
         Purple,
         Indigo,
         Brown,
-        LiteBlue,
+        Light_Blue,
         Olive,
-        Flaxen,
+        Beige,
         Gray,
         White
     }
@@ -807,5 +807,12 @@ namespace GameConstants {
         Swampertite,
         Tyranitarite,
         Venusaurite,
+    }
+    declare enum GemShops {
+        HoennFluteMaster,
+        HoennStoneSalesman,
+        UnovaFluteMaster,
+        FurfrouGemTrader,
+        MagikarpJumpGemTrader,
     }
 }

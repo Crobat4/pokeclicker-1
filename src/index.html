@@ -92,8 +92,8 @@
 <!--$DEV_BANNER-->
 @importif $DEV_BANNER "developmentBanner.html"
 
+<!-- Spash Screen -->
 @import "saveSelector.html"
-
 @import "splash.html"
 
 <!-- Game menu-->
@@ -129,6 +129,7 @@
 @import "templates/clickAttackTemplate.html"
 @import "templates/spindaSpotTemplate.html"
 @import "templates/pokemonGenderStatisticTemplate.html"
+@import "templates/multiSelectDropdownTemplate.html"
 
 <div id="window-container" style="width: 100%; height: 100%; position: fixed; top: 0; left: 0;"></div>
 <div id="game" class="container loading" data-bind="css: {'container': Settings.getSetting('gameDisplayStyle').observableValue() === 'standard3', 'container-fluid': Settings.getSetting('gameDisplayStyle').observableValue() !== 'standard3'}">
@@ -521,6 +522,10 @@
                             @import "GalarSVG.html"
                             @import "HisuiSVG.html"
 
+                            <g id="playerSprite">
+                                <!-- This group is cleared actively via koExtenders.ts added to fix #3358 -->
+                                <!-- TODO: Replace current PlayerSprite rendering logic so a singular SVG is used / updated like so:-->
+                            </g>
                         </svg>
                     </div>
                 </div>
@@ -557,7 +562,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 
