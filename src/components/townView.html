@@ -13,17 +13,14 @@
                       <img title="You have captured all Pokémon in this dungeon!" class="pokeball-smallest"
                            src="assets/images/pokeball/Pokeball.svg"/>
                   </knockout>
+              </knockout>
 
+                    <!-- Pokemon List -->
+                    <knockout class="right">
                         <div class="route-pokemon-list-icon px-1 clickable d-inline-block ml-1" data-bind="tooltip: { title: 'Check the Pokémon available here', trigger: 'hover' },
                             click: function() { $('#dungeonHabitatListModal').modal('show') }">
                             <img src="assets/images/shortcut-icons/poke-list.png">
                         </div>
-                    </knockout>
-                    <!-- /ko -->
-
-                    <!-- Pokemon List -->
-                    <knockout class="left">
-                        
                     </knockout>
 
                     <knockout data-bind="template: { 
