@@ -2269,6 +2269,13 @@ class Update implements Saveable {
                     v.name = 'Hollow Truth and Ideals';
                 }
             });
+            //Colosseum battles
+            saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 48);
+            saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 49);
+            saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 50);
+            saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 51);
+            saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 52);
+
         },
     };
 
@@ -2333,12 +2340,12 @@ class Update implements Saveable {
 
         const button = document.createElement('a');
         try {
-            button.href = `data:text/plain;charset=utf-8,${encodeURIComponent(btoa(backupSaveData))}`;
+            button.href = `data:text/plain;charset=utf-8,${encodeURIComponent(SaveSelector.btoa(backupSaveData))}`;
             button.className = 'btn btn-block btn-warning';
             button.innerText = 'Click to Backup Save!';
-            const filename = settingsData.saveFilename ? decodeURI(settingsData.saveFilename) : Settings.getSetting('saveFilename').defaultValue;
+            const filename = settingsData.saveFilename || Settings.getSetting('saveFilename').defaultValue;
             const datestr = GameConstants.formatDate(new Date());
-            button.setAttribute('download', GameHelper.saveFileName(filename, {'{date}' : datestr, '{version}' : this.saveVersion, '{name}' : decodeURI(saveData.profile.name)}, true));
+            button.setAttribute('download', GameHelper.saveFileName(filename, {'{date}' : datestr, '{version}' : this.saveVersion, '{name}' : saveData.profile.name}, true));
         } catch (e) {
             console.error('Failed to create backup button data:', e);
         }
