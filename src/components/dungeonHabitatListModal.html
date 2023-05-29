@@ -3,159 +3,153 @@
      aria-labelledby="dungeonHabitatListLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
-            <!-- ko using: player.town(), as: 'dungeon' -->
-                <!-- ko ifnot: dungeon instanceof Town -->
-                <div class="modal-header p-0 border-0">
-                    <div class="row w-100 m-0">
-                        <div class="col-12 p-3 text-left border-bottom border-secondary">
-                            <!-- TODO: Add shiny and pokerus statuses if habitat list is made -->
-                            <!-- ko using: Object.values(TownList).find((town) => town.dungeon === dungeon), as: 'townDungeon' -->
-                            <h4 class="modal-title" data-bind="text: `${dungeon.name} - ${GameConstants.camelCaseToString(GameConstants.Region[player.region])} (${player.subregionObject()?.name})`">
-                                Dungeon and region names
-                            </h4>
-                            <!-- /ko -->
-                            <button type="button" class="btn btn-danger position-absolute h-100" data-dismiss="modal" style="top: 0; right: 0; font-size: 24px;">×</button>
-                        </div>
-                        <div class="col-12 p-0">
-                            <ul class="nav nav-tabs nav-fill w-100">
-                                <li class="nav-item w-50"><a data-toggle='tab' class='nav-link active' href="#habitat-dungeon-pokemon">Pokémon/Trainers</a></li>
-                                <li class="nav-item w-50"><a data-toggle='tab' class='nav-link' href="#habitat-dungeon-loot">Loot</a></li>
-                            </ul>
-                        </div>
+            <div class="modal-header p-0 border-0">
+                <div class="row w-100 m-0">
+                    <div class="col-12 p-3 text-left border-bottom border-secondary">
+                        <!-- TODO: Add shiny and pokerus statuses if habitat list is made -->
+                        <h4 class="modal-title" data-bind="text: DungeonHabitatList.getFullName()">
+                            Dungeon and region names
+                        </h4>
+                        <button type="button" class="btn btn-danger position-absolute h-100" data-dismiss="modal" style="top: 0; right: 0; font-size: 24px;">×</button>
+                    </div>
+                    <div class="col-12 p-0">
+                        <ul class="nav nav-tabs nav-fill w-100">
+                            <li class="nav-item w-50"><a data-toggle='tab' class='nav-link active' href="#habitat-dungeon-pokemon">Pokémon/Trainers</a></li>
+                            <li class="nav-item w-50"><a data-toggle='tab' class='nav-link' href="#habitat-dungeon-loot">Loot</a></li>
+                        </ul>
                     </div>
                 </div>
-                <div class="modal-body p-0">
-                    <div class="tab-content">
-                        <div id="habitat-dungeon-pokemon" class="tab-pane fade show active">
-                            <div class="row justify-content-center mw-100 p-0 m-0 habitat-list" id="dungeon-habitat-list" data-bind="foreach: { data: dungeon.allEnemiesDungeon, as: 'pokemon'}">
-                                <!-- Enemy Entry -->
-                                <div class="col-sm-4 col-md-3 col-lg-2 pokedexEntry"
-                                    data-bind="style: { background: !pokemon.trainer && !pokemon.lock ? PokedexHelper.getBackgroundColors(pokemon.name) : 'grey' }, 
-                                        using: PokemonHelper.getPokemonByName(pokemon.name).id, as: 'pokemonID',
-                                        hidden: pokemon.hide">
-            
-                                    <!-- ko using: App.game.party.alreadyCaughtPokemonByName(pokemon.name), as: 'caughtPokemon' -->
-            
-                                    <!-- Pokemon ID / Trainer -->
-                                    <span class="pokemon-id" data-bind="text: (pokemon.trainer ? 'Trainer' : ('#' + (pokemonID > 0 && !pokemon.lock ? Math.floor(pokemonID) + '' : '???').padStart(3, 0)))">number</span>
-            
-                                    <!-- ko if: caughtPokemon && !pokemon.lock -->
-            
-                                    <!-- Pokemon Caught Status -->
-                                    <!-- ko using: PartyController.getCaughtStatus(pokemonID), as: 'caughtStatus' -->
-                                    <knockout class="caught-status-icon" data-bind="template: { name: 'caughtStatusTemplate', data: {'status': caughtStatus}}"></knockout>
-                                    <!-- /ko -->
-            
-                                    <!-- Pokemon Pokerus Status -->
-                                    <!-- ko using: App.game.party.getPokemon(pokemonID)?.pokerus, as: 'pokerusStatus' -->
-                                    <div class="pokerus-status" data-bind="if: pokerusStatus">
-                                        <knockout data-bind="template: { name: 'pokerusStatusTemplate', data: { 'pokerus': pokerusStatus, 'width': '32px' } }">Pokerus icon</knockout>
-                                    </div>
-                                    <!-- /ko -->
-            
-                                    <!-- /ko -->
-            
-                                    <!-- ko using: PokedexHelper.pokemonSeen(pokemonID)(), as: 'pokemonSeen' -->
-            
-                                    <!-- Enemy Sprite -->
-                                    <img src="" width="" data-bind="css: { 
-                                        'pokemon-not-seen': (!pokemonSeen && !pokemon.trainer) || pokemon.lock, 
-                                        'pokemon-seen-but-not-caught': !caughtPokemon && pokemonSeen && !pokemon.trainer 
-                                    }, 
-                                    attr:{ 
-                                        src: pokemonID ? PokemonHelper.getImage(pokemonID) : pokemon.image,
-                                        width: !pokemon.trainer ? '96px' : '80px',
-                                        style: pokemon.trainer ? 'padding: 24px 0;' : '',
-                                    }"
-                                    onerror="this.src='assets/images/npcs/specialNPCs/Mysterious Trainer.png';">
-            
-                                    <!-- Enemy Name -->                        
-                                    <!-- ko if: pokemonSeen && !pokemon.lock -->
-                                    <span class="pokedex-bottom-text text-truncate px-1" data-bind="text: PokemonHelper.displayName(pokemon.name),
-                                        tooltip: {
-                                            title: PokemonHelper.displayName(pokemon.name),
-                                            trigger: 'hover',
-                                            placement: 'bottom'
-                                        }">name</span>
-                                    <!-- /ko -->
-            
-                                    <!-- /ko -->
-            
-                                    <!-- Dungeon Boss Icon -->
-                                    <!-- ko if: pokemon.boss -->
-                                    <div class="item-icon-container item-icon-left">
-                                        <div class="item-icon rounded-circle" data-bind="tooltip: { title: 'Dungeon Boss', trigger: 'hover', placement: 'top', boundary: 'window' }">
-                                            <img class="mw-100 mh-100 p-0" src="" width="24px" style="vertical-align: unset; filter: unset;" data-bind="attr: {src: 'assets/images/dungeons/boss.svg'}">
-                                        </div>
-                                    </div>
-                                    <!-- /ko -->
-            
-                                    <!-- Mimic Pokemon Icon -->
-                                    <!-- ko if: pokemon.mimic -->
-                                    <div class="item-icon-container item-icon-left">
-                                        <div class="item-icon rounded-circle" data-bind="tooltip: { title: 'Mimic Pokémon', trigger: 'hover', placement: 'top', boundary: 'window' }">
-                                            <img class="mw-100 mh-100 p-0" src="" width="24px" style="vertical-align: unset;" data-bind="attr: {src: 'assets/images/dungeons/chest.png'}">
-                                        </div>
-                                    </div>
-                                    <!-- /ko -->
-            
-                                    <!-- Lock Icon -->
-                                    <img class="lock" src="assets/images/breeding/lock.svg" style="filter: drop-shadow(2px 4px 6px black);" data-bind="hidden: !pokemon.lock,
-                                    tooltip: {
-                                        title: pokemon.lockMessage,
-                                        placement: 'bottom',
-                                        trigger: 'hover',
-                                        boundary: 'window'
-                                    }">
-            
-                                    <!-- /ko -->
+            </div>
+            <div class="modal-body p-0">
+                <div class="tab-content">
+                    <div id="habitat-dungeon-pokemon" class="tab-pane fade show active">
+                        <div class="row justify-content-center mw-100 p-0 m-0 habitat-list" id="dungeon-habitat-list" data-bind="foreach: { data: DungeonHabitatList.pokemonList(), as: 'pokemon'}">
+                            <!-- Enemy Entry -->
+                            <div class="col-sm-4 col-md-3 col-lg-2 pokedexEntry"
+                                data-bind="style: { background: !pokemon.trainer && !pokemon.lock ? PokedexHelper.getBackgroundColors(pokemon.name) : 'grey' }, 
+                                    using: PokemonHelper.getPokemonByName(pokemon.name).id, as: 'pokemonID',
+                                    hidden: pokemon.hide">
+        
+                                <!-- ko using: App.game.party.alreadyCaughtPokemonByName(pokemon.name), as: 'caughtPokemon' -->
+        
+                                <!-- Pokemon ID / Trainer -->
+                                <span class="pokemon-id" data-bind="text: (pokemon.trainer ? 'Trainer' : ('#' + (pokemonID > 0 && !pokemon.lock ? Math.floor(pokemonID) + '' : '???').padStart(3, 0)))">number</span>
+        
+                                <!-- ko if: caughtPokemon && !pokemon.lock -->
+        
+                                <!-- Pokemon Caught Status -->
+                                <!-- ko using: PartyController.getCaughtStatus(pokemonID), as: 'caughtStatus' -->
+                                <knockout class="caught-status-icon" data-bind="template: { name: 'caughtStatusTemplate', data: {'status': caughtStatus}}"></knockout>
+                                <!-- /ko -->
+        
+                                <!-- Pokemon Pokerus Status -->
+                                <!-- ko using: App.game.party.getPokemon(pokemonID)?.pokerus, as: 'pokerusStatus' -->
+                                <div class="pokerus-status" data-bind="if: pokerusStatus">
+                                    <knockout data-bind="template: { name: 'pokerusStatusTemplate', data: { 'pokerus': pokerusStatus, 'width': '32px' } }">Pokerus icon</knockout>
                                 </div>
+                                <!-- /ko -->
+        
+                                <!-- /ko -->
+        
+                                <!-- ko using: PokedexHelper.pokemonSeen(pokemonID)(), as: 'pokemonSeen' -->
+        
+                                <!-- Enemy Sprite -->
+                                <img src="" width="" data-bind="css: { 
+                                    'pokemon-not-seen': (!pokemonSeen && !pokemon.trainer) || pokemon.lock, 
+                                    'pokemon-seen-but-not-caught': !caughtPokemon && pokemonSeen && !pokemon.trainer 
+                                }, 
+                                attr:{ 
+                                    src: pokemonID ? PokemonHelper.getImage(pokemonID) : pokemon.image,
+                                    width: !pokemon.trainer ? '96px' : '80px',
+                                    style: pokemon.trainer ? 'padding: 24px 0;' : '',
+                                }"
+                                onerror="this.src='assets/images/npcs/specialNPCs/Mysterious Trainer.png';">
+        
+                                <!-- Enemy Name -->                        
+                                <!-- ko if: pokemonSeen && !pokemon.lock -->
+                                <span class="pokedex-bottom-text text-truncate px-1" data-bind="text: PokemonHelper.displayName(pokemon.name),
+                                    tooltip: {
+                                        title: PokemonHelper.displayName(pokemon.name),
+                                        trigger: 'hover',
+                                        placement: 'bottom'
+                                    }">name</span>
+                                <!-- /ko -->
+        
+                                <!-- /ko -->
+        
+                                <!-- Dungeon Boss Icon -->
+                                <!-- ko if: pokemon.boss -->
+                                <div class="item-icon-container item-icon-left">
+                                    <div class="item-icon rounded-circle" data-bind="tooltip: { title: 'Dungeon Boss', trigger: 'hover', placement: 'top', boundary: 'window' }">
+                                        <img class="mw-100 mh-100 p-0" src="" width="24px" style="vertical-align: unset; filter: unset;" data-bind="attr: {src: 'assets/images/dungeons/boss.svg'}">
+                                    </div>
+                                </div>
+                                <!-- /ko -->
+        
+                                <!-- Mimic Pokemon Icon -->
+                                <!-- ko if: pokemon.mimic -->
+                                <div class="item-icon-container item-icon-left">
+                                    <div class="item-icon rounded-circle" data-bind="tooltip: { title: 'Mimic Pokémon', trigger: 'hover', placement: 'top', boundary: 'window' }">
+                                        <img class="mw-100 mh-100 p-0" src="" width="24px" style="vertical-align: unset;" data-bind="attr: {src: 'assets/images/dungeons/chest.png'}">
+                                    </div>
+                                </div>
+                                <!-- /ko -->
+        
+                                <!-- Lock Icon -->
+                                <img class="lock" src="assets/images/breeding/lock.svg" style="filter: drop-shadow(2px 4px 6px black);" data-bind="hidden: !pokemon.lock,
+                                tooltip: {
+                                    title: pokemon.lockMessage,
+                                    placement: 'bottom',
+                                    trigger: 'hover',
+                                    boundary: 'window'
+                                }">
+        
+                                <!-- /ko -->
                             </div>
                         </div>
-                        <div id="habitat-dungeon-loot" class="tab-pane fade p-3">
-                            <!-- ko foreach: { data: Object.entries(dungeon.lootTable), as: 'lootEntries' } -->
-                            <div class="bg-primary text-left rounded px-3 py-2 mb-1 d-flex align-items-center" data-toggle="collapse" data-bind="attr: { 'data-target': `#tier-${lootEntries[0]}` }">
-                                <img width="42px" data-bind="attr: { src: `assets/images/dungeons/chest-${lootEntries[0]}.png` }" />
-                                <h5 class="my-0 mx-1 text-light d-inline-block" data-bind="text: GameConstants.camelCaseToString(lootEntries[0])">Tier name</h5>
-                            </div>
-                            <div class="collapse show" data-bind="attr: { 'id': `tier-${lootEntries[0]}` }">
-                                <div class="card-body pt-2 p-1">
-                                    <div class="row justify-content-center">
-                                        <!-- ko foreach: { data: lootEntries[1], as: 'item' } -->
-                                        <div class="col-6 col-lg-4 mb-2">
-                                            <!-- ko using: PokemonHelper.getPokemonByName(item.loot).name != 'MissingNo.' && !App.game.party.getPokemonByName(item.loot), as: 'isPokemonAndNotCaught' -->
-                                                <!-- ko using: isPokemonAndNotCaught ? '???' : Dungeon.getLootName(item.loot), as: 'lootName' -->
-                                                    <div class="btn btn-secondary px-1 py-0 d-flex align-items-center text-left" style="cursor: default;" 
-                                                        data-bind="tooltip: {
-                                                            title: lootName,
-                                                            trigger: 'hover',
-                                                            placement: 'bottom'
-                                                        }">
-                                                        <img width="42px" data-bind="attr: { src: Dungeon.getLootImage(item.loot) }, 
-                                                            style: { 'filter': isPokemonAndNotCaught ? 'brightness(0)' : '' }">
-                                                        <div class="flex-grow-1 small ml-2" style="min-width: 0;">
-                                                            <div class="text-truncate" data-bind="text: lootName"></div>
-                                                        </div>
-                                                        <img width="24px" class="lock" src="assets/images/breeding/lock.svg" data-bind=" tooltip: {
-                                                            title: item.requirement?.hint() || '',
-                                                            trigger: 'hover',
-                                                            placement:'top',
-                                                            boundary: 'window',
-                                                        }, visible: item.requirement" />
+                    </div>
+                    <div id="habitat-dungeon-loot" class="tab-pane fade p-3">
+                        <!-- ko foreach: { data: Object.entries(DungeonHabitatList.getLootList()), as: 'lootEntries' } -->
+                        <div class="bg-primary text-left rounded px-3 py-2 mb-1 d-flex align-items-center" data-toggle="collapse" data-bind="attr: { 'data-target': `#tier-${lootEntries[0]}` }">
+                            <img width="42px" data-bind="attr: { src: `assets/images/dungeons/chest-${lootEntries[0]}.png` }" />
+                            <h5 class="my-0 mx-1 text-light d-inline-block" data-bind="text: GameConstants.camelCaseToString(lootEntries[0])">Tier name</h5>
+                        </div>
+                        <div class="collapse show" data-bind="attr: { 'id': `tier-${lootEntries[0]}` }">
+                            <div class="card-body pt-2 p-1">
+                                <div class="row justify-content-center">
+                                    <!-- ko foreach: { data: lootEntries[1], as: 'item' } -->
+                                    <div class="col-6 col-lg-4 mb-2">
+                                        <!-- ko using: PokemonHelper.getPokemonByName(item.loot).name != 'MissingNo.' && !App.game.party.getPokemonByName(item.loot), as: 'isPokemonAndNotCaught' -->
+                                            <!-- ko using: isPokemonAndNotCaught ? '???' : DungeonHabitatList.getLootName(item.loot), as: 'lootName' -->
+                                                <div class="btn btn-secondary px-1 py-0 d-flex align-items-center text-left" style="cursor: default;" 
+                                                    data-bind="tooltip: {
+                                                        title: lootName,
+                                                        trigger: 'hover',
+                                                        placement: 'bottom'
+                                                    }">
+                                                    <img width="42px" data-bind="attr: { src: DungeonHabitatList.getLootImage(item.loot) }, 
+                                                        style: { 'filter': isPokemonAndNotCaught ? 'brightness(0)' : '' }">
+                                                    <div class="flex-grow-1 small ml-2" style="min-width: 0;">
+                                                        <div class="text-truncate" data-bind="text: lootName"></div>
                                                     </div>
-                                                <!-- /ko -->
+                                                    <img width="24px" class="lock" src="assets/images/breeding/lock.svg" data-bind=" tooltip: {
+                                                        title: item.requirement?.hint() || '',
+                                                        trigger: 'hover',
+                                                        placement:'top',
+                                                        boundary: 'window',
+                                                    }, visible: item.requirement" />
+                                                </div>
                                             <!-- /ko -->
-                                        </div>
                                         <!-- /ko -->
                                     </div>
+                                    <!-- /ko -->
                                 </div>
                             </div>
-                            <!-- /ko -->
                         </div>
+                        <!-- /ko -->
                     </div>
                 </div>
-                <!-- /ko -->
-            <!-- /ko -->
+            </div>
         </div>
     </div>
 </div>
