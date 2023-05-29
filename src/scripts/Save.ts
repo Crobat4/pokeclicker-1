@@ -67,7 +67,7 @@ class Save {
         const backupSaveData = {player, save: this.getSaveObject(removeCrobatStuff), settings: Settings.toJSON()};
         try {
             const element = document.createElement('a');
-            element.setAttribute('href', `data:text/plain;charset=utf-8,${encodeURIComponent(btoa(JSON.stringify(backupSaveData)))}`);
+            element.setAttribute('href', `data:text/plain;charset=utf-8,${encodeURIComponent(SaveSelector.btoa(JSON.stringify(backupSaveData)))}`);
             const datestr = GameConstants.formatDate(new Date());
             let filename = Settings.getSetting('saveFilename').value ? Settings.getSetting('saveFilename').value : Settings.getSetting('saveFilename').defaultValue;
             filename += removeCrobatStuff ? '-official' : '';
@@ -97,7 +97,7 @@ class Save {
 
     public static copySaveToClipboard() {
         const backupSaveData = {player, save: this.getSaveObject(), settings: Settings.toJSON()};
-        navigator.clipboard.writeText(btoa(JSON.stringify(backupSaveData)));
+        navigator.clipboard.writeText(SaveSelector.btoa(JSON.stringify(backupSaveData)));
         Notifier.notify({
             title: 'Save copied',
             message: 'Please paste the clipboard contents into a new \'.txt\' file.',
@@ -208,7 +208,7 @@ class Save {
 
         setTimeout(() => {
             try {
-                const decoded = atob(fr.result as string);
+                const decoded = SaveSelector.atob(fr.result as string);
                 console.debug('decoded:', decoded);
                 const json = JSON.parse(decoded);
                 console.debug('json:', json);
