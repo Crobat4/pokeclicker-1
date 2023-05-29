@@ -6,21 +6,18 @@
             <button type="button" class="btn btn-outline-info" style="float: right;"
             data-bind="visible: player.town() instanceof DungeonTown && !QuestLineHelper.isQuestLineCompleted('Tutorial Quests'), tooltip: { title: 'Capture Pokémon to gain Dungeon Tokens in order to battle dungeons.', trigger: 'hover', placement:'left' }">?</button>
             <h2 class="pageItemTitle">
-              <knockout data-bind="text: player.town().name">Town Name</knockout>
-              <knockout data-bind="if: player.town() instanceof DungeonTown && player.town().dungeon">
-                  <!--If all Pokémon in the dungeon are caught-->
-                  <knockout data-bind="if: (!DungeonRunner.dungeonCompleted(player.town().dungeon, true) && DungeonRunner.dungeonCompleted(player.town().dungeon, false))">
-                      <img title="You have captured all Pokémon in this dungeon!" class="pokeball-smallest"
-                           src="assets/images/pokeball/Pokeball.svg"/>
-                  </knockout>
-              </knockout>
-
-                    <!-- Pokemon List -->
-                    <knockout class="right">
+                <knockout data-bind="text: player.town().name">Town Name</knockout>
+                <knockout data-bind="if: player.town() instanceof DungeonTown && player.town().dungeon">
+                    <knockout class="right" data-bind="using: App.game.statistics.dungeonsCleared[GameConstants.getDungeonIndex(player.town().name)]()">
                         <div class="route-pokemon-list-icon px-1 clickable d-inline-block ml-1" data-bind="tooltip: { title: 'Check the Pokémon available here', trigger: 'hover' },
                             click: function() { $('#dungeonHabitatListModal').modal('show') }">
                             <img src="assets/images/shortcut-icons/poke-list.png">
                         </div>
+                    </knockout>
+
+                    <!-- Pokemon List -->
+                    <knockout class="left">
+                        
                     </knockout>
 
                     <knockout data-bind="template: { 
