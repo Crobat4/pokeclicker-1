@@ -108,7 +108,7 @@ export default class WeatherApp {
             // Set status to hasPassed if weather end date has passed already
             rf.weatherForecastList().flat().map((wf) => {
                 const weatherEndDate = new Date(new Date(wf.date).setHours(new Date(wf.date).getHours() + Weather.period, 0, 0, 0));
-                if (now > weatherEndDate) {
+                if (+now > +weatherEndDate) {
                     wf.setStatusHasPassed();
                 }
             });
