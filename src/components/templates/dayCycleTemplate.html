@@ -1,0 +1,16 @@
+<script type="text/html" id="dayCycleTemplate">
+    <button class='btn btn-sm' style="width: auto; height: 41px;"
+    data-bind="style: { background: DayCycle.dayCycleMoments[$data.moment].color },
+        tooltip: {
+            title: DayCycle.dayCycleMoments[$data.moment].description,
+            html: false,
+            placement: 'bottom',
+            trigger: 'hover',
+            boundary: 'window'
+        }">
+        <img width=30px src="" data-bind="attr: { src: `assets/images/dayCycle/${DayCyclePart[$data.moment]}.png` }"/>
+    </button>
+</script>
+
+<!-- Example usage -->
+<!-- <knockout data-bind="template: { name: 'dayCycleTemplate', data: { 'moment': DayCyclePart.Night } }">Day Cycle</knockout> -->
