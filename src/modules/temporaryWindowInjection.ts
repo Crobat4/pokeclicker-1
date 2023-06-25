@@ -188,6 +188,7 @@ import SafariBaitRequirement from './requirements/SafariBaitRequirement';
 import SafariStepsRequirement from './requirements/SafariStepsRequirement';
 import SafariRocksRequirement from './requirements/SafariRocksRequirement';
 import SafariItemsRequirement from './requirements/SafariItemsRequirement';
+import ItemRequirement from './requirements/ItemRequirement';
 
 Object.assign(<any>window, {
     SaveSelector,
@@ -386,4 +387,5 @@ Object.assign(<any>window, {
     SafariStepsRequirement,
     SafariRocksRequirement,
     SafariItemsRequirement,
+    ItemRequirement,
 });
