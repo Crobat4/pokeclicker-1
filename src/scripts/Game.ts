@@ -445,6 +445,9 @@ class Game {
                 BattleCafeController.rechargeSpin(now.getHours(), true);
                 // Generate the weather forecast
                 WeatherApp.initialize();
+                // Refresh Friend Safari Pokemon List
+                SafariPokemonList.generateKalosSafariList();
+
                 DayOfWeekRequirement.date(now.getDay());
             }
             // Check if it's a new hour
