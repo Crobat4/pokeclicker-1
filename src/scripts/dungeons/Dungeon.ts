@@ -352,42 +352,6 @@ class Dungeon {
     }
 
     /**
-     * For habitat list
-     */
-    get allEnemiesDungeon() {
-        return this.normalEncounterList.concat(this.bossEncounterList);
-    }
-
-    // Move these when dungeons get moved to modules
-    public static getLootImage(input) {
-        switch (true) {
-            case typeof BerryType[input] == 'number':
-                return FarmController.getBerryImage(BerryType[GameConstants.humanifyString(input)]);
-            case UndergroundItems.getByName(input) instanceof UndergroundItem:
-                return UndergroundItems.getByName(input).image;
-            case PokemonHelper.getPokemonByName(input).name != 'MissingNo.':
-                return `assets/images/pokemon/${PokemonHelper.getPokemonByName(input).id}.png`;
-            // case ItemList[input] instanceof PokeballItem || MegaStoneItem || EvolutionStone || EggItem || BattleItem || Vitamin || EnergyRestore:
-            default:
-                return ItemList[input].image;
-        }
-    }
-
-    public static getLootName(input) {
-        switch (true) {
-            case input in ItemList:
-                return ItemList[input]?.displayName;
-            case typeof BerryType[input] == 'number':
-                return `${input} Berry`;
-            case PokemonHelper.getPokemonByName(input).name != 'MissingNo.':
-                return PokemonHelper.displayName(input)();
-            default:
-                return GameConstants.camelCaseToString(GameConstants.humanifyString(input.toLowerCase()));
-        }
-    }
-
-
-    /**
      * Gets all non-boss Pokemon encounters in the dungeon
      * Used for generating the dungeon encounter list view
      */

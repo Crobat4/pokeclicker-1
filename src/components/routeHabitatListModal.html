@@ -5,14 +5,14 @@
         <div class="modal-content">
             <div class="modal-header position-relative">
                 <!-- TODO: Add shiny and pokerus statuses if habitat list is made -->
-                <h4 class="modal-title" data-bind="text: `${Routes.getName(player.route(), player.region)} - ${GameConstants.camelCaseToString(GameConstants.Region[player.region])} (${player.subregionObject()?.name})`">
+                <h4 class="modal-title" data-bind="text: RouteHabitatList.getFullName()">
                     Route and region names
                 </h4>
                 <button type="button" class="btn btn-danger position-absolute h-100" data-dismiss="modal" style="top: 0; right: 0; font-size: 24px;">×</button>
             </div>
 
             <div class="modal-body p-0">
-                <div class="row justify-content-center mw-100 p-0 m-0 habitat-list" id="route-habitat-list" data-bind="foreach: { data: RouteHelper.sanitizedPokemonList(player.route(), player.region, player.subregion), as: 'pokemon'}">
+                <div class="row justify-content-center mw-100 p-0 m-0 habitat-list" id="route-habitat-list" data-bind="foreach: { data: RouteHabitatList.pokemonList(), as: 'pokemon'}">
                     <!-- Pokemon Entry -->
                     <div class="col-sm-4 col-md-3 col-lg-2 pokedexEntry"
                         data-bind="style: { background: PokedexHelper.getBackgroundColors(pokemon.name) }, using: PokemonHelper.getPokemonByName(pokemon.name).id, as: 'pokemonID'">
