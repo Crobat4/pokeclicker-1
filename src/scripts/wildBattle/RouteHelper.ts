@@ -133,20 +133,4 @@ class RouteHelper {
         });
     }
 
-    // Remove duplicates AKA Wingull
-    // Turn the Pokemon name array into a object array so can be used by the Habitat List
-    public static sanitizedPokemonList(route: number, region: GameConstants.Region, subregion: number) {
-        const pokemonArray = [];
-        const roamerGroup = RoamingPokemonList.findGroup(region, subregion);
-        const roamingList = RoamingPokemonList.getSubRegionalGroupRoamers(region, roamerGroup);
-        [...new Set(this.getAvailablePokemonList(route, region))].forEach(pokemonName => {
-            pokemonArray.push({name: pokemonName, roamer: false});
-        });
-        if (roamingList.length) {
-            [...new Set(RoamingPokemonList.getSubRegionalGroupRoamers(region, roamerGroup))].forEach(pokemon => {
-                pokemonArray.push({name: pokemon.pokemonName, roamer: true});
-            });
-        }
-        return pokemonArray;
-    }
 }
