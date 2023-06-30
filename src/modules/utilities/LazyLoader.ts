@@ -12,7 +12,7 @@ function createObserver(loader: HTMLElement, options: IntersectionObserverInit):
 
             // keep loading more in case we don't push the loader off screen
             // @ts-ignore
-            requestIdleCallback(loadMore, { timeout: 100 });
+            // requestIdleCallback(loadMore, { timeout: 100 });
         }
     };
 
@@ -63,7 +63,7 @@ export type LazyLoadOptions = {
 const defaultOptions: LazyLoadOptions = {
     triggerMargin: '10%',
     threshold: 0,
-    pageSize: 100,
+    pageSize: 60,
 };
 
 const memo = new WeakMap<HTMLElement, PureComputed<Array<unknown>>>();

@@ -27,12 +27,12 @@ class DungeonHabitatList {
     });
 
     private static getLootList() {
-        return player.town().dungeon.lootTable;
+        return player.town().dungeon?.lootTable || [];
     }
 
     public static allEnemiesDungeon() {
         const town = player.town();
-        return town.dungeon.normalEncounterList.concat(town.dungeon.bossEncounterList);
+        return town.dungeon?.normalEncounterList.concat(town.dungeon?.bossEncounterList) || [];
     }
 
     public static getFullName() {

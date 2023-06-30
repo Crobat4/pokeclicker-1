@@ -17,23 +17,25 @@
       <div class="modal-body p-0 pb-1">
         <div class="row m-0 mt-1">
           <div class="col">
-            <!-- General sprite -->
-            <img data-bind="attr:{ src: PokemonHelper.getImage(pokemonMap[$data].id, App.game.party.alreadyCaughtPokemon(pokemonMap[$data].id, true) && PokedexHelper.toggleStatisticShiny(), false) }" src=""/>
-            <!-- Female sprite -->
-            <!-- ko if: pokemonMap[$data].gender.visualDifference -->
-            <img data-bind="attr:{ src: PokemonHelper.getImage(pokemonMap[$data].id, App.game.party.alreadyCaughtPokemon(pokemonMap[$data].id, true) && PokedexHelper.toggleStatisticShiny(), true) }" src=""/>
-            <!-- /ko -->
-            <div class="row m-0">
-              <!-- ko if: pokemonMap[$data].gender.femaleRatio != 1 && pokemonMap[$data].gender.type == GameConstants.Genders.MaleFemale -->
-              <div class="col-6 m-auto p-0" data-bind="css: { 'text-right': !pokemonMap[$data].gender.visualDifference && pokemonMap[$data].gender.type == GameConstants.Genders.MaleFemale && pokemonMap[$data].gender.femaleRatio != 0 }">
-                <span data-bind="html: `<i class='bi bi-gender-male gender-icon-male'></i>`"></span>
-              </div>
+            <div class="d-inline-block">
+              <!-- General sprite -->
+              <img data-bind="attr:{ src: PokemonHelper.getImage(pokemonMap[$data].id, App.game.party.alreadyCaughtPokemon(pokemonMap[$data].id, true) && PokedexHelper.toggleStatisticShiny(), false) }" src=""/>
+              <!-- Female sprite -->
+              <!-- ko if: pokemonMap[$data].gender.visualDifference -->
+              <img data-bind="attr:{ src: PokemonHelper.getImage(pokemonMap[$data].id, App.game.party.alreadyCaughtPokemon(pokemonMap[$data].id, true) && PokedexHelper.toggleStatisticShiny(), true) }" src=""/>
               <!-- /ko -->
-              <!-- ko if: pokemonMap[$data].gender.femaleRatio != 0 && pokemonMap[$data].gender.type == GameConstants.Genders.MaleFemale -->
-              <div class="col-6 m-auto p-0" data-bind="css: { 'text-left': !pokemonMap[$data].gender.visualDifference && pokemonMap[$data].gender.type == GameConstants.Genders.MaleFemale && pokemonMap[$data].gender.femaleRatio != 1 }">
-                <span data-bind="html: `<i class='bi bi-gender-female gender-icon-female'></i>`"></span>
+              <div class="row m-0">
+                <!-- ko if: pokemonMap[$data].gender.femaleRatio != 1 && pokemonMap[$data].gender.type == GameConstants.Genders.MaleFemale -->
+                <div class="col-6 m-auto p-0" data-bind="css: { 'text-right': !pokemonMap[$data].gender.visualDifference && pokemonMap[$data].gender.type == GameConstants.Genders.MaleFemale && pokemonMap[$data].gender.femaleRatio != 0 }">
+                  <span data-bind="html: `<i class='bi bi-gender-male gender-icon-male'></i>`"></span>
+                </div>
+                <!-- /ko -->
+                <!-- ko if: pokemonMap[$data].gender.femaleRatio != 0 && pokemonMap[$data].gender.type == GameConstants.Genders.MaleFemale -->
+                <div class="col-6 m-auto p-0" data-bind="css: { 'text-left': !pokemonMap[$data].gender.visualDifference && pokemonMap[$data].gender.type == GameConstants.Genders.MaleFemale && pokemonMap[$data].gender.femaleRatio != 1 }">
+                  <span data-bind="html: `<i class='bi bi-gender-female gender-icon-female'></i>`"></span>
+                </div>
+                <!-- /ko -->
               </div>
-              <!-- /ko -->
             </div>
             <div class="position-absolute" style="top: 0px; right: 15px;"
               data-bind="if: App.game.party.getPokemon(pokemonMap[$data].id)?.pokerus">
@@ -168,7 +170,8 @@
                 <!-- /ko -->
                 <!-- ko if: App.game.party.getPokemon($data)?.shiny -->
                 <tr>
-                  <td class="text-left align-middle text-nowrap">Hide Party Pokémon shiny</td>
+                  <td class="text-left align-middle text-nowrap"
+                    data-bind="text: `${Settings.getSetting('showShinySpriteByDefault').observableValue() ? 'Hide' : 'Show'} Party Pokémon shiny`">Hide Party Pokémon shiny</td>
                   <td class="text-left tight">
                     <label class="form-check-label toggler-wrapper style-1 float-left">
                       <input class="form-check-input" type="checkbox" id="" value="false"
