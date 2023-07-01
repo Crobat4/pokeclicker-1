@@ -176,7 +176,7 @@ class HatcheryHelpers {
         this.list.push(helper);
     }
 
-    public MAX_HIRES = 3;
+    public MAX_HIRES = 4;
     public available: KnockoutComputed<HatcheryHelper[]>;
     public hired: KnockoutComputed<HatcheryHelper[]>;
     public canHire: KnockoutComputed<boolean>;

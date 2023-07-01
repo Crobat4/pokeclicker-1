@@ -348,3 +348,21 @@ div[class*='-icon-container'].item-icon-right {
 .dropdown-item:hover {
   background-color: var(--secondary) !important;
 }
+
+/* Disabled container */
+.disabled {
+  opacity: .5;
+  pointer-events: none;
+
+  &.dark-container {
+    filter: brightness(0.5);
+  }
+}
+
+/* Hatchery queue disabled text */
+.queueDisabledText {
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  transform: translate(-50%, -50%);
+}
