@@ -76,13 +76,18 @@
       </div>
     </div>
     <!-- ko if: App.game.breeding.queueList().length -->
-    <div id="hatcheryQueue" class="card-footer p-1" data-bind="foreach: App.game.breeding.queueList()">
-      <div class="queuePokemon clickable bg-primary"
-        data-bind="click: function(){ App.game.breeding.removeFromQueue($index()) }">
-        <div class="queueListShiny" data-bind="visible: App.game.party.alreadyCaughtPokemon($data, true)">✨</div>
-        <img src="" data-bind="attr: { src: PokemonHelper.getImage(pokemonMap[$data].id) }">
+    <!-- ko using: App.game.breeding.hatcheryHelpers.hired().length >= 4, as: 'fourHelpersHired' -->
+    <div class="position-relative">
+      <div id="hatcheryQueue" class="card-footer p-1" data-bind="foreach: App.game.breeding.queueList(), css: { 'disabled': fourHelpersHired, 'dark-container': fourHelpersHired }">
+        <div class="queuePokemon clickable bg-primary"
+          data-bind="click: function(){ App.game.breeding.removeFromQueue($index()) }">
+          <div class="queueListShiny" data-bind="visible: App.game.party.alreadyCaughtPokemon($data, true)">✨</div>
+          <img src="" data-bind="attr: { src: PokemonHelper.getImage(pokemonMap[$data].id) }">
+        </div>
       </div>
+      <div class="position-absolute queueDisabledText small" data-bind="visible: fourHelpersHired">Queue is disabled since all egg slots have helpers assigned.</div>
     </div>
+    <!-- /ko -->
     <div id="hatcheryQueueInfo" class="card-footer p-0 small">
         <!--
         <button class="btn btn-sm" style="position: absolute; left: 0; width: auto;"
