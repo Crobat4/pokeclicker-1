@@ -13,6 +13,19 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.DEFAULT, '<div class="w-100 d-flex justify-content-around"><a href="https://github.com/Crobat4/pokeclicker" target="_blank">Repository</a><a href="https://github.com/Crobat4/Pokeclicker-desktop" target="_blank">Desktop build</a><a href="https://github.com/Crobat4/pokeclicker/wiki" target="_blank">Github Wiki</a></div>'),
     new Changelog(changelogType.DEFAULT, 'This will keep being updated as long as the thread is alive...'),
     // ⥂⥄
+    // v0.3.19
+    new ChangelogUpdate('v0.3.19', new Date(2023, 7 - 1, 2)),
+    new Changelog(changelogType.NEW, 'Added Official updates (v0.10.12)'),
+    new Changelog(changelogType.NEW, 'Added loot list to dungeon habitat list'),
+    new Changelog(changelogType.CHANGE, 'Time cycle: dawn and dusk starts at 07 and 19 respectively'),
+    new Changelog(changelogType.CHANGE, 'Hatchery: Eggs show Pokémon name on hover (purchased eggs and fossils show "???" instead)'),
+    new Changelog(changelogType.CHANGE, 'Changed external links'),
+    new Changelog(changelogType.CHANGE, 'Changed some in-game text'),
+    new Changelog(changelogType.CHANGE, 'Battle Café: Added Pokérus status'),
+    new Changelog(changelogType.CHANGE, 'Battle Café: Changed Help tab text'),
+    new Changelog(changelogType.CHANGE, 'Maximum amount of hired hatchery helpers increased from 3 to 4'),
+    new Changelog(changelogType.FIXED, 'Underground: Fire Stone being rewarded regardless which stone was revealed'),
+    new Changelog(changelogType.FIXED, 'Underground: Survey not working when at least one item was revealed'),
     // v0.3.18
     new ChangelogUpdate('v0.3.18', new Date(2023, 5 - 1, 7), 'Good night, Witch... <a href="assets/images/witch.png" target="_blank"> </a>'),
     new Changelog(changelogType.NEW, 'Added Official updates (v0.10.11)'),
