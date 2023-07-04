@@ -99,7 +99,7 @@ class SafariBattle {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 resolve(result);
-            }, (0.2 + 1.2 * result[1]) * SafariBattle.Speed.ballRoll);
+            }, (1.2 + 1.2 * result[1]) * SafariBattle.Speed.ballRoll);
         });
     }
 
@@ -173,8 +173,8 @@ class SafariBattle {
             const enemy = $('#safariBattleModal .enemy').offset();
             enemy.left += 30;
             enemy.top += 70;
-            SafariBattle.dropParticle(`<img width=16px src="${bait.image}">`, $('#safariBattleModal .pageItemFooter').offset(), enemy, 1000, 'cubic-bezier(0,0,0.4,1)').css('z-index', 9999);
-            setTimeout(SafariBattle.enemyTurn, 1500);
+            SafariBattle.dropParticle(`<img width=16px src="${bait.image}">`, $('#safariBattleModal .pageItemFooter').offset(), enemy, 500, 'cubic-bezier(0,0,0.4,1)').css('z-index', 9999);
+            setTimeout(SafariBattle.enemyTurn, 1000);
         }
     }
 
@@ -188,7 +188,7 @@ class SafariBattle {
             const enemy = $('#safariBattleModal .enemy').offset();
             enemy.left += 40;
             enemy.top += 10;
-            SafariBattle.dropParticle('<img src="assets/images/safari/rock.png">', $('#safariBattleModal .pageItemFooter').offset(), enemy, 800, 'cubic-bezier(0,0,0.4,1)').css('z-index', 9999);
+            SafariBattle.dropParticle('<img src="assets/images/safari/rock.png">', $('#safariBattleModal .pageItemFooter').offset(), enemy, 400, 'cubic-bezier(0,0,0.4,1)').css('z-index', 9999);
             setTimeout(() => {
                 const hitSplash = $('<ptcl>').html('<img src="assets/images/safari/hit.png">').children().appendTo('#safariBattleModal');
                 hitSplash.offset(enemy).css({'opacity': 0.8, 'z-index': 9998});
@@ -213,8 +213,8 @@ class SafariBattle {
                         }, 350);
                     }, 350);
                 }, 300);
-            }, 800);
-            setTimeout(SafariBattle.enemyTurn, 2000);
+            }, 400);
+            setTimeout(SafariBattle.enemyTurn, 1500);
         }
     }
 
@@ -222,7 +222,7 @@ class SafariBattle {
         if (Safari.inBattle() && !SafariBattle.busy()) {
             SafariBattle.busy(true);
             SafariBattle.text('You flee.');
-            setTimeout(SafariBattle.endBattle, 1500);
+            setTimeout(SafariBattle.endBattle, 750);
         }
     }
 
@@ -288,9 +288,9 @@ class SafariBattle {
 namespace SafariBattle {
     export const Speed = {
         animation: 1000,
-        ballThrow: 750,
-        ballBounce: 850,
-        ballRoll: 700,
+        ballThrow: 375,
+        ballBounce: 700,
+        ballRoll: 500,
         enemyTransition: 1000,
     };
 
