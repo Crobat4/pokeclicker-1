@@ -141,9 +141,7 @@ class Pokeballs implements Feature {
         const alreadyCaughtShadow = App.game.party.alreadyCaughtPokemon(id, false, true);
         const pokemon = PokemonHelper.getPokemonById(id);
         const isUltraBeast = GameConstants.UltraBeastType[pokemon.name] != undefined;
-        const isLegendary = GameConstants.LegendaryType.find((id) => id == Math.floor(pokemon.id)) != undefined;
-        const isMythical = GameConstants.MythicalType.find((id) => id == Math.floor(pokemon.id)) != undefined;
-        const encounterType = isLegendary || isMythical ? EncounterType.legendary : (isUltraBeast ? EncounterType.ultraBeast : origEncounterType);
+        const encounterType = isUltraBeast ? EncounterType.ultraBeast : origEncounterType;
 
         const pref = App.game.pokeballFilters.findMatch({
             caught: alreadyCaught,
