@@ -32,17 +32,20 @@
                 </div>
 
                 <!-- ko if: QuestLineHelper.isQuestLineCompleted('Tutorial Quests') -->
-                <div class="d-flex flex-column position-absolute justify-content-center small mr-1" style="right: 0; top: 0; height: 100%;"
+                <div class="d-flex align-items-center position-absolute justify-content-center small mr-1" style="right: 0; top: 0; height: 100%;"
                     data-bind="using: App.game.statistics.dungeonsCleared[GameConstants.getDungeonIndex(player.town().name)]()">
-                    <div style="line-height: normal;" data-bind="text: $data.toLocaleString('en-US')">0</div>
-                    <div style="line-height: normal;">clears</div>
+                    <div class="d-flex flex-column">
+                        <div style="line-height: normal;" data-bind="text: $data.toLocaleString('en-US')">0</div>
+                        <div style="line-height: normal;">clears</div>
+                    </div>
+
+                    <!-- Pokemon List -->
+                    <div class="route-pokemon-list-icon px-1 clickable d-inline-block ml-1" data-bind="tooltip: { title: 'Check the Pokémon available here', trigger: 'hover' },
+                        click: function() { $('#dungeonHabitatListModal').modal('show') }">
+                        <img src="assets/images/shortcut-icons/poke-list.png">
+                    </div>
                 </div>
                 <!-- /ko -->
-                <!-- Pokemon List -->
-                <div class="route-pokemon-list-icon px-1 clickable d-inline-block ml-1" data-bind="tooltip: { title: 'Check the Pokémon available here', trigger: 'hover' },
-                    click: function() { $('#dungeonHabitatListModal').modal('show') }">
-                    <img src="assets/images/shortcut-icons/poke-list.png">
-                </div>
               </knockout>
             </div>
         </div>
