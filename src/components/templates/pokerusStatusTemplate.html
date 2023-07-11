@@ -3,9 +3,10 @@
         <!-- ko if: $data.pokerus -->
         <img width="" src="" data-bind="attr: { src: 'assets/images/breeding/pokerus/' + GameConstants.Pokerus[$data.pokerus] + '' + (Settings.getSetting('accessibilityPokerus').observableValue() ? '-accessibility' : '') + '.png', width: `${$data.width || '40px'}` },
             tooltip: {
-                title: $data.evRemainingText || '',
+                title:  $data.evs !== undefined ? `EVs: ${$data.evs.toLocaleString('en-US')}` : '',
                 placement: 'bottom',
-                trigger: 'hover'
+                trigger: 'hover',
+                placement: 'top',
             }"/>
         <!-- /ko -->
     </knockout>

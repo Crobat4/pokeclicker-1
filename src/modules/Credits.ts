@@ -299,6 +299,8 @@ export const SpriteCredits: Credit[] = [
             'Meteorite',
             'Milcery (Cheesy)',
             'Miror B.',
+            'Mismagius (Illusion)',
+            'Mismagius (Illusion) Shop Icon',
             'Mr Stone',
             'Peat Block',
             'Pinkan Arbok',
@@ -551,6 +553,8 @@ export const SpriteCredits: Credit[] = [
         name: 'Farboo171',
         link: 'https://github.com/Farboo171',
         resources: [
+            'Athlete (male)',
+            'Bodybuilder (male)',
             'Exeggcute (Single) Item',
             'Flowering Celebi',
             'Freeze Mulch',
@@ -779,6 +783,24 @@ export const SpriteCredits: Credit[] = [
             'Furfrou Trim Shop Icons',
         ],
         // NOTES: Granted permission on devianart to NiceDice via PN
+    },
+    {
+        name: 'osherwott',
+        link: 'https://github.com/osherwott',
+        resources: [
+            'Bandana Guy',
+            'Chaser (female)',
+            'Chaser (male)',
+            'Hunter (female)',
+            'Hunter (male)',
+            'Rider (female)',
+            'Rider (male)',
+            'Roller Boy',
+            'Rui',
+            'Street Performer',
+            'Team Snagem',
+            'Willie',
+        ],
     },
     {
         name: 'pixie-rings',
