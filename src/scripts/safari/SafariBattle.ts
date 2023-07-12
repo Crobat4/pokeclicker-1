@@ -5,6 +5,8 @@ class SafariBattle {
     static escapeAttempts = 0;
     static particle;
     static selectedBait: KnockoutObservable<Bait> = ko.observable(BaitList.Bait);
+    // Check if Pokemon is caught for game over
+    static isCaught = ko.observable(false).extend({ boolean: null });
 
     public static get enemy(): SafariPokemon {
         return SafariBattle._enemy();
@@ -21,6 +23,7 @@ class SafariBattle {
         GameController.simulateKey('ArrowLeft', 'up');
         GameController.simulateKey('ArrowRight', 'up');
         // Generate enemy
+        SafariBattle.isCaught(false);
         SafariBattle.enemy = enemy;
         Safari.inBattle(true);
         SafariBattle.text('What will you do?');
@@ -153,6 +156,7 @@ class SafariBattle {
         const partyPokemon = App.game.party.getPokemon(pokemonID);
         partyPokemon.effortPoints += App.game.party.calculateEffortPoints(partyPokemon, SafariBattle.enemy.shiny, GameConstants.ShadowStatus.None, GameConstants.SAFARI_EP_YIELD);
         Safari.spawnItemCheck();
+        SafariBattle.isCaught(true);
     }
 
     public static throwBait() {
@@ -256,12 +260,34 @@ class SafariBattle {
     private static gameOver() {
         SafariBattle.text(GameConstants.SAFARI_OUT_OF_BALLS);
         setTimeout(() => {
-            Safari.inBattle(false);
-            Safari.inProgress(false);
-            SafariBattle.busy(false);
-            $('#safariBattleModal').modal('hide');
-            $('#safariModal').modal('hide');
+            if (Safari.canPaySingleBall()) {
+                setTimeout(async () => {
+                    // Check if player wants another Safari Ball
+                    const questPointImage = '<img alt="Quest Points" src="assets/images/currency/questPoint.svg" height="24px, width="24px}"/>';
+                    if (await Notifier.confirm({ title: 'You\'ve run out of balls!', message: `Do you wish to pay ${questPointImage} ${Safari.singleBallCost().amount} for another Safari Ball?`, confirm: 'Yes', cancel: 'No' })) {
+                        Safari.paySingleBall();
+                        Safari.balls(Safari.balls() + 1);
+                        if (!SafariBattle.isCaught()) {
+                            setTimeout(SafariBattle.enemyTurn, 500);
+                        } else {
+                            SafariBattle.endBattle();
+                        }
+                    } else {
+                        SafariBattle.gameOverNoBallsActions();
+                    }
+                }, GameConstants.SECOND);
+            } else {
+                SafariBattle.gameOverNoBallsActions();
+            }
         }, 2000);
+    }
+
+    private static gameOverNoBallsActions() {
+        Safari.inBattle(false);
+        Safari.inProgress(false);
+        SafariBattle.busy(false);
+        $('#safariBattleModal').modal('hide');
+        $('#safariModal').modal('hide');
     }
 
     private static dropParticle(html: string, pos, target, time = 2, top, persistentParticle = false) {

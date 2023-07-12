@@ -225,6 +225,18 @@ class Safari {
         }
     }
 
+    public static canPaySingleBall() {
+        return App.game.wallet.hasAmount(Safari.singleBallCost());
+    }
+
+    public static singleBallCost() {
+        return new Amount(Math.ceil((Safari.cost().amount * 1.2) / 30), GameConstants.Currency.questPoint);
+    }
+
+    public static paySingleBall() {
+        App.game.wallet.loseAmount(Safari.singleBallCost());
+    }
+
     private static canAccess() {
         return App.game.keyItems.hasKeyItem(KeyItemType.Safari_ticket);
     }
