@@ -1,6 +1,6 @@
 <div class="modal fade" id="pokeballSelectorModal" tabindex="-1" role="dialog"
   aria-labelledby="PokeballSelectorModal" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-sm" role="document">
+  <div class="modal-dialog modal-dialog-scrollable modal-md" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="pokeballSelectorModalLabel">Poké Ball Selection</h5>
@@ -9,32 +9,35 @@
         </button>
       </div>
       <div class="modal-body p-0">
-        <div class="table-warning p-1 text-left" data-bind="text: App.game.pokeballs.selectedTitle"></div>
-        <div class="card-body p-0 show table-responsive text-left">
-          <table class="table table-sm m-0">
-            <thead>
-              <tr>
-                <th class="text-center" width="20%">Ball</th>
-                <th>Description</th>
-                <th class="text-center">Qty</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="clickable"
-                data-bind="template: { name: 'pokeballSelectionTemplate', data: { 'image': 'None', 'type': -1, 'description': 'Do not catch' }},
-                    click: function(){App.game.pokeballs.selectedSelection()?.(GameConstants.Pokeball.None)}"></tr>
-              <!-- ko foreach: App.game.pokeballs.pokeballs -->
-              <tr class="clickable"
-                data-bind="template: { name: 'pokeballSelectionTemplate', data: $data},
-                  click: function(){App.game.pokeballs.selectedSelection()?.($data.type)},
-                  visible: $data.unlocked() || $data.quantity(),
-                  css: {
-                    'clickable': !($data.type === GameConstants.Pokeball.Masterball && App.game.challenges.list.disableMasterballs.active()),
-                    'disabled no-click text-muted': ($data.type === GameConstants.Pokeball.Masterball && App.game.challenges.list.disableMasterballs.active()),
-                  }"></tr>
-              <!-- /ko -->
-            </tbody>
-          </table>
+        <div class="bg-danger p-1 text-center" data-bind="text: `Selected Filter: ${App.game.pokeballs.selectedTitle()}`"></div>
+        <div class="card-body show text-left p-3">
+          <div class="row justify-content-center">
+            <div class="col-6 col-md-4 mb-2" data-bind="">
+              <div class="btn text-left w-100 px-1 d-flex align-items-center" style="padding-top: 1px; padding-bottom: 1px; min-height: 46px;"
+                  data-bind="template: { name: 'pokeballSelectionTemplate', data: { 'image': 'None', 'type': -1, 'description': 'Do not catch' } },
+                      click: () => { App.game.pokeballs.selectedSelection()?.(GameConstants.Pokeball.None); },
+                      css: {
+                        'btn-primary': App.game.pokeballs.selectedSelection()?.() === -1,
+                        'btn-secondary': App.game.pokeballs.selectedSelection()?.() !== -1,
+                      }">
+              </div>
+            </div>
+            <!-- ko foreach: App.game.pokeballs.pokeballs -->
+            <div class="col-6 col-md-4 mb-2" data-bind="visible: $data.unlocked() || $data.quantity()">
+                <div class="btn text-left w-100 px-1 d-flex align-items-center" style="padding-top: 1px; padding-bottom: 1px; min-height: 46px;"
+                    data-bind="template: { name: 'pokeballSelectionTemplate', data: $data },
+                        click: () => { App.game.pokeballs.selectedSelection()?.($data.type); },
+                        css: {
+                          'clickable': !($data.type === GameConstants.Pokeball.Masterball && App.game.challenges.list.disableMasterballs.active()),
+                          'disabled no-click text-muted': ($data.type === GameConstants.Pokeball.Masterball && App.game.challenges.list.disableMasterballs.active()),
+                          'btn-primary': App.game.pokeballs.selectedSelection()?.() === $data.type,
+                          'btn-secondary': App.game.pokeballs.selectedSelection()?.() !== $data.type,
+                        }">
+                </div>
+            </div>
+            <!-- /ko -->
+          </div>
+          
         </div>
       </div>
       <div class="modal-footer">
@@ -45,14 +48,17 @@
 </div>
 
 <script type="text/html" id="pokeballSelectionTemplate">
-  <td class="text-center">
-    <img class="pokeball-small"
-      data-bind="attr: {src: 'assets/images/pokeball/' + GameConstants.Pokeball[$data.type] + '.svg'}, css: {'pokeball-selected': App.game.pokeballs.selectedSelection()?.() === $data.type}, tooltip: {title: $data.type === -1 ? 'None' : ItemList[GameConstants.Pokeball[$data.type]].displayName, trigger: 'hover', animation: false, placement: 'bottom'}"/>
-  </td>
-  <td class="align-middle">
-    <span data-bind="text: $data.description"></span>
-  </td>
-  <td class="text-center align-middle">
-    <span data-bind="text: $data.quantity && $data.quantity() ? GameConstants.formatNumber($data.quantity()) : '-', tooltip: $data.quantity && {title: $data.quantity().toLocaleString('en-US'), trigger: 'hover', animation: false, placement: 'left'}"></span>
-  </td>
+  <div class="d-flex w-100 align-items-center" data-container="body" data-bind="tooltip: {
+      title: $data.type !== -1 ? `<u>${ItemList[GameConstants.Pokeball[$data.type]].displayName}</u> ×${$data.quantity().toLocaleString('en-US')}<br/>${$data.description || ''}<br/><u>Catch time</u>: ${$data.catchTime / 1000} ${GameConstants.pluralizeString('second', $data.catchTime / 1000)}` : '',
+      trigger: 'hover',
+      placement:'top',
+      html: true,
+      boundary: document.getElementById('pokeballSelectorModal'),
+  }">
+  <img width="32px" data-bind="attr: { src: 'assets/images/pokeball/' + GameConstants.Pokeball[$data.type] + '.svg'}">
+    <div class="flex-grow-1 small align-self-center ml-2" style="min-width: 0;">
+        <div class="text-truncate" data-bind="text: $data.type !== -1 ? ItemList[GameConstants.Pokeball[$data.type]].displayName : 'Do not catch'"></div>
+        <div data-bind="visible: $data.type !== -1, text: $data.quantity && $data.quantity() ? GameConstants.formatNumber($data.quantity()) : '-'"></div>
+    </div>
+  </div>
 </script>
