@@ -25,7 +25,7 @@
             </thead>
             <tbody id="pokeballFilters" data-bind="foreach: App.game.pokeballFilters.displayList">
                 <tr data-bind="css: { 'pokeballFilterDisabled': !$data.enabled() }">
-                    <td><span data-bind="
+                    <td class="py-0 align-middle"><span data-bind="
                         text: $data.name,
                         tooltip: {
                             title: $data.description,
@@ -35,8 +35,8 @@
                             html: true,
                         }
                     "></td>
-                    <td>
-                        <img class="pokeball-small clickable"
+                    <td class="py-0 align-middle">
+                        <img class="pokeball-small clickable" style="height: 24px;"
                             data-bind="
                                 attr: {src: 'assets/images/pokeball/' + GameConstants.Pokeball[$data.ball()] + '.svg'},
                                 css: { 'pokeball-selected': $data.enabled() },
@@ -49,7 +49,7 @@
                             "
                         />
                     </td>
-                    <td data-bind="with: {
+                    <td class="py-0 align-middle" data-bind="with: {
                         count: App.game.pokeballs.getBallQuantity($data?.ball())
                     }">
                         <span data-bind="
