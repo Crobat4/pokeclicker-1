@@ -46,7 +46,7 @@
                             <div class="pokeballFilterWrapper" data-bind="
                                 visible: !PokeballFilters.hideFilter($data)
                             ">
-                                <div class="pokeballFilterDragHandle bg-dark text-white"></div>
+                                <div class="pokeballFilterDragHandle bg-dark text-white pb-2"></div>
                                 <div class="pokeballFilter">
                                     <div class="pokeballFilterHeader">
                                         <div class="pokeballFilterEnableToggle" data-bind="
@@ -91,11 +91,20 @@
                                                 $('#pokeballSelectorModal').modal('show')
                                             },
                                         }" />
-                                    </div>
-                                    <button class="pokeballFilterExpandBtn btn btn-secondary btn-block"
+                                        
+                                        <img class="pokeballFilterExpandBtn clickable mx-1 p-0" src="assets/images/fa-cog.svg"
+                                            style="width: auto; height: 32px;"
                                             data-toggle="collapse"
-                                            data-bind="attr: { href: `#pokeball-filter-options-${$index()}` }"
-                                    >Toggle Settings</button>
+                                            data-bind="attr: { href: `#pokeball-filter-options-${$index()}` },
+                                                tooltip: {
+                                                    title: 'Toggle Settings',
+                                                    trigger: 'hover',
+                                                    placement: 'bottom',
+                                                    boundary: 'window'
+                                                }"
+                                        />
+                                    </div>
+                                    
                                     <div class="collapse pokeballFilterBody"
                                         data-bind="attr: { id: `pokeball-filter-options-${$index()}`}">
                                         <table class="pokeballFilterOptions">
