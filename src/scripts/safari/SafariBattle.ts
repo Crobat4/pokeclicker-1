@@ -86,7 +86,7 @@ class SafariBattle {
         return new Promise((resolve, reject) => {
             const random = Math.random();
             const catchF = SafariBattle.enemy.catchFactor / 100;
-            const index = catchF >= 1 ? 3 : Math.floor(4 * (1 - Math.max(random, catchF)) / (1 - catchF));
+            const index = catchF >= 1 ? 1 : Math.floor(4 * (1 - Math.max(random, catchF)) / (1 - catchF));
             if (index != 0) {
                 $('#safariBattleModal').css('animation-duration', `${SafariBattle.Speed.ballRoll}ms`);
                 SafariBattle.startRoll(index);
