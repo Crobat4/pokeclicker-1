@@ -1008,7 +1008,8 @@ class Farming implements Feature {
                 'This Berry has a very dry flavor. It has the effect of making other food eaten at the same time taste sweet.',
                 'The scent of this Berry plant repels wild Pokémon.',
             ],
-            new Aura(AuraType.Repel, [0.11, 0.22, 0.33])
+            new Aura(AuraType.Repel, [0.11, 0.22, 0.33]),
+            ['Hoopa']
         );
 
         this.berryData[BerryType.Custap] = new Berry(
