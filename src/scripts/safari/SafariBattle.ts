@@ -236,7 +236,7 @@ class SafariBattle {
         // Enemy turn to flee;
         if (Rand.chance(SafariBattle.enemy.escapeFactor / 100)) {
             SafariBattle.text(`${SafariBattle.enemy.displayName} has fled.`);
-            setTimeout(SafariBattle.endBattle, 450);
+            setTimeout(SafariBattle.endBattle, 750);
         } else if (SafariBattle.enemy.eating > 0) {
             SafariBattle.text(`${SafariBattle.enemy.displayName} is eating..`);
         } else if (SafariBattle.enemy.angry > 0) {
