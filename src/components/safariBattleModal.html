@@ -45,7 +45,7 @@
             </div>
 
             <div class="modal-footer p-0 bg-dark text-light">
-                <div class="message" data-bind='html: SafariBattle.text'></div>
+                <div class="message d-flex align-items-center justify-content-center" style="height: 45px;" data-bind='html: SafariBattle.text'></div>
                 <div class="row" style="width: 100%;">
                     <button type="button" class="btn btn-primary btn-block col-6 m-0" onclick="this.blur();SafariBattle.throwBall()" data-bind="disable: SafariBattle.busy()">
                         <span class="position-absolute small" style="left: 5px;" data-bind="text: `[${Settings.getSetting('hotkey.safari.ball').value}]`"></span>
