@@ -7343,6 +7343,7 @@ dungeonList['Liberty Garden'] = new Dungeon('Liberty Garden',
             {loot: 'Flame Plate'},
             {loot: 'Mind Plate'},
         ],
+        legendary: [],
     },
     2703000,
     [
