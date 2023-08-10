@@ -46,7 +46,9 @@ abstract class Quest {
 
     public static randomizeReward(pointsReward: number) {
         const randomPointBonus = 0.9 + SeededRand.float(0.2); // random between 0.9 and 1.1
-        return Math.ceil(pointsReward * randomPointBonus);
+        const regionMultiplier = 1 + (player.highestRegion() * 0.1);
+        const levelMultiplier = 1 + (App.game.quests.level() * 0.02);
+        return Math.ceil(pointsReward * randomPointBonus * regionMultiplier * levelMultiplier);
     }
 
     get xpReward(): number {
