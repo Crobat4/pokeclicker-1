@@ -148,6 +148,7 @@ import Translate from './translation/Translation';
 import DayOfWeekRequirement from './requirements/DayOfWeekRequirement';
 import SaveReminder from './saveReminder/SaveReminder';
 import ClientRequirement from './requirements/ClientRequirement';
+import ContestWonRequirement from './requirements/ContestWonRequirement';
 import lazyLoad from './utilities/LazyLoader';
 import {
     beforeEvolve, EvoTrigger, LevelEvolution, StoneEvolution,
@@ -350,6 +351,7 @@ Object.assign(<any>window, {
     DayOfWeekRequirement,
     SaveReminder,
     ClientRequirement,
+    ContestWonRequirement,
     lazyLoad,
     LevelEvolution,
     StoneEvolution,
