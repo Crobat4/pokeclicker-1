@@ -51,6 +51,10 @@ class DungeonHabitatList {
         return player.subregionObject()?.name;
     }
 
+    private static getShadowStauts() {
+        return player.town().dungeon?.allAvailableShadowPokemon().some(p => App.game.party.getPokemonByName(p)?.shadow < GameConstants.ShadowStatus.Shadow);
+    }
+
     public static getLootImage(input) {
         switch (true) {
             case typeof BerryType[input] == 'number':
