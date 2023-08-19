@@ -7,9 +7,16 @@
                 <div class="row w-100 m-0">
                     <div class="col-12 p-3 text-left border-bottom border-secondary">
                         <!-- TODO: Add shiny and pokerus statuses if habitat list is made -->
-                        <h4 class="modal-title" data-bind="text: DungeonHabitatList.getFullName()">
+                        <h4 class="modal-title d-inline-block" data-bind="text: DungeonHabitatList.getFullName()">
                             Dungeon and region names
                         </h4>
+                        <!-- ko if: DungeonHabitatList.getShadowStauts() -->
+                        <div class="d-inline-block">
+                            <div class="rounded-circle" data-bind="tooltip: { title: 'There are uncaught Shadow Pokémon in this dungeon', trigger: 'hover', placement: 'bottom', boundary: 'window' }">
+                                <img class="mw-100 mh-100 p-0" src="" width="24px" style="vertical-align: unset; filter: unset;" data-bind="attr: {src: 'assets/images/status/shadow.svg'}">
+                            </div>
+                        </div>
+                        <!-- /ko -->
                         <button type="button" class="btn btn-danger position-absolute h-100" data-dismiss="modal" style="top: 0; right: 0; font-size: 24px;">×</button>
                     </div>
                     <div class="col-12 p-0">

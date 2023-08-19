@@ -770,9 +770,9 @@ const RedSpearow = new NPC('Red Spearow', [
     '<i>The Red Spearow seems to appreciate your visit.</i>',
 ], {image: 'assets/images/pokemon/21.01.png'});
 
-const NewIslandJessieAndJames = new RoamerNPC('Jessie And James',
-    ['Mewtwo\'s Clones have escape and are Roaming freely across Kanto. Will you help us track them down? It\'s for a good cause, we swear.'],
-    GameConstants.Region.kanto, 0, 'assets/images/npcs/Jessie And James.png',
+const NewIslandJessieAndJames = new RoamerNPC('Jessie and James',
+    ['Mewtwo\'s Clones have escaped and are Roaming freely across Kanto. Will you help us track them down? It\'s for a good cause, we swear.'],
+    GameConstants.Region.kanto, 0, 'assets/images/npcs/Jessie and James.png',
     new ClearDungeonRequirement(1,  GameConstants.getDungeonIndex('New Island'))
 );
 
@@ -3056,7 +3056,9 @@ const ProfKrane = new NPC('Professor Krane', [
 const DrKaminko = new NPC('Dr. Kaminko', [
     'Leave me alone! I\'m WORKING!']
 );
-
+const OrreColosseumSpectator = new NPC('Colosseum Spectator', [
+    'Only the toughest trainers in Orre are allowed to fight here! I\'m just watching until I get stronger.']
+);
 //Hoenn Towns
 TownList['Littleroot Town'] = new Town(
     'Littleroot Town',
@@ -3371,7 +3373,7 @@ TownList['Gateon Port'] = new Town(
     'Gateon Port',
     GameConstants.Region.hoenn,
     GameConstants.HoennSubRegions.Orre,
-    [GateonPortShop, new MoveToDungeon(dungeonList['Gateon Port Battles'])],
+    [GateonPortShop, new MoveToDungeon(dungeonList['Gateon Port Battles']), new DockTownContent()],
     {
         requirements: [new QuestLineStartedRequirement('Shadows in the Desert')],
         npcs: [GateonSailor, Verich],
@@ -3410,7 +3412,16 @@ TownList['S. S. Libra'] = new Town(
         npcs: [SearchLibra],
     }
 );
-
+TownList['Orre Colosseum'] = new Town(
+    'Orre Colosseum',
+    GameConstants.Region.hoenn,
+    GameConstants.HoennSubRegions.Orre,
+    [GymList['Cipher Admin Lovrina'], GymList['Cipher Admin Snattle'], GymList['Cipher Admin Gorigan'], GymList['Cipher Admin Ardos'], GymList['Cipher Admin Eldes']],
+    {
+        requirements: [new QuestLineCompletedRequirement('Gale of Darkness')],
+        npcs: [OrreColosseumSpectator],
+    }
+);
 //Hoenn Dungeons
 TownList['Petalburg Woods'] = new DungeonTown(
     'Petalburg Woods',
@@ -3750,20 +3761,13 @@ TownList['Under Colosseum'] = new DungeonTown(
         new QuestLineCompletedRequirement('Shadows in the Desert'),
     ]
 );
-TownList['Orre Colosseum'] = new DungeonTown(
-    'Orre Colosseum',
-    GameConstants.Region.hoenn,
-    GameConstants.HoennSubRegions.Orre,
-    [
-        new DevelopmentRequirement, //TODO Populate this
-    ]
-);
 TownList['Gateon Port Battles'] = new DungeonTown(
     'Gateon Port Battles',
     GameConstants.Region.hoenn,
     GameConstants.HoennSubRegions.Orre,
     [
         new QuestLineStepCompletedRequirement('Gale of Darkness', 1),
+        new DevelopmentRequirement(),
     ]
 );
 TownList['Cipher Key Lair'] = new DungeonTown(
@@ -3772,6 +3776,7 @@ TownList['Cipher Key Lair'] = new DungeonTown(
     GameConstants.HoennSubRegions.Orre,
     [
         new QuestLineStepCompletedRequirement('Gale of Darkness', 24),
+        new DevelopmentRequirement(),
     ],
     [],
     {
@@ -3784,6 +3789,7 @@ TownList['Citadark Isle'] = new DungeonTown(
     GameConstants.HoennSubRegions.Orre,
     [
         new QuestLineStepCompletedRequirement('Gale of Darkness', 26),
+        new DevelopmentRequirement(),
     ]
 );
 TownList['Citadark Isle Dome'] = new DungeonTown(
@@ -3792,6 +3798,7 @@ TownList['Citadark Isle Dome'] = new DungeonTown(
     GameConstants.HoennSubRegions.Orre,
     [
         new QuestLineStepCompletedRequirement('Gale of Darkness', 27),
+        new DevelopmentRequirement(),
     ]
 );
 
@@ -8606,7 +8613,8 @@ TownList['Tunnel to the Top'] = new DungeonTown(
     'Tunnel to the Top',
     GameConstants.Region.galar,
     GameConstants.GalarSubRegions.CrownTundra,
-    [new RouteKillRequirement(10, GameConstants.Region.galar, 54)]
+    [new RouteKillRequirement(10, GameConstants.Region.galar, 54)],
+    [new MoveToDungeon(dungeonList['Max Lair'])]
 );
 TownList['Crown Shrine'] = new DungeonTown(
     'Crown Shrine',
@@ -8617,6 +8625,12 @@ TownList['Crown Shrine'] = new DungeonTown(
     {
         npcs: [Calyrex4, Calyrex5, CrownShrineExplorer],
     }
+);
+TownList['Max Lair'] = new DungeonTown(
+    'Max Lair',
+    GameConstants.Region.galar,
+    GameConstants.GalarSubRegions.CrownTundra,
+    [new QuestLineStartedRequirement('TODO Gigantamax questline name'), new DevelopmentRequirement()]
 );
 
 //Hisui shops

@@ -11,10 +11,9 @@
 
             <div class="modal-body p-0">
                 <ul class="nav nav-tabs nav-fill">
-                    <li class="nav-item"><a class="nav-link active" href="#saveTab" data-toggle="tab">Save</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#codeTab" data-toggle="tab">Redeem Code</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#trainerIdTab" data-toggle="tab">Trainer ID</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#saveConvert" data-toggle="tab">Convert Original Save</a></li>
+                    <li class="nav-item equal-width-tabs"><a class="nav-link active" href="#saveTab" data-toggle="tab">Save</a></li>
+                    <li class="nav-item equal-width-tabs"><a class="nav-link" href="#codeTab" data-toggle="tab">Redeem Code</a></li>
+                    <li class="nav-item equal-width-tabs"><a class="nav-link" href="#saveConvert" data-toggle="tab">Convert Original Save</a></li>
                 </ul>
                 <div class="tab-content w-75 m-auto p-3">
                     <div id="saveTab" class="tab-pane fade in active show">
@@ -42,7 +41,14 @@
                             </div>
                             
                             <i>If this does not work, you can copy the contents of the save and paste it into a '.txt' file</i>
-                            <button class="btn btn-primary btn-block" onclick="Save.copySaveToClipboard()">Copy to Clipboard</button>
+                            <div class="row">
+                                <div class="col-md-6 col-12">
+                                    <button class="btn btn-primary btn-block" onclick="Save.copySaveToClipboard(true)">Copy to Clipboard</button>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <button class="btn btn-primary btn-block" onclick="Save.copySaveToClipboard()">Copy to Clipboard (Official)</button>
+                                </div>
+                            </div>
                             <hr>
 
                             <input type="file" id="import-save" accept=".txt" style="display:none;"
@@ -62,18 +68,6 @@
                                 <button class="btn btn-info" name="name" value="value" type="submit" onclick="RedeemableCodeController.enterCode(); return false;">Claim!</button>
                             </div>
                         </form>
-                    </div>
-
-                    <div id="trainerIdTab" class="tab-pane fade">
-                        <h3>Trainer ID</h3>
-                        <!-- ko if: App.game.discord.FinalID() -->
-                        <i data-bind="visible: App.game.discord.FinalID()">Your Trainer ID is: </i>
-                        <i data-bind="visible: App.game.discord.FinalID(), html: App.game.discord.FinalID().slice(-6)">Trainer ID.</i>
-                        <!-- /ko -->
-                        <i data-bind="visible: !App.game.discord.FinalID()">Trainer ID needs to be generated in order to make Enigma Berry obtainable.</i>
-                        <button class="btn btn-primary btn-block" onClick="App.game.discord.generateRandomKey()" data-bind="visible: !App.game.discord.FinalID()">
-                            Generate Trainer ID
-                        </button>
                     </div>
 
                     <div id="saveConvert" class="tab-pane fade">
