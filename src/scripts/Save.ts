@@ -95,8 +95,8 @@ class Save {
         }
     }
 
-    public static copySaveToClipboard() {
-        const backupSaveData = {player, save: this.getSaveObject(), settings: Settings.toJSON()};
+    public static copySaveToClipboard(removeCrobatStuff = false) {
+        const backupSaveData = {player, save: this.getSaveObject(removeCrobatStuff), settings: Settings.toJSON()};
         navigator.clipboard.writeText(SaveSelector.btoa(JSON.stringify(backupSaveData)));
         Notifier.notify({
             title: 'Save copied',
