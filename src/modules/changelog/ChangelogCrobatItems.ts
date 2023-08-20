@@ -13,6 +13,14 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.DEFAULT, '<div class="w-100 d-flex justify-content-around"><a href="https://github.com/Crobat4/pokeclicker" target="_blank">Repository</a><a href="https://github.com/Crobat4/Pokeclicker-desktop" target="_blank">Desktop build</a><a href="https://github.com/Crobat4/pokeclicker/wiki" target="_blank">Github Wiki</a></div>'),
     new Changelog(changelogType.DEFAULT, 'This will keep being updated as long as the thread is alive...'),
     // ⥂⥄
+    // v0.3.23
+    new ChangelogUpdate('v0.3.23', new Date(2023, 7 - 1, 15)),
+    new Changelog(changelogType.NEW, 'Added Official updates (v0.10.14)'),
+    new Changelog(changelogType.NEW, 'Safari: You can now purchase an extra ball after game over'),
+    new Changelog(changelogType.CHANGE, 'Safari: Misc layout changes'),
+    new Changelog(changelogType.CHANGE, 'Safari: Safari Ball will shake only once if the Pokémon\'s catch rate is 100%'),
+    new Changelog(changelogType.CHANGE, 'Quest rewards now increase according to quest level and highest unlocked region'),
+    new Changelog(changelogType.REMOVED, 'Old Trainer ID system from Save window'),
     // v0.3.22
     new ChangelogUpdate('v0.3.22', new Date(2023, 7 - 1, 15)),
     new Changelog(changelogType.FIXED, 'Friend Safari: Code Pokémon not being accounted for the daily list'),
