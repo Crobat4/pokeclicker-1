@@ -384,7 +384,8 @@ class Farming implements Feature {
                 'This Berry multiplies the effect of Berry plants around it.',
             ],
             new Aura(AuraType.Boost, [1.01, 1.02, 1.03]),
-            ['Crabrawler']
+            ['Crabrawler'],
+            true
         );
         //#endregion
 
@@ -676,7 +677,8 @@ class Farming implements Feature {
                 'This Berry promotes the fruiting of nearby Berry plants.',
             ],
             new Aura(AuraType.Harvest, [1.1, 1.2, 1.3]),
-            ['Squirtle', 'Totodile', 'Mudkip', 'Piplup', 'Oshawott', 'Froakie', 'Popplio', 'Sobble', 'Quaxly']
+            ['Squirtle', 'Totodile', 'Mudkip', 'Piplup', 'Oshawott', 'Froakie', 'Popplio', 'Sobble', 'Quaxly'],
+            true
         );
 
         this.berryData[BerryType.Wacan] = new Berry(
@@ -696,7 +698,8 @@ class Farming implements Feature {
                 'The same energy promotes the growth of nearby Berries.',
             ],
             new Aura(AuraType.Growth, [1.1, 1.2, 1.3]),
-            ['Pikachu', 'Plusle', 'Minun', 'Pachirisu', 'Emolga', 'Dedenne', 'Togedemaru', 'Morpeko (Hangry)', 'Pawmi']
+            ['Pikachu', 'Plusle', 'Minun', 'Pachirisu', 'Emolga', 'Dedenne', 'Togedemaru', 'Morpeko (Hangry)', 'Pawmi'],
+            true
         );
 
         this.berryData[BerryType.Rindo] = new Berry(

@@ -12,6 +12,7 @@ interface BerryFlavor {
 class Berry {
     public flavors: BerryFlavor[];
     public wander: PokemonNameType[];
+    public secondFarmAura: boolean;
 
     public static baseWander: PokemonNameType[] = [
         'Tangela', 'Scyther',
@@ -48,13 +49,15 @@ class Berry {
         public firmness: BerryFirmness,
         public description: string[],
         public aura?: Aura,
-        wander?: PokemonNameType[]
+        wander?: PokemonNameType[],
+        secondFarmAura?: boolean
     ) {
         this.flavors = [];
         for (let i = 0; i < 5; i++) {
             this.flavors.push({type: i, value: flavors[i]});
         }
         this.wander = Berry.baseWander.concat(Berry.colorWander[this.color], wander ?? []);
+        this.secondFarmAura = secondFarmAura ?? false;
     }
 
     get descriptionHTML(): string {
