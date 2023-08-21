@@ -13,8 +13,12 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.DEFAULT, '<div class="w-100 d-flex justify-content-around"><a href="https://github.com/Crobat4/pokeclicker" target="_blank">Repository</a><a href="https://github.com/Crobat4/Pokeclicker-desktop" target="_blank">Desktop build</a><a href="https://github.com/Crobat4/pokeclicker/wiki" target="_blank">Github Wiki</a></div>'),
     new Changelog(changelogType.DEFAULT, 'This will keep being updated as long as the thread is alive...'),
     // ⥂⥄
+    // v0.3.24
+    new ChangelogUpdate('v0.3.24', new Date(2023, 8 - 1, 21)),
+    new Changelog(changelogType.NEW, 'Added Official updates (v0.10.15)'),
+    new Changelog(changelogType.CHANGE, 'Wacan aura now works in the second farm'),
     // v0.3.23
-    new ChangelogUpdate('v0.3.23', new Date(2023, 7 - 1, 15)),
+    new ChangelogUpdate('v0.3.23', new Date(2023, 8 - 1, 20)),
     new Changelog(changelogType.NEW, 'Added Official updates (v0.10.14)'),
     new Changelog(changelogType.NEW, 'Safari: You can now purchase an extra ball after game over'),
     new Changelog(changelogType.CHANGE, 'Safari: Misc layout changes'),
