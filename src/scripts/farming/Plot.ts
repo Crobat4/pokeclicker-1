@@ -59,7 +59,10 @@ class Plot implements Saveable {
 
         this.emittingAura = {
             type: ko.pureComputed(() => {
-                if (this.stage() < PlotStage.Taller || this.mulch === MulchType.Freeze_Mulch || index >= 25 && (this.berry !== BerryType.Passho && this.berry !== BerryType.Lum)) {
+                if (this.stage() < PlotStage.Taller ||
+                    this.mulch === MulchType.Freeze_Mulch ||
+                    (index >= 25 && !this.berryData.secondFarmAura)
+                ) {
                     return null;
                 }
 
