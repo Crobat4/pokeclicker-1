@@ -830,6 +830,8 @@ namespace GameConstants {
         spotBottomLeft,
         spotBottomRight,
     };
+
+    declare const TypeColorOriginal: string[];
     // END Crobat Fork
 
     declare enum MegaStoneType {

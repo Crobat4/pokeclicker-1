@@ -13,7 +13,7 @@
       <div class="modal-body">
         <div class="row" data-bind="foreach: Array(Gems.nTypes)">
           <div class="col-4 text-left" style="font-size: 14px;">
-            <span class="d-inline-block" style="width:10px; height:10px; border-radius:100px;" data-bind="style: { 'background-color': TypeColor[$index()] }"></span>
+            <span class="d-inline-block" style="width:10px; height:10px; border-radius:100px;" data-bind="style: { 'background-color': PokemonHelper.getTypeColors($index()) }"></span>
             <strong><span class="text-left p-1" data-bind="html: PokemonType[$index()] + ':'"></span></strong>
             <span class="text-left" data-bind="html: App.game.gems.gemWallet[$index()]().toLocaleString('en-US')"></span>
           </div>

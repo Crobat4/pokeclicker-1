@@ -13,6 +13,7 @@ import {
     // Crobat Fork
     generateSpindaSpots,
     getSpindaMask,
+    getTypeColors,
     // END Crobat Fork
     hasMegaEvolution,
     getMegaStones,
@@ -35,6 +36,7 @@ export default class TmpPokemonHelper {
     // Crobat Fork
     static generateSpindaSpots = generateSpindaSpots;
     static getSpindaMask = getSpindaMask;
+    static getTypeColors = getTypeColors;
     // END Crobat Fork
     static hasMegaEvolution = hasMegaEvolution;
     static getMegaStones = getMegaStones;

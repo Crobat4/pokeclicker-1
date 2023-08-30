@@ -6,6 +6,8 @@ import {
     PokemonStatisticsType,
     ShadowStatus,
     MegaStoneType,
+    TypeColor,
+    TypeColorOriginal,
 } from '../GameConstants';
 import { PokemonNameType } from './PokemonNameType';
 import P from './mapProvider';
@@ -277,6 +279,11 @@ export function generateSpindaSpots(spindaSpot) {
         spotY: originLeft + Math.floor(Math.random() * (spotMaxY - spindaSpot.y) + spindaSpot.y),
     };
     return spotsPosition;
+}
+
+// Get Gen 9/Original type colors
+export function getTypeColors(type: PokemonType): string {
+    return Settings.getSetting('typeColors').observableValue() ? TypeColor[type] : TypeColorOriginal[type];
 }
 
 /**

@@ -2382,6 +2382,27 @@ export const SpindaSpotsMinPosition = {
     spotBottomLeft: { x: 3, y: 18 },
     spotBottomRight: { x: 15, y: 18 },
 };
+
+export const TypeColorOriginal = [
+    '#A8A77A', // Normal
+    '#EE8130', // Fire
+    '#6390F0', // Water
+    '#F7D02C', // Electric
+    '#7AC74C', // Grass
+    '#96D9D6', // Ice
+    '#C22E28', // Fighting
+    '#A33EA1', // Poison
+    '#E2BF65', // Ground
+    '#A98FF3', // Flying
+    '#F95587', // Psychic
+    '#A6B91A', // Bug
+    '#B6A136', // Rock
+    '#735797', // Ghost
+    '#6F35FC', // Dragon
+    '#705746', // Dark
+    '#B7B7CE', // Steel
+    '#D685AD', // Fairy
+];
 // END Crobat Fork
 
 export enum MegaStoneType {
