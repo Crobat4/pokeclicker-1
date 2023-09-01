@@ -15,9 +15,9 @@ class PokedexHelper {
             return 'grey';
         }
         if (pokemon.type2 == PokemonType.None) {
-            return PokemonHelper.getTypeColors(pokemon.type1);
+            return TypeColor[pokemon.type1];
         }
-        return `linear-gradient(90deg,${PokemonHelper.getTypeColors(pokemon.type1)} 50%, ${PokemonHelper.getTypeColors(pokemon.type2)} 50%)`;
+        return `linear-gradient(90deg,${TypeColor[pokemon.type1]} 50%, ${TypeColor[pokemon.type2]} 50%)`;
     }
 
     /**
