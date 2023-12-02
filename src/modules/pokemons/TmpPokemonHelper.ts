@@ -15,7 +15,11 @@ import {
     getSpindaMask,
     // END Crobat Fork
     hasMegaEvolution,
+    hasUncaughtMegaEvolution,
     getMegaStones,
+    hasGigantamaxForm,
+    hasUncaughtGigantamaxForm,
+    isGigantamaxForm,
 } from './PokemonHelper';
 
 // Tmp class for scripts/pokemons/PokemonHelper to extend
@@ -37,5 +41,9 @@ export default class TmpPokemonHelper {
     static getSpindaMask = getSpindaMask;
     // END Crobat Fork
     static hasMegaEvolution = hasMegaEvolution;
+    static hasUncaughtMegaEvolution = hasUncaughtMegaEvolution;
     static getMegaStones = getMegaStones;
+    static hasGigantamaxForm = hasGigantamaxForm;
+    static hasUncaughtGigantamaxForm = hasUncaughtGigantamaxForm;
+    static isGigantamaxForm = isGigantamaxForm;
 }
