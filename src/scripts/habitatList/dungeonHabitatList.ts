@@ -1,29 +1,10 @@
 class DungeonHabitatList {
-    private static dungeon = ko.observable('');
-    private static cachedPokemonList;
     public static pokemonList = ko.pureComputed(() => {
-        if (DungeonHabitatList.cachedPokemonList && modalUtils.observableState.dungeonHabitatListModal !== 'show') {
-            return DungeonHabitatList.cachedPokemonList;
-        }
-
-        if (DungeonHabitatList.dungeon() !== player.town().name) {
-            DungeonHabitatList.cachedPokemonList = DungeonHabitatList.allEnemiesDungeon();
-            DungeonHabitatList.dungeon(player.town().name);
-        }
-        return DungeonHabitatList.cachedPokemonList;
+        return DungeonHabitatList.allEnemiesDungeon();
     });
 
-    private static cachedLootList;
     public static lootList = ko.pureComputed(() => {
-        if (DungeonHabitatList.cachedLootList && modalUtils.observableState.dungeonHabitatListModal !== 'show') {
-            return DungeonHabitatList.cachedLootList;
-        }
-
-        if (DungeonHabitatList.dungeon() !== player.town().name) {
-            DungeonHabitatList.cachedLootList = DungeonHabitatList.getLootList();
-            DungeonHabitatList.dungeon(player.town().name);
-        }
-        return DungeonHabitatList.cachedLootList;
+        return DungeonHabitatList.getLootList();
     });
 
     private static getLootList() {
