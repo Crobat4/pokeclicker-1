@@ -838,6 +838,7 @@ namespace GameConstants {
         spotBottomLeft,
         spotBottomRight,
     };
+
     // END Crobat Fork
 
     declare enum MegaStoneType {
