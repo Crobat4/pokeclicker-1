@@ -95,7 +95,7 @@ class SafariBattle {
             const random = Math.random();
             const catchF = SafariBattle.enemy.catchFactor / 100;
             const isCaught = random <= catchF;
-            const numRolls = isCaught ? 3 : Math.min(Math.floor(4 * (1 - random) / (1 - catchF)), 3);
+            const numRolls = catchF >= 1 ? 1 : (isCaught ? 3 : Math.min(Math.floor(4 * (1 - random) / (1 - catchF)), 3));
             resolve([isCaught, numRolls]);
         });
     }
@@ -364,20 +364,21 @@ class SafariBattle {
 }
 
 namespace SafariBattle {
+    const speedMultiplier = 1.5;
     export const Speed = {
-        ballThrowAnim: 700,
-        ballThrowDelay: 825,
+        ballThrowAnim: 700 / speedMultiplier,
+        ballThrowDelay: 825 / speedMultiplier,
         ballBounceAnim: 1200,
         ballBounceDelay: 1500,
-        ballRollAnim: 575,
-        ballRollDelay: 475,
+        ballRollAnim: 575 / speedMultiplier,
+        ballRollDelay: 475 / speedMultiplier,
         enemyTransition: 700,
         enemyFlee: 1000,
         enemyCaught: 1700,
         enemyEscape: 1000,
-        bait: 1000,
-        rock: 800,
-        turnLength: 1500,
+        bait: 800 / speedMultiplier,
+        rock: 800 / speedMultiplier,
+        turnLength: 1500 / speedMultiplier,
         gameOver: 2000,
     };
 

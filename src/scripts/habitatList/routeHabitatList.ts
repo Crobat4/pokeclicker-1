@@ -1,16 +1,6 @@
 class RouteHabitatList {
-    private static route = ko.observable(-1);
-    private static cachedPokemonList;
     public static pokemonList = ko.pureComputed(() => {
-        if (RouteHabitatList.cachedPokemonList && modalUtils.observableState.routeHabitatListModal !== 'show') {
-            return RouteHabitatList.cachedPokemonList;
-        }
-
-        if (RouteHabitatList.route() !== player.route()) {
-            RouteHabitatList.cachedPokemonList = RouteHabitatList.getPokemonList();
-            RouteHabitatList.route(player.route());
-        }
-        return RouteHabitatList.cachedPokemonList;
+        return RouteHabitatList.getPokemonList();
     });
 
     public static getPokemonList() {
