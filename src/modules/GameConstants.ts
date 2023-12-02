@@ -2429,6 +2429,7 @@ export const SpindaSpotsMinPosition = {
     spotBottomLeft: { x: 3, y: 18 },
     spotBottomRight: { x: 15, y: 18 },
 };
+
 // END Crobat Fork
 
 export enum MegaStoneType {
