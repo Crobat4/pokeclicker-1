@@ -13,6 +13,10 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.DEFAULT, '<div class="w-100 d-flex justify-content-around"><a href="https://github.com/Crobat4/pokeclicker" target="_blank">Repository</a><a href="https://github.com/Crobat4/Pokeclicker-desktop" target="_blank">Desktop build</a><a href="https://github.com/Crobat4/pokeclicker/wiki" target="_blank">Github Wiki</a></div>'),
     new Changelog(changelogType.DEFAULT, 'This will keep being updated as long as the thread is alive...'),
     // ⥂⥄
+    // v0.3.25
+    new ChangelogUpdate('v0.3.25', new Date(2023, 12 - 1, 2)),
+    new Changelog(changelogType.NEW, 'Added Official updates (v0.10.16)'),
+    new Changelog(changelogType.CHANGE, 'Settings modal layout'),
     // v0.3.24
     new ChangelogUpdate('v0.3.24', new Date(2023, 8 - 1, 21)),
     new Changelog(changelogType.NEW, 'Added Official updates (v0.10.15)'),
