@@ -249,8 +249,24 @@ class DungeonBattle extends Battle {
         this.catching(false);
         this.counter = 0;
 
+        // Increase weight of contagious Pokemon
+        const bossList = DungeonRunner.dungeon.availableBosses();
+
+        bossList.map((p) => {
+            const pokemonPokerus = App.game.party.getPokemonByName(p.name as PokemonNameType)?.pokerus;
+            if (pokemonPokerus !== undefined) {
+                if (pokemonPokerus === GameConstants.Pokerus.Contagious) {
+                    p.options = {...p.options, weight: 4};
+                }
+            }
+        });
+
+        const weightList = bossList.map((boss) => {
+            return boss.options?.weight ?? 1;
+        });
+
         // Finding boss from bossList
-        const enemy = Rand.fromWeightedArray(DungeonRunner.dungeon.availableBosses(), DungeonRunner.dungeon.bossWeightList);
+        const enemy = Rand.fromWeightedArray(bossList, weightList);
         // Pokemon
         if (enemy instanceof DungeonBossPokemon) {
             this.enemyPokemon(PokemonFactory.generateDungeonBoss(enemy, DungeonRunner.chestsOpened()));
