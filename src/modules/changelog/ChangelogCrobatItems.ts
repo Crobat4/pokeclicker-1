@@ -13,6 +13,15 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.DEFAULT, '<div class="w-100 d-flex justify-content-around"><a href="https://github.com/Crobat4/pokeclicker" target="_blank">Repository</a><a href="https://github.com/Crobat4/Pokeclicker-desktop" target="_blank">Desktop build</a><a href="https://github.com/Crobat4/pokeclicker/wiki" target="_blank">Github Wiki</a></div>'),
     new Changelog(changelogType.DEFAULT, 'This will keep being updated as long as the thread is alive...'),
     // ⥂⥄
+    // v0.3.26
+    new ChangelogUpdate('v0.3.26', new Date(2023, 12 - 1, 3)),
+    new Changelog(changelogType.NEW, 'Added Official updates (v0.10.17)'),
+    new Changelog(changelogType.CHANGE, 'Dungeon: Increased encounter rate of contagious Pokémon bosses'),
+    new Changelog(changelogType.CHANGE, 'Safari: Increased some actions speed'),
+    new Changelog(changelogType.CHANGE, 'Santa Jynx\'s sprites colors changed to match Gen 1/2 colors'),
+    new Changelog(changelogType.FIXED, 'Dungeon: Chests not opening under certain circumstances'),
+    new Changelog(changelogType.FIXED, 'Habitat Lists not updating when new Pokémon were added'),
+    new Changelog(changelogType.FIXED, 'Safari: Ball shaking three times when catch rate is 100%'),
     // v0.3.25
     new ChangelogUpdate('v0.3.25', new Date(2023, 12 - 1, 2)),
     new Changelog(changelogType.NEW, 'Added Official updates (v0.10.16)'),
