@@ -16,7 +16,6 @@ import Settings from '../settings/Settings';
 import MegaEvolveRequirement from '../requirements/MegaEvolveRequirement';
 import MegaStoneItem from '../items/MegaStoneItem';
 import { ItemList } from '../items/ItemList';
-import Settings from '../settings/Settings';
 
 // eslint-disable-next-line import/prefer-default-export
 export function calcNativeRegion(pokemonName: PokemonNameType) {
@@ -79,12 +78,8 @@ export function getImage(pokemonId: number, shiny: boolean = undefined, gender: 
     const partyPokemon = App.game.party.getPokemon(pokemonId);
     if (partyPokemon) {
         if (shiny === undefined) {
-            let showShinySprite = !App.game.party.getPokemon(pokemonId)?.hideShinyImage();
-            if (!Settings.getSetting('showShinySpriteByDefault').observableValue()) {
-                showShinySprite = !showShinySprite;
-            }
             // eslint-disable-next-line no-param-reassign
-            shiny = partyPokemon.shiny && !partyPokemon.hideShinyImage() && !Settings.getSetting('partyHideShinySprites').observableValue() && showShinySprite;
+            shiny = partyPokemon.shiny && !partyPokemon.hideShinyImage() && !Settings.getSetting('partyHideShinySprites').observableValue();
         }
         if (gender === undefined) {
             // eslint-disable-next-line no-param-reassign
