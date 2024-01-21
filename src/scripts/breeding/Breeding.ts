@@ -273,7 +273,7 @@ class Breeding implements Feature {
 
     // Fill queue button
     public fillHatcheryQueue() {
-        const hatcheryList = PartyController.hatcherySortedList;
+        const hatcheryList = BreedingController.viewSortedFilteredList();
         const hatcheryListFiltered = [];
 
         for (const partyPokemonObject of hatcheryList) {
