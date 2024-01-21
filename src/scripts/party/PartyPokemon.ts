@@ -382,6 +382,53 @@ class PartyPokemon implements Saveable {
         return (breedingAttackBonus / this.getEggSteps()) * GameConstants.EGG_CYCLE_MULTIPLIER;
     });
 
+    // Taken from https://pastebin.com/jXxqcBud
+    calculateBreedingAttackBonus = (protein, calcium): number => {
+        const attackBonusPercent = (GameConstants.BREEDING_ATTACK_BONUS + calcium) / 100;
+        const proteinBoost = protein;
+        return (this.baseAttack * attackBonusPercent) + proteinBoost;
+    };
+
+    calculateEggSteps = (protein, calcium, carbos): number => {
+        const div = 300;
+        const extraCycles = (calcium + protein) / 2;
+        const steps = App.game.breeding.getSteps(this.eggCycles + extraCycles);
+        return steps <= div ? steps : Math.round(((steps / div) ** (1 - carbos / 70)) * div);
+    };
+
+    calculateBreedingEfficiency = (protein, calcium, carbos): number => {
+        let breedingAttackBonus = this.calculateBreedingAttackBonus(protein, calcium);
+        breedingAttackBonus *= this.calculateEVAttackBonus() * this.heldItemAttackBonus() * this.shadowAttackBonus();
+
+        return (breedingAttackBonus / this.calculateEggSteps(protein, calcium, carbos)) * GameConstants.EGG_CYCLE_MULTIPLIER;
+    }
+
+    bestVitamins = ko.pureComputed(() => {
+        const maxVitamin = (player.highestRegion() + 1) * 5;
+        // Initial data
+        let data = {
+            protein: 0,
+            calcium: 0,
+            carbos: 0,
+            efficiency: 0,
+        };
+        // const regionalBonus = BreedingController.calculateRegionalMultiplier(this);
+
+        for (let carbos = 0; carbos <= maxVitamin; carbos++) {
+            for (let calcium = 0; calcium <= maxVitamin - carbos; calcium++) {
+                for (let protein = 0; protein <= maxVitamin - (carbos + calcium); protein++) {
+                    const eff = this.calculateBreedingEfficiency(protein, calcium, carbos);
+                    if (eff > data.efficiency) {
+                        data = {protein: protein, calcium: calcium, carbos: carbos, efficiency: eff};
+                    }
+                }
+            }
+        }
+
+        return data;
+    });
+    //
+
     public isHatchable = ko.pureComputed(() => {
         return !(this.breeding || this.level < 100);
     });
