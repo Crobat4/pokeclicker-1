@@ -417,7 +417,7 @@ class PartyPokemon implements Saveable {
         for (let carbos = 0; carbos <= maxVitamin; carbos++) {
             for (let calcium = 0; calcium <= maxVitamin - carbos; calcium++) {
                 for (let protein = 0; protein <= maxVitamin - (carbos + calcium); protein++) {
-                    const eff = this.calculateBreedingEfficiency(protein, player.highestRegion() >= GameConstants.Region.hoenn ? calcium : 0, player.highestRegion() === GameConstants.Region.unova ? carbos : 0);
+                    const eff = this.calculateBreedingEfficiency(protein, player.highestRegion() >= GameConstants.Region.hoenn ? calcium : 0, player.highestRegion() >= GameConstants.Region.unova ? carbos : 0);
                     if (eff > data.efficiency) {
                         data = {protein: protein, calcium: calcium, carbos: carbos, efficiency: eff};
                     }
