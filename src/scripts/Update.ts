@@ -2639,6 +2639,9 @@ class Update implements Saveable {
                     pokemon[8] = GameConstants.Pokerus.Contagious;
                 }
             });
+
+            // Preserve bottom-to-top catch filter priority for existing players
+            settingsData['catchFilters.invertPriorityOrder'] = true;
         },
     };
 

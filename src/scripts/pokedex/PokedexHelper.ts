@@ -243,7 +243,7 @@ class PokedexHelper {
 
     // Flag for the LazyLoader
     public static resetPokedexView = ko.pureComputed(() => {
-        return modalUtils.observableState.pokedexModalObservable;
+        return modalUtils.observableState.pokedexModalObservable();
     });
 }
 
