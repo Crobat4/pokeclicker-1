@@ -79,6 +79,72 @@ class PartyController {
         return PartyController.getPokemonStoneEvos(pokemon, evoType).length > 1;
     }
 
+    public static async setOptimalVitaminsToParty(shouldConfirm = true) {
+        if (shouldConfirm) {
+            if (!await Notifier.confirm({
+                title: 'Give Vitamins Optimally?',
+                message: `Vitamins will be given optimally to the Pokémon in your party. <br/>
+                    If you are short on vitamins, the game will stop giving them. <br/>
+                    Note: Vitamins will be removed from <u>every</u> Pokémon in your party beforehand.`,
+                type: NotificationConstants.NotificationOption.warning,
+                confirm: 'OK',
+            })) {
+                return;
+            }
+        }
+
+        // First remove all vitamins
+        PartyController.removeAllVitaminsFromParty(false);
+        // Then add vitamins optimally
+        let playerHasVitaminsLeft = true;
+        const missingVitamins = {protein: 0, calcium: 0, carbos: 0};
+        App.game.party.caughtPokemon.forEach((p) => {
+            // Check if player has vitamins left
+            if (
+                player.itemList.Protein() < p.bestVitamins().protein ||
+                player.itemList.Calcium() < p.bestVitamins().calcium ||
+                player.itemList.Carbos() < p.bestVitamins().carbos
+            ) {
+                playerHasVitaminsLeft = false;
+            }
+            // If Pokemon is not in hatchery and player has vitamins left
+            if (!p.breeding && playerHasVitaminsLeft) {
+                if (p.bestVitamins().protein) {
+                    p.useVitamin(GameConstants.VitaminType.Protein, p.bestVitamins().protein);
+                }
+                if (p.bestVitamins().calcium) {
+                    p.useVitamin(GameConstants.VitaminType.Calcium, p.bestVitamins().calcium);
+                }
+                if (p.bestVitamins().carbos) {
+                    p.useVitamin(GameConstants.VitaminType.Carbos, p.bestVitamins().carbos);
+                }
+            } else if (!playerHasVitaminsLeft) {
+                missingVitamins.protein += p.bestVitamins().protein;
+                missingVitamins.calcium += p.bestVitamins().calcium;
+                missingVitamins.carbos += p.bestVitamins().carbos;
+            }
+        });
+
+        if (!playerHasVitaminsLeft) {
+            let missingVitaminsText = '';
+            missingVitaminsText += `${missingVitamins.protein ? `<li><img height="24px" src="${ItemList.Protein.image}" /> ${missingVitamins.protein - player.itemList.Protein()} more Protein</li>` : ''}`;
+            missingVitaminsText += `${missingVitamins.calcium ? `<li><img height="24px" src="${ItemList.Calcium.image}" /> ${missingVitamins.calcium - player.itemList.Calcium()} more Calcium</li>` : ''}`;
+            missingVitaminsText += `${missingVitamins.carbos ? `<li><img height="24px" src="${ItemList.Carbos.image}" /> ${missingVitamins.carbos - player.itemList.Carbos()} more Carbos</li>` : ''}`;
+
+            Notifier.notify({
+                message: `You didn't have enough vitamins for some Pokémon. <br/>
+                    You need: <ul class="mb-0">${missingVitaminsText}</ul>`,
+                type: NotificationConstants.NotificationOption.danger,
+                timeout: 1 * GameConstants.MINUTE,
+            });
+        } else {
+            Notifier.notify({
+                message: 'Vitamins applied successfully.',
+                type: NotificationConstants.NotificationOption.success,
+            });
+        }
+    }
+
     public static async removeVitaminFromParty(vitamin: GameConstants.VitaminType, amount = Infinity, shouldConfirm = true) {
         if (shouldConfirm) {
             if (!await Notifier.confirm({
