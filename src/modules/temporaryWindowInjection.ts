@@ -153,7 +153,7 @@ import DayOfWeekRequirement from './requirements/DayOfWeekRequirement';
 import SaveReminder from './saveReminder/SaveReminder';
 import ClientRequirement from './requirements/ClientRequirement';
 import ContestWonRequirement from './requirements/ContestWonRequirement';
-import lazyLoad from './utilities/LazyLoader';
+import { lazyLoad, lazyLoadCallback } from './utilities/LazyLoader';
 import {
     beforeEvolve, EvoTrigger, LevelEvolution, StoneEvolution,
 } from './pokemons/evolutions/Base';
@@ -364,6 +364,7 @@ Object.assign(<any>window, {
     ClientRequirement,
     ContestWonRequirement,
     lazyLoad,
+    lazyLoadCallback,
     LevelEvolution,
     StoneEvolution,
     EvoTrigger,

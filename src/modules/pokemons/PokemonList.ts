@@ -23,7 +23,7 @@ import BerryType from '../enums/BerryType';
 import ItemType from '../enums/ItemType';
 import PokemonType from '../enums/PokemonType';
 import {
-    Region, StoneType, Genders, MaxIDPerRegion, MegaStoneType,
+    Region, StoneType, Genders, MaxIDPerRegion, MegaStoneType, MAX_EGG_CYCLES,
 } from '../GameConstants';
 import BagItem from '../interfaces/BagItem';
 import {
@@ -13713,7 +13713,7 @@ export const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumfast,
         'exp': 158,
         'catchRate': 75,
-        'evolutions': [WeatherRestrictedLevelEvolution([WeatherType.Sunny], 'Cherrim (Overcast)', 'Cherrim (Sunshine)', 1, true)],
+        'evolutions': [WeatherRestrictedLevelEvolution([WeatherType.Harsh_Sunlight], 'Cherrim (Overcast)', 'Cherrim (Sunshine)', 1, true)],
         'base': {
             'hitpoints': 70,
             'attack': 60,
@@ -31485,7 +31485,6 @@ export const pokemonList = createPokemonArray(
 export type PokemonList = typeof pokemonList;
 
 const pokemonNameIndex = {};
-const maxEggCycles = Math.max(...pokemonList.map((p) => p.eggCycles));
 
 // This needs to be initiallised before pokemonMap as some other things rely on it for data
 // Specifically Roamers not sure what else.
@@ -31516,7 +31515,7 @@ pokemonList.forEach((p) => {
             if (evo.ignoreECChange) {
                 poke.eggCycles = Math.max(poke.eggCycles, p.eggCycles);
             } else {
-                poke.eggCycles = Math.min(maxEggCycles, Math.round(p.eggCycles * 1.5));
+                poke.eggCycles = Math.min(MAX_EGG_CYCLES, Math.round(p.eggCycles * 1.5));
             }
 
         });
