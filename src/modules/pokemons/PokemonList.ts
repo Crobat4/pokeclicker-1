@@ -11851,7 +11851,7 @@ export const pokemonList = createPokemonArray(
         'exp': 147,
         'catchRate': 45,
         'evolutions': [
-            WeatherRestrictedLevelEvolution([WeatherType.Sunny], 'Castform', 'Castform (Sunny)', 1, true),
+            WeatherRestrictedLevelEvolution([WeatherType.Harsh_Sunlight], 'Castform', 'Castform (Sunny)', 1, true),
             WeatherRestrictedLevelEvolution([WeatherType.Rain, WeatherType.Thunderstorm], 'Castform', 'Castform (Rainy)', 1, true),
             WeatherRestrictedLevelEvolution([WeatherType.Snow, WeatherType.Blizzard, WeatherType.Hail, WeatherType.Fog], 'Castform', 'Castform (Snowy)', 1, true),
         ],
@@ -11896,7 +11896,7 @@ export const pokemonList = createPokemonArray(
         'catchRate': 45,
         'evolutions': [
             WeatherRestrictedLevelEvolution([WeatherType.Clear, WeatherType.Overcast, WeatherType.Sandstorm, WeatherType.Windy], 'Castform (Rainy)', 'Castform', 1, true),
-            WeatherRestrictedLevelEvolution([WeatherType.Sunny], 'Castform (Rainy)', 'Castform (Sunny)', 1, true),
+            WeatherRestrictedLevelEvolution([WeatherType.Harsh_Sunlight], 'Castform (Rainy)', 'Castform (Sunny)', 1, true),
             WeatherRestrictedLevelEvolution([WeatherType.Snow, WeatherType.Blizzard, WeatherType.Hail, WeatherType.Fog], 'Castform (Rainy)', 'Castform (Snowy)', 1, true),
         ],
         'base': {
@@ -11918,7 +11918,7 @@ export const pokemonList = createPokemonArray(
         'catchRate': 45,
         'evolutions': [
             WeatherRestrictedLevelEvolution([WeatherType.Clear, WeatherType.Overcast, WeatherType.Sandstorm, WeatherType.Windy], 'Castform (Snowy)', 'Castform', 1, true),
-            WeatherRestrictedLevelEvolution([WeatherType.Sunny], 'Castform (Snowy)', 'Castform (Sunny)', 1, true),
+            WeatherRestrictedLevelEvolution([WeatherType.Harsh_Sunlight], 'Castform (Snowy)', 'Castform (Sunny)', 1, true),
             WeatherRestrictedLevelEvolution([WeatherType.Rain, WeatherType.Thunderstorm], 'Castform (Snowy)', 'Castform (Rainy)', 1, true),
         ],
         'base': {
@@ -25515,7 +25515,7 @@ export const pokemonList = createPokemonArray(
         'exp': 166,
         'catchRate': 45,
         'evolutions': [
-            WeatherRestrictedLevelEvolution([WeatherType.Clear, WeatherType.Overcast, WeatherType.Sunny, WeatherType.Snow, WeatherType.Hail, WeatherType.Blizzard, WeatherType.Sandstorm, WeatherType.Fog, WeatherType.Windy], 'Cramorant (Gulping)', 'Cramorant', 50, true),
+            WeatherRestrictedLevelEvolution([WeatherType.Clear, WeatherType.Overcast, WeatherType.Harsh_Sunlight, WeatherType.Snow, WeatherType.Hail, WeatherType.Blizzard, WeatherType.Sandstorm, WeatherType.Fog, WeatherType.Windy], 'Cramorant (Gulping)', 'Cramorant', 50, true),
             WeatherRestrictedLevelEvolution([WeatherType.Thunderstorm], 'Cramorant (Gulping)', 'Cramorant (Gorging)', 50, true),
         ],
     },
@@ -25539,7 +25539,7 @@ export const pokemonList = createPokemonArray(
         'exp': 166,
         'catchRate': 45,
         'evolutions': [
-            WeatherRestrictedLevelEvolution([WeatherType.Clear, WeatherType.Overcast, WeatherType.Sunny, WeatherType.Snow, WeatherType.Hail, WeatherType.Blizzard, WeatherType.Sandstorm, WeatherType.Fog, WeatherType.Windy], 'Cramorant (Gorging)', 'Cramorant', 50, true),
+            WeatherRestrictedLevelEvolution([WeatherType.Clear, WeatherType.Overcast, WeatherType.Harsh_Sunlight, WeatherType.Snow, WeatherType.Hail, WeatherType.Blizzard, WeatherType.Sandstorm, WeatherType.Fog, WeatherType.Windy], 'Cramorant (Gorging)', 'Cramorant', 50, true),
             WeatherRestrictedLevelEvolution([WeatherType.Rain], 'Cramorant (Gorging)', 'Cramorant (Gulping)', 50, true),
         ],
     },
@@ -27607,7 +27607,7 @@ export const pokemonList = createPokemonArray(
         'catchRate': 60,
         'evolutions': [
             EnvironmentRestrictedLevelEvolution('Fire', 'Eiscue (Ice Face)', 'Eiscue (Noice Face)', 1, true),
-            WeatherRestrictedLevelEvolution([WeatherType.Sunny], 'Eiscue (Ice Face)', 'Eiscue (Noice Face)', 1, true),
+            WeatherRestrictedLevelEvolution([WeatherType.Harsh_Sunlight], 'Eiscue (Ice Face)', 'Eiscue (Noice Face)', 1, true),
         ],
     },
     {
