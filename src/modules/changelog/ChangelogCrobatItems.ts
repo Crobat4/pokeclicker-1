@@ -14,6 +14,9 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.DEFAULT, 'This will keep being updated as long as the thread is alive...'),
     // ⥂⥄
     // v0.3.28
+    new ChangelogUpdate('v0.3.29', new Date(2024, 2 - 1, 2)),
+    new Changelog(changelogType.NEW, 'Added Official updates (v0.10.19)'),
+    // v0.3.28
     new ChangelogUpdate('v0.3.28', new Date(2024, 1 - 1, 21)),
     new Changelog(changelogType.FIXED, 'Vitamin applier not working correctly'),
     // v0.3.27
