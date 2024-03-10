@@ -6,6 +6,7 @@ console.info('Starting publish..');
 
 ghpages.publish('docs', {
     src: ['./**/*', '../package.json'],
+    remove: '!./preview/**/*',
     branch: 'master-crobat',
     dest: 'docs',
     message: `Crobat [v${crobatVersion}] Live website`,

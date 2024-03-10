@@ -21,6 +21,10 @@ class DungeonRunner {
 
     public static initializeDungeon(dungeon: Dungeon) {
         if (!dungeon.isUnlocked()) {
+            Notifier.notify({
+                message: `You don't have access to this dungeon yet.\n<i>${dungeon.getRequirementHints()}</i>`,
+                type: NotificationConstants.NotificationOption.warning,
+            });
             return false;
         }
         DungeonRunner.dungeon = dungeon;
@@ -272,7 +276,7 @@ class DungeonRunner {
             DungeonRunner.dungeonFinished(true);
             DungeonRunner.fighting(false);
             DungeonRunner.fightingBoss(false);
-            MapHelper.moveToTown(DungeonRunner.dungeon.name);
+            App.game.gameState = GameConstants.GameState.town;
         }
     }
 
@@ -281,7 +285,7 @@ class DungeonRunner {
             DungeonRunner.dungeonFinished(true);
             DungeonRunner.fighting(false);
             DungeonRunner.fightingBoss(false);
-            MapHelper.moveToTown(DungeonRunner.dungeon.name);
+            App.game.gameState = GameConstants.GameState.town;
             Notifier.notify({
                 message: 'You could not complete the dungeon in time.',
                 type: NotificationConstants.NotificationOption.danger,

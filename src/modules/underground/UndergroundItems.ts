@@ -7,6 +7,7 @@ import UndergroundEvolutionItem from './UndergroundEvolutionItem';
 import UndergroundGemItem from './UndergroundGemItem';
 import UndergroundItem from './UndergroundItem';
 import UndergroundMegaStoneItem from './UndergroundMegaStoneItem';
+import UndergroundShardItem from './UndergroundShardItem';
 
 export default class UndergroundItems {
     public static list: Array<UndergroundItem> = [];
@@ -50,111 +51,85 @@ export default class UndergroundItems {
     }
 }
 
-// Weights
-const diamondWeight = () => {
-    let weight = 1;
-    const megaStoneAmount = UndergroundItems.list.filter((items) => items instanceof UndergroundMegaStoneItem).filter((megaStoneItems) => megaStoneItems.getWeight() !== 0).length;
-    if (player.highestRegion() >= Region.unova && megaStoneAmount === 0) {
-        weight = 3;
-    }
-    return weight;
-};
-const evoStoneShardPlateWeight = () => {
-    let weight = 1;
-    const megaStoneAmount = UndergroundItems.list.filter((items) => items instanceof UndergroundMegaStoneItem).filter((megaStoneItems) => megaStoneItems.getWeight() !== 0).length;
-    if (player.highestRegion() >= Region.unova && megaStoneAmount === 0) {
-        weight = 0.5;
-    }
-    return weight;
-};
-
 // Diamond Items
-UndergroundItems.addItem(new UndergroundItem(1, 'Rare_bone', [[1, 0, 0, 0, 0, 1], [1, 1, 1, 1, 1, 1], [1, 0, 0, 0, 0, 1]], 3, undefined, null, diamondWeight));
-UndergroundItems.addItem(new UndergroundItem(2, 'Star_piece', [[0, 1, 0], [1, 1, 1], [0, 1, 0]], 5, undefined, null, diamondWeight));
-UndergroundItems.addItem(new UndergroundItem(3, 'Revive', [[0, 1, 0], [1, 1, 1], [0, 1, 0]], 2, undefined, null, diamondWeight));
-UndergroundItems.addItem(new UndergroundItem(4, 'Max_revive', [[1, 1, 1], [1, 1, 1], [1, 1, 1]], 4, undefined, null, diamondWeight));
-UndergroundItems.addItem(new UndergroundItem(5, 'Iron_ball', [[1, 1, 1], [1, 1, 1], [1, 1, 1]], 2, undefined, null, diamondWeight));
-UndergroundItems.addItem(new UndergroundItem(6, 'Heart_scale', [[1, 0], [1, 1]], 10, undefined, null, diamondWeight));
-UndergroundItems.addItem(new UndergroundItem(7, 'Light_clay', [[1, 0, 1, 0], [1, 1, 1, 0], [1, 1, 1, 1], [0, 1, 0, 1]], 2, undefined, null, diamondWeight));
-UndergroundItems.addItem(new UndergroundItem(8, 'Odd_keystone', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], 6, undefined, null, diamondWeight));
-UndergroundItems.addItem(new UndergroundItem(9, 'Hard_stone', [[1, 1], [1, 1]], 4, undefined, null, diamondWeight));
-UndergroundItems.addItem(new UndergroundItem(10, 'Oval_stone', [[1, 1, 1], [1, 1, 1], [1, 1, 1]], 3, undefined, null, diamondWeight));
-UndergroundItems.addItem(new UndergroundItem(11, 'Everstone', [[1, 1, 1, 1], [1, 1, 1, 1]], 3, undefined, null, diamondWeight));
-UndergroundItems.addItem(new UndergroundItem(12, 'Smooth_rock', [[0, 0, 1, 0], [1, 1, 1, 0], [0, 1, 1, 1], [0, 1, 0, 0]], 2, undefined, null, diamondWeight));
-UndergroundItems.addItem(new UndergroundItem(13, 'Heat_rock', [[1, 0, 1, 0], [1, 1, 1, 1], [1, 1, 1, 1]], 2, undefined, null, diamondWeight));
-UndergroundItems.addItem(new UndergroundItem(14, 'Icy_rock', [[0, 1, 1, 0], [1, 1, 1, 1], [1, 1, 1, 1], [1, 0, 0, 1]], 2, undefined, null, diamondWeight));
-UndergroundItems.addItem(new UndergroundItem(15, 'Damp_rock', [[1, 1, 1], [1, 1, 1], [1, 0, 1]], 2, undefined, null, diamondWeight));
+UndergroundItems.addItem(new UndergroundItem(1, 'Rare_bone', [[1, 0, 0, 0, 0, 1], [1, 1, 1, 1, 1, 1], [1, 0, 0, 0, 0, 1]], 3));
+UndergroundItems.addItem(new UndergroundItem(2, 'Star_piece', [[0, 1, 0], [1, 1, 1], [0, 1, 0]], 5));
+UndergroundItems.addItem(new UndergroundItem(3, 'Revive', [[0, 1, 0], [1, 1, 1], [0, 1, 0]], 2));
+UndergroundItems.addItem(new UndergroundItem(4, 'Max_revive', [[1, 1, 1], [1, 1, 1], [1, 1, 1]], 4));
+UndergroundItems.addItem(new UndergroundItem(5, 'Iron_ball', [[1, 1, 1], [1, 1, 1], [1, 1, 1]], 2));
+UndergroundItems.addItem(new UndergroundItem(6, 'Heart_scale', [[1, 0], [1, 1]], 10));
+UndergroundItems.addItem(new UndergroundItem(7, 'Light_clay', [[1, 0, 1, 0], [1, 1, 1, 0], [1, 1, 1, 1], [0, 1, 0, 1]], 2));
+UndergroundItems.addItem(new UndergroundItem(8, 'Odd_keystone', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], 6));
+UndergroundItems.addItem(new UndergroundItem(9, 'Hard_stone', [[1, 1], [1, 1]], 4));
+UndergroundItems.addItem(new UndergroundItem(10, 'Oval_stone', [[1, 1, 1], [1, 1, 1], [1, 1, 1]], 3));
+UndergroundItems.addItem(new UndergroundItem(11, 'Everstone', [[1, 1, 1, 1], [1, 1, 1, 1]], 3));
+UndergroundItems.addItem(new UndergroundItem(12, 'Smooth_rock', [[0, 0, 1, 0], [1, 1, 1, 0], [0, 1, 1, 1], [0, 1, 0, 0]], 2));
+UndergroundItems.addItem(new UndergroundItem(13, 'Heat_rock', [[1, 0, 1, 0], [1, 1, 1, 1], [1, 1, 1, 1]], 2));
+UndergroundItems.addItem(new UndergroundItem(14, 'Icy_rock', [[0, 1, 1, 0], [1, 1, 1, 1], [1, 1, 1, 1], [1, 0, 0, 1]], 2));
+UndergroundItems.addItem(new UndergroundItem(15, 'Damp_rock', [[1, 1, 1], [1, 1, 1], [1, 0, 1]], 2));
 
 // Gem Plates
-UndergroundItems.addItem(new UndergroundGemItem(100, 'Draco_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Dragon, undefined, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundGemItem(101, 'Dread_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Dark, undefined, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundGemItem(102, 'Earth_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Ground, undefined, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundGemItem(103, 'Fist_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Fighting, undefined, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundGemItem(104, 'Flame_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Fire, undefined, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundGemItem(105, 'Icicle_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Ice, undefined, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundGemItem(106, 'Insect_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Bug, undefined, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundGemItem(107, 'Iron_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Steel, undefined, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundGemItem(108, 'Meadow_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Grass, undefined, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundGemItem(109, 'Mind_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Psychic, undefined, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundGemItem(110, 'Sky_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Flying, undefined, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundGemItem(111, 'Splash_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Water, undefined, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundGemItem(112, 'Spooky_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Ghost, undefined, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundGemItem(113, 'Stone_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Rock, undefined, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundGemItem(114, 'Toxic_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Poison, undefined, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundGemItem(115, 'Zap_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Electric, undefined, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundGemItem(116, 'Pixie_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Fairy, undefined, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundGemItem(117, 'Blank_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Normal, undefined, null, evoStoneShardPlateWeight));
+UndergroundItems.addItem(new UndergroundGemItem(100, 'Draco_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Dragon));
+UndergroundItems.addItem(new UndergroundGemItem(101, 'Dread_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Dark));
+UndergroundItems.addItem(new UndergroundGemItem(102, 'Earth_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Ground));
+UndergroundItems.addItem(new UndergroundGemItem(103, 'Fist_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Fighting));
+UndergroundItems.addItem(new UndergroundGemItem(104, 'Flame_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Fire));
+UndergroundItems.addItem(new UndergroundGemItem(105, 'Icicle_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Ice));
+UndergroundItems.addItem(new UndergroundGemItem(106, 'Insect_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Bug));
+UndergroundItems.addItem(new UndergroundGemItem(107, 'Iron_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Steel));
+UndergroundItems.addItem(new UndergroundGemItem(108, 'Meadow_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Grass));
+UndergroundItems.addItem(new UndergroundGemItem(109, 'Mind_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Psychic));
+UndergroundItems.addItem(new UndergroundGemItem(110, 'Sky_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Flying));
+UndergroundItems.addItem(new UndergroundGemItem(111, 'Splash_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Water));
+UndergroundItems.addItem(new UndergroundGemItem(112, 'Spooky_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Ghost));
+UndergroundItems.addItem(new UndergroundGemItem(113, 'Stone_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Rock));
+UndergroundItems.addItem(new UndergroundGemItem(114, 'Toxic_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Poison));
+UndergroundItems.addItem(new UndergroundGemItem(115, 'Zap_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Electric));
+UndergroundItems.addItem(new UndergroundGemItem(116, 'Pixie_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Fairy));
+UndergroundItems.addItem(new UndergroundGemItem(117, 'Blank_plate', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], PokemonType.Normal));
 
 // Fossils/Fossil Pieces
 UndergroundItems.addItem(new UndergroundItem(200, 'Helix_fossil', [[0, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 0]], 0, UndergroundItemValueType.Fossil, null,
-    () => (App.game.party.alreadyCaughtPokemonByName('Omanyte') || player.itemList.Helix_fossil() > 0 ? 1 : 2)));
+    () => (App.game.party.alreadyCaughtPokemonByName('Omanyte') || player.itemList.Helix_fossil() > 0 ? 0.5 : 1.5)));
 UndergroundItems.addItem(new UndergroundItem(201, 'Dome_fossil', [[1, 1, 1, 1, 1], [1, 1, 1, 1, 1], [1, 1, 1, 1, 1], [0, 1, 1, 1, 0]], 0, UndergroundItemValueType.Fossil, null,
-    () => (App.game.party.alreadyCaughtPokemonByName('Kabuto') || player.itemList.Dome_fossil() > 0 ? 1 : 2)));
+    () => (App.game.party.alreadyCaughtPokemonByName('Kabuto') || player.itemList.Dome_fossil() > 0 ? 0.5 : 1.5)));
 UndergroundItems.addItem(new UndergroundItem(202, 'Old_amber', [[0, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 0]], 0, UndergroundItemValueType.Fossil, null,
-    () => (App.game.party.alreadyCaughtPokemonByName('Aerodactyl') || player.itemList.Old_amber() > 0 ? 1 : 2)));
+    () => (App.game.party.alreadyCaughtPokemonByName('Aerodactyl') || player.itemList.Old_amber() > 0 ? 0.5 : 1.5)));
 UndergroundItems.addItem(new UndergroundItem(203, 'Root_fossil', [[0, 0, 1, 1, 1], [0, 0, 1, 1, 1], [1, 0, 0, 1, 1], [1, 1, 1, 1, 1], [0, 1, 1, 1, 0]], 0, UndergroundItemValueType.Fossil, new MaxRegionRequirement(Region.hoenn),
-    () => (App.game.party.alreadyCaughtPokemonByName('Lileep') || player.itemList.Root_fossil() > 0 ? 1 : 2)));
+    () => (App.game.party.alreadyCaughtPokemonByName('Lileep') || player.itemList.Root_fossil() > 0 ? 0.5 : 1.5)));
 UndergroundItems.addItem(new UndergroundItem(204, 'Claw_fossil', [[1, 1, 1, 0, 0], [1, 1, 1, 1, 0], [0, 1, 1, 1, 1], [0, 0, 0, 1, 1]], 0, UndergroundItemValueType.Fossil, new MaxRegionRequirement(Region.hoenn),
-    () => (App.game.party.alreadyCaughtPokemonByName('Anorith') || player.itemList.Claw_fossil() > 0 ? 1 : 2)));
+    () => (App.game.party.alreadyCaughtPokemonByName('Anorith') || player.itemList.Claw_fossil() > 0 ? 0.5 : 1.5)));
 UndergroundItems.addItem(new UndergroundItem(205, 'Armor_fossil', [[0, 1, 1, 1, 0], [0, 1, 1, 1, 0], [1, 1, 1, 1, 1], [0, 1, 1, 1, 0]], 0, UndergroundItemValueType.Fossil, new MaxRegionRequirement(Region.sinnoh),
-    () => (App.game.party.alreadyCaughtPokemonByName('Shieldon') || player.itemList.Armor_fossil() > 0 ? 1 : 2)));
+    () => (App.game.party.alreadyCaughtPokemonByName('Shieldon') || player.itemList.Armor_fossil() > 0 ? 0.5 : 1.5)));
 UndergroundItems.addItem(new UndergroundItem(206, 'Skull_fossil', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [0, 1, 1, 0]], 0, UndergroundItemValueType.Fossil, new MaxRegionRequirement(Region.sinnoh),
-    () => (App.game.party.alreadyCaughtPokemonByName('Cranidos') || player.itemList.Skull_fossil() > 0 ? 1 : 2)));
+    () => (App.game.party.alreadyCaughtPokemonByName('Cranidos') || player.itemList.Skull_fossil() > 0 ? 0.5 : 1.5)));
 UndergroundItems.addItem(new UndergroundItem(207, 'Cover_fossil', [[1, 1, 1, 1, 0], [1, 1, 1, 1, 1], [1, 1, 1, 1, 1], [1, 1, 1, 1, 1], [0, 1, 1, 1, 1]], 0, UndergroundItemValueType.Fossil, new MaxRegionRequirement(Region.unova),
-    () => (App.game.party.alreadyCaughtPokemonByName('Tirtouga') || player.itemList.Cover_fossil() > 0 ? 1 : 2)));
+    () => (App.game.party.alreadyCaughtPokemonByName('Tirtouga') || player.itemList.Cover_fossil() > 0 ? 0.5 : 1.5)));
 UndergroundItems.addItem(new UndergroundItem(208, 'Plume_fossil', [[0, 0, 1, 1, 1], [0, 1, 1, 1, 1], [1, 1, 1, 1, 0], [1, 1, 1, 1, 0], [1, 1, 0, 0, 0]], 0, UndergroundItemValueType.Fossil, new MaxRegionRequirement(Region.unova),
-    () => (App.game.party.alreadyCaughtPokemonByName('Archen') || player.itemList.Plume_fossil() > 0 ? 1 : 2)));
+    () => (App.game.party.alreadyCaughtPokemonByName('Archen') || player.itemList.Plume_fossil() > 0 ? 0.5 : 1.5)));
 UndergroundItems.addItem(new UndergroundItem(209, 'Jaw_fossil', [[0, 0, 1, 1, 1], [0, 1, 1, 1, 1], [1, 1, 1, 1, 1], [1, 1, 1, 1, 0]], 0, UndergroundItemValueType.Fossil, new MaxRegionRequirement(Region.kalos),
-    () => (App.game.party.alreadyCaughtPokemonByName('Tyrunt') || player.itemList.Jaw_fossil() > 0 ? 1 : 2)));
+    () => (App.game.party.alreadyCaughtPokemonByName('Tyrunt') || player.itemList.Jaw_fossil() > 0 ? 0.5 : 1.5)));
 UndergroundItems.addItem(new UndergroundItem(210, 'Sail_fossil', [[1, 1, 1, 0, 0], [1, 1, 1, 1, 1], [0, 1, 1, 1, 1], [0, 1, 1, 1, 0]], 0, UndergroundItemValueType.Fossil, new MaxRegionRequirement(Region.kalos),
-    () => (App.game.party.alreadyCaughtPokemonByName('Amaura') || player.itemList.Sail_fossil() > 0 ? 1 : 2)));
-UndergroundItems.addItem(new UndergroundItem(211, 'Fossilized_bird', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], 0, UndergroundItemValueType.FossilPiece, new MaxRegionRequirement(Region.galar),
-    () => ((App.game.party.alreadyCaughtPokemonByName('Dracozolt') && App.game.party.alreadyCaughtPokemonByName('Arctozolt')) 
-        || player.itemList.Fossilized_bird() > 1 ? 1 : 2)));
-UndergroundItems.addItem(new UndergroundItem(212, 'Fossilized_fish', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], 0, UndergroundItemValueType.FossilPiece, new MaxRegionRequirement(Region.galar),
-    () => ((App.game.party.alreadyCaughtPokemonByName('Dracovish') && App.game.party.alreadyCaughtPokemonByName('Arctovish')) 
-        || player.itemList.Fossilized_fish() > 1 ? 1 : 2)));
-UndergroundItems.addItem(new UndergroundItem(213, 'Fossilized_drake', [[1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1]], 0, UndergroundItemValueType.FossilPiece, new MaxRegionRequirement(Region.galar),
-    () => ((App.game.party.alreadyCaughtPokemonByName('Dracozolt') && App.game.party.alreadyCaughtPokemonByName('Dracovish')) 
-        || player.itemList.Fossilized_drake() > 1 ? 1 : 2)));
-UndergroundItems.addItem(new UndergroundItem(214, 'Fossilized_dino', [[1, 1, 1, 0], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], 0, UndergroundItemValueType.FossilPiece, new MaxRegionRequirement(Region.galar),
-    () => ((App.game.party.alreadyCaughtPokemonByName('Arctozolt') && App.game.party.alreadyCaughtPokemonByName('Arctovish')) 
-        || player.itemList.Fossilized_dino() > 1 ? 1 : 2)));
+    () => (App.game.party.alreadyCaughtPokemonByName('Amaura') || player.itemList.Sail_fossil() > 0 ? 0.5 : 1.5)));
+UndergroundItems.addItem(new UndergroundItem(211, 'Fossilized_bird', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], 0, UndergroundItemValueType.FossilPiece, new MaxRegionRequirement(Region.galar)));
+UndergroundItems.addItem(new UndergroundItem(212, 'Fossilized_fish', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], 0, UndergroundItemValueType.FossilPiece, new MaxRegionRequirement(Region.galar)));
+UndergroundItems.addItem(new UndergroundItem(213, 'Fossilized_drake', [[1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1]], 0, UndergroundItemValueType.FossilPiece, new MaxRegionRequirement(Region.galar)));
+UndergroundItems.addItem(new UndergroundItem(214, 'Fossilized_dino', [[1, 1, 1, 0], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], 0, UndergroundItemValueType.FossilPiece, new MaxRegionRequirement(Region.galar)));
 
 // Evolution Stones
-UndergroundItems.addItem(new UndergroundEvolutionItem(300, 'Fire_stone', [[1, 1, 1], [1, 1, 1], [1, 1, 1]], StoneType.Fire_stone, 1, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundEvolutionItem(301, 'Water_stone', [[1, 1, 1], [1, 1, 1], [1, 1, 0]], StoneType.Water_stone, 1, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundEvolutionItem(302, 'Thunder_stone', [[0, 1, 1], [1, 1, 1], [1, 1, 0]], StoneType.Thunder_stone, 1, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundEvolutionItem(303, 'Leaf_stone', [[0, 1, 0], [1, 1, 1], [1, 1, 1], [0, 1, 0]], StoneType.Leaf_stone, 1, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundEvolutionItem(304, 'Moon_stone', [[0, 1, 1, 1], [1, 1, 1, 0]], StoneType.Moon_stone, 1, null, evoStoneShardPlateWeight));
+UndergroundItems.addItem(new UndergroundEvolutionItem(300, 'Fire_stone', [[1, 1, 1], [1, 1, 1], [1, 1, 1]], StoneType.Fire_stone, 1));
+UndergroundItems.addItem(new UndergroundEvolutionItem(301, 'Water_stone', [[1, 1, 1], [1, 1, 1], [1, 1, 0]], StoneType.Water_stone, 1));
+UndergroundItems.addItem(new UndergroundEvolutionItem(302, 'Thunder_stone', [[0, 1, 1], [1, 1, 1], [1, 1, 0]], StoneType.Thunder_stone, 1));
+UndergroundItems.addItem(new UndergroundEvolutionItem(303, 'Leaf_stone', [[0, 1, 0], [1, 1, 1], [1, 1, 1], [0, 1, 0]], StoneType.Leaf_stone, 1));
+UndergroundItems.addItem(new UndergroundEvolutionItem(304, 'Moon_stone', [[0, 1, 1, 1], [1, 1, 1, 0]], StoneType.Moon_stone, 1));
 // TODO: Replace these requirements with StoneUnlockedRequirement once moved to modules
-UndergroundItems.addItem(new UndergroundEvolutionItem(305, 'Sun_stone', [[0, 1, 0], [1, 1, 1], [1, 1, 1]], StoneType.Sun_stone, 1, new MaxRegionRequirement(Region.johto), evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundEvolutionItem(306, 'Shiny_stone', [[0, 1, 1], [1, 1, 1], [1, 1, 1]], StoneType.Shiny_stone, 1, new MaxRegionRequirement(Region.sinnoh), evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundEvolutionItem(307, 'Dusk_stone', [[1, 1, 1], [1, 1, 1], [1, 1, 0]], StoneType.Dusk_stone, 1, new MaxRegionRequirement(Region.sinnoh), evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundEvolutionItem(308, 'Dawn_stone', [[1, 1, 1], [1, 1, 1], [1, 1, 1]], StoneType.Dawn_stone, 1, new MaxRegionRequirement(Region.sinnoh), evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundEvolutionItem(309, 'Ice_stone', [[1, 1, 1], [1, 1, 1]], StoneType.Ice_stone, 1, new MaxRegionRequirement(Region.alola), evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundEvolutionItem(310, 'Black_augurite', [[1, 0, 1], [1, 1, 1], [1, 1, 1]], StoneType.Black_augurite, 1, new MaxRegionRequirement(Region.hisui), evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundEvolutionItem(311, 'Peat_block', [[1, 1, 1], [1, 1, 1], [1, 1, 1]], StoneType.Peat_block, 1, new MaxRegionRequirement(Region.hisui), evoStoneShardPlateWeight));
+UndergroundItems.addItem(new UndergroundEvolutionItem(305, 'Sun_stone', [[0, 1, 0], [1, 1, 1], [1, 1, 1]], StoneType.Sun_stone, 1, new MaxRegionRequirement(Region.johto)));
+UndergroundItems.addItem(new UndergroundEvolutionItem(306, 'Shiny_stone', [[0, 1, 1], [1, 1, 1], [1, 1, 1]], StoneType.Shiny_stone, 1, new MaxRegionRequirement(Region.sinnoh)));
+UndergroundItems.addItem(new UndergroundEvolutionItem(307, 'Dusk_stone', [[1, 1, 1], [1, 1, 1], [1, 1, 0]], StoneType.Dusk_stone, 1, new MaxRegionRequirement(Region.sinnoh)));
+UndergroundItems.addItem(new UndergroundEvolutionItem(308, 'Dawn_stone', [[1, 1, 1], [1, 1, 1], [1, 1, 1]], StoneType.Dawn_stone, 1, new MaxRegionRequirement(Region.sinnoh)));
+UndergroundItems.addItem(new UndergroundEvolutionItem(309, 'Ice_stone', [[1, 1, 1], [1, 1, 1]], StoneType.Ice_stone, 1, new MaxRegionRequirement(Region.alola)));
+UndergroundItems.addItem(new UndergroundEvolutionItem(310, 'Black_augurite', [[1, 0, 1], [1, 1, 1], [1, 1, 1]], StoneType.Black_augurite, 1, new MaxRegionRequirement(Region.hisui)));
+UndergroundItems.addItem(new UndergroundEvolutionItem(311, 'Peat_block', [[1, 1, 1], [1, 1, 1], [1, 1, 1]], StoneType.Peat_block, 1, new MaxRegionRequirement(Region.hisui)));
 // UndergroundItems.addItem(new UndergroundEvolutionItem('Sun Stone', 305, [[0, 1, 0], [1, 1, 1], [1, 1, 1]], 1, StoneType.Sun_stone, new StoneUnlockedRequirement(StoneType.Sun_stone)));
 // UndergroundItems.addItem(new UndergroundEvolutionItem('Shiny Stone', 306, [[0, 1, 1], [1, 1, 1], [1, 1, 1]], 1, StoneType.Shiny_stone, new StoneUnlockedRequirement(StoneType.Shiny_stone)));
 // UndergroundItems.addItem(new UndergroundEvolutionItem('Dusk Stone', 307, [[1, 1, 1], [1, 1, 1], [1, 1, 0]], 1, StoneType.Dusk_stone, new StoneUnlockedRequirement(StoneType.Dusk_stone)));
@@ -162,23 +137,23 @@ UndergroundItems.addItem(new UndergroundEvolutionItem(311, 'Peat_block', [[1, 1,
 // UndergroundItems.addItem(new UndergroundEvolutionItem('Ice Stone', 309, [[1, 1, 1], [1, 1, 1]], 1, StoneType.Ice_stone, new StoneUnlockedRequirement(StoneType.Ice_stone)));
 
 // Shards
-UndergroundItems.addItem(new UndergroundItem(400, 'Red_shard', [[1, 1, 1], [1, 1, 0], [1, 1, 1]], 0, UndergroundItemValueType.Shard, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundItem(401, 'Yellow_shard', [[1, 0, 1, 0], [1, 1, 1, 0], [1, 1, 1, 1]], 0, UndergroundItemValueType.Shard, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundItem(402, 'Green_shard', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 0, 1]], 0, UndergroundItemValueType.Shard, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundItem(403, 'Blue_shard', [[1, 1, 1], [1, 1, 1], [1, 1, 0]], 0, UndergroundItemValueType.Shard, null, evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundItem(404, 'Grey_shard', [[1, 1, 1], [1, 1, 1], [0, 1, 1]], 0, UndergroundItemValueType.Shard, new MaxRegionRequirement(Region.johto), evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundItem(405, 'Purple_shard', [[1, 1, 1, 1], [1, 1, 1, 1]], 0, UndergroundItemValueType.Shard, new MaxRegionRequirement(Region.johto), evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundItem(406, 'Ochre_shard', [[1, 1, 0, 0], [1, 1, 1, 0], [1, 1, 1, 1]], 0, UndergroundItemValueType.Shard, new MaxRegionRequirement(Region.hoenn), evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundItem(407, 'Black_shard', [[1, 1, 1], [0, 1, 1], [0, 1, 1]], 0, UndergroundItemValueType.Shard, new MaxRegionRequirement(Region.sinnoh), evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundItem(408, 'Crimson_shard', [[1, 1, 1], [1, 1, 1], [1, 1, 1]], 0, UndergroundItemValueType.Shard, new MaxRegionRequirement(Region.sinnoh), evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundItem(409, 'Lime_shard', [[0, 0, 0, 0], [0, 1, 1, 1], [1, 1, 1, 1]], 0, UndergroundItemValueType.Shard, new MaxRegionRequirement(Region.sinnoh), evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundItem(410, 'White_shard', [[1, 1, 1, 1], [0, 1, 1, 1], [0, 1, 1, 0]], 0, UndergroundItemValueType.Shard, new MaxRegionRequirement(Region.sinnoh), evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundItem(411, 'Pink_shard', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], 0, UndergroundItemValueType.Shard, new MaxRegionRequirement(Region.kalos), evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundItem(412, 'Cyan_shard', [[1, 1, 1, 1], [0, 1, 1, 1], [0, 0, 1, 1]], 0, UndergroundItemValueType.Shard, new MaxRegionRequirement(Region.alola), evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundItem(413, 'Rose_shard', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], 0, UndergroundItemValueType.Shard, new MaxRegionRequirement(Region.galar), evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundItem(414, 'Brown_shard', [[1, 1, 0], [1, 1, 0], [1, 1, 1]], 0, UndergroundItemValueType.Shard, new MaxRegionRequirement(Region.galar), evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundItem(415, 'Beige_shard', [[0, 0, 1, 1], [0, 1, 1, 1], [0, 1, 1, 1]], 0, UndergroundItemValueType.Shard, new MaxRegionRequirement(Region.paldea), evoStoneShardPlateWeight));
-UndergroundItems.addItem(new UndergroundItem(416, 'Slate_shard', [[0, 0, 0, 0], [1, 1, 1, 1], [1, 1, 1, 1]], 0, UndergroundItemValueType.Shard, new MaxRegionRequirement(Region.paldea), evoStoneShardPlateWeight));
+UndergroundItems.addItem(new UndergroundShardItem(400, 'Red_shard', [[1, 1, 1], [1, 1, 0], [1, 1, 1]]));
+UndergroundItems.addItem(new UndergroundShardItem(401, 'Yellow_shard', [[1, 0, 1, 0], [1, 1, 1, 0], [1, 1, 1, 1]]));
+UndergroundItems.addItem(new UndergroundShardItem(402, 'Green_shard', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 0, 1]]));
+UndergroundItems.addItem(new UndergroundShardItem(403, 'Blue_shard', [[1, 1, 1], [1, 1, 1], [1, 1, 0]]));
+UndergroundItems.addItem(new UndergroundShardItem(404, 'Grey_shard', [[1, 1, 1], [1, 1, 1], [0, 1, 1]], new MaxRegionRequirement(Region.johto)));
+UndergroundItems.addItem(new UndergroundShardItem(405, 'Purple_shard', [[1, 1, 1, 1], [1, 1, 1, 1]], new MaxRegionRequirement(Region.johto)));
+UndergroundItems.addItem(new UndergroundShardItem(406, 'Ochre_shard', [[1, 1, 0, 0], [1, 1, 1, 0], [1, 1, 1, 1]], new MaxRegionRequirement(Region.hoenn)));
+UndergroundItems.addItem(new UndergroundShardItem(407, 'Black_shard', [[1, 1, 1], [0, 1, 1], [0, 1, 1]], new MaxRegionRequirement(Region.sinnoh)));
+UndergroundItems.addItem(new UndergroundShardItem(408, 'Crimson_shard', [[1, 1, 1], [1, 1, 1], [1, 1, 1]], new MaxRegionRequirement(Region.sinnoh)));
+UndergroundItems.addItem(new UndergroundShardItem(409, 'Lime_shard', [[0, 0, 0, 0], [0, 1, 1, 1], [1, 1, 1, 1]], new MaxRegionRequirement(Region.sinnoh)));
+UndergroundItems.addItem(new UndergroundShardItem(410, 'White_shard', [[1, 1, 1, 1], [0, 1, 1, 1], [0, 1, 1, 0]], new MaxRegionRequirement(Region.sinnoh)));
+UndergroundItems.addItem(new UndergroundShardItem(411, 'Pink_shard', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], new MaxRegionRequirement(Region.kalos)));
+UndergroundItems.addItem(new UndergroundShardItem(412, 'Cyan_shard', [[1, 1, 1, 1], [0, 1, 1, 1], [0, 0, 1, 1]], new MaxRegionRequirement(Region.alola)));
+UndergroundItems.addItem(new UndergroundShardItem(413, 'Rose_shard', [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]], new MaxRegionRequirement(Region.galar)));
+UndergroundItems.addItem(new UndergroundShardItem(414, 'Brown_shard', [[1, 1, 0], [1, 1, 0], [1, 1, 1]], new MaxRegionRequirement(Region.galar)));
+UndergroundItems.addItem(new UndergroundShardItem(415, 'Beige_shard', [[0, 0, 1, 1], [0, 1, 1, 1], [0, 1, 1, 1]], new MaxRegionRequirement(Region.paldea)));
+UndergroundItems.addItem(new UndergroundShardItem(416, 'Slate_shard', [[0, 0, 0, 0], [1, 1, 1, 1], [1, 1, 1, 1]], new MaxRegionRequirement(Region.paldea)));
 
 // MegaStones
 UndergroundItems.addItem(new UndergroundMegaStoneItem(MegaStoneType.Aerodactylite, 500, 'Aerodactylite', [[1, 1, 1], [1, 1, 1], [1, 1, 1]], 'Aerodactyl', 0, 0.1));

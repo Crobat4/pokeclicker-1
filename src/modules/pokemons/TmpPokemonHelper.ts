@@ -16,6 +16,7 @@ import {
     // END Crobat Fork
     hasMegaEvolution,
     hasUncaughtMegaEvolution,
+    isMegaEvolution,
     getMegaStones,
     hasGigantamaxForm,
     hasUncaughtGigantamaxForm,
@@ -42,6 +43,7 @@ export default class TmpPokemonHelper {
     // END Crobat Fork
     static hasMegaEvolution = hasMegaEvolution;
     static hasUncaughtMegaEvolution = hasUncaughtMegaEvolution;
+    static isMegaEvolution = isMegaEvolution;
     static getMegaStones = getMegaStones;
     static hasGigantamaxForm = hasGigantamaxForm;
     static hasUncaughtGigantamaxForm = hasUncaughtGigantamaxForm;
