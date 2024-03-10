@@ -64,9 +64,10 @@ export class Mine {
 
         // Get our available items
         let items = UndergroundItems.getUnlockedItems();
-        items = Rand.shuffleWeightedArray(items, items.map((i) => i.getWeight())).reverse();
         // Add numItems items to the layer
         for (let i = 0; i < numItems && items.length; i++) {
+            items = UndergroundItems.getUnlockedItems();
+            items = Rand.shuffleWeightedArray(items, items.map((i) => i.getWeight())).reverse();
             let res = false;
             let x = 0;
             let y = 0;
@@ -443,7 +444,7 @@ export class Mine {
         Mine.itemsPartiallyFound(amountRevealed);
     }
 
-    public static checkItemRevealed(id: number) {
+    public static checkItemRevealed(mineID: number, itemID: number) {
         for (let i = 0; i < Underground.sizeX; i++) {
             for (let j = 0; j < this.getHeight(); j++) {
                 if (Mine.rewardGrid[j][i] != 0) {
