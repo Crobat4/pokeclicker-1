@@ -158,7 +158,7 @@
                                         <div class="w-100"></div>
                                         <!-- /ko -->
                                         <div class="plot col" data-bind="css: { plotLocked : !$data.isUnlocked }">
-                                            <div class="plot-content" data-bind="class: FarmController.calculateCssClass()">
+                                            <div class="plot-content" data-bind="class: FarmController.calculateCssClass($data)">
                                                 <div class="plotImage">
                                                     <img style="width: 100%" src="assets/images/farm/soil.png"
                                                         data-bind="class: FarmController.calcMulchClass($data)">
@@ -214,7 +214,7 @@
                                         <div class="w-100"></div>
                                         <!-- /ko -->
                                         <div class="plot col" data-bind="css: { plotLocked : !$data.isUnlocked }">
-                                            <div class="plot-content" data-bind="class: FarmController.calculateCssClass()">
+                                            <div class="plot-content" data-bind="class: FarmController.calculateCssClass($data)">
                                                 <div class="plotImage">
                                                     <img style="width: 100%" src="assets/images/farm/soil.png"
                                                         data-bind="class: FarmController.calcMulchClass($data)">
