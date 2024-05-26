@@ -32,7 +32,8 @@ export default class FluteItem extends Item {
         let tooltipString = '';
         tooltipString += `<div><strong>${this.displayName}</strong></div>`;
         tooltipString += `<div>${this.getDescription()}</div>`;
-        tooltipString += `<div>Consuming ${FluteEffectRunner.numActiveFlutes()} Gem(s)/Second</div>`;
+        //tooltipString += `<div>Consuming ${FluteEffectRunner.numActiveFlutes()} Gem(s)/Second</div>`;
+        tooltipString += '<div>Consuming 1 Gem/Second</div>';
         return tooltipString;
     }
 

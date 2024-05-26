@@ -4,7 +4,7 @@ class RouteHabitatList {
     });
 
     public static getPokemonList() {
-        const route = player.route();
+        const route = player.route;
         const region = player.region;
         const subregion = player.subregion;
 
@@ -27,7 +27,7 @@ class RouteHabitatList {
     }
 
     private static getRouteName() {
-        return Routes.getName(player.route(), player.region);
+        return Routes.getName(player.route, player.region);
     }
 
     private static getRegionName() {

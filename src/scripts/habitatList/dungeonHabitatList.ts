@@ -8,11 +8,11 @@ class DungeonHabitatList {
     });
 
     private static getLootList() {
-        return player.town().dungeon?.lootTable || [];
+        return player.town.dungeon?.lootTable || [];
     }
 
     public static allEnemiesDungeon() {
-        const town = player.town();
+        const town = player.town;
         return town.dungeon?.normalEncounterList.concat(town.dungeon?.bossEncounterList) || [];
     }
 
@@ -21,7 +21,7 @@ class DungeonHabitatList {
     }
 
     private static getDungeonName() {
-        return player.town().name;
+        return player.town.name;
     }
 
     private static getRegionName() {
@@ -33,7 +33,7 @@ class DungeonHabitatList {
     }
 
     private static getShadowStauts() {
-        return player.town().dungeon?.allAvailableShadowPokemon().some(p => App.game.party.getPokemonByName(p)?.shadow < GameConstants.ShadowStatus.Shadow);
+        return player.town.dungeon?.allAvailableShadowPokemon().some(p => App.game.party.getPokemonByName(p)?.shadow < GameConstants.ShadowStatus.Shadow);
     }
 
     public static getLootImage(input) {

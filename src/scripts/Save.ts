@@ -16,7 +16,7 @@ class Save {
     }
 
     public static getSaveObject(removeCrobatStuff = false) {
-        const saveObject: Record<any, any> = {};
+        let saveObject: Record<any, any> = {};
 
         Object.keys(App.game).filter(key => App.game[key].saveKey).forEach(key => {
             saveObject[App.game[key].saveKey] = App.game[key].toJSON();

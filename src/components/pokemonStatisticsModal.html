@@ -19,10 +19,10 @@
           <div class="col">
             <div class="d-inline-block">
               <!-- General sprite -->
-              <img data-bind="attr:{ src: PokemonHelper.getImage(pokemonMap[$data].id, undefined, false) }" src=""/>
+              <img data-bind="attr:{ src: PokemonHelper.getImage(pokemonMap[$data].id) }" src=""/>
               <!-- Female sprite -->
               <!-- ko if: pokemonMap[$data].gender.visualDifference -->
-              <img data-bind="attr:{ src: PokemonHelper.getImage(pokemonMap[$data].id, undefined, true) }" src=""/>
+              <img data-bind="attr:{ src: PokemonHelper.getImage(pokemonMap[$data].id, undefined, GameConstants.BattlePokemonGender.Female) }" src=""/>
               <!-- /ko -->
               <div class="row m-0">
                 <!-- ko if: pokemonMap[$data].gender.femaleRatio != 1 && pokemonMap[$data].gender.type == GameConstants.Genders.MaleFemale -->

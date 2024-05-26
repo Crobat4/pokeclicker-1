@@ -41,12 +41,14 @@ class BattleCafeController {
     static isSpinning = ko.observable<boolean>(false);
     static clockwise = ko.observable<boolean>(false);
 
+    /*
     static calcMaxSpins() : number {
         // Give additional max spins for each sweet type completed
         return this.baseMaxSpins + GameHelper.enumStrings(GameConstants.AlcremieSweet)
             .filter((s) => BattleCafeController.getCaughtStatus(GameConstants.AlcremieSweet[s])() >= CaughtStatus.Caught)
             .length;
     }
+    */
 
     static checkAllSweetsCompleted() {
         const totalSweets = GameHelper.enumStrings(GameConstants.AlcremieSweet).length;
@@ -277,10 +279,17 @@ class BattleCafeController {
         }
     }
 
-    public static calcMaxSpins(sweet: GameConstants.AlcremieSweet): number {
+    public static calcMaxSpins(/*sweet: GameConstants.AlcremieSweet*/): number {
+        /*
         const maxSpins = BattleCafeController.getPrice(sweet)
             .map((cost) => Math.floor(App.game.farming.berryList[cost.berry]() / cost.amount));
         return Math.min(...maxSpins);
+        */
+
+        // Give additional max spins for each sweet type completed
+        return this.baseMaxSpins + GameHelper.enumStrings(GameConstants.AlcremieSweet)
+            .filter((s) => BattleCafeController.getCaughtStatus(GameConstants.AlcremieSweet[s])() >= CaughtStatus.Caught)
+            .length;
     }
 
     public static evolutions: Record<GameConstants.AlcremieSweet, Record<GameConstants.AlcremieSpins, PokemonItem>> = {

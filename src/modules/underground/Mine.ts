@@ -67,7 +67,7 @@ export class Mine {
         // Add numItems items to the layer
         for (let i = 0; i < numItems && items.length; i++) {
             items = UndergroundItems.getUnlockedItems();
-            items = Rand.shuffleWeightedArray(items, items.map((i) => i.getWeight())).reverse();
+            items = Rand.shuffleWeightedArray(items, items.map((it) => it.getWeight())).reverse();
             let res = false;
             let x = 0;
             let y = 0;

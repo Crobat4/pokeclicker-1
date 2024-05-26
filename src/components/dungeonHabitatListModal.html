@@ -33,14 +33,14 @@
                         <div class="row justify-content-center mw-100 p-0 m-0 habitat-list" id="dungeon-habitat-list" data-bind="foreach: { data: DungeonHabitatList.pokemonList(), as: 'pokemon'}">
                             <!-- Enemy Entry -->
                             <div class="col-sm-4 col-md-3 col-lg-2 pokedexEntry"
-                                data-bind="style: { background: !pokemon.trainer && !pokemon.lock ? PokedexHelper.getBackgroundColors(pokemon.name) : 'grey' }, 
-                                    using: PokemonHelper.getPokemonByName(pokemon.name).id, as: 'pokemonID',
+                                data-bind="style: { background: !(pokemon.trainer || pokemon.shadowTrainer) && !pokemon.lock ? PokedexHelper.getBackgroundColors(pokemon.pokemonName) : 'grey' }, 
+                                    using: PokemonHelper.getPokemonByName(pokemon.pokemonName).id, as: 'pokemonID',
                                     hidden: pokemon.hide">
         
-                                <!-- ko using: App.game.party.alreadyCaughtPokemonByName(pokemon.name), as: 'caughtPokemon' -->
+                                <!-- ko using: App.game.party.alreadyCaughtPokemonByName(pokemon.pokemonName), as: 'caughtPokemon' -->
         
                                 <!-- Pokemon ID / Trainer -->
-                                <span class="pokemon-id" data-bind="text: (pokemon.trainer ? 'Trainer' : ('#' + (pokemonID > 0 && !pokemon.lock ? Math.floor(pokemonID) + '' : '???').padStart(3, 0)))">number</span>
+                                <span class="pokemon-id" data-bind="text: ((pokemon.trainer || pokemon.shadowTrainer) ? 'Trainer' : ('#' + (pokemonID > 0 && !pokemon.lock ? Math.floor(pokemonID) + '' : '???').padStart(3, 0)))">number</span>
         
                                 <!-- ko if: caughtPokemon && !pokemon.lock -->
         
@@ -62,21 +62,21 @@
         
                                 <!-- Enemy Sprite -->
                                 <img src="" width="" data-bind="css: { 
-                                    'pokemon-not-seen': (!pokemonSeen && !pokemon.trainer) || pokemon.lock, 
-                                    'pokemon-seen-but-not-caught': !caughtPokemon && pokemonSeen && !pokemon.trainer 
+                                    'pokemon-not-seen': (!pokemonSeen && !(pokemon.trainer || pokemon.shadowTrainer)) || pokemon.lock, 
+                                    'pokemon-seen-but-not-caught': !caughtPokemon && pokemonSeen && !(pokemon.trainer || pokemon.shadowTrainer) 
                                 }, 
                                 attr:{ 
-                                    src: pokemonID ? PokemonHelper.getImage(pokemonID) : pokemon.image,
-                                    width: !pokemon.trainer ? '96px' : '80px',
-                                    style: pokemon.trainer ? 'padding: 24px 0;' : '',
+                                    src: pokemonID ? PokemonHelper.getImage(pokemonID, undefined, undefined, pokemon.shadow ? GameConstants.ShadowStatus.Shadow : undefined) : pokemon.image,
+                                    width: !(pokemon.trainer || pokemon.shadowTrainer) ? '96px' : '80px',
+                                    style: (pokemon.trainer || pokemon.shadowTrainer) ? 'padding: 24px 0;' : '',
                                 }"
                                 onerror="this.src='assets/images/npcs/specialNPCs/Mysterious Trainer.png';">
-        
+
                                 <!-- Enemy Name -->                        
                                 <!-- ko if: pokemonSeen && !pokemon.lock -->
-                                <span class="pokedex-bottom-text text-truncate px-1" data-bind="text: PokemonHelper.displayName(pokemon.name),
+                                <span class="pokedex-bottom-text text-truncate px-1" data-bind="text: !(pokemon.trainer || pokemon.shadowTrainer) ? PokemonHelper.displayName(pokemon.pokemonName) : PokemonHelper.displayName(pokemon.name),
                                     tooltip: {
-                                        title: PokemonHelper.displayName(pokemon.name),
+                                        title: !(pokemon.trainer || pokemon.shadowTrainer) ? PokemonHelper.displayName(pokemon.pokemonName) : PokemonHelper.displayName(pokemon.name),
                                         trigger: 'hover',
                                         placement: 'bottom'
                                     }">name</span>

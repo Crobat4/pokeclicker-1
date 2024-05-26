@@ -1,11 +1,5 @@
 <script type="text/html" id="eggSVGTemplate">
-  <svg class="egg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 126.7 126.7" data-bind="attr: {'data-type1': PokemonType[$data.pokemonType1], 'data-type2': PokemonType[$data.pokemonType2]},
-    tooltip: {
-      title: $data.type === EggType.Pokemon ? $data.partyPokemon().name : '???',
-      trigger: 'hover',
-      placement:'top',
-      boundary: 'window'
-    }">
+  <svg class="egg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 126.7 126.7" data-bind="attr: {'data-type1': PokemonType[$data.pokemonType1], 'data-type2': PokemonType[$data.pokemonType2]}">
     <defs>
       <filter id="b" width="1.193" height="1.123" x="-.096" y="-.061" color-interpolation-filters="sRGB">
         <feGaussianBlur stdDeviation=".402"/>

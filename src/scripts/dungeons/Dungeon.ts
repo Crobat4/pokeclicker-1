@@ -436,6 +436,7 @@ class Dungeon {
                 if (shadowPokemon.length) {
                     const shadowEncounters = shadowPokemon.map(p => this.getEncounterInfo(p.name, null, hideEncounter, true));
                     const trainerEncounter = {
+                        name: enemy.name,
                         image: enemy.image,
                         EVs: '',
                         hide: hideEncounter,

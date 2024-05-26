@@ -208,7 +208,7 @@ class PokedexHelper {
             if (PokedexFilters.genderDiff.value() && !(pokemon as PokemonListData).gender.visualDifference) {
                 return false;
             }
-            
+
             if (PokedexFilters.category.value() != -1) {
                 if (!alreadyCaught) {
                     return false;
