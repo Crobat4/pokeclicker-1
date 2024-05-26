@@ -6,7 +6,6 @@ import Profile from './profile/Profile';
 import DataStore from './DataStore';
 import * as GameConstants from './GameConstants';
 import GameHelper from './GameHelper';
-import LogEvent from './LogEvent';
 // enums
 import AuraType from './enums/AuraType';
 import BadgeEnums from './enums/Badges';
@@ -41,6 +40,9 @@ import WeatherForecast from './weather/WeatherForecast';
 import DayCycle from './dayCycle/DayCycle';
 import DayCyclePart from './dayCycle/DayCyclePart';
 import DayCyclePartRequirement from './requirements/DayCyclePartRequirement';
+import MoonCycle from './moonCycle/MoonCycle';
+import MoonCyclePhase from './moonCycle/MoonCyclePhase';
+import MoonCyclePhaseRequirement from './requirements/MoonCyclePhaseRequirement';
 import SeededRand from './utilities/SeededRand';
 import SeededDateRand from './utilities/SeededDateRand';
 import Rand from './utilities/Rand';
@@ -145,6 +147,8 @@ import KeyItem from './keyItems/KeyItem';
 import KeyItems from './keyItems/KeyItems';
 import Achievement from './achievements/Achievement';
 import Gems from './gems/Gems';
+import GemDeals from './gems/GemDeals';
+import FluteEffectRunner from './gems/FluteEffectRunner';
 import QuestLineCompletedRequirement from './requirements/QuestLineCompletedRequirement';
 import QuestLineStepCompletedRequirement from './requirements/QuestLineStepCompletedRequirement';
 import QuestLineStartedRequirement from './requirements/QuestLineStartedRequirement';
@@ -170,6 +174,7 @@ import EnergyRestore from './items/EnergyRestore';
 import EffectEngineRunner from './effectEngine/effectEngineRunner';
 import ItemHandler from './items/ItemHandler';
 import CaughtIndicatingItem from './items/CaughtIndicatingItem';
+import PokemonItem from './items/PokemonItem';
 import EggItem from './items/EggItem';
 import MegaStoneItem from './items/MegaStoneItem';
 import PokeballItem from './items/PokeballItem';
@@ -208,7 +213,6 @@ Object.assign(<any>window, {
     Profile,
     GameConstants,
     GameHelper,
-    LogEvent,
     DataStore,
     BadgeCase: DataStore.badge,
     Statistics: DataStore.statistics,
@@ -243,6 +247,9 @@ Object.assign(<any>window, {
     DayCycle,
     DayCyclePart,
     DayCyclePartRequirement,
+    MoonCycle,
+    MoonCyclePhase,
+    MoonCyclePhaseRequirement,
     SeededRand,
     SeededDateRand,
     Rand,
@@ -355,6 +362,8 @@ Object.assign(<any>window, {
     KeyItems,
     Achievement,
     Gems,
+    GemDeals,
+    FluteEffectRunner,
     QuestLineCompletedRequirement,
     QuestLineStepCompletedRequirement,
     QuestLineStartedRequirement,
@@ -385,6 +394,7 @@ Object.assign(<any>window, {
     EffectEngineRunner,
     ItemHandler,
     CaughtIndicatingItem,
+    PokemonItem,
     EggItem,
     MegaStoneItem,
     PokeballItem,
