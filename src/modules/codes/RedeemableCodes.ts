@@ -73,7 +73,7 @@ export default class RedeemableCodes implements Saveable {
 
                 return true;
             }),
-            new RedeemableCode('everstone', 1389168938, false, async () => {
+            new RedeemableCode('everstone', 1389168938, false, async () => { // MINDY'S-GIFT
                 // Give the player 1 Everstone
                 player.gainItem('Everstone', 1);
                 // Notify that the code was activated successfully
@@ -306,6 +306,20 @@ export default class RedeemableCodes implements Saveable {
                     return false;
                 }
             }),
+
+            new RedeemableCode('hatchery-helper-leslie', -1532568296, false, async () => { // BREEDING-SLAVE
+                // Give the player a Hatchery Helper
+                player.gainItem('HatcheryHelperLeslie', 1);
+                // Notify that the code was activated successfully
+                Notifier.notify({
+                    title: 'Code activated!',
+                    message: 'You gained a Hatchery Helper!',
+                    type: NotificationConstants.NotificationOption.success,
+                    timeout: 1e4,
+                });
+
+                return true;
+            }, new MaxRegionRequirement(Region.kalos)),
         );
     }
 
