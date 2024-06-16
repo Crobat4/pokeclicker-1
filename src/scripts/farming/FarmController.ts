@@ -332,5 +332,7 @@ class FarmController {
         }
     }
 
+    public static shortcutVisible: KnockoutComputed<boolean> = ko.pureComputed(() => {
+        return App.game.farming.canAccess() && !Settings.getSetting('showFarmModule').observableValue();
+    });
 }
-

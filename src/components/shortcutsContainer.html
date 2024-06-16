@@ -4,7 +4,7 @@
     </div>
     <div id="shortcutsBody" class="row w-100 m-0 card-body show p-0">
       <!-- Underground -->
-      <!-- ko if: App.game.badgeCase.hasBadge(BadgeEnums.Soul) -->
+      <!-- ko if: Underground.shortcutVisible -->
       <div class="p-2" data-bind="css: { 'col-2': Settings.getSetting('gameDisplayStyle').observableValue() === 'fullWidth3', 'col-4': Settings.getSetting('gameDisplayStyle').observableValue() !== 'fullWidth3' }">
         <div class="shortcut-icon" data-bind="tooltip: { title: 'Underground', trigger: 'hover', placement: 'right', html: true },
             css: {'disabled-icon': !App.game.underground.canAccess()}"
@@ -15,7 +15,7 @@
       <!-- /ko -->
 
       <!-- Farm -->
-      <!-- ko if: new TemporaryBattleRequirement('Snorlax route 12').isCompleted() || new TemporaryBattleRequirement('Snorlax route 16').isCompleted() -->
+      <!-- ko if: FarmController.shortcutVisible -->
       <div class="p-2" data-bind="css: { 'col-2': Settings.getSetting('gameDisplayStyle').observableValue() === 'fullWidth3', 'col-4': Settings.getSetting('gameDisplayStyle').observableValue() !== 'fullWidth3' }">
         <div class="shortcut-icon" data-bind="tooltip: { title: 'Farm', trigger: 'hover', placement: 'right', html: true },
             css: {'disabled-icon': !App.game.farming.canAccess()}"
@@ -26,7 +26,7 @@
       <!-- /ko -->
 
       <!-- Poké Mart -->
-      <!-- ko if: App.game.statistics.gymsDefeated[GameConstants.getGymIndex('Champion Lance')] -->
+      <!-- ko if: ShopHandler.shortcutVisible -->
       <div class="p-2" data-bind="css: { 'col-2': Settings.getSetting('gameDisplayStyle').observableValue() === 'fullWidth3', 'col-4': Settings.getSetting('gameDisplayStyle').observableValue() !== 'fullWidth3' }">
         <div class="shortcut-icon" data-bind="tooltip: { title: 'Poké Mart', trigger: 'hover', placement: 'right', html: true },
             css: {'disabled-icon': !App.game.statistics.gymsDefeated[GameConstants.getGymIndex('Champion Lance')]}"
