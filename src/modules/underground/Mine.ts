@@ -391,16 +391,16 @@ export class Mine {
                             const timeout = Math.min(amount, 4) * 2000 + Math.max(amount - 4, 0) * 100;
                             Notifier.notify({ message, type, title, timeout });
                         }
-
-                        App.game.oakItems.use(OakItemType.Treasure_Scanner);
-                        Underground.gainMineItem(Mine.rewardNumbers[i], amount);
-                        GameHelper.incrementObservable(Mine.itemsFound);
-                        GameHelper.incrementObservable(App.game.statistics.undergroundItemsFound, amount);
-                        // Mine.rewardNumbers.splice(i, 1);
-                        Mine.rewardNumbers[i] = -1;
-                        i--;
-                        Mine.checkCompleted();
                     }
+
+                    App.game.oakItems.use(OakItemType.Treasure_Scanner);
+                    Underground.gainMineItem(Mine.rewardNumbers[i], amount);
+                    GameHelper.incrementObservable(Mine.itemsFound);
+                    GameHelper.incrementObservable(App.game.statistics.undergroundItemsFound, amount);
+                    // Mine.rewardNumbers.splice(i, 1);
+                    Mine.rewardNumbers[i] = -1;
+                    i--;
+                    Mine.checkCompleted();
                 }
             }
         }
