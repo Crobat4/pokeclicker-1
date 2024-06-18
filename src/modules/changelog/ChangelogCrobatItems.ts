@@ -13,7 +13,12 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.DEFAULT, '<div class="w-100 d-flex justify-content-around"><a href="https://github.com/Crobat4/pokeclicker" target="_blank">Repository</a><a href="https://github.com/Crobat4/Pokeclicker-desktop" target="_blank">Desktop build</a><a href="https://github.com/Crobat4/pokeclicker/wiki" target="_blank">Github Wiki</a></div>'),
     new Changelog(changelogType.DEFAULT, 'This will keep being updated as long as the thread is alive...'),
     // ⥂⥄
-    // v0.3.28
+    // v0.3.30
+    new ChangelogUpdate('v0.3.30', new Date(2024, 2 - 1, 2)),
+    new Changelog(changelogType.NEW, 'Added Official updates (v0.10.20)'),
+    new Changelog(changelogType.CHANGE, 'Changed obtain method for code Hatchery Helper'),
+    new Changelog(changelogType.FIXED, 'Underground: Items not being able to appear more than once'),
+    // v0.3.29
     new ChangelogUpdate('v0.3.29', new Date(2024, 2 - 1, 2)),
     new Changelog(changelogType.NEW, 'Added Official updates (v0.10.19)'),
     // v0.3.28
