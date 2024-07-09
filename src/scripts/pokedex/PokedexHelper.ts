@@ -219,7 +219,7 @@ class PokedexHelper {
             }
 
             // Only pokemon with gender differences
-            if (PokedexFilters.genderDiff.value() && !(pokemon as PokemonListData).gender.visualDifference) {
+            if (Settings.getSetting('genderDiff').observableValue() && !(pokemon as PokemonListData).gender.visualDifference) {
                 return false;
             }
 

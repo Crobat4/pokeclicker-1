@@ -349,7 +349,7 @@ Settings.add(new Setting<Region>('breedingRegionalAttackDebuffSetting', 'Regiona
 
 // Pokedex Filters
 export const pokedexFilterSettingKeys = ['pokedexNameFilter', 'pokedexIDFilter', 'pokedexRegionFilter', 'pokedexType1Filter', 'pokedexType2Filter', 'pokedexCaughtFilter',
-    'pokedexPokerusFilter', 'pokedexCategoryFilter', 'pokedexUniqueTransformationFilter', 'pokedexHeldItemFilter', 'pokedexHideAltFilter'];
+    'pokedexPokerusFilter', 'pokedexCategoryFilter', 'pokedexUniqueTransformationFilter', 'pokedexHeldItemFilter', 'pokedexHideAltFilter', 'genderDiff'];
 
 Settings.add(new SearchSetting('pokedexNameFilter', 'Search', '', undefined, false));
 Settings.add(new Setting<number>('pokedexIDFilter', 'Search ID', [], -1, undefined, false));
@@ -401,6 +401,7 @@ Settings.add(new Setting<string>('pokedexUniqueTransformationFilter', 'Unique Tr
     'all', new MaxRegionRequirement(Region.kalos), false));
 Settings.add(new BooleanSetting('pokedexHeldItemFilter', 'Rare Held Item', false, undefined, false));
 Settings.add(new BooleanSetting('pokedexHideAltFilter', 'Hide alternate forms', false, undefined, false));
+Settings.add(new BooleanSetting('genderDiff', 'Gender differences', false, undefined, false));
 
 // Achievement sorting
 const achievementSortSettings = Object.keys(AchievementSortOptionConfigs).map((opt) => (
