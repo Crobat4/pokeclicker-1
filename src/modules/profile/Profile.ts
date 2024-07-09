@@ -68,7 +68,10 @@ export default class Profile implements Saveable {
         card.classList.add(`trainer-bg-${background}`);
         card.style.color = textColor;
         card.dataset.key = key;
-        card.addEventListener('click', () => {
+        card.addEventListener('click', (e) => {
+            if ((e.target as HTMLElement).classList.contains('context-menu-button')) {
+                return;
+            }
             // If no key provided, this is a preview
             if (key === undefined) {
                 if (pokemon === 169) {
@@ -114,6 +117,9 @@ export default class Profile implements Saveable {
             });
         const trainerId: HTMLElement = node.querySelector('.trainer-id');
         trainerId.innerText = id.length ? `#${id}` : '';
+        if (key === undefined) {
+            node.querySelector('.context-menu-button').remove();
+        }
         return container;
     }
 
